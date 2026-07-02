@@ -1,0 +1,41 @@
+{
+  "name": "gym-wars",
+  "version": "0.1.0",
+  "description": "Gym Wars — MMA gym management browser game backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:local": "cross-env LOCAL_MODE=true node app.js",
+    "dev": "nodemon app.js",
+    "dev:local": "cross-env LOCAL_MODE=true nodemon app.js",
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "mma",
+    "management",
+    "game"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^4.18.3",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^4.21.0",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
+    "ioredis": "^5.7.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.8.0",
+    "resend": "^6.12.4"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.0"
+  }
+}

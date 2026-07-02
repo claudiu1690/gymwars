@@ -1,0 +1,228 @@
+/* ── Canvas & Cobalt design tokens (see DESIGN_BRIEF.md §3) ── */
+:root {
+    /* Light app — the fight canvas */
+    --canvas: #F6F3EC;
+    --surface: #FFFFFF;
+    --surface-sunken: #EDE9DF;
+    --ink: #17150F;
+    --ink-secondary: #5C574B;
+    --ink-muted: #9A9484;
+    --line: #DDD7C9;
+
+    /* Blue corner = the player's gym */
+    --cobalt: #1D4ED8;
+    --cobalt-strong: #1637A0;
+    --cobalt-tint: #E4EBFB;
+
+    /* Reserved semantics */
+    --corner-red: #C6323E;   /* opponents, losses, danger — never decoration */
+    --gold: #B98A1E;         /* belts / champions / title fights only */
+    --win: #2E7D4F;
+    --warn: #B96A1E;
+
+    /* Fight Night — dark inversion, fight screens only */
+    --night: #10141D;
+    --night-surface: #1A2130;
+    --night-text: #F2EFE7;
+    --night-line: #2A3245;
+
+    /* Rarity ramp — card border color by tier */
+    --rarity-journeyman: #8B8E94;
+    --rarity-prospect: #3E8E5A;
+    --rarity-contender: #2563EB;
+    --rarity-elite: #7C3AED;
+    --rarity-legend: #D4A017;
+
+    /* Type */
+    --font-display: "Archivo Black", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; }
+
+.display {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ── Cards ── */
+.card {
+    background: var(--surface);
+    border: 0.5px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(23, 21, 15, 0.06);
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 120ms ease;
+    text-decoration: none;
+}
+.btn-primary { background: var(--cobalt); color: #fff; }
+.btn-primary:hover { background: var(--cobalt-strong); }
+.btn-primary:disabled { background: var(--ink-muted); cursor: default; }
+.btn-ghost { background: transparent; color: var(--cobalt); border-color: var(--line); }
+.btn-ghost:hover { background: var(--cobalt-tint); }
+
+/* ── Forms ── */
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.field label { font-size: 13px; font-weight: 500; color: var(--ink-secondary); }
+.field input {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--ink);
+}
+.field input:focus {
+    outline: none;
+    border-color: var(--cobalt);
+    box-shadow: 0 0 0 3px var(--cobalt-tint);
+}
+
+.form-error {
+    background: #FAEBEC;
+    color: var(--corner-red);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+/* ── Auth screens ── */
+.auth-wrap {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+.auth-card { width: 100%; max-width: 400px; }
+.auth-brand { text-align: center; margin-bottom: 24px; }
+.auth-brand .display { font-size: 34px; }
+.auth-brand .tag { color: var(--ink-secondary); font-size: 13px; margin-top: 4px; }
+.auth-switch { text-align: center; font-size: 13px; color: var(--ink-secondary); margin-top: 16px; }
+.auth-switch a { color: var(--cobalt); font-weight: 500; text-decoration: none; }
+
+/* ── App shell ── */
+.shell { min-height: 100dvh; display: flex; flex-direction: column; }
+.shell-main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 16px calc(76px + env(safe-area-inset-bottom));
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--canvas);
+    border-bottom: 0.5px solid var(--line);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.topbar .display { font-size: 20px; }
+.topbar .gym-name { font-size: 13px; color: var(--ink-secondary); }
+
+/* Bottom tab bar — mobile-first */
+.tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: var(--surface);
+    border-top: 0.5px solid var(--line);
+    display: flex;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbar a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 0 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+}
+.tabbar a.active { color: var(--cobalt); }
+.tabbar .tab-ico { font-size: 20px; line-height: 1; }
+
+/* Desktop: sidebar replaces the tab bar */
+@media (min-width: 900px) {
+    .shell { flex-direction: row; }
+    .tabbar {
+        position: sticky;
+        top: 0;
+        bottom: auto;
+        height: 100dvh;
+        width: 200px;
+        flex-direction: column;
+        border-top: none;
+        border-right: 0.5px solid var(--line);
+        padding: 16px 0;
+        justify-content: flex-start;
+    }
+    .tabbar a {
+        flex: 0 0 auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    .tabbar a.active { background: var(--cobalt-tint); border-right: 3px solid var(--cobalt); }
+    .shell-col { flex: 1; display: flex; flex-direction: column; }
+    .shell-main { padding-bottom: 32px; }
+}
+
+/* ── Dashboard blocks ── */
+.page-title { font-size: 24px; margin: 8px 0 16px; }
+.block-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .block-grid { grid-template-columns: 1fr 1fr; } }
+
+.stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; }
+.stat-row + .stat-row { border-top: 0.5px solid var(--line); }
+.stat-label { font-size: 13px; color: var(--ink-secondary); }
+.stat-value { font-family: var(--font-mono); font-weight: 500; }
+
+.empty-state { text-align: center; padding: 28px 16px; color: var(--ink-secondary); }
+.empty-state .display { font-size: 18px; color: var(--ink); margin-bottom: 6px; }
