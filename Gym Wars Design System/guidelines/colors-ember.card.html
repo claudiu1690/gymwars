@@ -1,0 +1,33 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Ember Palette" subtitle="Brand accent — buttons, links, active nav, your gym" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 12px; padding: 16px; }
+  .swatch { flex: 1; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .color { height: 80px; display: flex; align-items: center; justify-content: center; }
+  .label { padding: 8px 10px; background: var(--surface); border-top: 1px solid var(--line); }
+  .name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+  .token { font-size: 10px; color: var(--ink-muted); margin-top: 1px; }
+  .use  { font-size: 10px; color: var(--ink-secondary); margin-top: 3px; font-style: italic; }
+</style>
+<div class="row">
+  <div class="swatch">
+    <div class="color" style="background: var(--ember)">
+      <span style="font-family: var(--font-body); font-size: 13px; font-weight: 600; color: white; padding: 6px 14px; border-radius: 6px; background: rgba(255,255,255,0.15)">Button</span>
+    </div>
+    <div class="label"><div class="name">Ember</div><div class="hex">#FF5A29</div><div class="token">--ember</div><div class="use">Default</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--ember-strong)">
+      <span style="font-family: var(--font-body); font-size: 13px; font-weight: 600; color: white; padding: 6px 14px; border-radius: 6px; background: rgba(255,255,255,0.15)">Hover</span>
+    </div>
+    <div class="label"><div class="name">Ember Strong</div><div class="hex">#D8431C</div><div class="token">--ember-strong</div><div class="use">Hover / pressed</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--ember-tint)">
+      <span style="font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--ember-strong); padding: 6px 14px; border-radius: 6px; background: rgba(255,90,41,0.12)">Selected</span>
+    </div>
+    <div class="label"><div class="name">Ember Tint</div><div class="hex">#FCE0D2</div><div class="token">--ember-tint</div><div class="use">Selected / chip bg</div></div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Brand Surfaces" subtitle="Canvas · Surface · Sunken · Line" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 12px; padding: 16px; align-items: stretch; }
+  .swatch { flex: 1; border-radius: var(--radius-md); overflow: hidden; }
+  .color { height: 80px; }
+  .label { padding: 8px 10px; background: var(--surface); border-top: 1px solid var(--line); }
+  .name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+  .token { font-size: 10px; color: var(--ink-muted); margin-top: 1px; }
+</style>
+<div class="row">
+  <div class="swatch" style="box-shadow: var(--shadow-sm)">
+    <div class="color" style="background: var(--canvas); border: 1px solid var(--line)"></div>
+    <div class="label"><div class="name">Canvas</div><div class="hex">#F6F3EC</div><div class="token">--canvas</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-sm)">
+    <div class="color" style="background: var(--surface); border: 1px solid var(--line)"></div>
+    <div class="label"><div class="name">Surface</div><div class="hex">#FFFFFF</div><div class="token">--surface</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-sm)">
+    <div class="color" style="background: var(--surface-sunken); border: 1px solid var(--line)"></div>
+    <div class="label"><div class="name">Sunken</div><div class="hex">#EDE9DF</div><div class="token">--surface-sunken</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-sm)">
+    <div class="color" style="background: var(--line); border: 1px solid var(--line)"></div>
+    <div class="label"><div class="name">Line</div><div class="hex">#DDD7C9</div><div class="token">--line</div></div>
+  </div>
+</div>

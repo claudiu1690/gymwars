@@ -1,0 +1,43 @@
+:root {
+  /* ── Surfaces — warm paper ────────────────────────────── */
+  --canvas:          #EAE1CE;   /* App background — warm poster paper */
+  --surface:         #F7F2E5;   /* Cards, panels — lighter paper */
+  --surface-sunken:  #DED0AC;   /* Wells, input backgrounds, table stripes */
+
+  /* ── Ink ──────────────────────────────────────────────── */
+  --ink:             #1B1712;   /* Primary text — warm near-black poster ink */
+  --ink-secondary:   #5C5140;   /* Secondary text, labels */
+  --ink-muted:       #8C8067;   /* Hints, disabled, timestamps */
+
+  /* ── Lines ────────────────────────────────────────────── */
+  --line:            #D6C8A6;   /* Borders, dividers */
+
+  /* ── Ember — brand accent (blood-orange) ──────────────── */
+  --ember:           #FF5A29;   /* Primary buttons, links, active nav, "your gym" */
+  --ember-strong:    #D8431C;   /* Hover/pressed, emphasis */
+  --ember-tint:      #FCE0D2;   /* Selected states, info chips, highlights */
+
+  /* ── Semantic ─────────────────────────────────────────── */
+  --corner-red:      #C81E3A;   /* Opponents, incoming attacks, losses, destructive — never decoration */
+  --corner-red-tint: #F8E1E6;
+  --gold:            #C08A2E;   /* Belts, champions, title fights only */
+  --gold-tint:       #F5EAD3;
+  --win:             #3E7D52;   /* Wins, positive deltas, stat gains */
+  --win-tint:        #E1EEE3;
+  --warn:            #A8721E;   /* Fatigue warnings, expiring shields, neglected training */
+  --warn-tint:       #F3E7D2;
+
+  /* ── Fight Night (dark inversion — fight screens only) ── */
+  --night:           #171310;   /* Fight screen background — warm poster ink black */
+  --night-surface:   #221D16;   /* Panels on fight screens */
+  --night-text:      #F0E8D8;   /* Text on night surfaces */
+  --night-muted:     #8C8067;   /* Secondary text on night */
+  --night-line:      #332B1F;   /* Dividers on night */
+
+  /* ── Rarity (card glow/border only) ──────────────────── */
+  --rarity-journeyman: #8B8E94;
+  --rarity-prospect:   #3E8E5A;
+  --rarity-contender:  #2563EB;
+  --rarity-elite:      #7C3AED;
+  --rarity-legend:     #D4A017;
+}

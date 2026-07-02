@@ -1,0 +1,339 @@
+<!-- @dsCard group="Mobile App" viewport="380x720" name="Gym Wars App" subtitle="Dashboard · Roster · Fight Night — interactive" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=380, initial-scale=1">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; }
+  body {
+    background: #1C1C1E;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; font-family: var(--font-body);
+  }
+  #root {
+    width: 380px; height: 720px; overflow: hidden;
+    border-radius: 44px;
+    box-shadow: 0 0 0 10px #2C2C2E, 0 0 0 11px #3A3A3C, 0 40px 80px rgba(0,0,0,0.7);
+  }
+  .app { width: 380px; height: 720px; display: flex; flex-direction: column; overflow: hidden; }
+  .screen { flex: 1; overflow-y: auto; }
+  .screen::-webkit-scrollbar { display: none; }
+  .tab-bar { flex-shrink: 0; display: flex; height: 72px; }
+  .tab-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; cursor: pointer; border: none;
+    background: none; padding: 0; transition: color 150ms;
+  }
+  .tab-label { font-size: 10px; font-weight: 500; letter-spacing: 0.02em; }
+  .section-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 8px;
+  }
+  .card {
+    background: var(--surface); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const DS = window.GymWarsDesignSystem_35c3be;
+const { Button, FighterCard, StatusChip, WeightClassChip, StyleBadge, TimerBadge, ScoutReport } = DS;
+
+// ── Mock Data ─────────────────────────────────────────────────
+const GYM_NAME = 'IRON FORGE';
+const PURSE = 4200;
+
+const FIGHTERS = [
+  { id:1, name:'MARCUS VEGA',  weightClass:'lightweight',  style:'boxer',    age:26, careerPhase:'Prime',    stats:{striking:76,grappling:61,submissions:44,conditioning:68}, record:{wins:12,losses:3},  rarity:'contender', status:{type:'in-camp',   countdown:'3d 12h'} },
+  { id:2, name:'ANA RIVAS',    weightClass:'featherweight', style:'wrestler', age:22, careerPhase:'Rising',   stats:{striking:58,grappling:79,submissions:55,conditioning:88}, record:{wins:5, losses:0},  rarity:'elite',     status:{type:'fight-ready'}                 },
+  { id:3, name:'LEON MBEKI',   weightClass:'welterweight',  style:'bjj',      age:33, careerPhase:'Declining',stats:{striking:51,grappling:68,submissions:74,conditioning:42}, record:{wins:18,losses:9},  rarity:'prospect',  status:{type:'fatigued'}                    },
+];
+
+const FIGHT_LOG = [
+  { round:1, time:'0:42', corner:'blue',    text:'VEGA lands a heavy leg kick. Chen retreats.' },
+  { round:1, time:'1:15', corner:'red',     text:'CHEN shoots for a takedown. Vega defends.' },
+  { round:1, time:'2:47', corner:'blue',    text:'VEGA lands a clean right hand. Chen stumbles.' },
+  { round:1, time:'3:30', corner:'neutral', text:'End of Round 1.' },
+  { round:2, time:'0:20', corner:'blue',    text:'VEGA opens with a left-right combination. Chen is hurt.' },
+  { round:2, time:'0:45', corner:'blue',    text:'KO — VEGA lands the finishing right hook. Fight over.', ko:true },
+];
+
+// ── SVG Icons (Lucide-style, 1.5px stroke) ────────────────────
+const Ico = ({ d, size=20, extra='' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d={d+extra}/>
+  </svg>
+);
+const TAB_ICONS = {
+  home:     'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z',
+  roster:   'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2',
+  fights:   'M6.5 17.5l-5-5 5-5 M17.5 6.5l5 5-5 5',
+  gym:      'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2zM9 22V12h6v10',
+  rankings: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z',
+};
+
+// ── TabBar ────────────────────────────────────────────────────
+const TABS = [
+  {id:'home',     label:'Home'},
+  {id:'roster',   label:'Roster'},
+  {id:'fights',   label:'Fights'},
+  {id:'gym',      label:'Gym'},
+  {id:'rankings', label:'Rankings'},
+];
+
+function TabBar({ active, onSelect, night }) {
+  const bg    = night ? 'var(--night-surface)' : 'var(--surface)';
+  const bdr   = night ? 'var(--night-line)'    : 'var(--line)';
+  const muted = night ? 'var(--night-muted)'   : 'var(--ink-muted)';
+  return (
+    <div className="tab-bar" style={{background:bg, borderTop:`1px solid ${bdr}`}}>
+      {TABS.map(t => {
+        const isActive = t.id === active;
+        return (
+          <button key={t.id} className="tab-btn"
+            style={{color: isActive ? 'var(--ember)' : muted}}
+            onClick={() => onSelect(t.id)}>
+            <Ico d={TAB_ICONS[t.id]} size={19} />
+            <span className="tab-label">{t.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── HomeScreen ────────────────────────────────────────────────
+function HomeScreen({ onViewFight }) {
+  return (
+    <div style={{background:'var(--canvas)'}}>
+      {/* Header */}
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px 16px 12px',background:'var(--surface)',borderBottom:'1px solid var(--line)'}}>
+        <div>
+          <div style={{fontFamily:'var(--font-display)',fontSize:'18px',letterSpacing:'0.04em',textTransform:'uppercase',color:'var(--ink)'}}>{GYM_NAME}</div>
+          <div style={{fontFamily:'var(--font-mono)',fontSize:'12px',color:'var(--win)',marginTop:2}}>${PURSE.toLocaleString()}</div>
+        </div>
+        <button style={{background:'none',border:'none',cursor:'pointer',color:'var(--ink-secondary)',position:'relative',padding:6}}>
+          <Ico d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" extra="M13.73 21a2 2 0 01-3.46 0" size={22}/>
+          <span style={{position:'absolute',top:4,right:4,width:8,height:8,borderRadius:'50%',background:'var(--corner-red)',border:'2px solid var(--surface)'}}/>
+        </button>
+      </div>
+
+      <div style={{padding:'12px 16px',display:'flex',flexDirection:'column',gap:16}}>
+        {/* Digest */}
+        <div style={{background:'var(--ember-tint)',borderRadius:'var(--radius-md)',padding:'10px 12px'}}>
+          <div className="section-label" style={{color:'var(--ember-strong)',marginBottom:5}}>While You Were Away</div>
+          <div style={{fontSize:'13px',color:'var(--ink)',marginBottom:3}}>Camp complete — <strong>RIVAS</strong> gained 3 stat points.</div>
+          <div style={{fontSize:'13px',color:'var(--corner-red)',fontWeight:500,marginBottom:6}}>You were attacked by STEEL CITY GYM.</div>
+          <button onClick={onViewFight} style={{fontFamily:'var(--font-body)',fontSize:'12px',fontWeight:600,color:'var(--ember-strong)',background:'none',border:'none',cursor:'pointer',padding:0}}>View fight results →</button>
+        </div>
+
+        {/* Active Camps */}
+        <div>
+          <div className="section-label">Active Camps</div>
+          <div style={{display:'flex',flexDirection:'column',gap:6}}>
+            <FighterCard variant="compact" {...FIGHTERS[0]} />
+            <FighterCard variant="compact" {...FIGHTERS[1]} />
+          </div>
+        </div>
+
+        {/* Scouting */}
+        <div>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
+            <div className="section-label" style={{margin:0}}>Scouting</div>
+            <TimerBadge value="3h 45m" size="sm" label="Refresh" />
+          </div>
+          <div className="card" style={{padding:'12px'}}>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+              <div>
+                <div style={{display:'flex',gap:6,marginBottom:5}}>
+                  {[0,1,2].map(i=>(
+                    <div key={i} style={{width:10,height:10,borderRadius:'50%',background:i<2?'var(--ember)':'var(--line)'}}/>
+                  ))}
+                </div>
+                <div style={{fontSize:'12px',color:'var(--ink-secondary)'}}>2 of 3 attempts used</div>
+                <div style={{fontSize:'11px',color:'var(--ink-muted)',marginTop:2}}>Guaranteed Contender+ in 3 scouts</div>
+              </div>
+              <Button variant="primary" size="sm">Scout Now</Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Next Fight */}
+        <div>
+          <div className="section-label">Next Fight</div>
+          <div className="card" style={{padding:'12px'}}>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:20,marginBottom:10}}>
+              <div style={{textAlign:'right'}}>
+                <div style={{fontFamily:'var(--font-display)',fontSize:'17px',color:'var(--ember-strong)',textTransform:'uppercase',letterSpacing:'0.03em',lineHeight:1}}>VEGA</div>
+                <div style={{fontFamily:'var(--font-mono)',fontSize:'11px',color:'var(--ink-muted)',marginTop:2}}>12–3</div>
+              </div>
+              <span style={{fontFamily:'var(--font-display)',fontSize:'13px',color:'var(--ink-muted)',letterSpacing:'0.04em'}}>VS</span>
+              <div style={{textAlign:'left'}}>
+                <div style={{fontFamily:'var(--font-display)',fontSize:'17px',color:'var(--corner-red)',textTransform:'uppercase',letterSpacing:'0.03em',lineHeight:1}}>CHEN</div>
+                <div style={{fontFamily:'var(--font-mono)',fontSize:'11px',color:'var(--ink-muted)',marginTop:2}}>9–4</div>
+              </div>
+            </div>
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',paddingTop:8,borderTop:'1px solid var(--line)'}}>
+              <div style={{display:'flex',gap:6,alignItems:'center'}}>
+                <WeightClassChip weightClass="lightweight" />
+                <span style={{fontSize:'11px',color:'var(--ink-muted)'}}>Regional · 3 rds</span>
+              </div>
+              <TimerBadge value="2d 6h" size="sm" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── RosterScreen ──────────────────────────────────────────────
+function RosterScreen() {
+  return (
+    <div style={{background:'var(--canvas)'}}>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'16px',background:'var(--surface)',borderBottom:'1px solid var(--line)'}}>
+        <div style={{fontFamily:'var(--font-display)',fontSize:'18px',letterSpacing:'0.04em',textTransform:'uppercase',color:'var(--ink)'}}>Roster</div>
+        <span style={{fontFamily:'var(--font-mono)',fontSize:'12px',color:'var(--ink-muted)'}}>3 / 6 slots</span>
+      </div>
+      <div style={{padding:'12px 16px',display:'flex',flexDirection:'column',gap:6}}>
+        {FIGHTERS.map(f => <FighterCard key={f.id} variant="compact" {...f} />)}
+
+        {/* Empty slot */}
+        <div style={{background:'var(--surface)',borderRadius:'var(--radius-md)',padding:'12px 14px',border:'1.5px dashed var(--line)',display:'flex',alignItems:'center',gap:10}}>
+          <div style={{width:40,height:40,borderRadius:'50%',background:'var(--surface-sunken)',border:'1.5px dashed var(--line)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+            <Ico d="M12 5v14M5 12h14" size={16} />
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontSize:'13px',fontWeight:500,color:'var(--ink-secondary)'}}>Empty slot</div>
+            <div style={{fontSize:'11px',color:'var(--ink-muted)',marginTop:1}}>Scout a fighter to fill this slot</div>
+          </div>
+          <Button variant="tint" size="sm">Scout</Button>
+        </div>
+
+        {/* Locked slot */}
+        <div style={{background:'var(--surface-sunken)',borderRadius:'var(--radius-md)',padding:'12px 14px',display:'flex',alignItems:'center',gap:10,opacity:0.55}}>
+          <div style={{width:40,height:40,borderRadius:'50%',background:'var(--line)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+            <Ico d="M7 11V7a5 5 0 0110 0v4M3 11h18v10H3z" size={15}/>
+          </div>
+          <div style={{flex:1}}>
+            <div style={{fontSize:'13px',fontWeight:500,color:'var(--ink-secondary)'}}>Locked — Tier 2 gym</div>
+            <div style={{fontSize:'11px',color:'var(--ink-muted)',marginTop:1}}>Upgrade facility to unlock</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── FightNightScreen ──────────────────────────────────────────
+function FightNightScreen() {
+  return (
+    <div style={{background:'var(--night)',minHeight:'100%',display:'flex',flexDirection:'column',padding:'0 0 20px'}}>
+      {/* Weight class label */}
+      <div style={{textAlign:'center',padding:'22px 16px 16px'}}>
+        <div style={{fontFamily:'var(--font-body)',fontSize:'10px',fontWeight:600,letterSpacing:'0.14em',textTransform:'uppercase',color:'var(--night-muted)',marginBottom:18}}>Lightweight · Regional · 3 Rounds</div>
+
+        {/* VS banner */}
+        <div style={{display:'flex',alignItems:'center',justifyContent:'center',gap:12}}>
+          <div style={{flex:1,textAlign:'right'}}>
+            <div style={{fontFamily:'var(--font-display)',fontSize:'24px',color:'var(--ember)',letterSpacing:'0.02em',textTransform:'uppercase',lineHeight:1.05}}>MARCUS<br/>VEGA</div>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:'12px',color:'var(--night-muted)',marginTop:5}}>12–3</div>
+            <div style={{marginTop:5,display:'flex',justifyContent:'flex-end'}}>
+              <span style={{fontFamily:'var(--font-body)',fontSize:'10px',fontWeight:700,color:'var(--ember)',background:'rgba(255,90,41,0.15)',padding:'2px 8px',borderRadius:'var(--radius-chip)',letterSpacing:'0.06em'}}>YOUR CORNER</span>
+            </div>
+          </div>
+          <div style={{fontFamily:'var(--font-display)',fontSize:'16px',color:'var(--night-muted)',letterSpacing:'0.04em',flexShrink:0,padding:'0 4px'}}>VS</div>
+          <div style={{flex:1,textAlign:'left'}}>
+            <div style={{fontFamily:'var(--font-display)',fontSize:'24px',color:'var(--corner-red)',letterSpacing:'0.02em',textTransform:'uppercase',lineHeight:1.05}}>JAMES<br/>CHEN</div>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:'12px',color:'var(--night-muted)',marginTop:5}}>9–4</div>
+            <div style={{marginTop:5}}>
+              <span style={{fontFamily:'var(--font-body)',fontSize:'10px',fontWeight:700,color:'var(--corner-red)',background:'rgba(198,50,62,0.15)',padding:'2px 8px',borderRadius:'var(--radius-chip)',letterSpacing:'0.06em'}}>RED CORNER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Result card */}
+      <div style={{margin:'0 16px 14px',background:'var(--night-surface)',borderRadius:'var(--radius-lg)',padding:'16px',border:'1px solid var(--night-line)'}}>
+        <div style={{textAlign:'center',marginBottom:12}}>
+          <div style={{fontFamily:'var(--font-display)',fontSize:'30px',color:'var(--ember)',letterSpacing:'0.04em',textTransform:'uppercase',lineHeight:1}}>VEGA WINS</div>
+          <div style={{fontFamily:'var(--font-mono)',fontSize:'14px',color:'var(--night-text)',marginTop:6}}>KO · Round 2, 0:45</div>
+        </div>
+        <div style={{display:'flex',gap:0,borderTop:'1px solid var(--night-line)',paddingTop:12}}>
+          {[['$2,400','var(--win)','Purse'],['+12','var(--ember)','Ranking pts'],['−15 Fatigue','var(--warn)','Fatigue']].map(([val,col,lbl],i,arr)=>(
+            <React.Fragment key={lbl}>
+              <div style={{flex:1,textAlign:'center'}}>
+                <div style={{fontFamily:'var(--font-mono)',fontSize:'15px',fontWeight:600,color:col}}>{val}</div>
+                <div style={{fontFamily:'var(--font-body)',fontSize:'11px',color:'var(--night-muted)',marginTop:3}}>{lbl}</div>
+              </div>
+              {i < arr.length-1 && <div style={{width:1,background:'var(--night-line)'}}/>}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* Fight log */}
+      <div style={{margin:'0 16px',background:'var(--night-surface)',borderRadius:'var(--radius-lg)',padding:'12px',border:'1px solid var(--night-line)'}}>
+        <div style={{fontFamily:'var(--font-body)',fontSize:'10px',fontWeight:600,textTransform:'uppercase',letterSpacing:'0.08em',color:'var(--night-muted)',marginBottom:8}}>Fight Log</div>
+        <div style={{display:'flex',flexDirection:'column',gap:5}}>
+          {FIGHT_LOG.map((e,i)=>(
+            <div key={i} style={{display:'flex',gap:8,alignItems:'flex-start',background:e.ko?'rgba(255,90,41,0.1)':'transparent',borderRadius:e.ko?4:0,padding:e.ko?'3px 5px':'0',margin:e.ko?'0 -5px':'0'}}>
+              <span style={{fontFamily:'var(--font-mono)',fontSize:'11px',color:'var(--night-muted)',flexShrink:0,lineHeight:1.55,whiteSpace:'nowrap'}}>R{e.round} {e.time}</span>
+              <span style={{fontFamily:'var(--font-mono)',fontSize:'11px',lineHeight:1.55,fontWeight:e.ko?600:400,color:e.corner==='blue'?'var(--ember)':e.corner==='red'?'var(--corner-red)':'var(--night-muted)'}}>{e.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{margin:'14px 16px 0',display:'flex',gap:8}}>
+        <Button variant="primary" size="md">Next Fight</Button>
+        <Button variant="ghost" size="md">Full Breakdown</Button>
+      </div>
+    </div>
+  );
+}
+
+// ── Placeholder ───────────────────────────────────────────────
+function PlaceholderScreen({ label }) {
+  return (
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:'100%',gap:10,color:'var(--ink-muted)',padding:'40px 32px',textAlign:'center'}}>
+      <div style={{fontFamily:'var(--font-display)',fontSize:'20px',letterSpacing:'0.06em',textTransform:'uppercase'}}>{label}</div>
+      <div style={{fontFamily:'var(--font-body)',fontSize:'12px',lineHeight:1.7,maxWidth:220}}>This screen is in scope for the Gym Wars app. See design brief §5 (P1/P2 screens) for wireframe priority.</div>
+    </div>
+  );
+}
+
+// ── App ───────────────────────────────────────────────────────
+function App() {
+  const [tab, setTab] = React.useState('home');
+  const isNight = tab === 'fights';
+
+  const screens = {
+    home:     <HomeScreen onViewFight={() => setTab('fights')} />,
+    roster:   <RosterScreen />,
+    fights:   <FightNightScreen />,
+    gym:      <PlaceholderScreen label="Gym & Facilities" />,
+    rankings: <PlaceholderScreen label="Rankings" />,
+  };
+
+  return (
+    <div className="app" style={{background: isNight ? 'var(--night)' : 'var(--canvas)'}}>
+      <div className="screen">{screens[tab]}</div>
+      <TabBar active={tab} onSelect={setTab} night={isNight} />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

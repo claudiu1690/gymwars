@@ -4,6 +4,8 @@ import Shell from "./components/Shell";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Roster from "./pages/Roster";
+import FightNight from "./pages/FightNight";
 import Placeholder from "./pages/Placeholder";
 
 function RequireAuth({ children }) {
@@ -25,10 +27,10 @@ export default function App() {
                         <Shell>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />
-                                <Route path="/roster" element={<Placeholder title="Roster" note="Fighter cards land in Phase 1 — scouting and signing." />} />
-                                <Route path="/fights" element={<Placeholder title="Fights" note="Fight Night arrives in Phase 3 — the engine and the ladder." />} />
-                                <Route path="/gym" element={<Placeholder title="Gym" note="Facility tiers, staff, and mentoring arrive in Phase 5." />} />
-                                <Route path="/rankings" element={<Placeholder title="Rankings" note="Per-weight-class ladders arrive in Phase 3." />} />
+                                <Route path="/roster" element={<Roster />} />
+                                <Route path="/fights" element={<FightNight />} />
+                                <Route path="/gym" element={<Placeholder title="Gym & Facilities" note="This screen is in scope for the Gym Wars app. See design brief §5 (P1/P2 screens) for wireframe priority." />} />
+                                <Route path="/rankings" element={<Placeholder title="Rankings" note="This screen is in scope for the Gym Wars app. See design brief §5 (P1/P2 screens) for wireframe priority." />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />
                             </Routes>
                         </Shell>

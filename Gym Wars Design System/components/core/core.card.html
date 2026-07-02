@@ -1,0 +1,151 @@
+<!-- @dsCard group="Components" viewport="700x900" name="Core Components" subtitle="Button · StatBar · StatusChip · WeightClassChip · StyleBadge · TimerBadge · FighterCard · ScoutReport" -->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 16px; }
+  .section { margin-bottom: 20px; }
+  .section-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 8px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .divider { height: 1px; background: var(--line); margin: 4px 0 16px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Button, StatBar, StatusChip, WeightClassChip, StyleBadge, TimerBadge, FighterCard, ScoutReport } = window.GymWarsDesignSystem_35c3be;
+
+const FIGHTER = {
+  name: "Marcus Vega",
+  weightClass: "lightweight",
+  style: "boxer",
+  age: 26,
+  careerPhase: "Prime",
+  stats: { striking: 76, grappling: 61, submissions: 44, conditioning: 68 },
+  record: { wins: 12, losses: 3 },
+  rarity: "contender",
+  status: { type: "in-camp", countdown: "3d 12h" },
+};
+
+function Card() {
+  return (
+    <div>
+      {/* Buttons */}
+      <div className="section">
+        <div className="section-label">Button — variant</div>
+        <div className="row">
+          <Button variant="primary">Start Camp</Button>
+          <Button variant="secondary">Set Gameplan</Button>
+          <Button variant="ghost">Cancel</Button>
+          <Button variant="danger">Retire</Button>
+          <Button variant="tint">View Results</Button>
+          <Button variant="primary" disabled>Disabled</Button>
+        </div>
+        <div className="row" style={{marginTop:8}}>
+          <Button variant="primary" size="sm">Small</Button>
+          <Button variant="primary" size="md">Medium</Button>
+          <Button variant="primary" size="lg">Large</Button>
+        </div>
+      </div>
+      <div className="divider" />
+
+      {/* Chips & Badges */}
+      <div className="section">
+        <div className="section-label">StatusChip</div>
+        <div className="row">
+          <StatusChip status="in-camp" countdown="3d 12h" />
+          <StatusChip status="fight-ready" />
+          <StatusChip status="fatigued" />
+          <StatusChip status="shielded" countdown="6h 30m" />
+          <StatusChip status="retiring" />
+        </div>
+      </div>
+
+      <div className="section" style={{marginTop:12}}>
+        <div className="section-label">WeightClassChip · StyleBadge · TimerBadge</div>
+        <div className="row">
+          <WeightClassChip weightClass="lightweight" />
+          <WeightClassChip weightClass="heavyweight" />
+          <WeightClassChip weightClass="middleweight" variant="full" />
+          <StyleBadge style="boxer" />
+          <StyleBadge style="wrestler" />
+          <StyleBadge style="bjj" showFamily />
+          <StyleBadge style="muay-thai" showFamily />
+        </div>
+        <div className="row" style={{marginTop:8}}>
+          <TimerBadge value="3d 12h" label="Camp ends" />
+          <TimerBadge value="0d 45m" urgent label="Scout refresh" />
+          <TimerBadge value="Complete" complete label="Fight result" />
+          <TimerBadge value="6h 30m" size="lg" />
+        </div>
+      </div>
+      <div className="divider" />
+
+      {/* StatBar */}
+      <div className="section">
+        <div className="section-label">StatBar</div>
+        <div style={{display:'flex', flexDirection:'column', gap:6, maxWidth:320}}>
+          <StatBar label="Striking"     value={76} />
+          <StatBar label="Grappling"    value={61} />
+          <StatBar label="Submissions"  value={44} />
+          <StatBar label="Conditioning" value={28} />
+        </div>
+      </div>
+      <div className="divider" />
+
+      {/* FighterCard — all three variants */}
+      <div className="section">
+        <div className="section-label">FighterCard — compact</div>
+        <div style={{display:'flex', flexDirection:'column', gap:6}}>
+          <FighterCard variant="compact" {...FIGHTER} />
+          <FighterCard variant="compact" {...FIGHTER} name="Ana Rivas" rarity="elite" style="wrestler" careerPhase="Rising" status={{type:'fight-ready'}} record={{wins:5,losses:0}} />
+          <FighterCard variant="compact" {...FIGHTER} name="Leon Mbeki" rarity="journeyman" style="bjj" careerPhase="Declining" status={{type:'fatigued'}} record={{wins:8,losses:6}} />
+        </div>
+      </div>
+
+      <div className="section" style={{marginTop:16}}>
+        <div className="section-label">FighterCard — grid (3 rarities)</div>
+        <div className="cols">
+          <FighterCard variant="grid" {...FIGHTER} />
+          <FighterCard variant="grid" {...FIGHTER} name="Ana Rivas" rarity="elite" style="wrestler" careerPhase="Rising" age={22} stats={{striking:82,grappling:79,submissions:55,conditioning:88}} record={{wins:5,losses:0}} status={{type:'fight-ready'}} />
+          <FighterCard variant="grid" {...FIGHTER} name="Leon Mbeki" rarity="legend" style="muay-thai" careerPhase="Prime" age={29} stats={{striking:91,grappling:73,submissions:60,conditioning:84}} record={{wins:24,losses:2}} status={{type:'in-camp',countdown:'1d 4h'}} />
+        </div>
+      </div>
+
+      <div className="section" style={{marginTop:16}}>
+        <div className="section-label">FighterCard — detail</div>
+        <FighterCard variant="detail" {...FIGHTER} />
+      </div>
+      <div className="divider" />
+
+      {/* ScoutReport */}
+      <div className="section">
+        <div className="section-label">ScoutReport — unrevealed + revealed</div>
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:10}}>
+          <ScoutReport
+            region="Southeast Asia" styleLean="Striker"
+            rarityRevealed={false}
+            statRanges={{striking:[42,55],grappling:[30,48],submissions:[20,35],conditioning:[55,70]}}
+            pityCount={4} pityMax={7} guaranteedTier="Contender+"
+          />
+          <ScoutReport
+            region="Eastern Europe" styleLean="Grappler"
+            rarityRevealed={true} rarityTier="elite"
+            statRanges={{striking:[70,82],grappling:[78,90],submissions:[65,78],conditioning:[72,85]}}
+            pityCount={1} pityMax={7} guaranteedTier="Contender+"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Card />);
+</script>
+</body>
+</html>

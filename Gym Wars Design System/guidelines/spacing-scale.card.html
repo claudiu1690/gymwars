@@ -1,0 +1,22 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Spacing Scale" subtitle="4px base grid — 16 steps" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 16px 20px; }
+  .grid { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .bar-wrap { flex: 1; height: 16px; display: flex; align-items: center; }
+  .bar { height: 16px; background: var(--ember-tint); border: 1.5px solid var(--ember); border-radius: 2px; min-width: 4px; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-secondary); min-width: 90px; }
+  .token { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); min-width: 80px; }
+</style>
+<div class="grid">
+  <div class="row"><span class="meta">4px</span><div class="bar-wrap"><div class="bar" style="width: 4px"></div></div><span class="token">--space-1</span></div>
+  <div class="row"><span class="meta">8px</span><div class="bar-wrap"><div class="bar" style="width: 8px"></div></div><span class="token">--space-2</span></div>
+  <div class="row"><span class="meta">12px</span><div class="bar-wrap"><div class="bar" style="width: 12px"></div></div><span class="token">--space-3</span></div>
+  <div class="row"><span class="meta">16px</span><div class="bar-wrap"><div class="bar" style="width: 16px"></div></div><span class="token">--space-4</span></div>
+  <div class="row"><span class="meta">20px</span><div class="bar-wrap"><div class="bar" style="width: 20px"></div></div><span class="token">--space-5</span></div>
+  <div class="row"><span class="meta">24px</span><div class="bar-wrap"><div class="bar" style="width: 24px"></div></div><span class="token">--space-6</span></div>
+  <div class="row"><span class="meta">32px</span><div class="bar-wrap"><div class="bar" style="width: 32px"></div></div><span class="token">--space-8</span></div>
+  <div class="row"><span class="meta">48px</span><div class="bar-wrap"><div class="bar" style="width: 48px"></div></div><span class="token">--space-12</span></div>
+  <div class="row"><span class="meta">64px</span><div class="bar-wrap"><div class="bar" style="width: 64px"></div></div><span class="token">--space-16</span></div>
+</div>

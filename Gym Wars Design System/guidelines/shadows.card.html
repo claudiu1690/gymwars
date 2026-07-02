@@ -1,0 +1,41 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Shadow Elevation" subtitle="Warm-tinted shadows — 4 levels + night variants" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 24px 20px; }
+  .row { display: flex; gap: 16px; align-items: flex-end; }
+  .card { flex: 1; background: var(--surface); border-radius: var(--radius-md); padding: 12px; }
+  .label { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); margin-top: 8px; }
+  .name { font-size: 11px; font-weight: 600; color: var(--ink); }
+</style>
+<div class="row">
+  <div>
+    <div class="card" style="box-shadow: var(--shadow-xs)">
+      <div class="name">XSmall</div>
+      <div class="label">--shadow-xs</div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="box-shadow: var(--shadow-sm)">
+      <div class="name">Small</div>
+      <div class="label">--shadow-sm</div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="box-shadow: var(--shadow-md)">
+      <div class="name">Medium</div>
+      <div class="label">--shadow-md</div>
+    </div>
+  </div>
+  <div>
+    <div class="card" style="box-shadow: var(--shadow-lg)">
+      <div class="name">Large</div>
+      <div class="label">--shadow-lg</div>
+    </div>
+  </div>
+  <div style="background: var(--night); padding: 12px; border-radius: var(--radius-md);">
+    <div class="card" style="background: var(--night-surface); box-shadow: var(--shadow-night-md)">
+      <div class="name" style="color: var(--night-text);">Night MD</div>
+      <div class="label" style="color: var(--night-muted);">--shadow-night-md</div>
+    </div>
+  </div>
+</div>

@@ -1,43 +1,10 @@
-/* ── Canvas & Cobalt design tokens (see DESIGN_BRIEF.md §3) ── */
-:root {
-    /* Light app — the fight canvas */
-    --canvas: #F6F3EC;
-    --surface: #FFFFFF;
-    --surface-sunken: #EDE9DF;
-    --ink: #17150F;
-    --ink-secondary: #5C574B;
-    --ink-muted: #9A9484;
-    --line: #DDD7C9;
-
-    /* Blue corner = the player's gym */
-    --cobalt: #1D4ED8;
-    --cobalt-strong: #1637A0;
-    --cobalt-tint: #E4EBFB;
-
-    /* Reserved semantics */
-    --corner-red: #C6323E;   /* opponents, losses, danger — never decoration */
-    --gold: #B98A1E;         /* belts / champions / title fights only */
-    --win: #2E7D4F;
-    --warn: #B96A1E;
-
-    /* Fight Night — dark inversion, fight screens only */
-    --night: #10141D;
-    --night-surface: #1A2130;
-    --night-text: #F2EFE7;
-    --night-line: #2A3245;
-
-    /* Rarity ramp — card border color by tier */
-    --rarity-journeyman: #8B8E94;
-    --rarity-prospect: #3E8E5A;
-    --rarity-contender: #2563EB;
-    --rarity-elite: #7C3AED;
-    --rarity-legend: #D4A017;
-
-    /* Type */
-    --font-display: "Archivo Black", sans-serif;
-    --font-body: "Inter", sans-serif;
-    --font-mono: "IBM Plex Mono", monospace;
-}
+/* ── Fight Poster design system (Gym Wars Design System v1.0) ── */
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/shadows.css';
+@import './tokens/radii.css';
+@import './tokens/animation.css';
 
 * { box-sizing: border-box; }
 
@@ -49,7 +16,7 @@ body {
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 15px;
-    line-height: 1.5;
+    line-height: var(--leading-normal);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -58,66 +25,75 @@ h1, h2, h3 { margin: 0; }
 .display {
     font-family: var(--font-display);
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: var(--tracking-wide);
 }
 
 .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-/* ── Cards ── */
+/* ── Cards — float on the canvas, shadow implies the edge ── */
 .card {
     background: var(--surface);
-    border: 0.5px solid var(--line);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 1px 3px rgba(23, 21, 15, 0.06);
+    border-radius: var(--radius-card);
+    padding: var(--gap-card);
+    box-shadow: var(--shadow-sm);
 }
 
-/* ── Buttons ── */
+.section-label {
+    font-size: var(--text-2xs);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-2);
+}
+
+/* ── Buttons (CSS fallback for non-component uses e.g. auth forms) ── */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 10px 18px;
-    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-button);
+    padding: 9px 16px;
+    border: none;
     cursor: pointer;
-    transition: background 120ms ease;
+    transition: background var(--duration-fast) var(--ease-out);
     text-decoration: none;
+    line-height: 1;
 }
-.btn-primary { background: var(--cobalt); color: #fff; }
-.btn-primary:hover { background: var(--cobalt-strong); }
-.btn-primary:disabled { background: var(--ink-muted); cursor: default; }
-.btn-ghost { background: transparent; color: var(--cobalt); border-color: var(--line); }
-.btn-ghost:hover { background: var(--cobalt-tint); }
+.btn-primary { background: var(--ember); color: #fff; }
+.btn-primary:hover { background: var(--ember-strong); }
+.btn-primary:disabled { opacity: 0.5; pointer-events: none; }
+.btn-ghost { background: transparent; color: var(--ink-secondary); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn-ghost:hover { background: var(--surface-sunken); }
 
 /* ── Forms ── */
-.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.field label { font-size: 13px; font-weight: 500; color: var(--ink-secondary); }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-3-5); }
+.field label { font-size: var(--text-xs); font-weight: var(--font-medium); color: var(--ink-secondary); }
 .field input {
     font: inherit;
     padding: 10px 12px;
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: var(--radius-input);
     background: var(--surface);
     color: var(--ink);
 }
 .field input:focus {
     outline: none;
-    border-color: var(--cobalt);
-    box-shadow: 0 0 0 3px var(--cobalt-tint);
+    border-color: var(--ember);
+    box-shadow: var(--ring-ember);
 }
 
 .form-error {
-    background: #FAEBEC;
+    background: var(--corner-red-tint);
     color: var(--corner-red);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 10px 12px;
-    font-size: 13px;
-    margin-bottom: 14px;
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-3-5);
 }
 
 /* ── Auth screens ── */
@@ -126,103 +102,135 @@ h1, h2, h3 { margin: 0; }
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px 16px;
+    padding: var(--space-6) var(--space-4);
 }
 .auth-card { width: 100%; max-width: 400px; }
-.auth-brand { text-align: center; margin-bottom: 24px; }
-.auth-brand .display { font-size: 34px; }
-.auth-brand .tag { color: var(--ink-secondary); font-size: 13px; margin-top: 4px; }
-.auth-switch { text-align: center; font-size: 13px; color: var(--ink-secondary); margin-top: 16px; }
-.auth-switch a { color: var(--cobalt); font-weight: 500; text-decoration: none; }
+.auth-brand { text-align: center; margin-bottom: var(--space-6); }
+.auth-brand .display { font-size: var(--text-4xl); }
+.auth-brand .tag { color: var(--ink-secondary); font-size: var(--text-xs); margin-top: var(--space-1); }
+.auth-switch { text-align: center; font-size: var(--text-xs); color: var(--ink-secondary); margin-top: var(--space-4); }
+.auth-switch a { color: var(--ember-strong); font-weight: var(--font-medium); text-decoration: none; }
 
 /* ── App shell ── */
 .shell { min-height: 100dvh; display: flex; flex-direction: column; }
+.shell.night { background: var(--night); }
 .shell-main {
     flex: 1;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 16px 16px calc(76px + env(safe-area-inset-bottom));
+    padding: var(--space-3) var(--gap-page) calc(84px + env(safe-area-inset-bottom));
 }
+.shell.night .shell-main { padding-left: 0; padding-right: 0; max-width: 720px; }
 
 .topbar {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--canvas);
-    border-bottom: 0.5px solid var(--line);
-    padding: 12px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: var(--space-4) var(--space-4) var(--space-3);
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.topbar .display { font-size: 20px; }
-.topbar .gym-name { font-size: 13px; color: var(--ink-secondary); }
+.shell.night .topbar { background: var(--night-surface); border-bottom-color: var(--night-line); }
+.topbar .gym-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--ink);
+    line-height: 1;
+}
+.shell.night .topbar .gym-name { color: var(--night-text); }
+.topbar .purse { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--win); margin-top: 3px; }
+.topbar-actions { display: flex; align-items: center; gap: var(--space-2); }
+.iconbtn {
+    background: none; border: none; cursor: pointer;
+    color: var(--ink-secondary); padding: 6px; position: relative;
+    display: flex; align-items: center;
+    border-radius: var(--radius-md);
+}
+.iconbtn:hover { background: var(--surface-sunken); }
+.shell.night .iconbtn { color: var(--night-muted); }
+.iconbtn .dot {
+    position: absolute; top: 4px; right: 4px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--corner-red);
+    border: 2px solid var(--surface);
+}
 
-/* Bottom tab bar — mobile-first */
+/* ── Bottom tab bar — mobile-first ── */
 .tabbar {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     z-index: 10;
     background: var(--surface);
-    border-top: 0.5px solid var(--line);
+    border-top: 1px solid var(--line);
     display: flex;
+    height: calc(64px + env(safe-area-inset-bottom));
     padding-bottom: env(safe-area-inset-bottom);
 }
+.shell.night .tabbar { background: var(--night-surface); border-top-color: var(--night-line); }
 .tabbar a {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    padding: 10px 0 8px;
-    font-size: 11px;
-    font-weight: 500;
+    justify-content: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-normal);
     color: var(--ink-muted);
     text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
 }
-.tabbar a.active { color: var(--cobalt); }
-.tabbar .tab-ico { font-size: 20px; line-height: 1; }
+.shell.night .tabbar a { color: var(--night-muted); }
+.tabbar a.active, .shell.night .tabbar a.active { color: var(--ember); }
 
-/* Desktop: sidebar replaces the tab bar */
+/* ── Desktop: sidebar replaces the tab bar ── */
 @media (min-width: 900px) {
     .shell { flex-direction: row; }
     .tabbar {
         position: sticky;
-        top: 0;
-        bottom: auto;
+        top: 0; bottom: auto;
         height: 100dvh;
-        width: 200px;
+        width: 210px;
         flex-direction: column;
         border-top: none;
-        border-right: 0.5px solid var(--line);
-        padding: 16px 0;
+        border-right: 1px solid var(--line);
+        padding: var(--space-4) 0;
         justify-content: flex-start;
     }
+    .shell.night .tabbar { border-right-color: var(--night-line); }
     .tabbar a {
         flex: 0 0 auto;
         flex-direction: row;
         justify-content: flex-start;
-        gap: 12px;
-        padding: 12px 20px;
-        font-size: 14px;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-5);
+        font-size: var(--text-sm);
     }
-    .tabbar a.active { background: var(--cobalt-tint); border-right: 3px solid var(--cobalt); }
-    .shell-col { flex: 1; display: flex; flex-direction: column; }
-    .shell-main { padding-bottom: 32px; }
+    .tabbar a.active { background: var(--ember-tint); box-shadow: inset -3px 0 0 var(--ember); }
+    .shell.night .tabbar a.active { background: rgba(255, 90, 41, 0.12); }
+    .shell-col { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .shell-main { padding-bottom: var(--space-8); }
 }
 
-/* ── Dashboard blocks ── */
-.page-title { font-size: 24px; margin: 8px 0 16px; }
-.block-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+/* ── Page blocks ── */
+.page-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-lg);
+    margin: var(--space-2) 0 var(--space-4);
+}
+.block-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
 @media (min-width: 700px) { .block-grid { grid-template-columns: 1fr 1fr; } }
 
-.stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 6px 0; }
-.stat-row + .stat-row { border-top: 0.5px solid var(--line); }
-.stat-label { font-size: 13px; color: var(--ink-secondary); }
-.stat-value { font-family: var(--font-mono); font-weight: 500; }
+.roster-grid { display: flex; flex-direction: column; gap: 6px; }
 
-.empty-state { text-align: center; padding: 28px 16px; color: var(--ink-secondary); }
-.empty-state .display { font-size: 18px; color: var(--ink); margin-bottom: 6px; }
+.empty-state { text-align: center; padding: var(--space-7) var(--space-4); color: var(--ink-secondary); }
+.empty-state .display { font-size: var(--text-lg); color: var(--ink); margin-bottom: 6px; }

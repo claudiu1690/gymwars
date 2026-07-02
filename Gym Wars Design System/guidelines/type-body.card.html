@@ -1,0 +1,24 @@
+<!-- @dsCard group="Type" viewport="700x240" name="Body Type" subtitle="Inter — all UI, labels, and body copy" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 16px 20px; }
+  .grid { display: grid; grid-template-columns: 80px 1fr; gap: 0; }
+  .row { display: contents; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); padding: 7px 0; display: flex; align-items: center; }
+  .sample { padding: 7px 0 7px 12px; border-bottom: 1px solid var(--line); color: var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .note { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); flex-shrink: 0; }
+</style>
+<div class="grid">
+  <span class="meta">16px · 400</span>
+  <div class="sample" style="font-size: 16px; font-weight: 400;">Body copy — camp complete, fight results, descriptions<span class="note">body</span></div>
+  <span class="meta">14px · 400</span>
+  <div class="sample" style="font-size: 14px; font-weight: 400;">Secondary copy — weight class, style, scouting notes<span class="note">body sm</span></div>
+  <span class="meta">14px · 500</span>
+  <div class="sample" style="font-size: 14px; font-weight: 500;">UI labels — tab names, section headings, card labels<span class="note">label</span></div>
+  <span class="meta">14px · 600</span>
+  <div class="sample" style="font-size: 14px; font-weight: 600;">Emphasis — button text, active states, key values<span class="note">semibold</span></div>
+  <span class="meta">12px · 400</span>
+  <div class="sample" style="font-size: 12px; font-weight: 400;">Small labels — timestamps, chip content, stat names<span class="note">caption</span></div>
+  <span class="meta">11px · 500</span>
+  <div class="sample" style="font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;">Overline — section titles, status labels<span class="note">overline</span></div>
+</div>

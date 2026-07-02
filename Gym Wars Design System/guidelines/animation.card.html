@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Animation Tokens" subtitle="Duration + easing — functional, never decorative" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 16px 20px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .section { display: flex; flex-direction: column; gap: 6px; }
+  .heading { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted); margin-bottom: 4px; }
+  .row { display: flex; align-items: center; gap: 10px; }
+  .token { font-family: var(--font-mono); font-size: 11px; color: var(--ember); min-width: 130px; }
+  .val { font-family: var(--font-mono); font-size: 11px; color: var(--ink-secondary); }
+  .use { font-size: 11px; color: var(--ink-muted); }
+</style>
+<div class="grid">
+  <div class="section">
+    <div class="heading">Duration</div>
+    <div class="row"><span class="token">--duration-instant</span><span class="val">80ms</span><span class="use">Micro feedback</span></div>
+    <div class="row"><span class="token">--duration-fast</span><span class="val">150ms</span><span class="use">Hover, focus</span></div>
+    <div class="row"><span class="token">--duration-normal</span><span class="val">220ms</span><span class="use">Panel open/close</span></div>
+    <div class="row"><span class="token">--duration-slow</span><span class="val">380ms</span><span class="use">Screen transitions</span></div>
+    <div class="row"><span class="token">--duration-xslow</span><span class="val">600ms</span><span class="use">Rarity reveal</span></div>
+  </div>
+  <div class="section">
+    <div class="heading">Easing</div>
+    <div class="row"><span class="token">--ease-out</span><span class="use">Standard — most transitions</span></div>
+    <div class="row"><span class="token">--ease-in-out</span><span class="use">Symmetric slides</span></div>
+    <div class="row"><span class="token">--ease-spring</span><span class="use">Rarity reveal ceremony</span></div>
+    <div class="row"><span class="token">--ease-bounce</span><span class="use">Celebratory moments</span></div>
+  </div>
+</div>

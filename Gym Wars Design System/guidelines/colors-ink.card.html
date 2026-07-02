@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Ink Scale" subtitle="Primary · Secondary · Muted" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 12px; padding: 16px; }
+  .swatch { flex: 1; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .color { height: 80px; display: flex; align-items: center; justify-content: center; }
+  .sample { font-family: var(--font-body); font-size: 22px; font-weight: 600; color: var(--surface); letter-spacing: -0.02em; }
+  .label { padding: 8px 10px; background: var(--surface); border-top: 1px solid var(--line); }
+  .name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+  .token { font-size: 10px; color: var(--ink-muted); margin-top: 1px; }
+</style>
+<div class="row">
+  <div class="swatch">
+    <div class="color" style="background: var(--ink)"><span class="sample">Aa</span></div>
+    <div class="label"><div class="name">Ink</div><div class="hex">#17150F</div><div class="token">--ink</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--ink-secondary)"><span class="sample">Aa</span></div>
+    <div class="label"><div class="name">Ink Secondary</div><div class="hex">#5C574B</div><div class="token">--ink-secondary</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--ink-muted)"><span class="sample">Aa</span></div>
+    <div class="label"><div class="name">Ink Muted</div><div class="hex">#9A9484</div><div class="token">--ink-muted</div></div>
+  </div>
+</div>

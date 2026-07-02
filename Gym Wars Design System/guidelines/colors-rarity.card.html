@@ -1,0 +1,40 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Rarity Tiers" subtitle="Card glow/border only — 5 tiers from Journeyman to Legend" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 16px; }
+  .row { display: flex; gap: 10px; }
+  .card {
+    flex: 1; background: var(--surface); border-radius: var(--radius-lg); padding: 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .dot { width: 40px; height: 40px; border-radius: 50%; background: var(--surface-sunken); }
+  .tier { font-size: 11px; font-weight: 600; color: var(--ink); text-align: center; }
+  .hex { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); text-align: center; }
+</style>
+<div class="row">
+  <div class="card" style="box-shadow: var(--glow-journeyman)">
+    <div class="dot" style="background: linear-gradient(135deg, #8B8E94 0%, #b0b3b8 100%)"></div>
+    <div class="tier">Journeyman</div>
+    <div class="hex">#8B8E94</div>
+  </div>
+  <div class="card" style="box-shadow: var(--glow-prospect)">
+    <div class="dot" style="background: linear-gradient(135deg, #3E8E5A 0%, #5ab07a 100%)"></div>
+    <div class="tier">Prospect</div>
+    <div class="hex">#3E8E5A</div>
+  </div>
+  <div class="card" style="box-shadow: var(--glow-contender)">
+    <div class="dot" style="background: linear-gradient(135deg, #2563EB 0%, #4d88ff 100%)"></div>
+    <div class="tier">Contender</div>
+    <div class="hex">#2563EB</div>
+  </div>
+  <div class="card" style="box-shadow: var(--glow-elite)">
+    <div class="dot" style="background: linear-gradient(135deg, #7C3AED 0%, #a96bff 100%)"></div>
+    <div class="tier">Elite</div>
+    <div class="hex">#7C3AED</div>
+  </div>
+  <div class="card" style="box-shadow: var(--glow-legend)">
+    <div class="dot" style="background: linear-gradient(135deg, #D4A017 0%, #f0c040 100%)"></div>
+    <div class="tier">Legend</div>
+    <div class="hex">#D4A017</div>
+  </div>
+</div>

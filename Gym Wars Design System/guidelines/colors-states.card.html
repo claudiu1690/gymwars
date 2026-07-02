@@ -1,0 +1,40 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="State Colors" subtitle="Corner Red · Gold · Win · Warn — each has strict semantic meaning" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 12px; padding: 16px; }
+  .swatch { flex: 1; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .color { height: 80px; display: flex; align-items: flex-end; padding: 8px; }
+  .label { padding: 8px 10px; background: var(--surface); border-top: 1px solid var(--line); }
+  .name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+  .token { font-size: 10px; color: var(--ink-muted); margin-top: 1px; }
+  .use  { font-size: 10px; color: var(--ink-secondary); margin-top: 3px; font-style: italic; line-height: 1.4; }
+  .tint-strip { height: 4px; border-radius: 0; }
+</style>
+<div class="row">
+  <div class="swatch">
+    <div class="color" style="background: var(--corner-red)">
+      <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: white; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px;">Opponents · Losses</span>
+    </div>
+    <div class="label"><div class="name">Corner Red</div><div class="hex">#C6323E</div><div class="token">--corner-red</div><div class="use">Opponents, losses, destructive — never decoration</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--gold)">
+      <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: white; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px;">Belts · Champions</span>
+    </div>
+    <div class="label"><div class="name">Gold</div><div class="hex">#B98A1E</div><div class="token">--gold</div><div class="use">Belts, champions, title fights only</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--win)">
+      <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: white; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px;">Wins · Gains</span>
+    </div>
+    <div class="label"><div class="name">Win</div><div class="hex">#2E7D4F</div><div class="token">--win</div><div class="use">Wins, positive deltas, stat gains</div></div>
+  </div>
+  <div class="swatch">
+    <div class="color" style="background: var(--warn)">
+      <span style="font-family: var(--font-body); font-size: 11px; font-weight: 600; color: white; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px;">Fatigue · Warnings</span>
+    </div>
+    <div class="label"><div class="name">Warn</div><div class="hex">#B96A1E</div><div class="token">--warn</div><div class="use">Fatigue, expiring shields, neglected training</div></div>
+  </div>
+</div>

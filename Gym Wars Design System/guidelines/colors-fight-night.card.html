@@ -1,0 +1,42 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Fight Night Palette" subtitle="Dark inversion — fight screens only" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--night); font-family: var(--font-body); padding: 16px; }
+  .row { display: flex; gap: 12px; }
+  .swatch { flex: 1; border-radius: var(--radius-md); overflow: hidden; }
+  .color { height: 80px; display: flex; align-items: center; justify-content: center; }
+  .label { padding: 8px 10px; background: var(--night-surface); border-top: 1px solid var(--night-line); }
+  .name { font-size: 12px; font-weight: 600; color: var(--night-text); }
+  .hex  { font-family: var(--font-mono); font-size: 11px; color: var(--night-muted); margin-top: 2px; }
+  .token { font-size: 10px; color: var(--night-muted); margin-top: 1px; }
+</style>
+<div class="row">
+  <div class="swatch" style="box-shadow: var(--shadow-night-sm)">
+    <div class="color" style="background: var(--night); border: 1px solid var(--night-line)">
+      <span style="font-family: var(--font-display); font-size: 14px; color: var(--night-muted); letter-spacing: 0.08em; text-transform: uppercase;">Background</span>
+    </div>
+    <div class="label"><div class="name">Night</div><div class="hex">#10141D</div><div class="token">--night</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-night-sm)">
+    <div class="color" style="background: var(--night-surface); border: 1px solid var(--night-line)">
+      <span style="font-family: var(--font-display); font-size: 14px; color: var(--night-muted); letter-spacing: 0.08em; text-transform: uppercase;">Panel</span>
+    </div>
+    <div class="label"><div class="name">Night Surface</div><div class="hex">#1A2130</div><div class="token">--night-surface</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-night-sm)">
+    <div class="color" style="background: var(--night-surface); border: 1px solid var(--night-line); flex-direction: column; gap: 4px; align-items: flex-start; padding: 12px;">
+      <span style="font-family: var(--font-display); font-size: 16px; color: var(--night-text); letter-spacing: 0.04em; text-transform: uppercase;">FIGHTER NAME</span>
+      <span style="font-family: var(--font-body); font-size: 12px; color: var(--night-muted);">Lightweight · Round 3</span>
+    </div>
+    <div class="label"><div class="name">Night Text</div><div class="hex">#F2EFE7</div><div class="token">--night-text</div></div>
+  </div>
+  <div class="swatch" style="box-shadow: var(--shadow-night-sm)">
+    <div class="color" style="background: var(--night-surface); border: 1px solid var(--night-line); flex-direction: column; gap: 6px; justify-content: center; padding: 12px;">
+      <div style="display:flex; gap: 6px;">
+        <span style="font-size: 11px; font-weight: 600; color: var(--ember); background: rgba(255,90,41,0.2); padding: 3px 8px; border-radius: 4px;">YOUR CORNER</span>
+        <span style="font-size: 11px; font-weight: 600; color: var(--corner-red); background: rgba(200,30,58,0.2); padding: 3px 8px; border-radius: 4px;">OPPONENT</span>
+      </div>
+    </div>
+    <div class="label"><div class="name">Accents on Night</div><div class="hex">Ember vs Red</div><div class="token">+ --gold for title</div></div>
+  </div>
+</div>

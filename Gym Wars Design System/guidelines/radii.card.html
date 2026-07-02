@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Border Radius" subtitle="6 steps from 0 to full pill" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; background: var(--canvas); font-family: var(--font-body); padding: 20px; }
+  .row { display: flex; gap: 16px; align-items: center; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .box { width: 64px; height: 64px; background: var(--ember-tint); border: 2px solid var(--ember); }
+  .name { font-size: 11px; font-weight: 600; color: var(--ink); text-align: center; }
+  .token { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); text-align: center; }
+  .pill { width: 80px; height: 32px; }
+</style>
+<div class="row">
+  <div class="item"><div class="box" style="border-radius: var(--radius-none)"></div><div class="name">None</div><div class="token">--radius-none<br>0px</div></div>
+  <div class="item"><div class="box" style="border-radius: var(--radius-sm)"></div><div class="name">Small</div><div class="token">--radius-sm<br>4px</div></div>
+  <div class="item"><div class="box" style="border-radius: var(--radius-md)"></div><div class="name">Medium</div><div class="token">--radius-md<br>8px</div></div>
+  <div class="item"><div class="box" style="border-radius: var(--radius-lg)"></div><div class="name">Large</div><div class="token">--radius-lg<br>12px</div></div>
+  <div class="item"><div class="box" style="border-radius: var(--radius-xl)"></div><div class="name">XL</div><div class="token">--radius-xl<br>16px</div></div>
+  <div class="item"><div class="box pill" style="border-radius: var(--radius-full)"></div><div class="name">Full</div><div class="token">--radius-full<br>9999px</div></div>
+</div>
