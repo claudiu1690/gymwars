@@ -12,9 +12,9 @@ async function getState(req, res) {
     } catch (err) { handle(res, err); }
 }
 
-async function scout(req, res) {
+async function investigate(req, res) {
     try {
-        res.status(201).json(await scoutingService.scout(req.user.gymId));
+        res.status(201).json(await scoutingService.investigate(req.user.gymId, Number(req.body?.slot)));
     } catch (err) { handle(res, err); }
 }
 
@@ -30,4 +30,4 @@ async function passReport(req, res) {
     } catch (err) { handle(res, err); }
 }
 
-module.exports = { getState, scout, signReport, passReport };
+module.exports = { getState, investigate, signReport, passReport };

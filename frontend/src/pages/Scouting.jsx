@@ -3,9 +3,17 @@ import { api } from "../api";
 import { Button } from "../components/ds/Button.jsx";
 import { ScoutReport } from "../components/ds/ScoutReport.jsx";
 import { TimerBadge } from "../components/ds/TimerBadge.jsx";
+import { WeightClassChip } from "../components/ds/WeightClassChip.jsx";
+import { StyleBadge } from "../components/ds/StyleBadge.jsx";
 import { useCountdown } from "../hooks/useCountdown";
 import { useAuth } from "../auth";
 
+/**
+ * Scouting board — a daily rotating slate of shallow prospects. Spending an
+ * attempt investigates one, producing the full report (rarity reveal + noisy
+ * ranges). The decision moves BEFORE the spend: which prospect deserves your
+ * scout today?
+ */
 export default function Scouting() {
     const { reloadGym } = useAuth();
     const [state, setState] = useState(null);
@@ -23,11 +31,11 @@ export default function Scouting() {
 
     useEffect(() => { load(); }, [load]);
 
-    async function doScout() {
+    async function investigate(slot) {
         setBusy(true);
         setError(null);
         try {
-            await api("/scouting/scout", { method: "POST" });
+            await api("/scouting/investigate", { method: "POST", body: { slot } });
             await load();
         } catch (err) {
             setError(err.message);
@@ -56,7 +64,7 @@ export default function Scouting() {
         <>
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
                 <h1 className="page-title">Scouting</h1>
-                {state && <TimerBadge value={refresh.text || "…"} size="sm" label="Refresh" />}
+                {state && <TimerBadge value={refresh.text || "…"} size="sm" label="New board" />}
             </div>
 
             {error && <div className="form-error">{error}</div>}
@@ -71,7 +79,7 @@ export default function Scouting() {
                                 ))}
                             </div>
                             <div style={{ fontSize: 12, color: "var(--ink-secondary)" }}>
-                                {state.attemptsUsed} of {state.attemptsTotal} attempts used
+                                {attemptsLeft} scout{attemptsLeft === 1 ? "" : "s"} available today — spend them on the board below
                             </div>
                             {pity && (
                                 <div style={{ fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>
@@ -79,9 +87,6 @@ export default function Scouting() {
                                 </div>
                             )}
                         </div>
-                        <Button variant="primary" size="sm" disabled={busy || attemptsLeft <= 0} onClick={doScout}>
-                            {attemptsLeft > 0 ? "Scout Now" : "No attempts left"}
-                        </Button>
                     </div>
                     {rosterFull && (
                         <div style={{ fontSize: 12, color: "var(--warn)", marginTop: 8, paddingTop: 8, borderTop: "1px solid var(--line)" }}>
@@ -91,14 +96,50 @@ export default function Scouting() {
                 </div>
             )}
 
+            {/* The board */}
+            {state?.board && (
+                <div style={{ marginBottom: "var(--space-4)" }}>
+                    <div className="section-label">Today's Board</div>
+                    <div style={{ display: "grid", gap: 10, gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
+                        {state.board.map((p) => (
+                            <div key={p.slot} className="card" style={{ padding: 12, opacity: p.investigated && p.reportStatus !== "pending" ? 0.55 : 1 }}>
+                                <div style={{ fontFamily: "var(--font-display)", fontSize: 14, textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 6 }}>
+                                    {p.name}
+                                </div>
+                                <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginBottom: 6 }}>
+                                    <WeightClassChip weightClass={p.weightClass} />
+                                    <StyleBadge style={p.styleLean} />
+                                </div>
+                                <div style={{ fontSize: 11, color: "var(--ink-muted)", marginBottom: 10 }}>
+                                    {p.regionLabel} · Age {p.age}
+                                </div>
+                                {p.investigated ? (
+                                    <div style={{ fontSize: 11, fontWeight: 600, color: p.reportStatus === "pending" ? "var(--ember-strong)" : "var(--ink-muted)" }}>
+                                        {p.reportStatus === "pending" ? "Report below ↓" : p.reportStatus === "signed" ? "Signed" : "Passed"}
+                                    </div>
+                                ) : (
+                                    <Button variant="tint" size="sm" disabled={busy || attemptsLeft <= 0} onClick={() => investigate(p.slot)}>
+                                        {attemptsLeft > 0 ? "Send scout" : "No scouts left"}
+                                    </Button>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                    <p style={{ fontSize: 11, color: "var(--ink-muted)", margin: "8px 0 0" }}>
+                        The board turns over daily. Stats and rarity stay unknown until a scout takes a look.
+                    </p>
+                </div>
+            )}
+
+            {/* Pending reports */}
             {state?.reports?.length > 0 && (
                 <div>
-                    <div className="section-label">Pending Reports</div>
+                    <div className="section-label">Reports on the Desk</div>
                     <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
                         {state.reports.map((r) => (
                             <ScoutReport
                                 key={r.id}
-                                region={r.regionLabel}
+                                region={`${r.name} — ${r.regionLabel}`}
                                 styleLean={r.styleLean}
                                 rarityRevealed
                                 rarityTier={r.rarity}
@@ -111,15 +152,6 @@ export default function Scouting() {
                             />
                         ))}
                     </div>
-                </div>
-            )}
-
-            {state && state.reports.length === 0 && (
-                <div className="card empty-state">
-                    <div className="display">No pending reports</div>
-                    <p style={{ margin: 0, fontSize: 13 }}>
-                        {attemptsLeft > 0 ? "Run a scout to find your next prospect." : `Your scouts are out until the refresh — back in ${refresh.text || "a while"}.`}
-                    </p>
                 </div>
             )}
         </>

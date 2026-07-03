@@ -132,4 +132,56 @@ function scoutStatRanges(fighter, noise = SCOUTING.baseReportNoise) {
     return ranges;
 }
 
-module.exports = { generateFighter, scoutStatRanges, rollRarity, STAT_KEYS };
+/**
+ * Scouting-board split (GDD §6 + board design): a prospect's IDENTITY is
+ * fixed and public the moment the board rolls for the day; their rarity,
+ * stats, potential, and traits stay unrolled until a scout is actually spent.
+ *
+ * generateProspectIdentity is deterministic per seed — the board can be
+ * re-rendered all day without drift. completeProspect rolls the rest at
+ * investigation time so pity counters apply in the order attempts are spent.
+ */
+function generateProspectIdentity({ seed }) {
+    if (!seed) throw new Error("generateProspectIdentity requires a seed");
+    const rng = createRng(`identity:${seed}`);
+
+    const weightClassKey = rng.pick(Object.keys(WEIGHT_CLASSES));
+    const regionKey = rng.weighted(
+        Object.fromEntries(Object.entries(REGIONS).map(([k, r]) => [k, r.weight]))
+    );
+    const region = REGIONS[regionKey];
+    const name = `${rng.pick(region.firstNames)} ${rng.pick(region.lastNames)}`;
+    const style = rollStyle(rng, regionKey, weightClassKey);
+    const [aLo, aHi] = SCOUTING.prospectAgeRange;
+    const age = Math.min(rng.int(aLo, aHi), rng.int(aLo, aHi));
+
+    return { seed, name, region: regionKey, regionLabel: region.label, weightClass: weightClassKey, style, age };
+}
+
+/** Roll everything hidden about an identity: rarity (honoring pity), stats,
+ *  potential, traits. Seeded per identity, so a single investigation can
+ *  never be re-rolled — but pity state at spend time still counts. */
+function completeProspect(identity, { pity, rarity } = {}) {
+    const rng = createRng(`complete:${identity.seed}`);
+    const tier = rarity || rollRarity(rng, pity);
+    const band = RARITY_TIERS[tier];
+    const primaryStat = require("../consts/styles").STYLE_FAMILIES[STYLES[identity.style].family].primaryStat;
+
+    const stats = {};
+    const potential = {};
+    const [lo, hi] = band.statRoll;
+    const [plo, phi] = band.potential;
+    for (const key of STAT_KEYS) {
+        let v = rng.int(lo, hi);
+        if (key === primaryStat) v = Math.max(v, rng.int(Math.floor((lo + hi) / 2), hi));
+        stats[key] = v;
+        potential[key] = Math.max(rng.int(plo, phi), v);
+    }
+
+    const traitCount = rng.int(SCOUTING.traitCount[0], SCOUTING.traitCount[1]);
+    const traits = rng.sample(TRAITS, traitCount);
+
+    return { ...identity, rarity: tier, stats, potential, traits };
+}
+
+module.exports = { generateFighter, generateProspectIdentity, completeProspect, scoutStatRanges, rollRarity, STAT_KEYS };

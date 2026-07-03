@@ -15,6 +15,10 @@ const scoutReportSchema = new mongoose.Schema({
     /** Noisy [lo, hi] ranges shown to the player. */
     statRanges: { type: mongoose.Schema.Types.Mixed, required: true },
 
+    /** Which daily board slot this investigation came from (one per slot/day). */
+    boardDay: { type: Date, default: null, index: true },
+    boardSlot: { type: Number, default: null },
+
     status: { type: String, enum: ["pending", "signed", "passed"], default: "pending", index: true },
     signedFighterId: { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
 
@@ -34,6 +38,8 @@ scoutReportSchema.methods.toPublic = function () {
         age: this.fighter.age,
         statRanges: this.statRanges,
         status: this.status,
+        boardSlot: this.boardSlot,
+        name: this.fighter.name,
         createdAt: this.createdAt,
     };
 };
