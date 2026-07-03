@@ -11,6 +11,7 @@ const fighterRoutes = require("./routes/fighterRoutes");
 const campRoutes = require("./routes/campRoutes");
 const fightRoutes = require("./routes/fightRoutes");
 const rankingRoutes = require("./routes/rankingRoutes");
+const pvpRoutes = require("./routes/pvpRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const scheduler = require("./modules/scheduler");
 
@@ -82,6 +83,7 @@ app.use("/fighters", authMiddleware, fighterRoutes);
 app.use("/camps", authMiddleware, campRoutes);
 app.use("/fights", authMiddleware, fightRoutes);
 app.use("/rankings", authMiddleware, rankingRoutes);
+app.use("/pvp", authMiddleware, pvpRoutes);
 
 // ── 404 ──
 app.use((req, res) => {

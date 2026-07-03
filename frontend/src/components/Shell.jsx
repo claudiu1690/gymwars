@@ -1,6 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../auth";
-import { Ico, TAB_ICONS, ICONS } from "./Icons";
+import { Ico, TAB_ICONS } from "./Icons";
+import NotificationsBell from "./NotificationsBell.jsx";
 
 const TABS = [
     { to: "/", label: "Home", ico: TAB_ICONS.home },
@@ -13,8 +14,8 @@ const TABS = [
 export default function Shell({ children }) {
     const { gym, logout } = useAuth();
     const location = useLocation();
-    // Fight Night inversion — fight screens flip the whole shell to night.
-    const night = location.pathname.startsWith("/fights");
+    // Fight Night inversion — fight and PvP screens flip the shell to night.
+    const night = location.pathname.startsWith("/fights") || location.pathname.startsWith("/pvp");
 
     return (
         <div className={night ? "shell night" : "shell"}>
@@ -33,9 +34,7 @@ export default function Shell({ children }) {
                         {gym && <div className="purse">${(gym.purse ?? 0).toLocaleString()}</div>}
                     </div>
                     <div className="topbar-actions">
-                        <button className="iconbtn" aria-label="Notifications">
-                            <Ico d={ICONS.bell} extra={ICONS.bellClapper} size={22} />
-                        </button>
+                        <NotificationsBell />
                         <button className="btn btn-ghost" onClick={logout}>Log out</button>
                     </div>
                 </header>

@@ -9,6 +9,7 @@ import FighterDetail from "./pages/FighterDetail";
 import Scouting from "./pages/Scouting";
 import Fights from "./pages/Fights";
 import FightDetail from "./pages/FightDetail";
+import PvpEvent from "./pages/PvpEvent";
 import Rankings from "./pages/Rankings";
 import Placeholder from "./pages/Placeholder";
 
@@ -36,6 +37,7 @@ export default function App() {
                                 <Route path="/scouting" element={<Scouting />} />
                                 <Route path="/fights" element={<Fights />} />
                                 <Route path="/fights/:id" element={<FightDetail />} />
+                                <Route path="/pvp/:id" element={<PvpEvent />} />
                                 <Route path="/rankings" element={<Rankings />} />
                                 <Route path="/gym" element={<Placeholder title="Gym & Facilities" note="Facility tiers, staff, and mentoring arrive in Phase 5." />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />

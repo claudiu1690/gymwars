@@ -2,15 +2,21 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../api";
 import { formatRemaining } from "../hooks/useCountdown";
+import PvpHub from "../components/PvpHub.jsx";
 
-/** Fights index — upcoming bouts and results, on the night surface. */
+/** Fights index — the Gym Wars hub, upcoming bouts, and results. */
 export default function Fights() {
     const [fights, setFights] = useState(null);
+    const [fighters, setFighters] = useState([]);
+    const [pvpEvents, setPvpEvents] = useState([]);
 
     useEffect(() => {
         api("/fights").then((d) => setFights(d.fights)).catch(() => setFights([]));
+        api("/fighters").then((d) => setFighters(d.fighters)).catch(() => {});
+        api("/pvp/events").then((d) => setPvpEvents(d.events)).catch(() => {});
         const t = setInterval(() => {
             api("/fights").then((d) => setFights(d.fights)).catch(() => {});
+            api("/pvp/events").then((d) => setPvpEvents(d.events)).catch(() => {});
         }, 15000);
         return () => clearInterval(t);
     }, []);
@@ -26,7 +32,47 @@ export default function Fights() {
         <div style={{ padding: "16px" }}>
             <h1 style={{ fontFamily: "var(--font-display)", textTransform: "uppercase", letterSpacing: "0.04em", fontSize: 18, color: "var(--night-text)", margin: "0 0 14px" }}>Fights</h1>
 
-            {upcoming.length === 0 && past.length === 0 && (
+            <PvpHub fighters={fighters} />
+
+            {pvpEvents.length > 0 && (
+                <div style={{ marginBottom: 20 }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)", marginBottom: 8 }}>Gym War History</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        {pvpEvents.map((e) => {
+                            const won = e.winner === "you";
+                            const draw = e.winner === "draw";
+                            return (
+                                <Link key={e.id} to={`/pvp/${e.id}`} style={{ textDecoration: "none" }}>
+                                    <div style={{ background: "var(--night-surface)", borderRadius: "var(--radius-md)", border: "1px solid var(--night-line)", padding: "10px 12px", display: "flex", alignItems: "center", gap: 10 }}>
+                                        <span style={{
+                                            fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 600, flexShrink: 0,
+                                            color: draw ? "var(--night-muted)" : won ? "var(--win)" : "var(--corner-red)",
+                                            border: `1.5px solid ${draw ? "var(--night-line)" : won ? "var(--win)" : "var(--corner-red)"}`,
+                                            borderRadius: "var(--radius-chip)", padding: "2px 8px",
+                                        }}>
+                                            {draw ? "D" : won ? "W" : "L"}
+                                        </span>
+                                        <div style={{ flex: 1, minWidth: 0 }}>
+                                            <div style={{ fontSize: 13, fontWeight: 600, color: "var(--night-text)" }}>
+                                                {e.type === "gymwar" ? "Gym War" : "Callout"} {e.role === "attacker" ? "vs" : "from"} {e.them}
+                                                {e.revengeOf && <span style={{ color: "var(--ember)", fontSize: 10, marginLeft: 6 }}>REVENGE</span>}
+                                            </div>
+                                            <div className="mono" style={{ fontSize: 11, color: "var(--night-muted)", marginTop: 1 }}>
+                                                {e.tally.you}–{e.tally.them} · {e.ratingDelta >= 0 ? "+" : ""}{e.ratingDelta} rating
+                                            </div>
+                                        </div>
+                                        <span className="mono" style={{ fontSize: 11, color: e.purseDelta >= 0 ? "var(--win)" : "var(--corner-red)", flexShrink: 0 }}>
+                                            {e.purseDelta >= 0 ? "+" : "−"}${Math.abs(e.purseDelta)}
+                                        </span>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+
+            {upcoming.length === 0 && past.length === 0 && pvpEvents.length === 0 && (
                 <div style={{ textAlign: "center", padding: "48px 24px", color: "var(--night-muted)" }}>
                     <div style={{ fontFamily: "var(--font-display)", fontSize: 20, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--night-text)" }}>No fights yet</div>
                     <p style={{ fontSize: 13 }}>Book a fight from a fighter's page — results land here.</p>

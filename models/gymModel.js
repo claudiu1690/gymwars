@@ -7,12 +7,13 @@ const mongoose = require("mongoose");
  * own phases.
  */
 const gymSchema = new mongoose.Schema({
+    /** Null for AI gyms (GDD §8 — they fill the PvP ladder). */
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true,
-        unique: true,
+        default: null,
     },
+    isAi: { type: Boolean, default: false, index: true },
     name: {
         type: String,
         required: true,
@@ -45,7 +46,33 @@ const gymSchema = new mongoose.Schema({
         },
     },
 
+    // ── PvP (GDD §9) ──────────────────────────────────────────────
+    /** ELO-style gym rating (GDD §9.3). */
+    rating: { type: Number, default: 1000 },
+    /** Post-attack protection — can't be targeted until this passes (§9.4). */
+    shieldUntil: { type: Date, default: null },
+    /** Daily attack allowances, lazy-reset on the UTC day (like scouting). */
+    pvp: {
+        dayAnchor: { type: Date, default: null },
+        calloutsToday: { type: Number, default: 0 },
+        gymWarsToday: { type: Number, default: 0 },
+    },
+    /**
+     * Standing defense lineup (GDD §9.6): fighter per weight class, each
+     * defending with their saved gameplan when the gym is attacked offline.
+     * Null/missing class → auto-picks the best available; none → forfeit.
+     */
+    defenseLineup: {
+        featherweight: { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
+        lightweight:   { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
+        middleweight:  { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
+        heavyweight:   { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
+    },
+
     createdAt: { type: Date, default: Date.now },
 });
+
+// Unique per user, but sparse so AI gyms (userId null) don't collide.
+gymSchema.index({ userId: 1 }, { unique: true, sparse: true });
 
 module.exports = mongoose.model("Gym", gymSchema);
