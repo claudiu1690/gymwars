@@ -9,6 +9,8 @@ const gymRoutes = require("./routes/gymRoutes");
 const scoutingRoutes = require("./routes/scoutingRoutes");
 const fighterRoutes = require("./routes/fighterRoutes");
 const campRoutes = require("./routes/campRoutes");
+const fightRoutes = require("./routes/fightRoutes");
+const rankingRoutes = require("./routes/rankingRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const scheduler = require("./modules/scheduler");
 
@@ -78,6 +80,8 @@ app.use("/gyms", authMiddleware, gymRoutes);
 app.use("/scouting", authMiddleware, scoutingRoutes);
 app.use("/fighters", authMiddleware, fighterRoutes);
 app.use("/camps", authMiddleware, campRoutes);
+app.use("/fights", authMiddleware, fightRoutes);
+app.use("/rankings", authMiddleware, rankingRoutes);
 
 // ── 404 ──
 app.use((req, res) => {
@@ -127,6 +131,8 @@ mongoose.connect(config.database.url, config.database.options)
             // simply won't run until it's back. Deployed hosts always have Redis.
             console.error("[scheduler] Failed to start (continuing without jobs):", err.message);
         }
+        // Every weight class has a champion from day one (GDD §8.3).
+        await require("./services/aiOpponentService").ensureChampionsExist();
         app.listen(config.port, () => {
             console.log(`Gym Wars API running on port ${config.port}`);
         });

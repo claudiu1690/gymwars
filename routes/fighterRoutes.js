@@ -4,5 +4,6 @@ const fighterController = require("../controllers/fighterController");
 
 router.get("/", fighterController.listMyFighters);
 router.get("/:id", fighterController.getFighter);
+router.put("/:id/gameplan", fighterController.setGameplan);
 
 module.exports = router;

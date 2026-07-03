@@ -4,7 +4,9 @@ import { api } from "../api";
 import { FighterCard } from "../components/ds/FighterCard.jsx";
 import { TimerBadge } from "../components/ds/TimerBadge.jsx";
 import CampSetup from "../components/CampSetup.jsx";
-import { useCountdown } from "../hooks/useCountdown";
+import GameplanEditor from "../components/GameplanEditor.jsx";
+import BookFight from "../components/BookFight.jsx";
+import { useCountdown, formatRemaining } from "../hooks/useCountdown";
 import { toCardProps } from "./Roster";
 
 const TRAIT_LABELS = {
@@ -25,10 +27,14 @@ function Delta({ value }) {
 export default function FighterDetail() {
     const { id } = useParams();
     const [data, setData] = useState(null);
+    const [upcomingFight, setUpcomingFight] = useState(null);
     const [error, setError] = useState(null);
 
     const load = useCallback(() => {
         api(`/fighters/${id}`).then(setData).catch((e) => setError(e.message));
+        api("/fights").then((d) => {
+            setUpcomingFight(d.fights.find((f) => f.status === "scheduled" && f.you?.fighterId === id) || null);
+        }).catch(() => {});
     }, [id]);
     useEffect(() => { load(); }, [load]);
 
@@ -93,6 +99,32 @@ export default function FighterDetail() {
                 ) : (
                     !fighter.retired && <CampSetup fighterId={fighter.id} fatigue={fighter.fatigue} onStarted={load} />
                 )}
+
+                {/* Competition: upcoming fight or booking */}
+                {upcomingFight ? (
+                    <div className="card">
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                            <div className="section-label" style={{ margin: 0 }}>
+                                {upcomingFight.title ? "Title Fight Booked" : "Fight Booked"}
+                            </div>
+                            <span className="mono" style={{ fontSize: 12, color: "var(--ember-strong)" }}>
+                                {formatRemaining(new Date(upcomingFight.scheduledAt).getTime() - Date.now())}
+                            </span>
+                        </div>
+                        <div style={{ fontSize: 13, color: "var(--ink)" }}>
+                            vs <strong>{upcomingFight.them.name}</strong>
+                            <span style={{ color: "var(--ink-muted)" }}> · {upcomingFight.them.gym} · {upcomingFight.them.record.wins}–{upcomingFight.them.record.losses} · {upcomingFight.rounds} rds</span>
+                        </div>
+                        <p style={{ fontSize: 11, color: "var(--ink-muted)", margin: "6px 0 0" }}>
+                            Camp and taper before it resolves — the saved gameplan works the corner.
+                        </p>
+                    </div>
+                ) : (
+                    !fighter.retired && <BookFight fighter={fighter} onBooked={load} />
+                )}
+
+                {/* Corner instructions */}
+                {!fighter.retired && <GameplanEditor fighterId={fighter.id} gameplan={fighter.gameplan} />}
 
                 {/* Last camp results */}
                 {lastCamp?.results && (

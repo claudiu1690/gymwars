@@ -43,6 +43,21 @@ const fighterSchema = new mongoose.Schema({
     retired: { type: Boolean, default: false, index: true },
     retiredAt: { type: Date, default: null },
 
+    // ── Competition (Phase 3) ─────────────────────────────────────
+    /** Ladder points in the fighter's weight class (GDD §8.2). */
+    rankingPoints: { type: Number, default: 0 },
+    /** One champion per weight class (GDD §8.3). */
+    isChampion: { type: Boolean, default: false, index: true },
+    /** Corner instructions (GDD §5.4) — also the future Gym War defense config. */
+    gameplan: {
+        approach: { type: String, enum: ["strike", "balanced", "grapple"], default: "balanced" },
+        pace:     { type: String, enum: ["high", "measured", "cautious"], default: "measured" },
+        finish:   { type: String, enum: ["hunt-finish", "play-safe"], default: "hunt-finish" },
+    },
+    /** Set on AI-generated opposition (gymId null): their ladder tier + flavor gym. */
+    aiTier: { type: String, default: null },
+    aiGymName: { type: String, default: null },
+
     /** HIDDEN personality traits (GDD §3.4); `discoveredTraits` is the
      *  player-visible subset, revealed through play in Phases 2–4. */
     traits: [{ type: String }],
@@ -100,6 +115,11 @@ fighterSchema.methods.toPublic = function ({ camp } = {}) {
         discoveredTraits: this.discoveredTraits,
         traitCount: this.traits.length, // how many exist, not what they are
         record: this.record,
+        rankingPoints: this.rankingPoints,
+        tier: require("../consts/rankings").tierFor(this.rankingPoints).key,
+        titleShot: this.rankingPoints >= require("../consts/rankings").TITLE_SHOT_THRESHOLD && !this.isChampion,
+        isChampion: this.isChampion,
+        gameplan: this.gameplan,
         status: this.deriveStatus(camp),
         camp: camp
             ? { id: camp._id, allocations: camp.allocations, weeks: camp.weeks, startedAt: camp.startedAt, endsAt: camp.endsAt }

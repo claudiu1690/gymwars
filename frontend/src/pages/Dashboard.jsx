@@ -6,40 +6,45 @@ import { Button } from "../components/ds/Button.jsx";
 import { FighterCard } from "../components/ds/FighterCard.jsx";
 import { TimerBadge } from "../components/ds/TimerBadge.jsx";
 import { WeightClassChip } from "../components/ds/WeightClassChip.jsx";
-import { useCountdown } from "../hooks/useCountdown";
+import { useCountdown, formatRemaining } from "../hooks/useCountdown";
 import { toCardProps } from "./Roster";
-import { DEMO_MODE, DEMO_FIGHT } from "../demoData";
+
+const RECENT_MS = 48 * 60 * 60 * 1000;
 
 export default function Dashboard() {
-    const { gym, loading } = useAuth();
+    const { gym, loading, reloadGym } = useAuth();
     const navigate = useNavigate();
     const [scouting, setScouting] = useState(null);
     const [fighters, setFighters] = useState([]);
+    const [fights, setFights] = useState([]);
     const refresh = useCountdown(scouting?.refreshAt);
 
     useEffect(() => {
         api("/scouting/state").then(setScouting).catch(() => {});
         api("/fighters").then((d) => setFighters(d.fighters)).catch(() => {});
-    }, []);
+        // Fights may have resolved while away — refresh purse after they load.
+        api("/fights").then((d) => { setFights(d.fights); reloadGym(); }).catch(() => {});
+    }, [reloadGym]);
 
     if (loading) return <p style={{ color: "var(--ink-secondary)" }}>Loading your gym…</p>;
     if (!gym) return <p style={{ color: "var(--ink-secondary)" }}>Couldn't load your gym. Try refreshing.</p>;
 
     const pity = scouting?.pity?.contender;
     const attemptsLeft = scouting ? scouting.attemptsTotal - scouting.attemptsUsed : 0;
+    const nextFight = fights.filter((f) => f.status === "scheduled").sort((a, b) => new Date(a.scheduledAt) - new Date(b.scheduledAt))[0];
+    const recentResults = fights.filter((f) => f.status === "resolved" && Date.now() - new Date(f.resolvedAt).getTime() < RECENT_MS).slice(0, 3);
 
     return (
         <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
-            {/* While you were away — DEMO until fights exist (Phase 3+) */}
-            {DEMO_MODE && (
+            {/* While you were away — recent resolved fights */}
+            {recentResults.length > 0 && (
                 <div style={{ background: "var(--ember-tint)", borderRadius: "var(--radius-md)", padding: "10px 12px" }}>
                     <div className="section-label" style={{ color: "var(--ember-strong)", marginBottom: 5 }}>While You Were Away</div>
-                    <div style={{ fontSize: 13, color: "var(--ink)", marginBottom: 3 }}>
-                        Camp complete — <strong>RIVAS</strong> gained 3 stat points.
-                    </div>
-                    <div style={{ fontSize: 13, color: "var(--corner-red)", fontWeight: 500, marginBottom: 6 }}>
-                        You were attacked by STEEL CITY GYM.
-                    </div>
+                    {recentResults.map((f) => (
+                        <div key={f.id} style={{ fontSize: 13, marginBottom: 3, color: f.result.winner === "you" ? "var(--ink)" : "var(--corner-red)", fontWeight: f.result.winner === "you" ? 400 : 500 }}>
+                            {f.result.winner === "you" ? "Win" : f.result.winner === "draw" ? "Draw" : "Loss"} — <strong>{f.you.name.split(" ").pop().toUpperCase()}</strong> vs {f.them.name} · {f.result.method}
+                        </div>
+                    ))}
                     <button
                         onClick={() => navigate("/fights")}
                         style={{ fontFamily: "var(--font-body)", fontSize: 12, fontWeight: 600, color: "var(--ember-strong)", background: "none", border: "none", cursor: "pointer", padding: 0 }}
@@ -49,7 +54,7 @@ export default function Dashboard() {
                 </div>
             )}
 
-            {/* Your fighters (camps arrive in Phase 2) */}
+            {/* Your fighters */}
             <div>
                 <div className="section-label">Your Fighters</div>
                 {fighters.length > 0 ? (
@@ -68,7 +73,7 @@ export default function Dashboard() {
                 )}
             </div>
 
-            {/* Scouting — live */}
+            {/* Scouting */}
             <div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
                     <div className="section-label" style={{ margin: 0 }}>Scouting</div>
@@ -103,30 +108,35 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            {/* Next fight — DEMO until the fight engine lands (Phase 3) */}
-            {DEMO_MODE && (
+            {/* Next fight */}
+            {nextFight && (
                 <div>
                     <div className="section-label">Next Fight</div>
-                    <div className="card" style={{ padding: 12 }}>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 10 }}>
-                            <div style={{ textAlign: "right" }}>
-                                <div style={{ fontFamily: "var(--font-display)", fontSize: 17, color: "var(--ember-strong)", textTransform: "uppercase", letterSpacing: "0.03em", lineHeight: 1 }}>{DEMO_FIGHT.you.short}</div>
-                                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>{DEMO_FIGHT.you.record}</div>
+                    <Link to="/fights" style={{ textDecoration: "none" }}>
+                        <div className="card" style={{ padding: 12 }}>
+                            {nextFight.title && (
+                                <div style={{ textAlign: "center", fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", color: "var(--gold)", marginBottom: 6 }}>TITLE FIGHT</div>
+                            )}
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 10 }}>
+                                <div style={{ textAlign: "right" }}>
+                                    <div style={{ fontFamily: "var(--font-display)", fontSize: 17, color: "var(--ember-strong)", textTransform: "uppercase", letterSpacing: "0.03em", lineHeight: 1 }}>{nextFight.you.name.split(" ").pop()}</div>
+                                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>{nextFight.you.record.wins}–{nextFight.you.record.losses}</div>
+                                </div>
+                                <span style={{ fontFamily: "var(--font-display)", fontSize: 13, color: "var(--ink-muted)", letterSpacing: "0.04em" }}>VS</span>
+                                <div style={{ textAlign: "left" }}>
+                                    <div style={{ fontFamily: "var(--font-display)", fontSize: 17, color: "var(--corner-red)", textTransform: "uppercase", letterSpacing: "0.03em", lineHeight: 1 }}>{nextFight.them.name.split(" ").pop()}</div>
+                                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>{nextFight.them.record.wins}–{nextFight.them.record.losses}</div>
+                                </div>
                             </div>
-                            <span style={{ fontFamily: "var(--font-display)", fontSize: 13, color: "var(--ink-muted)", letterSpacing: "0.04em" }}>VS</span>
-                            <div style={{ textAlign: "left" }}>
-                                <div style={{ fontFamily: "var(--font-display)", fontSize: 17, color: "var(--corner-red)", textTransform: "uppercase", letterSpacing: "0.03em", lineHeight: 1 }}>{DEMO_FIGHT.them.short}</div>
-                                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--ink-muted)", marginTop: 2 }}>{DEMO_FIGHT.them.record}</div>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 8, borderTop: "1px solid var(--line)" }}>
+                                <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                                    <WeightClassChip weightClass={nextFight.weightClass} />
+                                    <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{nextFight.tier} · {nextFight.rounds} rds</span>
+                                </div>
+                                <TimerBadge value={formatRemaining(new Date(nextFight.scheduledAt).getTime() - Date.now())} size="sm" />
                             </div>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 8, borderTop: "1px solid var(--line)" }}>
-                            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                                <WeightClassChip weightClass="lightweight" />
-                                <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{DEMO_FIGHT.circuit} · {DEMO_FIGHT.rounds} rds</span>
-                            </div>
-                            <TimerBadge value="2d 6h" size="sm" />
-                        </div>
-                    </div>
+                    </Link>
                 </div>
             )}
         </div>

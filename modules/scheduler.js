@@ -42,6 +42,19 @@ console.log(
 
 const dailyTickQueue = new Queue("daily-tick", { connection: QUEUE_CONNECTION });
 const campQueue = new Queue("camp-complete", { connection: QUEUE_CONNECTION });
+const fightQueue = new Queue("fight-resolve", { connection: QUEUE_CONNECTION });
+
+/** Per-fight delayed resolution — same idempotent claim pattern as camps. */
+const fightWorker = new Worker(
+    "fight-resolve",
+    async (job) => {
+        const fightService = require("../services/fightService");
+        await fightService.resolveFightIfDue(job.data.fightId);
+    },
+    { connection: QUEUE_CONNECTION, concurrency: 1 }
+);
+fightWorker.on("error", (err) => console.error("[fight-resolve] Worker error:", err));
+fightWorker.on("failed", (job, err) => console.error(`[fight-resolve] Job ${job?.id} failed:`, err));
 
 /** Per-camp delayed resolution. Idempotent — the lazy on-read check and the
  *  daily sweep can also claim the camp; whoever gets there first wins. */
@@ -83,6 +96,18 @@ const dailyTickWorker = new Worker(
         const lifecycle = require("../services/lifecycleService");
         const sweep = await lifecycle.runDailySweep();
         console.log(`[daily-tick] Lifecycle sweep: ${sweep.camps} camp(s) resolved, ${sweep.fighters} fighter(s) aged.`);
+
+        // Fights whose delayed job went missing.
+        const Fight = require("../models/fightModel");
+        const fightService = require("../services/fightService");
+        const dueFights = await Fight.find({ status: "scheduled", scheduledAt: { $lte: new Date() } });
+        for (const fight of dueFights) {
+            await fightService.resolveFightIfDue(fight._id);
+        }
+        if (dueFights.length > 0) console.log(`[daily-tick] Resolved ${dueFights.length} stranded fight(s).`);
+
+        // A retired champion abdicates; keep every belt occupied.
+        await require("../services/aiOpponentService").ensureChampionsExist();
     },
     { connection: QUEUE_CONNECTION, concurrency: 1 }
 );
@@ -120,6 +145,8 @@ async function stopSchedulers() {
     await dailyTickQueue.close();
     await campWorker.close();
     await campQueue.close();
+    await fightWorker.close();
+    await fightQueue.close();
 }
 
-module.exports = { startSchedulers, stopSchedulers, campQueue, QUEUE_CONNECTION };
+module.exports = { startSchedulers, stopSchedulers, campQueue, fightQueue, QUEUE_CONNECTION };

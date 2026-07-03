@@ -36,4 +36,22 @@ async function getFighter(req, res) {
     }
 }
 
-module.exports = { listMyFighters, getFighter };
+/** Corner instructions (GDD §5.4) — validated by the schema enums. */
+async function setGameplan(req, res) {
+    try {
+        const fighter = await Fighter.findOne({ _id: req.params.id, gymId: req.user.gymId });
+        if (!fighter) return res.status(404).json({ message: "Fighter not found" });
+        const { approach, pace, finish } = req.body || {};
+        if (approach) fighter.gameplan.approach = approach;
+        if (pace) fighter.gameplan.pace = pace;
+        if (finish) fighter.gameplan.finish = finish;
+        await fighter.save();
+        res.json({ gameplan: fighter.gameplan });
+    } catch (err) {
+        if (err.name === "ValidationError") return res.status(400).json({ message: "Invalid gameplan value" });
+        console.error("setGameplan error:", err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+module.exports = { listMyFighters, getFighter, setGameplan };
