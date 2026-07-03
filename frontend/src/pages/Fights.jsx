@@ -81,7 +81,7 @@ export default function Fights() {
 
             {upcoming.length > 0 && (
                 <div style={{ marginBottom: 20 }}>
-                    <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)", marginBottom: 8 }}>Upcoming</div>
+                    <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)", marginBottom: 8 }}>Upcoming Ladder Fights</div>
                     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                         {upcoming.map((f) => (
                             <div key={f.id} style={{ background: "var(--night-surface)", borderRadius: "var(--radius-lg)", border: `1px solid ${f.title ? "var(--gold)" : "var(--night-line)"}`, padding: 14 }}>
@@ -94,6 +94,9 @@ export default function Fights() {
                                 <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, paddingTop: 8, borderTop: "1px solid var(--night-line)", fontSize: 11, color: "var(--night-muted)" }}>
                                     <span>{f.them.gym} · {f.tier} · {f.rounds} rds</span>
                                     <span className="mono" style={{ color: "var(--ember)" }}>{formatRemaining(new Date(f.scheduledAt).getTime() - Date.now())}</span>
+                                </div>
+                                <div style={{ fontSize: 10, color: "var(--night-muted)", marginTop: 6 }}>
+                                    The notice window is camp time — train and taper before it resolves. Callouts above pay out instantly while you wait.
                                 </div>
                             </div>
                         ))}

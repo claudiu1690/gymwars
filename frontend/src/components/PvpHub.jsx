@@ -62,8 +62,8 @@ export default function PvpHub({ fighters }) {
 
     return (
         <div style={{ background: "var(--night-surface)", borderRadius: "var(--radius-lg)", border: "1px solid var(--night-line)", padding: 14, marginBottom: 20 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)" }}>Gym Wars</div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 4 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)" }}>Gym vs Gym</div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     {state.shieldUntil && (
                         <span style={{ fontSize: 10, fontWeight: 600, color: "var(--night-muted)", background: "rgba(140,128,103,0.2)", padding: "2px 8px", borderRadius: "var(--radius-chip)" }}>
@@ -75,6 +75,9 @@ export default function PvpHub({ fighters }) {
                 </div>
             </div>
 
+            <p style={{ fontSize: 11, color: "var(--night-muted)", margin: "0 0 10px" }}>
+                Attack rival gyms for rating and purse — resolves instantly, separate from your fighters' booked ladder fights. Records never at stake.
+            </p>
             {error && <div style={{ fontSize: 12, color: "var(--corner-red)", background: "rgba(198,50,62,0.12)", borderRadius: "var(--radius-md)", padding: "8px 10px", marginBottom: 10 }}>{error}</div>}
 
             {/* Coverage strip — full class coverage is a competitive necessity (GDD §9.2) */}
