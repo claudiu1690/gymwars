@@ -78,7 +78,11 @@ async function scout(gymId, now = new Date()) {
 
     const seed = newSeed();
     const fighter = generateFighter({ seed, pity: gym.scouting.pity });
-    const statRanges = scoutStatRanges(fighter);
+    // A hired scout tightens the report ranges (GDD §4.4 accuracy variance).
+    const Staff = require("../models/staffModel");
+    const staffService = require("./staffService");
+    const scout = await Staff.findOne({ gymId, role: "scout" });
+    const statRanges = scoutStatRanges(fighter, staffService.scoutNoise(scout, SCOUTING.baseReportNoise));
 
     // Advance pity: a hit at tier T (or better) resets that counter; misses
     // increment. "Better" uses the tier order so a Legend clears everything.

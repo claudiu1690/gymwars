@@ -70,6 +70,8 @@ const fighterSchema = new mongoose.Schema({
         kos:    { type: Number, default: 0 },
         subs:   { type: Number, default: 0 },
     },
+    /** Consecutive career wins — feeds Legacy streak awards (GDD §11.3). */
+    winStreak: { type: Number, default: 0 },
 
     signedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },

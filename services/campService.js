@@ -26,6 +26,12 @@ async function startCamp(gymId, fighterId, allocations, weeks) {
     const existing = await Camp.findOne({ fighterId, status: "active" });
     if (existing) throw Object.assign(new Error("This fighter is already in camp"), { statusCode: 409, expose: true });
 
+    // Mentoring arcs tie both fighters up (GDD §4.5) — sparring IS the camp.
+    const mentoringService = require("./mentoringService");
+    if (await mentoringService.isInActivePair(fighterId)) {
+        throw Object.assign(new Error("This fighter is in a mentoring arc — no camps until it completes"), { statusCode: 409, expose: true });
+    }
+
     const now = new Date();
     const camp = await Camp.create({
         gymId,
@@ -71,11 +77,18 @@ async function resolveCampIfDue(campId, now = new Date()) {
     const fighter = await Fighter.findById(camp.fighterId);
     if (!fighter) return camp; // fighter gone (shouldn't happen) — camp stays closed
 
+    // The hired coach shapes the camp (GDD §4.4).
+    const Staff = require("../models/staffModel");
+    const staffService = require("./staffService");
+    const coach = await Staff.findOne({ gymId: camp.gymId, role: "coach" });
+    const gainMult = staffService.coachGainMult(coach, { careerPhase: fighter.careerPhase(), style: fighter.style });
+
     const results = computeCampResults(
         { stats: fighter.stats, potential: fighter.potential, careerPhase: fighter.careerPhase() },
         camp.allocations,
         camp.weeks,
-        camp.seed
+        camp.seed,
+        { gainMult }
     );
 
     fighter.stats = results.newStats;

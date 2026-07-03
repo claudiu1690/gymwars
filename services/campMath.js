@@ -32,12 +32,14 @@ function validateAllocations(allocations) {
  * @param {object} allocations  {striking, grappling, submissions, conditioning} — % summing to 100
  * @param {number} weeks  camp length in game-weeks
  * @param {string} seed   camp seed (persisted; same seed → same results)
+ * @param {object} [mods]  { gainMult } — coach/staff multipliers (GDD §4.4)
  * @returns {{ gains: object, newStats: object, fatigueAdded: number, cappedAtPotential: string[] }}
  */
-function computeCampResults(fighter, allocations, weeks, seed) {
+function computeCampResults(fighter, allocations, weeks, seed, mods = {}) {
     const rng = createRng(`camp:${seed}`);
     const phaseMult = TRAINING.phaseMultipliers[fighter.careerPhase] ?? 1.0;
-    const totalPoints = TRAINING.basePointsPerWeek * weeks * phaseMult;
+    const gainMult = mods.gainMult ?? 1;
+    const totalPoints = TRAINING.basePointsPerWeek * weeks * phaseMult * gainMult;
 
     const gains = {};
     const newStats = {};

@@ -28,11 +28,19 @@ async function ensureFresh(fighter, now = new Date()) {
     let dirty = false;
 
     // 2. Fatigue recovery — only while not in camp. Warp-aware so dev
-    // time-compression doesn't leave fighters permanently gassed.
+    // time-compression doesn't leave fighters permanently gassed. Better
+    // facilities recover faster (GDD §4.3).
     if (!activeCamp && fighter.fatigue.value > 0) {
         const hours = ((now - fighter.fatigue.syncedAt) / 3600000) * getTimeWarp();
         if (hours > 0.01) {
-            fighter.fatigue.value = Math.max(0, fighter.fatigue.value - hours * TRAINING.fatigueRecoveryPerHour);
+            let recoveryMult = 1;
+            if (fighter.gymId) {
+                const { FACILITY_TIERS } = require("../consts/facilities");
+                const Gym = require("../models/gymModel");
+                const gym = await Gym.findById(fighter.gymId).select("facilityTier").lean();
+                recoveryMult = FACILITY_TIERS[gym?.facilityTier ?? 1]?.fatigueRecoveryMult ?? 1;
+            }
+            fighter.fatigue.value = Math.max(0, fighter.fatigue.value - hours * TRAINING.fatigueRecoveryPerHour * recoveryMult);
             fighter.fatigue.syncedAt = now;
             dirty = true;
         }
@@ -60,8 +68,13 @@ async function ensureFresh(fighter, now = new Date()) {
             if (fighter.age >= AGING.hardRetirementAge) {
                 fighter.retired = true;
                 fighter.retiredAt = now;
+                fighter.isChampion = false;
                 // Roster slot frees implicitly — active-roster queries exclude
-                // retired fighters. Hall of Fame entry lands in Phase 5.
+                // retired fighters. The career lands in the Hall of Fame.
+                if (fighter.gymId) {
+                    const legacyService = require("./legacyService");
+                    await legacyService.award(fighter.gymId, "retirement", `${fighter.name} retires at ${Math.floor(fighter.age)}`);
+                }
                 console.log(`[lifecycle] ${fighter.name} retired at age ${Math.floor(fighter.age)}.`);
             }
             dirty = true;

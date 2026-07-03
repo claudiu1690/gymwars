@@ -92,9 +92,21 @@ async function resolveFightIfDue(fightId, now = new Date()) {
     // Freshen the player's fighter so camp results / fatigue / age are current.
     await lifecycleService.ensureFresh(fighter, now);
 
-    const toEngine = (f, fatigue) => ({
+    // The coach works the corner: Tactical IQ translates instructions into
+    // execution (GDD §4.4) — a small effectiveness multiplier.
+    const Staff = require("../models/staffModel");
+    const staffService = require("./staffService");
+    const coach = await Staff.findOne({ gymId: fight.gymId, role: "coach" });
+    const cornerMult = staffService.coachFightMult(coach);
+
+    const toEngine = (f, fatigue, mult = 1) => ({
         name: f.name,
-        stats: { striking: f.stats.striking, grappling: f.stats.grappling, submissions: f.stats.submissions, conditioning: f.stats.conditioning },
+        stats: {
+            striking: f.stats.striking * mult,
+            grappling: f.stats.grappling * mult,
+            submissions: f.stats.submissions * mult,
+            conditioning: f.stats.conditioning * mult,
+        },
         style: f.style,
         traits: f.traits,
         fatigue,
@@ -102,7 +114,7 @@ async function resolveFightIfDue(fightId, now = new Date()) {
     });
 
     const breakdown = resolveFight({
-        a: toEngine(fighter, fighter.fatigue.value),
+        a: toEngine(fighter, fighter.fatigue.value, cornerMult),
         b: toEngine(opponent, 0),
         rounds: fight.rounds,
         title: fight.title,
@@ -141,18 +153,32 @@ async function resolveFightIfDue(fightId, now = new Date()) {
     const purse = Math.round(won ? base : base * PURSES.loserShare);
     await Gym.updateOne({ _id: fight.gymId }, { $inc: { purse } });
 
-    // Title transfer (GDD §8.3 — one champion per class).
+    // Title transfer (GDD §8.3 — one champion per class) + Legacy (GDD §11.3).
+    const legacyService = require("./legacyService");
     let titleChanged = false;
     if (fight.title) {
         if (won && !fighter.isChampion) {
             fighter.isChampion = true;
             opponent.isChampion = false;
             titleChanged = true;
+            await legacyService.award(fight.gymId, "title-win", `${fighter.name} takes the ${fight.weightClass} belt`);
+        } else if (won && fighter.isChampion) {
+            await legacyService.award(fight.gymId, "title-defense", fighter.name);
         } else if (lost && fighter.isChampion) {
             fighter.isChampion = false;
             opponent.isChampion = true;
             titleChanged = true;
         }
+    }
+
+    // Win streaks feed the Legacy track.
+    if (won) {
+        fighter.winStreak = (fighter.winStreak ?? 0) + 1;
+        if (fighter.winStreak === 5) {
+            await legacyService.award(fight.gymId, "win-streak-5", fighter.name);
+        }
+    } else if (lost) {
+        fighter.winStreak = 0;
     }
 
     // Post-fight fatigue.
@@ -176,6 +202,7 @@ async function resolveFightIfDue(fightId, now = new Date()) {
         fighter.retired = true;
         fighter.retiredAt = now;
         fighter.isChampion = false;
+        await legacyService.award(fight.gymId, "retirement", `${fighter.name} hangs up the gloves at ${Math.floor(fighter.age)}`);
         console.log(`[fight] ${fighter.name} retires after the loss at age ${Math.floor(fighter.age)}.`);
     }
 

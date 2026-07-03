@@ -108,6 +108,17 @@ const dailyTickWorker = new Worker(
 
         // A retired champion abdicates; keep every belt occupied.
         await require("../services/aiOpponentService").ensureChampionsExist();
+
+        // Facility upgrades + mentoring arcs that came due while gyms were away.
+        const facilityService = require("../services/facilityService");
+        for (const gym of await Gym.find({ "facilityUpgrade.endsAt": { $lte: new Date() } })) {
+            await facilityService.completeUpgradeIfDue(gym);
+        }
+        const MentorPair = require("../models/mentorPairModel");
+        const mentoringService = require("../services/mentoringService");
+        for (const pair of await MentorPair.find({ status: "active", endsAt: { $lte: new Date() } })) {
+            await mentoringService.resolvePairIfDue(pair._id);
+        }
     },
     { connection: QUEUE_CONNECTION, concurrency: 1 }
 );

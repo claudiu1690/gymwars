@@ -11,7 +11,7 @@ import Fights from "./pages/Fights";
 import FightDetail from "./pages/FightDetail";
 import PvpEvent from "./pages/PvpEvent";
 import Rankings from "./pages/Rankings";
-import Placeholder from "./pages/Placeholder";
+import Gym from "./pages/Gym";
 
 function RequireAuth({ children }) {
     const { authed } = useAuth();
@@ -39,7 +39,7 @@ export default function App() {
                                 <Route path="/fights/:id" element={<FightDetail />} />
                                 <Route path="/pvp/:id" element={<PvpEvent />} />
                                 <Route path="/rankings" element={<Rankings />} />
-                                <Route path="/gym" element={<Placeholder title="Gym & Facilities" note="Facility tiers, staff, and mentoring arrive in Phase 5." />} />
+                                <Route path="/gym" element={<Gym />} />
                                 <Route path="*" element={<Navigate to="/" replace />} />
                             </Routes>
                         </Shell>

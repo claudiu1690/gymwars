@@ -22,9 +22,16 @@ const gymSchema = new mongoose.Schema({
         maxlength: 30,
     },
 
-    // Facility tier 1–4 (Garage Gym → Fight Factory). Tier gates roster slots
-    // and scouts/day — see consts/facilityTiers.js when Phase 5 lands.
+    // Facility tier 1–4 (Garage Gym → Fight Factory), consts/facilities.js.
     facilityTier: { type: Number, default: 1, min: 1, max: 4 },
+    /** In-progress timed upgrade (lazy-completed on read + daily sweep). */
+    facilityUpgrade: {
+        tier: { type: Number, default: null },
+        endsAt: { type: Date, default: null },
+    },
+
+    /** Lifetime gym-level score — survives every retirement (GDD §11.3). */
+    legacyScore: { type: Number, default: 0 },
 
     // In-fiction currency, earned from fight purses.
     purse: { type: Number, default: 0 },
