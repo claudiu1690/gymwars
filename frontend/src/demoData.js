@@ -1,21 +1,12 @@
 /**
  * DEMO DATA — placeholder content from the design system's mobile-app kit.
  *
- * The backend has no fighter/fight/scouting systems yet (they land in
- * Phases 1–3 of DEVELOPMENT_PLAN.md). Until then, DEMO_MODE fills the
- * designed screens with this data so the UI is complete and reviewable.
- * Real gym data (name, purse, slots) always comes from the API.
- *
- * When a phase ships its real API, delete its slice here and flip the
- * screen to live data.
+ * Fighters and scouting went live with Phase 1; only FIGHT content remains
+ * demo until the fight engine ships (Phase 3 of DEVELOPMENT_PLAN.md).
+ * DEMO_MODE gates the fight sections (Fight Night screen, dashboard digest,
+ * Next Fight card) so the designed screens stay reviewable.
  */
 export const DEMO_MODE = true;
-
-export const DEMO_FIGHTERS = [
-    { id: 1, name: "MARCUS VEGA", weightClass: "lightweight", style: "boxer", age: 26, careerPhase: "Prime", stats: { striking: 76, grappling: 61, submissions: 44, conditioning: 68 }, record: { wins: 12, losses: 3 }, rarity: "contender", status: { type: "in-camp", countdown: "3d 12h" } },
-    { id: 2, name: "ANA RIVAS", weightClass: "featherweight", style: "wrestler", age: 22, careerPhase: "Rising", stats: { striking: 58, grappling: 79, submissions: 55, conditioning: 88 }, record: { wins: 5, losses: 0 }, rarity: "elite", status: { type: "fight-ready" } },
-    { id: 3, name: "LEON MBEKI", weightClass: "middleweight", style: "bjj", age: 33, careerPhase: "Declining", stats: { striking: 51, grappling: 68, submissions: 74, conditioning: 42 }, record: { wins: 18, losses: 9 }, rarity: "prospect", status: { type: "fatigued" } },
-];
 
 export const DEMO_FIGHT = {
     weightClass: "Lightweight",
@@ -37,11 +28,4 @@ export const DEMO_FIGHT = {
         { round: 2, time: "0:20", corner: "you", text: "VEGA opens with a left-right combination. Chen is hurt." },
         { round: 2, time: "0:45", corner: "you", text: "KO — VEGA lands the finishing right hook. Fight over.", ko: true },
     ],
-};
-
-export const DEMO_SCOUTING = {
-    attemptsUsed: 2,
-    attemptsTotal: 3,
-    refreshIn: "3h 45m",
-    pity: "Guaranteed Contender+ in 3 scouts",
 };

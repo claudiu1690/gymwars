@@ -45,13 +45,23 @@ const dailyTickQueue = new Queue("daily-tick", { connection: QUEUE_CONNECTION })
 const dailyTickWorker = new Worker(
     "daily-tick",
     async () => {
-        // Phase 0 stub. Wire in, as they land:
-        //   Phase 1 — scouting allotment refresh
+        // Wire in, as they land:
         //   Phase 2 — aging tick, Declining-phase stat erosion, retirement checks
         //   Phase 4 — Gym War / Callout cooldown resets
         // Every handler hooked here must be idempotent — a missed or doubled
         // tick can never corrupt state (lazy-check on read is the backstop).
-        console.log("[daily-tick] Calendar tick fired (no handlers registered yet).");
+
+        // Scouting refresh: bulk-advance every gym's day anchor. The lazy
+        // per-read reset in scoutingService is the source of truth; this keeps
+        // the DB warm so dashboards read fresh counts without a save.
+        const Gym = require("../models/gymModel");
+        const { utcDayStart } = require("../consts/calendar");
+        const anchor = utcDayStart();
+        const result = await Gym.updateMany(
+            { "scouting.dayAnchor": { $ne: anchor } },
+            { $set: { "scouting.dayAnchor": anchor, "scouting.usedToday": 0 } }
+        );
+        console.log(`[daily-tick] Scout allotments refreshed for ${result.modifiedCount} gym(s).`);
     },
     { connection: QUEUE_CONNECTION, concurrency: 1 }
 );

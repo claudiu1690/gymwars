@@ -31,6 +31,20 @@ const gymSchema = new mongoose.Schema({
     // Roster slots currently unlocked (starts at 2 per GDD §4.1).
     rosterSlots: { type: Number, default: 2 },
 
+    // ── Scouting state (GDD §6) ───────────────────────────────────
+    scouting: {
+        usedToday: { type: Number, default: 0 },
+        /** UTC day-start the counter belongs to — lazy reset on read. */
+        dayAnchor: { type: Date, default: null },
+        /** Scouts since each tier (or better) last hit — drives the visible
+         *  pity guarantee. Persisted, never reset by the daily tick. */
+        pity: {
+            contender: { type: Number, default: 0 },
+            elite:     { type: Number, default: 0 },
+            legend:    { type: Number, default: 0 },
+        },
+    },
+
     createdAt: { type: Date, default: Date.now },
 });
 

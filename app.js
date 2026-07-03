@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const authRoutes = require("./routes/authRoutes");
 const gymRoutes = require("./routes/gymRoutes");
+const scoutingRoutes = require("./routes/scoutingRoutes");
+const fighterRoutes = require("./routes/fighterRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const scheduler = require("./modules/scheduler");
 
@@ -72,6 +74,8 @@ app.use("/auth", authLimiter, authRoutes);
 
 // Protected — JWT required for all game routes
 app.use("/gyms", authMiddleware, gymRoutes);
+app.use("/scouting", authMiddleware, scoutingRoutes);
+app.use("/fighters", authMiddleware, fighterRoutes);
 
 // ── 404 ──
 app.use((req, res) => {

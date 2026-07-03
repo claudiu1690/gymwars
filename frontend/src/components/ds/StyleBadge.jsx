@@ -1,12 +1,18 @@
 import React from 'react';
 
+/* Vocabulary aligned with the backend's six GDD archetypes (consts/styles.js):
+   Striking family = corner-red tint, Wrestling = ember tint, Submission = sunken.
+   Legacy ui-kit keys (boxer/wrestler/mma) kept as aliases. */
 const STYLES = {
-  'boxer':    { label: 'Boxer',     family: 'Striker',  color: 'var(--corner-red)',   bg: 'var(--corner-red-tint)' },
-  'muay-thai':{ label: 'Muay Thai', family: 'Striker',  color: 'var(--corner-red)',   bg: 'var(--corner-red-tint)' },
-  'wrestler': { label: 'Wrestler',  family: 'Grappler', color: 'var(--ember-strong)',  bg: 'var(--ember-tint)' },
-  'judo':     { label: 'Judo',      family: 'Grappler', color: 'var(--ember-strong)',  bg: 'var(--ember-tint)' },
-  'mma':      { label: 'MMA',       family: 'Hybrid',   color: 'var(--ink-secondary)', bg: 'var(--surface-sunken)' },
-  'bjj':      { label: 'BJJ',       family: 'Hybrid',   color: 'var(--ink-secondary)', bg: 'var(--surface-sunken)' },
+  'boxing':    { label: 'Boxing',    family: 'Striking',   color: 'var(--corner-red)',   bg: 'var(--corner-red-tint)' },
+  'boxer':     { label: 'Boxer',     family: 'Striking',   color: 'var(--corner-red)',   bg: 'var(--corner-red-tint)' },
+  'muay-thai': { label: 'Muay Thai', family: 'Striking',   color: 'var(--corner-red)',   bg: 'var(--corner-red-tint)' },
+  'wrestling': { label: 'Wrestling', family: 'Wrestling',  color: 'var(--ember-strong)',  bg: 'var(--ember-tint)' },
+  'wrestler':  { label: 'Wrestler',  family: 'Wrestling',  color: 'var(--ember-strong)',  bg: 'var(--ember-tint)' },
+  'judo':      { label: 'Judo',      family: 'Wrestling',  color: 'var(--ember-strong)',  bg: 'var(--ember-tint)' },
+  'bjj':       { label: 'BJJ',       family: 'Submission', color: 'var(--ink-secondary)', bg: 'var(--surface-sunken)' },
+  'sambo':     { label: 'Sambo',     family: 'Submission', color: 'var(--ink-secondary)', bg: 'var(--surface-sunken)' },
+  'mma':       { label: 'MMA',       family: 'Hybrid',     color: 'var(--ink-secondary)', bg: 'var(--surface-sunken)' },
 };
 
 /**
