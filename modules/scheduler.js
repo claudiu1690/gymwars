@@ -41,6 +41,20 @@ console.log(
 );
 
 const dailyTickQueue = new Queue("daily-tick", { connection: QUEUE_CONNECTION });
+const campQueue = new Queue("camp-complete", { connection: QUEUE_CONNECTION });
+
+/** Per-camp delayed resolution. Idempotent — the lazy on-read check and the
+ *  daily sweep can also claim the camp; whoever gets there first wins. */
+const campWorker = new Worker(
+    "camp-complete",
+    async (job) => {
+        const campService = require("../services/campService");
+        await campService.resolveCampIfDue(job.data.campId);
+    },
+    { connection: QUEUE_CONNECTION, concurrency: 1 }
+);
+campWorker.on("error", (err) => console.error("[camp-complete] Worker error:", err));
+campWorker.on("failed", (job, err) => console.error(`[camp-complete] Job ${job?.id} failed:`, err));
 
 const dailyTickWorker = new Worker(
     "daily-tick",
@@ -62,6 +76,13 @@ const dailyTickWorker = new Worker(
             { $set: { "scouting.dayAnchor": anchor, "scouting.usedToday": 0 } }
         );
         console.log(`[daily-tick] Scout allotments refreshed for ${result.modifiedCount} gym(s).`);
+
+        // Lifecycle sweep: resolve stranded camps, age fighters, recover
+        // fatigue, retire the over-the-hill (Phase 2). Lazy on-read logic is
+        // the source of truth; this keeps offline gyms advancing too.
+        const lifecycle = require("../services/lifecycleService");
+        const sweep = await lifecycle.runDailySweep();
+        console.log(`[daily-tick] Lifecycle sweep: ${sweep.camps} camp(s) resolved, ${sweep.fighters} fighter(s) aged.`);
     },
     { connection: QUEUE_CONNECTION, concurrency: 1 }
 );
@@ -70,9 +91,14 @@ dailyTickWorker.on("error", (err) => console.error("[daily-tick] Worker error:",
 dailyTickWorker.on("failed", (job, err) => console.error(`[daily-tick] Job ${job?.id} failed:`, err));
 
 /** Register the repeatable daily tick. Safe to call on every boot — BullMQ
- *  dedupes repeatable jobs by their repeat options. */
+ *  dedupes repeatable jobs by their repeat options.
+ *
+ *  Guarded by a timeout: with Redis down, ioredis retries forever
+ *  (maxRetriesPerRequest: null is required by BullMQ), which would otherwise
+ *  hang boot and keep the HTTP API from ever listening. Lazy on-read logic
+ *  covers gameplay until Redis returns. */
 async function startSchedulers() {
-    await dailyTickQueue.add(
+    const register = dailyTickQueue.add(
         "daily-tick",
         {},
         {
@@ -81,6 +107,10 @@ async function startSchedulers() {
             removeOnFail: 50,
         }
     );
+    const timeout = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Redis unreachable — schedulers not registered")), 5000)
+    );
+    await Promise.race([register, timeout]);
     console.log("[scheduler] Daily calendar tick registered (00:00 UTC).");
 }
 
@@ -88,6 +118,8 @@ async function startSchedulers() {
 async function stopSchedulers() {
     await dailyTickWorker.close();
     await dailyTickQueue.close();
+    await campWorker.close();
+    await campQueue.close();
 }
 
-module.exports = { startSchedulers, stopSchedulers, QUEUE_CONNECTION };
+module.exports = { startSchedulers, stopSchedulers, campQueue, QUEUE_CONNECTION };

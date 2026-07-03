@@ -8,6 +8,8 @@ import { Ico, ICONS } from "../components/Icons";
 
 const MAX_SLOTS = 8; // roster cap ceiling (GDD §4.1: grows to 8–10)
 
+import { formatRemaining } from "../hooks/useCountdown";
+
 /** Map an API fighter to the FighterCard's prop shape. */
 export function toCardProps(f) {
     return {
@@ -19,7 +21,12 @@ export function toCardProps(f) {
         stats: f.stats,
         record: f.record,
         rarity: f.rarity,
-        status: { type: f.status },
+        status: {
+            type: f.status,
+            countdown: f.status === "in-camp" && f.camp
+                ? formatRemaining(new Date(f.camp.endsAt).getTime() - Date.now())
+                : undefined,
+        },
     };
 }
 

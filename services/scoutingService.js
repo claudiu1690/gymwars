@@ -51,7 +51,7 @@ async function getState(gymId, now = new Date()) {
     if (ensureFreshDay(gym, now)) await gym.save();
 
     const reports = await ScoutReport.find({ gymId, status: "pending" }).sort({ createdAt: -1 });
-    const rosterCount = await Fighter.countDocuments({ gymId });
+    const rosterCount = await Fighter.countDocuments({ gymId, retired: { $ne: true } });
     const total = dailyAllotment(gym);
 
     return {
@@ -109,9 +109,9 @@ async function resolveReport(gymId, reportId, action, now = new Date()) {
         return { status: "passed" };
     }
 
-    // Sign — enforce the roster cap.
+    // Sign — enforce the roster cap (retired fighters don't hold slots).
     const gym = await Gym.findById(gymId);
-    const rosterCount = await Fighter.countDocuments({ gymId });
+    const rosterCount = await Fighter.countDocuments({ gymId, retired: { $ne: true } });
     if (rosterCount >= gym.rosterSlots) {
         throw Object.assign(new Error("Roster is full — pass on this prospect or free a slot"), { statusCode: 409, expose: true });
     }

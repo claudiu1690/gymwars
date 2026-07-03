@@ -26,9 +26,22 @@ const fighterSchema = new mongoose.Schema({
     style: { type: String, required: true, enum: ["boxing", "muay-thai", "wrestling", "judo", "bjj", "sambo"] },
     rarity: { type: String, required: true, enum: ["journeyman", "prospect", "contender", "elite", "legend"] },
 
-    age: { type: Number, required: true }, // game-years; aging ticks land in Phase 2
+    /** Game-years, fractional — advanced lazily from lastAgedAt (1 real day
+     *  = 1 game-week = 1/52 game-year). Display floors it. */
+    age: { type: Number, required: true },
+    lastAgedAt: { type: Date, default: Date.now },
     stats: statsShape,
     potential: statsShape, // HIDDEN — per-stat training ceiling
+
+    /** Fatigue 0–100 (GDD §5.2) — builds in camp, recovers while idle.
+     *  Synced lazily from syncedAt; the hourly job is just a DB warmer. */
+    fatigue: {
+        value: { type: Number, default: 0, min: 0, max: 100 },
+        syncedAt: { type: Date, default: Date.now },
+    },
+
+    retired: { type: Boolean, default: false, index: true },
+    retiredAt: { type: Date, default: null },
 
     /** HIDDEN personality traits (GDD §3.4); `discoveredTraits` is the
      *  player-visible subset, revealed through play in Phases 2–4. */
@@ -43,23 +56,35 @@ const fighterSchema = new mongoose.Schema({
         subs:   { type: Number, default: 0 },
     },
 
-    /** Phase 2 replaces this with camp/fatigue-driven state. */
-    status: { type: String, default: "fight-ready" },
-
     signedAt: { type: Date, default: Date.now },
     createdAt: { type: Date, default: Date.now },
 });
 
 /** Career phase derives from age (GDD §3.5). */
 fighterSchema.methods.careerPhase = function () {
-    if (this.age <= 26) return "Rising";
-    if (this.age <= 32) return "Prime";
-    if (this.age <= 37) return "Declining";
+    if (this.retired) return "Retirement";
+    if (this.age < 27) return "Rising";
+    if (this.age < 33) return "Prime";
+    if (this.age < 38) return "Declining";
     return "Retirement";
 };
 
-/** Client-safe projection — strips potential + undiscovered traits. */
-fighterSchema.methods.toPublic = function () {
+/** Presentation status for the UI's StatusChip vocabulary. */
+fighterSchema.methods.deriveStatus = function (activeCamp) {
+    const { TRAINING } = require("../consts/training");
+    if (this.retired) return "retiring";
+    if (activeCamp) return "in-camp";
+    if (this.fatigue.value >= TRAINING.fatiguedThreshold) return "fatigued";
+    return "fight-ready";
+};
+
+/**
+ * Client-safe projection — strips potential + undiscovered traits.
+ * @param {object} [opts]
+ * @param {object} [opts.camp] active Camp doc, reflected in status + payload
+ */
+fighterSchema.methods.toPublic = function ({ camp } = {}) {
+    const round = (o) => Object.fromEntries(Object.entries(o.toObject ? o.toObject() : o).map(([k, v]) => [k, Math.round(v)]));
     return {
         id: this._id,
         name: this.name,
@@ -68,13 +93,18 @@ fighterSchema.methods.toPublic = function () {
         weightClass: this.weightClass,
         style: this.style,
         rarity: this.rarity,
-        age: this.age,
+        age: Math.floor(this.age),
         careerPhase: this.careerPhase(),
-        stats: this.stats,
+        stats: round(this.stats),
+        fatigue: Math.round(this.fatigue.value),
         discoveredTraits: this.discoveredTraits,
         traitCount: this.traits.length, // how many exist, not what they are
         record: this.record,
-        status: this.status,
+        status: this.deriveStatus(camp),
+        camp: camp
+            ? { id: camp._id, allocations: camp.allocations, weeks: camp.weeks, startedAt: camp.startedAt, endsAt: camp.endsAt }
+            : null,
+        retired: this.retired,
         signedAt: this.signedAt,
     };
 };

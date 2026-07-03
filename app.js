@@ -8,6 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const gymRoutes = require("./routes/gymRoutes");
 const scoutingRoutes = require("./routes/scoutingRoutes");
 const fighterRoutes = require("./routes/fighterRoutes");
+const campRoutes = require("./routes/campRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
 const scheduler = require("./modules/scheduler");
 
@@ -76,6 +77,7 @@ app.use("/auth", authLimiter, authRoutes);
 app.use("/gyms", authMiddleware, gymRoutes);
 app.use("/scouting", authMiddleware, scoutingRoutes);
 app.use("/fighters", authMiddleware, fighterRoutes);
+app.use("/camps", authMiddleware, campRoutes);
 
 // ── 404 ──
 app.use((req, res) => {
