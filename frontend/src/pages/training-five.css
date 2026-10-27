@@ -1,0 +1,108 @@
+.camp-unassigned-notice {
+  background: #fff0c7;
+  border: 2px solid #b97711;
+  border-left-width: 7px;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  color: #583400;
+}
+.camp-unassigned-notice strong {
+  font-size: 1.12rem;
+}
+.camp-unassigned-notice p {
+  margin: 6px 0 0;
+}
+.camp-week-fighter.is-unassigned {
+  outline: 2px solid #bd7914;
+  outline-offset: -2px;
+  background: #fff8e8;
+}
+.camp-assignment-flag {
+  color: #81500b;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.camp-assignment-rest {
+  color: #267361;
+  font-size: 0.82rem;
+}
+.camp-focus-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+.camp-focus-choices button {
+  flex: 1 1 140px;
+  border: 2px solid #b9b3a2;
+  border-radius: 9px;
+  background: #fbf7ed;
+  color: #1d2939;
+  font-weight: 800;
+  padding: 14px 12px;
+  cursor: pointer;
+}
+.camp-focus-choices button[aria-pressed="true"] {
+  background: #17283d;
+  color: #ffdc86;
+  border-color: #bf8533;
+  box-shadow: 0 3px 0 #a96e20;
+}
+.camp-allocation-total {
+  border: 2px solid #377663;
+  background: #eaf7ef;
+  border-radius: 12px;
+  padding: 16px;
+  color: #205943;
+  margin: 16px 0;
+}
+.camp-allocation-total.invalid {
+  color: #a51e26;
+  background: #fff0ed;
+  border-color: #c92c34;
+}
+.camp-allocation-total > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.camp-allocation-total strong {
+  font-size: 2rem;
+  font-variant-numeric: tabular-nums;
+}
+.camp-allocation-total small {
+  font-size: 1rem;
+}
+.camp-allocation-total > b {
+  display: block;
+  margin-top: 8px;
+}
+.camp-allocation-track {
+  height: 9px;
+  background: #d9d5cc;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.camp-allocation-track span {
+  height: 100%;
+  display: block;
+  background: currentColor;
+  transition: width 0.15s;
+}
+.camp-plan-error {
+  color: #aa1824;
+  font-weight: 800;
+}
+.camp-focus-choices button:focus-visible {
+  outline: 3px solid #007c9a;
+  outline-offset: 3px;
+}
+.camp-focus-choices button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

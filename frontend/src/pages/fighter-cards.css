@@ -1,0 +1,247 @@
+/* Rarity is expressed through frame, badge text and symbol; never colour alone. */
+[data-rarity] {
+  --rarity-frame: #788795;
+  --rarity-ink: #455666;
+  --rarity-tint: #edf1f5;
+}
+[data-rarity="prospect"] {
+  --rarity-frame: #298978;
+  --rarity-ink: #17695b;
+  --rarity-tint: #e6f3ed;
+}
+[data-rarity="contender"] {
+  --rarity-frame: #497dd0;
+  --rarity-ink: #215db0;
+  --rarity-tint: #eaf1ff;
+}
+[data-rarity="elite"] {
+  --rarity-frame: #9360bd;
+  --rarity-ink: #7840a1;
+  --rarity-tint: #f2eafa;
+}
+[data-rarity="legend"] {
+  --rarity-frame: #be8b24;
+  --rarity-ink: #875204;
+  --rarity-tint: #fff3cc;
+}
+.fighter-rarity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--rarity-frame);
+  border-radius: 5px;
+  padding: 4px 8px;
+  background: var(--rarity-tint);
+  color: var(--rarity-ink);
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.fighter-rarity-mark {
+  font-size: 10px;
+}
+.career-fighter-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  align-items: start;
+  gap: 20px;
+}
+.career-fighter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid var(--rarity-frame);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px #22374a0d;
+  background: #fffdf8;
+}
+.career-fighter:hover {
+  border-color: var(--rarity-frame);
+  box-shadow: 0 6px 20px #22374a20;
+}
+.career-fighter:focus-visible {
+  outline: 3px solid #e86240;
+  outline-offset: 4px;
+}
+.career-fighter[data-rarity="legend"] {
+  border-style: double;
+  border-width: 4px;
+}
+.career-fighter > .career-fighter-art {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  flex: none;
+  background: #294560;
+  border-bottom: 2px solid var(--rarity-frame);
+}
+.career-fighter .career-portrait {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 320px;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+.career-fighter-art > .fighter-rarity {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.career-card-record {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: #fff;
+  background: #1d3042e8;
+  font-size: 11px;
+  font-weight: 650;
+}
+.career-fighter > .career-fighter-info {
+  width: 100%;
+  padding: 17px;
+}
+.career-fighter h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0 0 7px;
+}
+.career-fighter p {
+  margin-bottom: 14px;
+}
+.career-card-state {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.career-card-state small {
+  font-size: 11px;
+}
+.career-fighter .career-text-link {
+  margin-top: 15px;
+}
+.career-prospect {
+  border: 2px solid var(--rarity-frame);
+  background: #fffdf8;
+  border-radius: 12px;
+  gap: 7px;
+}
+.career-prospect[data-rarity="unknown"] {
+  border-style: dashed;
+}
+.career-prospect[data-rarity="legend"] {
+  border-style: double;
+  border-width: 4px;
+}
+.career-prospect > img {
+  height: 240px;
+  object-fit: contain;
+  background: #294560;
+  margin-bottom: 3px;
+}
+.career-prospect h3 {
+  margin: 5px 0 0;
+}
+.career-prospect p {
+  margin: 0 0 7px;
+}
+.career-detail-heading > .career-portrait {
+  border: 2px solid var(--rarity-frame);
+  object-position: center 15%;
+  background: #294560;
+}
+.career-rarity-guide {
+  margin: 0 0 20px;
+  font-size: 12px;
+}
+.career-rarity-guide summary,
+.career-scout-odds summary {
+  cursor: pointer;
+  color: #38556b;
+  font-weight: 650;
+  padding: 8px 0;
+}
+.career-rarity-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 7px 0;
+}
+.career-rarity-guide p {
+  max-width: 720px;
+  line-height: 1.7;
+}
+.career-scout-guarantees {
+  padding: 18px;
+  margin: 0 0 12px;
+  border: 1px solid #dce3e6;
+  background: #f5f7f8;
+  border-radius: 10px;
+}
+.career-scout-guarantees p {
+  font-size: 12px;
+  margin: 5px 0 14px;
+  line-height: 1.6;
+}
+.career-guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.career-guarantee {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  border-left: 3px solid var(--rarity-frame);
+  background: white;
+  border-radius: 4px;
+}
+.career-guarantee > strong {
+  font-size: 12px;
+}
+.career-guarantee > small {
+  font-size: 11px;
+  line-height: 1.6;
+}
+.career-scout-odds {
+  font-size: 12px;
+  margin-top: 7px;
+}
+@media (max-width: 600px) {
+  .career-fighter-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-fighter .career-portrait {
+    height: 290px;
+  }
+  .career-fighter > .career-fighter-info {
+    padding: 16px;
+  }
+  .career-guarantee-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-guarantee {
+    gap: 6px;
+  }
+  .career-scout-guarantees {
+    padding: 12px;
+  }
+  .career-prospect > img {
+    height: 180px;
+  }
+}
+@media (max-width: 380px) {
+  .career-scout-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-prospect > img {
+    height: 240px;
+  }
+}

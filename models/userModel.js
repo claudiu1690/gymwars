@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
     /** Used to invalidate all outstanding JWTs after a password change. Stamp
      *  in the JWT must equal this value for the session to be accepted. */
     sessionEpoch: { type: Number, default: 1 },
+    analyticsEnabled: { type: Boolean, default: false },
 
     // ── Notifications ─────────────────────────────────────────────
     notifications: {

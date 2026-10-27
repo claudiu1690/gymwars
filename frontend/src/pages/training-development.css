@@ -1,0 +1,118 @@
+.career-app.game-mode .camp-shelves {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+.career-app.game-mode .camp-shelves button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #23334b;
+  border: 1px solid #566a85;
+  color: #e2eaf7;
+  border-radius: 6px;
+  padding: 11px 14px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.career-app.game-mode .camp-shelves button[aria-pressed="true"] {
+  background: #f1c768;
+  border-color: #f6d68a;
+  color: #172338;
+}
+.career-app.game-mode .camp-shelves button span {
+  font-size: 10px;
+  font-weight: 500;
+}
+.career-app.game-mode .camp-shelves > a {
+  margin-left: auto;
+  color: #cbb6ff;
+  font-size: 11px;
+}
+.career-app.game-mode .camp-locked-specialist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #192538;
+  border: 1px dashed #52617b;
+  border-radius: 9px;
+  padding: 23px;
+}
+.career-app.game-mode .camp-locked-specialist > svg {
+  color: #99b0d0;
+}
+.career-app.game-mode .camp-locked-specialist > small {
+  color: #bac6d9;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.career-app.game-mode .camp-locked-specialist > h3 {
+  font-size: 20px;
+}
+.career-app.game-mode .camp-locked-specialist > p {
+  font-size: 12px;
+  margin: 0;
+}
+.career-app.game-mode .camp-locked-specialist > strong {
+  color: #f2cf84;
+  font-size: 12px;
+}
+.career-app.game-mode .camp-locked-specialist > a {
+  color: #cbb6ff;
+  font-size: 12px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.career-app.game-mode .camp-department-effect {
+  background: #203d3c;
+  border-left: 3px solid #6dc7af;
+  border-radius: 5px;
+  padding: 13px 17px;
+  color: #c8ebdf;
+  font-size: 12px;
+}
+.career-app.game-mode .club-development-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 13px 18px;
+  background: #23354a;
+  border: 1px solid #4d687d;
+  border-radius: 7px;
+}
+.career-app.game-mode .club-development-link strong {
+  font-size: 13px;
+  color: #e6f3fa;
+}
+.career-app.game-mode .club-development-link small {
+  display: block;
+  font-size: 11px;
+  color: #b7cce0;
+  margin-top: 4px;
+}
+.career-app.game-mode .club-development-link > span {
+  color: #f1cc75;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .career-app.game-mode .camp-shelves {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .career-app.game-mode .camp-shelves button {
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 7px;
+  }
+  .career-app.game-mode .camp-shelves > a {
+    grid-column: 1/-1;
+    margin: 4px 0 0;
+  }
+  .career-app.game-mode .camp-locked-specialist {
+    padding: 17px;
+  }
+}

@@ -1,0 +1,82 @@
+.career-app.game-mode.clubhouse .mentor-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid > article {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #cfbea4;
+  border-radius: 12px;
+  background: #fff8e9;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid > article:last-child {
+  background: #e7eee4;
+  border-color: #b9ccb5;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid small,
+.career-app.game-mode.clubhouse .mentor-training-alternative small {
+  display: block;
+  color: #59684e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid h3 {
+  margin: 10px 0;
+  color: #203747;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid p,
+.career-app.game-mode.clubhouse .mentor-training-alternative p {
+  margin: 10px 0 16px;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .mentor-choice-grid > article > span {
+  display: block;
+  color: #415a43;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.career-app.game-mode.clubhouse .mentor-training-alternative {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  padding: 18px;
+  margin: 16px 0;
+  border: 1px solid #d9cdb8;
+  border-radius: 9px;
+  background: #f2ead9;
+}
+.career-app.game-mode.clubhouse .mentor-training-alternative > div {
+  flex: 1 1 250px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .mentor-training-alternative p {
+  margin-bottom: 0;
+}
+.career-app.game-mode.clubhouse .mentor-training-alternative .career-action {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+.career-app.game-mode.clubhouse .mentor-best-for {
+  color: #385a49;
+  font-size: 12px;
+}
+.career-app.game-mode.clubhouse .mentor-lesson-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 650px) {
+  .career-app.game-mode.clubhouse .mentor-choice-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .career-app.game-mode.clubhouse .mentor-choice-grid > article {
+    padding: 18px;
+  }
+}

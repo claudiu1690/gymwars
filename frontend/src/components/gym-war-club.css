@@ -1,0 +1,806 @@
+.gw-clubhouse,
+.gw-leaderboard {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  color: #203747;
+}
+.career-app.game-mode.clubhouse .gw-club-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 290px;
+  padding: 32px;
+  border-radius: 15px;
+  overflow: hidden;
+  color: #fff8e9;
+  background:
+    linear-gradient(90deg, #11283de8, #11283d44 65%, #11283d12),
+    url("/art/cartoon-club-trophy-room.webp") center 58% / cover;
+  box-shadow: 0 5px 0 #c9bba3;
+}
+.gw-club-identity {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  min-width: 0;
+}
+.gw-club-identity > div {
+  min-width: 0;
+}
+.gw-club-identity .gw-club-crest {
+  width: 86px;
+  height: 98px;
+  flex-shrink: 0;
+}
+.gw-club-identity .gw-club-crest b {
+  font-size: 26px;
+}
+.career-app.game-mode.clubhouse .gw-club-profile h3 {
+  color: #fff8e9;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  margin: 7px 0 12px;
+  max-width: 600px;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .gw-club-profile p {
+  color: #e6e3d7;
+  margin: 0;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-club-profile, .gw-leaderboard-hero)
+  .career-eyebrow {
+  color: #ffc5a2;
+}
+.gw-club-profile-footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 12px;
+  font-weight: 750;
+}
+.gw-club-profile-footer > span {
+  background: #12283dd9;
+  border: 1px solid #a1b5bb45;
+  border-radius: 6px;
+  padding: 9px 12px;
+}
+.gw-club-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: -4px 0 0;
+  background: #fff8e9;
+  border: 1px solid #d6c7ad;
+  border-radius: 12px;
+  padding: 22px 12px;
+}
+.gw-club-stats > div {
+  padding: 0 20px;
+  min-width: 0;
+}
+.gw-club-stats > div + div {
+  border-left: 1px solid #ded1bc;
+}
+.gw-club-stats dt {
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #586b70;
+}
+.gw-club-stats dd {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.1;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+.gw-club-stats dd.gw-club-record {
+  font-size: clamp(19px, 2.3vw, 29px);
+}
+.gw-club-stats dd small {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #586b70;
+}
+.career-app.game-mode.clubhouse .gw-club-next-goal {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  background: #203747;
+  color: #fff8e9;
+  padding: 25px;
+  border-radius: 12px;
+}
+.gw-honor-symbol {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  color: #eec578;
+  background: #eec57814;
+  border: 1px solid #eec57860;
+  flex-shrink: 0;
+}
+.gw-honor-symbol svg {
+  width: 38px;
+  height: 38px;
+}
+.career-app.game-mode.clubhouse .gw-club-next-goal h3 {
+  color: #fff8e9;
+  font-size: 23px;
+  margin: 5px 0 8px;
+}
+.career-app.game-mode.clubhouse .gw-club-next-goal p {
+  color: #e0e6df;
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-club-next-goal :is(small, .career-eyebrow) {
+  color: #f2d69c;
+  font-size: 11px;
+}
+.gw-honor-progress {
+  height: 8px;
+  background: #101f30;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 9px;
+}
+.gw-honor-progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #f07952, #f0cb80);
+  border-radius: inherit;
+}
+.gw-season-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gw-season-overview,
+    .gw-trophy-cabinet,
+    .gw-club-rivalry,
+    .gw-season-archive
+  )
+  h3 {
+  color: #203747;
+  font-size: 23px;
+  margin: 5px 0 10px;
+}
+.career-app.game-mode.clubhouse :is(.gw-season-rule, .gw-leaderboard-footnote) {
+  font-size: 12px;
+  color: #53656b;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 80ch;
+}
+.gw-season-goals {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.gw-season-goals > article {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  background: #f5eddc;
+  border: 1px solid #d6c7ad;
+  padding: 16px;
+  border-radius: 9px;
+}
+.gw-season-goals article > svg {
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  color: #967b4e;
+}
+.gw-season-goals article > div {
+  min-width: 0;
+}
+.gw-season-goals article :is(strong, span) {
+  display: block;
+  line-height: 1.4;
+}
+.gw-season-goals article strong {
+  font-size: 12px;
+}
+.gw-season-goals article span {
+  color: #586b70;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.gw-season-goals article > b {
+  color: #3e765c;
+  margin-left: auto;
+}
+.gw-season-goals article[data-earned="true"] {
+  background: #e8efde;
+  border-color: #9fb89a;
+}
+.gw-season-goals .gw-club-crest {
+  display: inline-grid;
+  width: 29px;
+  height: 34px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.gw-season-goals .gw-club-crest b {
+  font-size: 9px;
+}
+.gw-trophy-cabinet {
+  border-top: 1px solid #d6c7ad;
+  padding-top: 24px;
+}
+.career-app.game-mode.clubhouse .gw-trophy-cabinet header p {
+  margin: 0 0 18px;
+  color: #53656b;
+  font-size: 13px;
+}
+.gw-trophy-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.gw-trophy-shelf article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-align: center;
+  padding: 25px 14px;
+  background: linear-gradient(#fff8e9, #eee3cd);
+  border: 1px solid #d6c7ad;
+  border-bottom: 5px solid #b3a187;
+  border-radius: 12px;
+}
+.gw-trophy-shelf .gw-honor-symbol {
+  background: #ded7c8;
+  color: #6f7a79;
+  border-color: #bfc3b9;
+}
+.gw-trophy-shelf article[data-earned="true"] {
+  background: linear-gradient(#ffefc4, #f5d797);
+  border-color: #d1a860;
+}
+.gw-trophy-shelf article[data-earned="true"] .gw-honor-symbol {
+  color: #9c652a;
+  background: #fff5d8;
+  border-color: #c69e59;
+}
+.gw-trophy-shelf strong {
+  font-size: 15px;
+}
+.gw-trophy-shelf :is(span:not(.gw-honor-symbol), small) {
+  color: #5e6967;
+  font-size: 11px;
+}
+.gw-trophy-shelf small {
+  border-radius: 10px;
+  background: #20374710;
+  padding: 4px 10px;
+  font-weight: 800;
+}
+.gw-club-rivalry {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  background: #fff8e9;
+  border: 1px solid #d6c7ad;
+  border-radius: 12px;
+  align-items: flex-start;
+}
+.gw-club-rivalry > .gw-club-crest {
+  flex-shrink: 0;
+  width: 55px;
+}
+.gw-club-rivalry > div {
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .gw-club-rivalry p {
+  color: #53656b;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.gw-club-rival-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.career-app.game-mode.clubhouse .gw-rival-unfollow {
+  background: none;
+  border: 0;
+  color: #586b70;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+  min-height: 44px;
+  padding: 9px;
+  cursor: pointer;
+}
+.gw-season-archive > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+}
+.gw-season-archive article {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid #d6c7ad;
+  border-radius: 9px;
+  padding: 16px;
+  background: #f5eddc;
+}
+.gw-season-archive article b {
+  margin-left: auto;
+}
+.gw-season-archive article span {
+  width: 100%;
+  font-size: 12px;
+  color: #53656b;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-hero {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 215px;
+  padding: 32px;
+  border-radius: 15px;
+  color: #fff8e9;
+  background:
+    linear-gradient(90deg, #11283df2, #11283d88 62%, #11283d20),
+    url("/art/cartoon-fight-night.webp") center 57% / cover;
+  box-shadow: 0 5px 0 #c9bba3;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-hero h3 {
+  color: #fff8e9;
+  font-size: clamp(30px, 4vw, 46px);
+  margin: 8px 0;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-hero p {
+  color: #e0e6df;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+.gw-leaderboard-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.gw-leaderboard-toolbar [role="group"] {
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+  border-radius: 9px;
+  background: #e5dcc8;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-toolbar button {
+  border: 0;
+  background: transparent;
+  color: #435862;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  border-radius: 7px;
+  padding: 11px 18px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.career-app.game-mode.clubhouse
+  .gw-leaderboard-toolbar
+  button[aria-pressed="true"] {
+  background: #203747;
+  color: #fff8e9;
+  box-shadow: 0 2px 0 #0d2030;
+}
+.gw-leaderboard-toolbar > span {
+  font-size: 12px;
+  color: #53656b;
+}
+.gw-your-position {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid #b5c8b6;
+  border-left: 5px solid #4c826e;
+  border-radius: 10px;
+  background: #e8efde;
+}
+.gw-your-position > div {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+.gw-your-position > div > span {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 850;
+  letter-spacing: 1px;
+  color: #4b685a;
+}
+.gw-your-position strong {
+  font-size: 19px;
+  overflow-wrap: anywhere;
+}
+.gw-your-position small {
+  color: #53656b;
+  line-height: 1.5;
+  font-size: 12px;
+}
+.gw-your-position .gw-club-crest {
+  width: 42px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.gw-leaderboard-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.gw-leaderboard-table caption {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 850;
+  margin-bottom: 14px;
+}
+.gw-leaderboard-table :is(td, th) {
+  padding: 15px 18px;
+  font-size: 13px;
+}
+.gw-leaderboard-table thead th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #53656b;
+}
+.gw-leaderboard-table tbody :is(td, th) {
+  background: #fff8e9;
+  border-top: 1px solid #d6c7ad;
+  border-bottom: 1px solid #d6c7ad;
+}
+.gw-leaderboard-table tr > :first-child {
+  border-left: 1px solid #d6c7ad;
+  border-radius: 8px 0 0 8px;
+  width: 65px;
+}
+.gw-leaderboard-table tr > :last-child {
+  border-right: 1px solid #d6c7ad;
+  border-radius: 0 8px 8px 0;
+  text-align: right;
+}
+.gw-leaderboard-table td > b {
+  font-size: 22px;
+  font-weight: 950;
+}
+.gw-leader-challenge {
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 5px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.gw-leader-challenge small {
+  display: block;
+  color: #a83f2b;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.gw-leader-challenge:hover {
+  background: #ede2cf;
+}
+.gw-leader-challenge:focus-visible {
+  outline: 2px solid #a83f2b;
+  outline-offset: 2px;
+}
+.gw-ranked-gym {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.gw-ranked-gym > span:last-child {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.gw-ranked-gym small {
+  display: block;
+  color: #3c705a;
+  margin-top: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.gw-ranked-gym .gw-club-crest {
+  width: 30px;
+  height: 34px;
+  flex-shrink: 0;
+}
+.gw-ranked-gym .gw-club-crest b {
+  font-size: 11px;
+}
+.gw-rank-number {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  font-weight: 900;
+  background: #ece5d5;
+}
+.gw-leaderboard-table [data-position="1"] .gw-rank-number {
+  background: #f0cf7e;
+  color: #795523;
+  box-shadow: 0 2px 0 #b08b48;
+}
+.gw-leaderboard-table [data-position="2"] .gw-rank-number {
+  background: #cbd5d7;
+  color: #344b59;
+}
+.gw-leaderboard-table [data-position="3"] .gw-rank-number {
+  background: #dcb596;
+  color: #6d4329;
+}
+.gw-leaderboard-table .is-your-gym > :is(td, th) {
+  background: #e8efde;
+  border-color: #a0b69d;
+}
+.gw-leader-record {
+  white-space: nowrap;
+}
+.gw-leaderboard-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px dashed #bcad92;
+  border-radius: 12px;
+  padding: 38px 22px;
+  background: #f5eddc;
+}
+.gw-leaderboard-empty > svg {
+  width: 50px;
+  height: 50px;
+  color: #a0783d;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-empty h3 {
+  font-size: 25px;
+  margin: 16px 0 8px;
+  color: #203747;
+}
+.career-app.game-mode.clubhouse .gw-leaderboard-empty p {
+  color: #53656b;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 48ch;
+  margin: 0;
+}
+.gw-leaderboard-table tr.gw-leaderboard-gap > :is(th, td) {
+  border: 0;
+  background: none;
+  color: #53656b;
+  font-size: 12px;
+  width: auto;
+}
+@media (max-width: 800px) {
+  .gw-season-goals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .career-app.game-mode.clubhouse .gw-club-next-goal {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+  .gw-club-next-goal > .career-action {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .gw-club-next-goal .gw-honor-symbol {
+    width: 46px;
+    height: 46px;
+  }
+  .gw-leader-cards {
+    display: none;
+  }
+  .gw-leaderboard-table :is(td, th) {
+    padding: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .career-app.game-mode.clubhouse .career-wars .gw-game-tabs {
+    display: grid;
+    grid-template-columns: 0.8fr 0.75fr 0.7fr 1.35fr;
+    gap: 5px;
+  }
+  .career-app.game-mode.clubhouse .career-wars .gw-game-tabs > button {
+    min-width: 0;
+    max-width: none;
+    padding: 10px 5px;
+    font-size: 12px;
+  }
+  .gw-clubhouse,
+  .gw-leaderboard {
+    gap: 18px;
+  }
+  .career-app.game-mode.clubhouse .gw-club-profile {
+    min-height: 260px;
+    padding: 20px;
+    background-position: 64% center;
+    background-image:
+      linear-gradient(90deg, #11283df5, #11283da1 70%, #11283d55),
+      url("/art/cartoon-club-trophy-room.webp");
+  }
+  .gw-club-identity {
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .gw-club-identity .gw-club-crest {
+    width: 50px;
+    height: 57px;
+  }
+  .gw-club-identity .gw-club-crest b {
+    font-size: 18px;
+  }
+  .career-app.game-mode.clubhouse .gw-club-profile h3 {
+    font-size: 30px;
+  }
+  .career-app.game-mode.clubhouse .gw-club-profile p {
+    font-size: 12px;
+  }
+  .gw-club-profile-footer {
+    gap: 7px;
+    font-size: 10px;
+  }
+  .gw-club-stats {
+    padding: 16px 0;
+  }
+  .gw-club-stats > div {
+    padding: 0 10px;
+  }
+  .gw-club-stats dt {
+    font-size: 9px;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  .gw-club-stats dd,
+  .gw-club-stats dd.gw-club-record {
+    font-size: 21px;
+  }
+  .gw-club-stats dd small {
+    font-size: 10px;
+  }
+  .gw-club-record {
+    max-width: 100px;
+    line-height: 1.5 !important;
+  }
+  .gw-club-next-goal > .career-action {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+  .gw-season-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .gw-season-overview > .career-action {
+    justify-self: start;
+  }
+  .gw-season-goals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gw-trophy-shelf {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .gw-trophy-shelf article {
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr);
+    text-align: left;
+    align-items: center;
+    padding: 16px;
+    gap: 5px 15px;
+  }
+  .gw-trophy-shelf .gw-honor-symbol {
+    grid-row: span 3;
+    width: 50px;
+    height: 50px;
+  }
+  .gw-trophy-shelf small {
+    justify-self: start;
+  }
+  .gw-club-rivalry {
+    padding: 18px;
+    gap: 12px;
+  }
+  .gw-club-rivalry > .gw-club-crest {
+    width: 32px;
+    height: 37px;
+  }
+  .gw-club-rivalry > .gw-club-crest b {
+    font-size: 11px;
+  }
+  .career-app.game-mode.clubhouse .gw-leaderboard-hero {
+    gap: 15px;
+    padding: 22px;
+    min-height: 220px;
+  }
+  .gw-leaderboard-hero > .gw-honor-symbol {
+    width: 44px;
+    height: 44px;
+  }
+  .gw-leaderboard-hero > .gw-honor-symbol svg {
+    width: 30px;
+    height: 30px;
+  }
+  .gw-your-position {
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 12px;
+  }
+  .gw-your-position > .career-action {
+    width: 100%;
+  }
+  .gw-your-position strong {
+    font-size: 16px;
+  }
+  .gw-leaderboard-table {
+    table-layout: fixed;
+  }
+  .gw-leaderboard-table :is(td, th) {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+  .gw-leaderboard-table tr > :first-child {
+    width: 48px;
+  }
+  .gw-leaderboard-table tr > :last-child {
+    width: 52px;
+  }
+  .gw-leaderboard-table thead th {
+    font-size: 9px;
+  }
+  .gw-leaderboard-table .gw-leader-record {
+    display: none;
+  }
+  .gw-ranked-gym {
+    gap: 8px;
+  }
+  .gw-ranked-gym .gw-club-crest {
+    width: 24px;
+    height: 28px;
+  }
+}

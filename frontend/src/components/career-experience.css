@@ -1,0 +1,546 @@
+.club-division-goal,
+.club-return-card,
+.scout-capacity-actions,
+.career-sparring,
+.war-unlock,
+.war-season {
+  background: #fff9ed;
+  border: 1px solid #d7c9af;
+  border-radius: 14px;
+  padding: 20px;
+  color: #233c4b;
+  margin-block: 16px;
+}
+.club-division-goal > header,
+.club-return-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.club-division-goal h2,
+.club-return-card h2 {
+  font-size: 23px;
+  margin: 5px 0;
+}
+.club-division-goal > header > a,
+.club-division-slots a {
+  color: #264758;
+  font-weight: 700;
+  text-decoration: none;
+}
+.club-division-slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.club-division-slots > a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #ece3d2;
+  border: 1px dashed #bbae96;
+  border-radius: 9px;
+  padding: 14px 10px;
+  min-height: 70px;
+}
+.club-division-slots > a[data-filled="true"] {
+  background: #e9efdf;
+  border: 1px solid #a3b79a;
+}
+.club-division-slots > a > span {
+  font-size: 24px;
+  color: #52734e;
+}
+.club-division-slots strong,
+.club-division-slots small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.club-division-slots small {
+  font-size: 13px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.club-division-goal > p,
+.club-return-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.club-allowance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  padding-block: 8px;
+  align-items: baseline;
+  font-size: 14px;
+}
+.club-allowance small {
+  font-size: 13px;
+  opacity: 0.85;
+}
+.club-allowance[data-empty="true"] strong {
+  color: #a64c2e;
+}
+.career-turn-bar .club-allowance[data-empty="true"] strong {
+  color: #ffd0a5;
+}
+.career-turn-bar .club-allowance {
+  padding: 2px 0;
+}
+.career-turn-practice {
+  color: #ffdbad;
+  font-size: 13px;
+  min-height: 30px;
+}
+.club-return-card > div:last-child {
+  min-width: 210px;
+}
+.gym-scene-props {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.gym-scene-banner {
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  background: #203b4ce8;
+  color: #ffedc6;
+  border: 2px solid #d0ad67;
+  padding: 8px 15px;
+  border-radius: 3px 3px 13px 13px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.gym-scene-roommark,
+.gym-scene-trophies {
+  position: absolute;
+  bottom: 74px;
+  right: 16px;
+  background: #fff4dbe8;
+  color: #273e4c;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  box-shadow: 0 3px 5px #182d3c30;
+}
+.gym-scene-trophies {
+  bottom: 112px;
+}
+.gym-scene-crest {
+  position: absolute;
+  right: 26px;
+  top: 73px;
+  border: 2px solid #d9b773;
+  border-radius: 50%;
+  background: #1b364be3;
+  color: #ffdf9c;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 26px;
+  font-weight: 900;
+}
+.gym-scene-crest small {
+  font-size: 8px;
+}
+.gym-home-hero .gym-scene-props {
+  z-index: 1;
+}
+.gym-home-hero .gym-scene-banner,
+.gym-home-hero .gym-scene-crest {
+  right: 20px;
+}
+.gym-home-hero .gym-scene-roommark,
+.gym-home-hero .gym-scene-trophies {
+  display: none;
+}
+.career-app.game-mode.clubhouse .gym-area-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border: 1px solid #a7b3b2;
+  border-radius: 7px;
+  padding: 9px 14px;
+  color: #fff4de;
+  background: #27414c;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.career-app.game-mode.clubhouse .gym-area-tabs a[aria-current="page"] {
+  color: #203947;
+  background: #fff0d1;
+  border-color: #fff0d1;
+}
+.scout-capacity-actions .career-action {
+  margin: 5px 8px 0 0;
+}
+.war-unlock > div {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+.war-lineup-cards .war-lineup-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 95px;
+  border: 1px dashed #ad9c82;
+}
+.war-lineup-empty a {
+  font-size: 14px;
+  color: #8b432b;
+  padding-top: 8px;
+}
+.war-verdict-score {
+  display: block;
+  font-size: clamp(20px, 3vw, 30px);
+  margin-block: 12px;
+}
+.war-league-result {
+  scroll-margin-top: 18px;
+}
+.war-bout-reveal > article {
+  padding: 13px 0;
+  border-top: 1px solid #d6c8af;
+}
+.war-bout-reveal > article > small {
+  text-transform: capitalize;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.war-season p,
+.war-unlock p,
+.war-league-result p {
+  line-height: 1.5;
+  font-size: 14px;
+}
+.sparring-fighters,
+.sparring-clubs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block: 16px;
+}
+.sparring-fighters button,
+.sparring-clubs button {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #c2b295;
+  border-radius: 10px;
+  background: #f3ead7;
+  color: #263f4e;
+  padding: 12px;
+  font: inherit;
+  cursor: pointer;
+  min-height: 44px;
+}
+.sparring-fighters button {
+  width: min(160px, 42%);
+}
+.sparring-fighters .career-portrait {
+  height: 95px;
+  width: 100%;
+  object-fit: contain;
+}
+.sparring-fighters small,
+.sparring-clubs small {
+  font-size: 13px;
+}
+.sparring-fighters [aria-pressed="true"],
+.sparring-clubs [aria-pressed="true"] {
+  outline: 3px solid #e26c4e;
+  outline-offset: 2px;
+}
+.mentor-situational {
+  display: block;
+  color: #896125;
+  font-size: 13px;
+}
+.development-circuit {
+  background: #e9efde;
+  border-left: 4px solid #6a8d60;
+  padding: 15px;
+  margin-block: 15px;
+}
+.booking-compare {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  margin: 12px 0 20px;
+  font-size: 14px;
+}
+.offer-challenge-prize {
+  padding: 12px;
+  background: #ebe2c0;
+  border-left: 4px solid #b38a3e;
+  font-size: 14px;
+}
+.development-circuit h3 {
+  margin: 5px 0;
+}
+.development-pennants {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.development-pennants > span {
+  padding: 8px 12px 14px;
+  background: #243f50;
+  color: #ffe1a0;
+  border-radius: 4px 4px 12px 12px;
+  font-size: 14px;
+}
+.development-challenges {
+  margin-block: 20px;
+}
+.development-challenges > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+.development-challenges article {
+  background: #f1e8d6;
+  border: 1px solid #d0bf9e;
+  border-radius: 10px;
+  padding: 16px;
+}
+.development-challenges article[data-earned="true"] {
+  background: #e9efde;
+}
+.development-challenges article h4 {
+  margin: 8px 0;
+  font-size: 18px;
+}
+.development-challenges article :is(p, strong, a),
+.home-circuit-line {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.development-challenges article a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 10px;
+  color: #8a462e;
+  font-weight: 800;
+}
+.career-app.game-mode.clubhouse .mentor-budget {
+  font-size: 14px;
+}
+.career-app.game-mode.clubhouse
+  :is(.club-division-goal, .club-return-card, .career-sparring, .war-unlock)
+  :is(a, button):focus-visible {
+  outline: 3px solid #dc754d;
+  outline-offset: 4px;
+}
+.training-workspace .tw-plan[data-suggested="true"] {
+  border-style: dashed;
+  border-color: #b3a58c;
+  background: #f7f0e2;
+  box-shadow: none;
+}
+.training-workspace .tw-suggestion {
+  background: #e9e0cf;
+  color: #5a625e;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 10px;
+}
+.training-workspace .tw-specialist-panel {
+  grid-column: 1;
+}
+.training-workspace .tw-summary {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.training-workspace
+  :is(
+    .tw-hint,
+    .tw-action-hint,
+    .tw-duration-hint,
+    .tw-summary-bonus span,
+    .tw-plan small,
+    .tw-specialist span,
+    .tw-duration small,
+    .tw-text-button,
+    .tw-timeline span,
+    .tw-allocation small,
+    .tw-eyebrow
+  ) {
+  font-size: 13px !important;
+  line-height: 1.45;
+}
+.training-workspace :is(button, summary, .tw-inline-link),
+.career-turn-bar :is(button, summary),
+.war-screen :is(button, summary) {
+  min-height: 44px;
+}
+.career-app.game-mode.clubhouse .career-turn-end small,
+.career-app.game-mode.clubhouse .career-turn-note,
+.career-turn-label,
+.career-turn-plans > summary,
+.career-turn-plans-label,
+.career-turn-draft > span {
+  font-size: 13px;
+  line-height: 1.4;
+}
+.career-app.game-mode.clubhouse.has-turn-bar .career-main {
+  padding-bottom: 175px;
+}
+@media (max-width: 1050px) {
+  .training-workspace .tw-summary,
+  .training-workspace .tw-specialist-panel {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+@media (max-width: 900px) {
+  .club-division-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .club-division-goal > header,
+  .club-return-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 700px) {
+  .career-turn-content {
+    grid-template-columns: minmax(0, 1fr) 125px;
+    gap: 8px;
+    padding: 10px;
+  }
+  .career-turn-bar .club-allowance {
+    flex-direction: column;
+    gap: 0;
+  }
+  .career-turn-bar .club-allowance strong,
+  .career-turn-bar .club-allowance small {
+    font-size: 13px;
+  }
+  .career-turn-calendar > strong {
+    font-size: 14px;
+  }
+  .career-turn-next-date {
+    display: none;
+  }
+  .career-turn-label {
+    display: none;
+  }
+  .career-turn-end {
+    width: 125px;
+    min-width: 0;
+    padding: 8px;
+  }
+  .career-turn-end small {
+    max-width: 108px;
+  }
+  .career-turn-actions {
+    width: 125px;
+  }
+  .career-turn-resolve {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .career-turn-draft {
+    grid-column: 1 / -1;
+  }
+  .career-turn-draft button {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .career-turn-plans > summary {
+    max-width: none;
+    gap: 5px;
+  }
+  .career-turn-plans > summary > span:not(.career-turn-plans-label) {
+    display: none;
+  }
+  .career-turn-plans-label {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .career-turn-content {
+    max-height: 45dvh;
+    overflow-y: auto;
+  }
+  .career-app.game-mode.clubhouse.has-turn-bar .career-main {
+    padding-bottom: 300px;
+  }
+  .career-app.game-mode.clubhouse.has-turn-bar[data-training-draft="true"]
+    .career-main {
+    padding-bottom: 390px;
+  }
+  .career-turn-plan-list {
+    bottom: 260px;
+    max-height: calc(100dvh - 300px);
+  }
+  .club-division-goal,
+  .club-return-card,
+  .career-sparring,
+  .war-unlock {
+    padding: 15px;
+  }
+  .gym-scene-banner {
+    max-width: 145px;
+    font-size: 12px;
+  }
+  .gym-scene-crest {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .training-workspace .tw-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .training-workspace .tw-planning {
+    display: block;
+    width: 100%;
+    order: initial;
+  }
+  .training-workspace .tw-summary,
+  .training-workspace .tw-specialist-panel {
+    order: initial;
+    position: static;
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .war-bout-reveal,
+  .gym-scene-props {
+    animation: none;
+    transition: none;
+  }
+}
+.career-app.game-mode.clubhouse .club-division-slots > a > .career-portrait {
+  width: 40px;
+  height: 48px;
+  flex: 0 0 40px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.career-app.game-mode.clubhouse .club-division-slots > a[data-filled="true"] {
+  background: #e7edef;
+  border-color: #c6d3d8;
+}
+.club-division-slots > a > div {
+  min-width: 0;
+}

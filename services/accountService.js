@@ -54,8 +54,8 @@ async function validateResetToken(rawToken) {
 }
 
 async function applyPasswordReset(rawToken, newPassword) {
-    if (!newPassword || newPassword.length < 6) {
-        throw new Error("Password must be at least 6 characters");
+    if (typeof newPassword !== 'string' || newPassword.length < 8 || newPassword.length > 128) {
+        throw new Error("Password must be 8–128 characters");
     }
     const user = await User.findOne({ passwordResetToken: hashToken(rawToken) });
     if (!user) throw new Error("Invalid token");
@@ -64,13 +64,12 @@ async function applyPasswordReset(rawToken, newPassword) {
         err.code = "expired";
         throw err;
     }
-    user.passwordHash = await bcrypt.hash(newPassword, 10);
-    user.passwordResetToken = null;
-    user.passwordResetExpires = null;
-    // Revoke every outstanding session — the reset proves email control, so
-    // any token minted before it is suspect.
-    user.sessionEpoch = (user.sessionEpoch || 1) + 1;
-    await user.save();
+    // Consume the reset exactly once, including simultaneous submissions.
+    const updated = await User.findOneAndUpdate(
+        {_id:user._id, passwordResetToken:hashToken(rawToken), passwordResetExpires:{$gt:new Date()}, deleted:false},
+        {$set:{passwordHash:await bcrypt.hash(newPassword,10),passwordResetToken:null,passwordResetExpires:null},$inc:{sessionEpoch:1}}
+    );
+    if (!updated) throw new Error("Invalid token");
 }
 
 // ── Email verification ─────────────────────────────────────────────
@@ -92,7 +91,7 @@ async function sendVerifyEmail(user) {
 
     const verifyUrl = `${email.BACKEND_URL}/auth/verify-email?token=${raw}`;
     const tpl = email.verifyEmailTemplate({ gymName: null, verifyUrl });
-    return email.sendAccountEmail(user, tpl);
+    return email.sendEmail({ to: user.email, ...tpl });
 }
 
 async function confirmEmailVerification(rawToken) {

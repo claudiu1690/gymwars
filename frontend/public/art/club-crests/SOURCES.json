@@ -1,0 +1,199 @@
+{
+  "provider": "Higgsfield",
+  "model": "gpt_image_2_5",
+  "generatedAt": "2026-10-15",
+  "assets": [
+    {
+      "id": "original",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "75930800099481875b7b9edb8e0cab29966d59f072cbfc5614eea0e39a6f60c3",
+      "bytes": 24678
+    },
+    {
+      "id": "blue-corner",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "66c3fee7685986f33600807b3bf451fa2c3b93517796c7a1a867a3d988faa4bd",
+      "bytes": 23372
+    },
+    {
+      "id": "evergreen",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "58e0e3252195286af4aa5d71bee98a13c2f6d378ea36bc842f29e6e9e1dd8439",
+      "bytes": 25912
+    },
+    {
+      "id": "violet",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "7839eed87d71bbfd8d22af0c6227872d26531f5c1136e8cb552d4cbf2356dfea",
+      "bytes": 21880
+    },
+    {
+      "id": "gold",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "cf0f328f5f1e8a5cd31f65450b52485e50a0681f1fc1d835772f592984b393b8",
+      "bytes": 23664
+    },
+    {
+      "id": "champion",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "8a5ee7aae63adfbd6385b28d1afb1398fdb238ad16a1bbb6f2d61e4bf16cedda",
+      "bytes": 26354
+    },
+    {
+      "id": "dynasty",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "3ac383930b483019bee94650c91d5d12f4ffa4534f07d18613231db7e86f6078",
+      "bytes": 23412
+    },
+    {
+      "id": "redline",
+      "job": "d213c5aa-b5f6-443d-8c8c-321753b27f35",
+      "sha256": "67801066dc6685ac93d477d786953696b8042c2e7023578a5fef0965fa329d74",
+      "bytes": 24292
+    },
+    {
+      "id": "tidal",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "4a455d9582d15fa1f85d955bc19fd0e42fba91d2cf12f7c9a7e21d2ee68bea4a",
+      "bytes": 23288
+    },
+    {
+      "id": "lotus",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "f0f6117c19c512f6d6603393d1c065e9e62fc9ceff6d86f5351b3eb99313c22f",
+      "bytes": 19194
+    },
+    {
+      "id": "laurel",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "766c9cf37a37e1260b9b1fca8fc6e3960d23f07f39444ba3de4013d2c803f817",
+      "bytes": 28500
+    },
+    {
+      "id": "breakthrough",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "3347958c2e2d296fff915f0959d10b8c30ccb056ee06b0aa51f17c1a2fe395e2",
+      "bytes": 25592
+    },
+    {
+      "id": "comet",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "de66394d2e5b22c008a26e3bfaf92510b65ba13bbc233a8992a62b12b52fd86a",
+      "bytes": 24032
+    },
+    {
+      "id": "cornerstone",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "92224e17744fbc541d6a16374c6475cf18e52879dfcb967d7b104275e97c5ae1",
+      "bytes": 23102
+    },
+    {
+      "id": "talent",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "b12e3d258ba08a89f780bf5ed7ff246373e8895cff1cf2166434405216a2d5fa",
+      "bytes": 22398
+    },
+    {
+      "id": "homegrown",
+      "job": "7558d075-2191-4224-a553-8e45e804f964",
+      "sha256": "1e4b31308d74ed18f28e8623bba22f3f66f91f689d3cc87f6ae2f6d97addc345",
+      "bytes": 25246
+    },
+    {
+      "id": "world-stage",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "59a01465c89c513a8cea3d8cc22f6738fa55c46f57d8511ccc125a36a6037268",
+      "bytes": 24538
+    },
+    {
+      "id": "fight-night",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "b37b5f8a87033e3e345406e218f26ac53e25b8ef061a7109ba449a1c8dd8a8ba",
+      "bytes": 28244
+    },
+    {
+      "id": "war-club",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "2d963e4f86981930b559541e4c3da58b7a4f9b74467a0af3e1cadf2b104b310d",
+      "bytes": 26112
+    },
+    {
+      "id": "rivals",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "a3d11fb8664a692766c4f3b008c7803161e1888fe110e70e401af7e953bb587b",
+      "bytes": 21990
+    },
+    {
+      "id": "league-legend",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "bb83100e9443e919676499cbcf09d9d5ab936f5c73a09d0eb69f8be853277449",
+      "bytes": 31352
+    },
+    {
+      "id": "defender",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "6e875f5c24d351f1e7c87fec6338a864dd1065a61aa74f54693c4612e1eb3e40",
+      "bytes": 26456
+    },
+    {
+      "id": "national-standard",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "0feea8e292d428acffe84bb474d832edfd5f664be8fbe2031a8fdf842fa9560d",
+      "bytes": 27770
+    },
+    {
+      "id": "heirloom",
+      "job": "19bf862a-d6d6-470f-8674-44219be6f763",
+      "sha256": "d36e8c8321c3b2ee4b417bd20d3e8a2bec23fdf23b3422d9fbc34e89e5fb674f",
+      "bytes": 26720
+    },
+    {
+      "id": "trophy-national-showcase",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "b7e9190ca53c1f4a5477f6b7d272bc80199be548de7095a6b21bdde679cb1d2c",
+      "bytes": 25994
+    },
+    {
+      "id": "trophy-next-generation",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "14d05b26d53751dc395ee7b83f5fa99ff2e5c9606a86a69e742b392ca013b72e",
+      "bytes": 27172
+    },
+    {
+      "id": "trophy-world-open",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "27d77f9244d29927a22dcaad1d69b32f1535a7ef04056f6a865d6862938f58f6",
+      "bytes": 28940
+    },
+    {
+      "id": "foundry-cup",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "9bba53f302cd47365c9cfce30f49b26c83f3e3c0d4b3d9d5fc14eac838bebb2f",
+      "bytes": 27306
+    },
+    {
+      "id": "cedar-cup",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "5fe7d11e42ce8af465dd4b3a23cdb08c4b912d2abd355cbfb286cda0b0e57b27",
+      "bytes": 22520
+    },
+    {
+      "id": "summit-cup",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "17c2ce2025663632b5f033de8856880486e995fb2480d1b20100aad3ad4abc52",
+      "bytes": 22666
+    },
+    {
+      "id": "travelling-corner",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "c74091ef4c779fda40c182303ae324620f2e3221cb9f131245b065bc2d2b0bd9",
+      "bytes": 25540
+    },
+    {
+      "id": "talent-book",
+      "job": "ad1666c9-79dc-4c64-852e-ced19e5a0238",
+      "sha256": "37a85368a298a4fbcbc7bbe08154a36c91640925467532afb75bf7c315b46d87",
+      "bytes": 24544
+    }
+  ]
+}

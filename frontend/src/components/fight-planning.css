@@ -1,0 +1,733 @@
+.fight-planning {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+  color: #203747;
+}
+.career-app.game-mode.clubhouse .fight-planning :is(h2, h3, p) {
+  margin: 0;
+}
+.career-app.game-mode.clubhouse .fight-planning p {
+  line-height: 1.55;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .fight-planning .career-eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  font-weight: 850;
+  color: #a35e42;
+}
+.fight-planning-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .fight-planning-toolbar > a {
+  text-decoration: none;
+  font-weight: 800;
+  padding: 10px 0;
+}
+.fight-planning-toolbar > span {
+  color: #5b6d75;
+}
+.fight-fighter-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.career-app.game-mode.clubhouse .fight-fighter-switch > button {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 14px;
+  min-height: 70px;
+  border: 1px solid #cdbfa7;
+  border-radius: 10px;
+  background: #fff8e9;
+  text-align: left;
+  color: #203747;
+}
+.fight-fighter-switch .career-portrait {
+  width: 40px;
+  height: 48px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.fight-fighter-switch > button > span {
+  display: grid;
+  gap: 4px;
+}
+.fight-fighter-switch strong {
+  font-size: 14px;
+}
+.fight-fighter-switch small {
+  font-size: 11px;
+}
+.career-app.game-mode.clubhouse
+  .fight-fighter-switch
+  > button[aria-pressed="true"] {
+  background: #203747;
+  color: #fff8e9;
+  border-color: #203747;
+}
+.career-app.game-mode.clubhouse
+  .fight-fighter-switch
+  > button[aria-pressed="true"]
+  small {
+  color: #d5e4e7;
+}
+.fight-planning-heading {
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 15px;
+}
+.career-app.game-mode.clubhouse .fight-planning-heading h2 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 900;
+  margin-top: 5px;
+  letter-spacing: -0.5px;
+}
+.fight-planning-heading > span {
+  color: #586c75;
+  font-size: 12px;
+}
+.fight-offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+}
+.career-app.game-mode.clubhouse .fight-offer-choice {
+  min-width: 0;
+  display: grid;
+  gap: 14px;
+  text-align: left;
+  padding: 18px;
+  border: 2px solid #d6c8ae;
+  border-radius: 12px;
+  background: #fff8e9;
+  color: #203747;
+  box-shadow: 0 3px 0 #cdbfa7;
+}
+.career-app.game-mode.clubhouse .fight-offer-choice[aria-pressed="true"] {
+  border-color: #b84e32;
+  background: #fff0db;
+  box-shadow: 0 3px 0 #b84e32;
+}
+.fight-offer-choice:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.fight-offer-choice:focus-visible,
+.fight-fighter-switch > button:focus-visible {
+  outline: 3px solid #337c89;
+  outline-offset: 4px;
+}
+.fight-offer-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.fight-offer-identity > .career-portrait {
+  width: 62px;
+  height: 78px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.fight-offer-identity > div {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+}
+.fight-offer-identity strong {
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+.fight-offer-identity small {
+  font-size: 11px;
+  color: #536976;
+}
+.fight-offer-terms {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  border-top: 1px solid #d6c8ae;
+  padding-top: 12px;
+}
+.fight-offer-terms small {
+  display: block;
+  font-weight: 500;
+  font-size: 11px;
+  margin-top: 4px;
+  color: #526977;
+}
+.fight-offer-terms > strong {
+  text-align: right;
+  font-size: 17px;
+}
+.fight-offer-tag {
+  font-size: 11px;
+  font-weight: 850;
+  color: #9b432d;
+}
+.fight-offer-tag[data-blocked="true"] {
+  color: #875a2a;
+}
+.fight-selected-contract {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-heading {
+  padding: 24px 28px 0;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-heading h2 {
+  font-size: clamp(27px, 3.6vw, 42px);
+  margin: 7px 0 9px;
+}
+.career-app.game-mode.clubhouse
+  .fight-detail-poster
+  .fight-event-heading
+  .career-eyebrow {
+  color: #ffb18a;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-athlete {
+  height: 230px;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-identity {
+  min-height: 92px;
+  padding: 13px 10px 18px;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-identity h3 {
+  font-size: clamp(20px, 2.4vw, 29px);
+  margin: 6px 0;
+  color: #fff8e9;
+}
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-heading p,
+.career-app.game-mode.clubhouse .fight-detail-poster .fight-event-identity p {
+  font-size: 12px;
+  color: #d8e6e4;
+}
+.fight-contract-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(230px, 1fr);
+  gap: 25px;
+  padding: 23px 28px;
+  border-top: 1px solid #83a4ab44;
+  background: #10283ded;
+  align-items: center;
+}
+.fight-contract-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+}
+.fight-contract-facts dt {
+  color: #a5c6cf;
+  letter-spacing: 1px;
+  font-size: 9px;
+  font-weight: 750;
+  margin-bottom: 8px;
+}
+.fight-contract-facts dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 850;
+  color: #fff8e9;
+}
+.fight-contract-facts small {
+  display: block;
+  color: #d5e5df;
+  font-size: 11px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.fight-contract-action {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .fight-contract-action > .career-action {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 20px;
+  border-radius: 9px;
+  font-size: 16px;
+  text-align: center;
+}
+.career-app.game-mode.clubhouse .fight-contract-action p {
+  font-size: 11px;
+  color: #c0d4d9;
+  line-height: 1.45;
+}
+.career-app.game-mode.clubhouse .fight-contract-action .fight-booking-blocked {
+  color: #ffdba0;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .fight-planning-note {
+  border: 1px solid #cbd1b9;
+  border-radius: 10px;
+  background: #e7ecd9;
+  padding: 14px 18px;
+  color: #425945;
+}
+.fight-booking-intel-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.fight-preparation-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: start;
+}
+.fight-planning-panel {
+  padding: 24px;
+  background: #fff8e9;
+  border: 1px solid #d6c8ae;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 #cdbfa7;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .fight-planning-panel h2 {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin: 6px 0 9px;
+}
+.fight-planning-panel > .career-action {
+  margin-top: 18px;
+}
+.fight-skill-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  margin: 22px 0;
+  font-size: 13px;
+}
+.fight-skill-table caption {
+  font-size: 11px;
+  color: #5e737d;
+  text-align: left;
+  margin-bottom: 12px;
+}
+.fight-skill-table thead th {
+  text-align: left;
+  font-size: 11px;
+  color: #647681;
+  padding: 0 0 9px;
+}
+.fight-skill-table thead th:first-child {
+  width: 34%;
+}
+.fight-skill-table tbody :is(th, td) {
+  text-align: left;
+  border-top: 1px solid #e0d5bf;
+  padding: 12px 12px 12px 0;
+  vertical-align: top;
+}
+.fight-skill-table tbody th {
+  font-size: 12px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.fight-skill-table b {
+  font-size: 17px;
+}
+.fight-skill-table td > small {
+  display: block;
+  font-size: 10px;
+  margin-top: 6px;
+  color: #366257;
+}
+.fight-skill-track {
+  height: 5px;
+  display: block;
+  background: #e5d9c5;
+  border-radius: 3px;
+  margin-top: 7px;
+  overflow: hidden;
+}
+.fight-skill-track > span {
+  display: block;
+  height: 100%;
+  background: #c26343;
+  border-radius: inherit;
+}
+.fight-skill-track.is-rival > span {
+  background: #368b89;
+}
+.fight-scout-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding-top: 4px;
+}
+.fight-scout-facts > div {
+  background: #efe7d5;
+  border-radius: 8px;
+  padding: 13px;
+  min-width: 0;
+}
+.fight-scout-facts strong {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #9b4a30;
+}
+.fight-scout-facts > div:last-child strong {
+  color: #30716d;
+}
+.career-app.game-mode.clubhouse .fight-scout-facts p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+.fight-scout-story {
+  display: grid;
+  gap: 13px;
+  margin-top: 22px;
+}
+.career-app.game-mode.clubhouse .fight-scout-story .gw-signature-line {
+  margin: 0;
+  font-size: 12px;
+}
+.fight-contract-callout {
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid #dfd3bc;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .fight-contract-callout p {
+  margin-top: 7px;
+}
+.fight-camp-board {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 2fr);
+  overflow: hidden;
+  border: 1px solid #d6c8ae;
+  border-radius: 14px;
+  background: #fff8e9;
+  box-shadow: 0 4px 0 #cdbfa7;
+}
+.fight-camp-art {
+  background:
+    linear-gradient(90deg, #172e3d05, #172e3d22),
+    url("/art/cartoon-training-floor.webp") center/cover;
+  min-height: 250px;
+}
+.fight-camp-status {
+  padding: 24px 28px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .fight-camp-status h2 {
+  margin: 6px 0 10px;
+  font-size: 26px;
+  font-weight: 900;
+}
+.fight-camp-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 14px;
+  border-top: 3px solid #d4c5a8;
+  gap: 16px;
+}
+.fight-camp-timeline > li {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  padding-top: 14px;
+}
+.fight-camp-timeline > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c26343;
+}
+.fight-camp-timeline small {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #607783;
+}
+.fight-camp-timeline strong {
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .fight-camp-advice {
+  font-size: 12px;
+  color: #60707a;
+}
+.career-app.game-mode.clubhouse .fight-camp-status > a {
+  display: inline-block;
+  min-height: 44px;
+  padding-top: 15px;
+  font-size: 13px;
+  font-weight: 800;
+}
+.fight-tactics-panel {
+  scroll-margin-top: 20px;
+}
+.career-app.game-mode.clubhouse .fight-tactics-panel .coach-choice {
+  min-height: 116px;
+  background: #fffcf3;
+  color: #203747;
+  border-color: #d9cdb5;
+  box-shadow: 0 3px 0 #d9cdb5;
+}
+.career-app.game-mode.clubhouse .fight-tactics-panel .coach-choice > span {
+  color: #516572;
+}
+.career-app.game-mode.clubhouse .fight-tactics-panel .coach-choice > small {
+  color: #65716f;
+}
+.career-app.game-mode.clubhouse
+  .fight-tactics-panel
+  .coach-choice[aria-pressed="true"] {
+  background: #fce5c1;
+  border-color: #b36b3e;
+  box-shadow: 0 3px 0 #b36b3e;
+}
+.career-app.game-mode.clubhouse .fight-tactics-panel .coach-gas-choices button {
+  background: #fffcf3;
+  color: #203747;
+  border-color: #d9cdb5;
+  box-shadow: 0 3px 0 #d9cdb5;
+}
+.career-app.game-mode.clubhouse
+  .fight-tactics-panel
+  .coach-gas-choices
+  button[aria-pressed="true"] {
+  background: #fce5c1;
+  color: #713f20;
+  border-color: #b36b3e;
+  box-shadow: 0 3px 0 #b36b3e;
+}
+.career-app.game-mode.clubhouse
+  .fight-tactics-panel
+  :is(.coach-choice, .coach-gas-choices button):focus-visible {
+  outline: 3px solid #237e83;
+  outline-offset: 4px;
+}
+.fight-tactics-save {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid #dfd3bc;
+  padding-top: 20px;
+  margin-top: 24px;
+}
+.fight-tactics-save > .career-action {
+  justify-self: start;
+  min-width: 180px;
+}
+.career-app.game-mode.clubhouse .fight-tactics-save p {
+  font-size: 12px;
+  color: #5e7178;
+}
+@media (max-width: 1100px) {
+  .fight-preparation-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fight-preparation-grid .fight-intel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 25px;
+  }
+  .fight-preparation-grid .fight-intel > header {
+    grid-column: 1/-1;
+  }
+  .fight-preparation-grid .fight-intel .fight-skill-table {
+    grid-row: span 2;
+  }
+  .fight-preparation-grid .fight-intel .fight-scout-facts {
+    margin-top: 22px;
+  }
+}
+@media (max-width: 850px) {
+  .fight-booking-intel-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fight-contract-footer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .fight-camp-board {
+    grid-template-columns: minmax(110px, 0.6fr) minmax(0, 2fr);
+  }
+}
+@media (max-width: 600px) {
+  .fight-planning {
+    gap: 20px;
+  }
+  .fight-planning-toolbar > span {
+    font-size: 12px;
+    max-width: 28ch;
+  }
+  .fight-planning-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .fight-offer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .career-app.game-mode.clubhouse .fight-offer-choice {
+    padding: 13px 15px;
+    gap: 10px;
+  }
+  .fight-offer-identity > .career-portrait {
+    width: 48px;
+    height: 57px;
+  }
+  .fight-offer-identity strong {
+    font-size: 18px;
+  }
+  .fight-offer-terms {
+    padding-top: 9px;
+  }
+  .fight-fighter-switch > button {
+    flex: 1 1 140px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-heading {
+    padding: 20px 18px 0;
+    gap: 12px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-heading h2 {
+    font-size: 27px;
+    letter-spacing: -0.5px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-stamp {
+    font-size: 10px;
+    padding: 9px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-versus {
+    grid-template-columns: minmax(0, 1fr) 33px minmax(0, 1fr);
+    padding: 6px 12px 0;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-athlete {
+    height: 190px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-identity {
+    min-height: 101px;
+    padding: 10px 0 15px;
+  }
+  .career-app.game-mode.clubhouse
+    .fight-detail-poster
+    .fight-event-identity
+    h3 {
+    font-size: 21px;
+  }
+  .career-app.game-mode.clubhouse .fight-detail-poster .fight-event-identity p {
+    font-size: 10px;
+  }
+  .fight-detail-poster .fight-event-identity > span {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+  .fight-contract-footer {
+    padding: 18px;
+  }
+  .fight-contract-facts {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+  }
+  .fight-contract-facts > div:last-child {
+    grid-column: 1/-1;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .fight-contract-facts dt {
+    letter-spacing: 0.6px;
+  }
+  .fight-contract-facts dd {
+    font-size: 14px;
+  }
+  .fight-contract-facts small {
+    font-size: 10px;
+  }
+  .fight-contract-action {
+    order: -1;
+  }
+  .fight-planning-panel {
+    padding: 20px;
+  }
+  .fight-preparation-grid .fight-intel {
+    display: block;
+  }
+  .fight-scout-facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .fight-camp-board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fight-camp-art {
+    min-height: 145px;
+    background-position: center 55%;
+  }
+  .fight-camp-status {
+    padding: 20px;
+  }
+  .fight-camp-timeline {
+    gap: 10px;
+  }
+  .fight-camp-timeline strong {
+    font-size: 12px;
+  }
+  .career-app.game-mode.clubhouse .fight-tactics-panel .coach-choice-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  .career-app.game-mode.clubhouse .fight-tactics-panel .coach-choice {
+    min-height: 0;
+    padding: 13px 15px;
+  }
+  .fight-tactics-panel .coach-choice small {
+    display: none;
+  }
+  .fight-tactics-save > .career-action {
+    width: 100%;
+  }
+}
+.fight-offer-purpose {
+  display: grid;
+  gap: 4px;
+  padding: 10px 0;
+  border-top: 1px solid #ddcfb8;
+  color: #264b4b;
+  text-align: left;
+}
+.fight-offer-purpose > strong { font-size: 13px; line-height: 1.4; }
+.fight-offer-purpose > small { color: #53646a; font-size: 12px; }
+.fight-purpose-brief {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 18px 22px;
+  margin: 18px 0;
+  border: 1px solid #b9c8b6;
+  border-radius: 10px;
+  background: #edf1e6;
+  color: #29433c;
+}
+.fight-purpose-brief > div { flex: 1 1 270px; }
+.fight-purpose-brief h3 { margin: 5px 0; font-size: 21px; }
+.fight-purpose-brief p { margin: 0; font-size: 14px; line-height: 1.5; }
+.fight-purpose-brief > strong { font-size: 14px; }
+.fight-purpose-brief small { display: block; margin-top: 4px; font-size: 12px; font-weight: 500; }

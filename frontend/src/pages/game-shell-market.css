@@ -1,0 +1,170 @@
+/* Market screens retain rarity frames while using the shared dark game HUD. */
+.career-app.game-mode .scouting-hub {
+  --scout-navy: #172237;
+  --scout-paper: #eef2fa;
+  --scout-gold: #f5c451;
+}
+.career-app.game-mode
+  :is(
+    .scout-board-heading > span,
+    .scout-comparison-heading > span,
+    .scout-hidden-skills strong,
+    .booking-heading > span,
+    .offer-stats > div > span
+  ) {
+  color: #acbad0;
+}
+.career-app.game-mode
+  :is(
+    .scout-card-copy > b,
+    .scout-estimate-note,
+    .scout-contract,
+    .scout-rulebook,
+    .scout-hidden-skills > span
+  ) {
+  border-color: #40506a;
+}
+.career-app.game-mode .scout-prospect-card[aria-pressed="true"] {
+  box-shadow:
+    0 0 0 2px #f5c451,
+    0 5px 0 #080f1b;
+}
+.career-app.game-mode
+  .scout-prospect-card[aria-pressed="true"]
+  .scout-card-copy
+  > b {
+  color: #f5cf78;
+}
+.career-app.game-mode .scout-steps {
+  background: #40506a;
+  border-color: #40506a;
+}
+.career-app.game-mode .scout-steps li {
+  background: #27354b;
+  color: #c1cde0;
+}
+.career-app.game-mode .scout-steps [data-active="true"] {
+  background: #5b4826;
+  color: #ffe3a0;
+}
+.career-app.game-mode
+  :is(.scout-unseen-art, .scout-veteran > .career-portrait) {
+  background: #273c55;
+}
+.career-app.game-mode .scout-compare-team button {
+  background: #24344d;
+  border-color: #52647f;
+  color: #e6edf9;
+}
+.career-app.game-mode .scout-compare-team button[aria-pressed="true"] {
+  background: #3c3654;
+  border-color: #b8a0f6;
+  color: #f4efff;
+}
+.career-app.game-mode .scout-skill-track {
+  background: #3b4b63;
+}
+.career-app.game-mode :is(.scout-skill-track > span, .scout-range-swatch) {
+  background: #74d9ba;
+}
+.career-app.game-mode :is(.scout-skill-track > i, .scout-teammate-swatch) {
+  background: #f5c451;
+  border-color: #f5c451;
+}
+.career-app.game-mode .scout-report-note {
+  background: #202d42;
+  border-color: #40516c;
+}
+.career-app.game-mode .scout-skill {
+  background: #1b273b;
+  border-color: #3b4e69;
+}
+.career-app.game-mode .scout-comparison {
+  border-color: #465b7b;
+  box-shadow: inset 0 1px 0 #ffffff08;
+}
+.career-app.game-mode .scout-range-key {
+  color: #bdcbe0;
+}
+.career-app.game-mode .scout-signed {
+  background: #203d36;
+  border-color: #4f8c77;
+}
+.career-app.game-mode
+  :is(
+    .scout-signed > strong,
+    .scout-veteran-actions > strong,
+    p.scout-announcement
+  ) {
+  color: #8ee5c6;
+}
+.career-app.game-mode :is(.scout-text-button, .scout-rulebook > summary) {
+  color: #c5b2ff;
+}
+.career-app.game-mode .scout-text-button {
+  min-height: 40px;
+  text-underline-offset: 3px;
+}
+.career-app.game-mode p.scout-blocker {
+  background: #403327;
+  color: #ffcf8b;
+  border-color: #d5a04e;
+}
+.career-app.game-mode .scout-guarantees > div {
+  background: #1b273a;
+  border-color: var(--rarity-frame);
+}
+.career-app.game-mode .scout-guarantees strong {
+  color: #f0f4fb;
+}
+.career-app.game-mode .offer-date > span {
+  background: #433923;
+  color: #ffe1a0;
+  border: 1px solid #80683c;
+}
+.career-app.game-mode .offer-purse > span {
+  color: #83dbbb;
+}
+.career-app.game-mode .offer-confirm {
+  background: #273449;
+  border-color: #60718b;
+}
+.career-app.game-mode .offer-confirm .camp-text-button {
+  color: #cbb9ff;
+  min-height: 40px;
+}
+.career-app.game-mode .booking-workspace .career-warning {
+  background: #443126;
+  color: #ffd19b;
+  border-color: #a87b44;
+}
+.career-app.game-mode .offer-billing > small {
+  color: #d3dff0;
+}
+.career-app.game-mode .booking-fighters button > span {
+  min-width: 0;
+}
+.career-app.game-mode
+  :is(
+    .booking-fighters strong,
+    .offer-billing > strong,
+    .offer-confirm > strong
+  ) {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 580px) {
+  .career-app.game-mode .scout-comparison-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .career-app.game-mode .booking-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .career-app.game-mode .scout-text-button {
+    width: 100%;
+    text-align: left;
+  }
+}

@@ -35,7 +35,8 @@ async function hallOfFame(gymId) {
         record: f.record,
         regionLabel: f.regionLabel,
         rankingPoints: f.rankingPoints,
-        wasChampion: f.isChampion, // belt at retirement is abdicated, but honor the run
+        wasChampion: f.isChampion || f.championshipHistory.length > 0,
+        championshipHistory: f.championshipHistory,
         signedAt: f.signedAt,
         retiredAt: f.retiredAt,
     }));
@@ -54,3 +55,6 @@ async function reputation(gym) {
 }
 
 module.exports = { award, hallOfFame, reputation, AWARDS };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

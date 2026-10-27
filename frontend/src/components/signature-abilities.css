@@ -1,0 +1,439 @@
+.career-app.game-mode.clubhouse
+  .fighter-workspace
+  .gw-signature-picker.signature-ability-board,
+.career-app.game-mode.clubhouse .signature-ability-board {
+  padding: 0;
+  overflow: hidden;
+  background: #fff8e9;
+  border: 1px solid #d1c2a7;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 #c8bca5;
+}
+.signature-board-heading {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 22px;
+  color: #fff8e9;
+  background:
+    linear-gradient(95deg, #152e43f5, #152e43c9),
+    url("/art/cartoon-team-locker-room.webp") center/cover;
+}
+.signature-board-heading > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+.signature-board-emblem {
+  width: 68px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  color: #f6d58d;
+  background: #23435b;
+  border: 1px solid #d0ad6570;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.signature-board-emblem svg {
+  width: 52px;
+  height: 52px;
+}
+.signature-board-emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 11px;
+}
+.career-app.game-mode.clubhouse .signature-style-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 850;
+  color: #746248;
+  text-transform: capitalize;
+  letter-spacing: 0.4px;
+}
+.career-app.game-mode.clubhouse .signature-booked-note {
+  margin: 16px 22px;
+  font-size: 12px;
+  color: #61533b;
+}
+.career-app.game-mode.clubhouse .signature-board-heading h3 {
+  font-size: 26px;
+  font-weight: 900;
+  margin: 6px 0 0;
+  color: #fff8e9;
+  letter-spacing: -0.6px;
+}
+.career-app.game-mode.clubhouse .signature-board-heading .career-eyebrow {
+  color: #edc582;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+}
+.career-app.game-mode.clubhouse .fighter-workspace .signature-board-heading p,
+.career-app.game-mode.clubhouse .signature-board-heading p {
+  font-size: 12px;
+  color: #d1e0e5;
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+.signature-slot-count {
+  color: #eed297;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  align-self: start;
+}
+.signature-equipped-strip {
+  padding: 16px 22px;
+  background: #eee4d0;
+  display: grid;
+  gap: 6px;
+  border-bottom: 1px solid #d9cbb1;
+}
+.signature-equipped-strip > span {
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1px;
+  color: #806344;
+}
+.career-app.game-mode.clubhouse
+  .fighter-workspace
+  .signature-equipped-strip
+  .gw-signature-status,
+.career-app.game-mode.clubhouse .signature-equipped-strip .gw-signature-status {
+  font-size: 14px;
+  color: #263e4e;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .signature-ability-board > p,
+.career-app.game-mode.clubhouse
+  .fighter-workspace
+  .signature-ability-board
+  > p {
+  margin: 16px 22px;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse
+  .fighter-workspace
+  .signature-ability-board
+  .gw-signature-unlocks,
+.career-app.game-mode.clubhouse .signature-ability-board .gw-signature-unlocks {
+  margin: 14px 22px 22px;
+}
+.career-app.game-mode.clubhouse .signature-ability-board .gw-signature-choices {
+  margin: 22px;
+  gap: 16px;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board[data-chosen="false"]
+  .signature-ability-card[data-ability="pace-keeper"] {
+  grid-column: 1 / -1;
+}
+@media (min-width: 1280px) {
+  .career-app.game-mode.clubhouse
+    .signature-ability-board[data-chosen="false"]
+    .gw-signature-choices {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .career-app.game-mode.clubhouse
+    .signature-ability-board[data-chosen="false"]
+    .signature-ability-card[data-ability="pace-keeper"] {
+    grid-column: auto;
+  }
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .gw-signature-choices
+  > .signature-ability-card {
+  --ability-accent: #ad4e32;
+  --ability-surface: #f3d6b9;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid #d3c5ac;
+  border-radius: 12px;
+  background: #fffcf4;
+  box-shadow: 0 3px 0 #d3c5ac;
+  opacity: 1;
+  text-align: left;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-ability-card[data-ability="chain-wrestling"] {
+  --ability-accent: #396c86;
+  --ability-surface: #d6e5e9;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-ability-card[data-ability="escape-artist"] {
+  --ability-accent: #6f6295;
+  --ability-surface: #e4ddec;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-ability-card[data-ability="pace-keeper"] {
+  --ability-accent: #37776c;
+  --ability-surface: #d8e6d7;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-ability-card[data-equipped="true"] {
+  border-color: #a77034;
+  background: #fff5db;
+  box-shadow: 0 3px 0 #a77034;
+}
+.signature-card-art {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 20px;
+  color: var(--ability-accent);
+  background:
+    radial-gradient(ellipse at 20% 90%, #ffffff8a, transparent 65%),
+    var(--ability-surface);
+}
+.signature-card-art svg {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+.signature-card-art img {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 9px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px #182b3b30;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-art
+  > span {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+}
+.signature-card-body {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+}
+.signature-card-body > strong {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.4px;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-effect {
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--ability-accent);
+  font-weight: 850;
+}
+.signature-card-trigger {
+  display: grid;
+  gap: 5px;
+  padding-top: 13px;
+  border-top: 1px solid #ded1b9;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-trigger
+  > span {
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  color: #6c7880;
+}
+.signature-card-trigger > strong {
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 750;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-body
+  > small {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #5b6c75;
+}
+.signature-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  border-top: 1px solid #ded1b9;
+  background: #f4edde;
+  margin-top: auto;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-footer
+  > span {
+  color: #28475c;
+  font-size: 12px;
+  font-weight: 850;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board
+  .signature-card-footer
+  > small {
+  color: #376559;
+  font-size: 10px;
+  font-weight: 750;
+}
+button.signature-ability-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.signature-ability-card[data-equipped="true"] .signature-card-footer {
+  background: #f1dfb7;
+}
+.signature-ability-card:disabled {
+  cursor: default;
+}
+.signature-ability-card:disabled .signature-card-footer {
+  opacity: 0.75;
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board[data-chosen="true"]
+  .gw-signature-choices {
+  grid-template-columns: minmax(0, 1fr);
+}
+.career-app.game-mode.clubhouse
+  .signature-ability-board[data-chosen="true"]
+  .signature-ability-card {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+}
+.signature-ability-board[data-chosen="true"] .signature-card-art {
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+}
+.signature-ability-board[data-chosen="true"] .signature-card-footer {
+  grid-column: 1 / -1;
+}
+.signature-confirmation {
+  display: grid;
+  gap: 20px;
+}
+.signature-confirmation-ability {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.signature-confirmation-ability img {
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.signature-confirmation-ability h3 {
+  margin: 0 0 8px;
+}
+.signature-confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+@media (max-width: 500px) {
+  .career-app.game-mode.clubhouse
+    .signature-ability-board[data-chosen="true"]
+    .signature-ability-card {
+    display: flex;
+  }
+  .signature-ability-board[data-chosen="true"] .signature-card-art {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .signature-confirmation-ability {
+    align-items: flex-start;
+  }
+  .signature-confirmation-ability img {
+    width: 64px;
+    height: 64px;
+  }
+}
+@media (max-width: 700px) {
+  .signature-board-heading {
+    padding: 18px;
+    gap: 12px;
+  }
+  .signature-board-emblem {
+    width: 48px;
+    height: 58px;
+  }
+  .signature-board-emblem svg {
+    width: 38px;
+    height: 38px;
+  }
+  .signature-slot-count {
+    display: none;
+  }
+  .career-app.game-mode.clubhouse .signature-board-heading h3 {
+    font-size: 23px;
+  }
+  .career-app.game-mode.clubhouse
+    .signature-ability-board
+    .gw-signature-choices {
+    grid-template-columns: minmax(0, 1fr);
+    margin: 16px;
+    gap: 14px;
+  }
+  .signature-card-art {
+    padding: 13px 18px;
+  }
+  .signature-card-art svg {
+    width: 48px;
+    height: 48px;
+  }
+  .signature-card-body {
+    padding: 18px;
+    gap: 10px;
+  }
+  .signature-equipped-strip {
+    padding: 15px 18px;
+  }
+  .career-app.game-mode.clubhouse
+    .fighter-workspace
+    .signature-ability-board
+    .gw-signature-unlocks {
+    margin: 14px 16px 20px;
+  }
+  .career-app.game-mode.clubhouse .signature-ability-board > p,
+  .career-app.game-mode.clubhouse
+    .fighter-workspace
+    .signature-ability-board
+    > p {
+    margin: 16px 18px;
+  }
+}
+.career-app.game-mode.clubhouse .signature-board-notice {
+  padding: 17px 22px;
+  background: #eee5d3;
+  border-top: 1px solid #dbceb6;
+}
+.career-app.game-mode.clubhouse
+  .fighter-workspace
+  .signature-board-notice
+  .signature-board-help,
+.career-app.game-mode.clubhouse .signature-board-notice .signature-board-help {
+  margin: 0;
+  padding: 0;
+  color: #5f6b6d;
+  font-size: 12px;
+  line-height: 1.65;
+}

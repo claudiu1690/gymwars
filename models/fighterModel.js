@@ -48,6 +48,7 @@ const fighterSchema = new mongoose.Schema({
     rankingPoints: { type: Number, default: 0 },
     /** One champion per weight class (GDD §8.3). */
     isChampion: { type: Boolean, default: false, index: true },
+    championshipHistory: [{ wonAt: Date, endedAt: Date, defenses: { type: Number, default: 0 } }],
     /** Corner instructions (GDD §5.4) — also the future Gym War defense config. */
     gameplan: {
         approach: { type: String, enum: ["strike", "balanced", "grapple"], default: "balanced" },
@@ -57,6 +58,20 @@ const fighterSchema = new mongoose.Schema({
     /** Set on AI-generated opposition (gymId null): their ladder tier + flavor gym. */
     aiTier: { type: String, default: null },
     aiGymName: { type: String, default: null },
+
+    /** Pending fight offer — matchmaking's proposal awaiting the manager's
+     *  signature. Accepting books the bout; passing discards it (rationed
+     *  per day so managers can't fish for soft matchups). */
+    fightOffer: {
+        opponentId: { type: mongoose.Schema.Types.ObjectId, ref: "Fighter", default: null },
+        tier: { type: String, default: null },
+        title: { type: Boolean, default: false },
+        expiresAt: { type: Date, default: null },
+    },
+    offerPasses: {
+        dayAnchor: { type: Date, default: null },
+        used: { type: Number, default: 0 },
+    },
 
     /** HIDDEN personality traits (GDD §3.4); `discoveredTraits` is the
      *  player-visible subset, revealed through play in Phases 2–4. */

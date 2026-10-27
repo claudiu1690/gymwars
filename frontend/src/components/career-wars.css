@@ -1,0 +1,1397 @@
+.career-wars {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+.gw-fight-night {
+  --gw-navy: #203747;
+  --gw-coral: #f16b49;
+  --gw-cream: #fff8e9;
+  --gw-teal: #73cdbb;
+}
+.career-wars :is(button, a):focus-visible,
+.gw-battle-result :is(button, a, summary):focus-visible {
+  outline: 3px solid #e68c3c;
+  outline-offset: 4px;
+}
+.career-wars button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.gw-mode-header,
+.gw-rival-board > header {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+}
+.clubhouse .gw-mode-header h2 {
+  font-size: clamp(25px, 3vw, 37px);
+  margin: 3px 0;
+  letter-spacing: -0.8px;
+}
+.gw-format-label {
+  border-radius: 6px;
+  background: #203747;
+  color: #fff8e9;
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+.gw-league-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 17px;
+  background: #e8dfcb;
+  border-radius: 9px;
+  font-size: 12px;
+}
+.gw-league-strip .career-allowance {
+  margin: 0;
+}
+.gw-rival-board {
+  display: grid;
+  gap: 13px;
+  min-width: 0;
+}
+.gw-rival-board h3 {
+  margin: 4px 0 0;
+  font-size: 21px;
+}
+.gw-rival-board > header > span {
+  font-size: 12px;
+}
+.gw-rival-board > header > .gw-rival-mobile-hint {
+  display: none;
+}
+.war-league-rivals {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+}
+.war-league-rivals button {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #cfc5ae;
+  border-radius: 10px;
+  background: #fff8e9;
+  text-align: left;
+  font: inherit;
+  color: #203747;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #d9ceba;
+  min-width: 0;
+}
+.war-league-rivals button[aria-pressed="true"] {
+  background: #203747;
+  color: #fff8e9;
+  border-color: #203747;
+  box-shadow: 0 3px 0 #f16b49;
+}
+.gw-rival-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.gw-rival-title strong {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.gw-selected-tick {
+  color: #f16b49;
+}
+.gw-rival-faces {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+.gw-rival-faces .career-portrait {
+  width: 23%;
+  max-width: 40px;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 5px;
+}
+.war-league-rivals button > span {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+.gw-club-crest {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 58px;
+  height: 65px;
+  flex-shrink: 0;
+  color: #fff4df;
+}
+.gw-club-crest svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  fill: #ba4d35;
+  stroke: #ffad71;
+  stroke-width: 3;
+}
+.gw-club-crest svg path + path {
+  fill: none;
+  stroke-width: 2;
+}
+.gw-club-crest.has-selected-look .shop-club-mark {
+  position: static;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: none;
+  filter: drop-shadow(0 3px 2px #07151f40);
+}
+.gw-club-crest.has-selected-look .mark-shadow {
+  fill: #152633;
+}
+.gw-club-crest.has-selected-look .mark-rim {
+  fill: var(--look-color);
+  stroke: var(--look-light);
+  stroke-width: 1;
+}
+.gw-club-crest.has-selected-look .mark-field {
+  fill: var(--look-dark);
+}
+.gw-club-crest.has-selected-look .mark-detail {
+  stroke: var(--look-light);
+  stroke-width: 3;
+  fill: none;
+}
+.gw-club-crest.has-selected-look .mark-icon {
+  fill: var(--look-light);
+}
+.gw-club-crest b {
+  position: relative;
+  font-size: 19px;
+  letter-spacing: -1px;
+}
+.gw-club-crest.is-rival svg {
+  fill: #254f5b;
+  stroke: #7bd3c3;
+}
+.gw-rival-title .gw-club-crest {
+  width: 31px;
+  height: 36px;
+}
+.gw-rival-title .gw-club-crest b {
+  font-size: 11px;
+}
+.gw-arena,
+.gw-recap-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  isolation: isolate;
+  background: #172e43 url("/art/cartoon-fight-night.webp") center 45% / cover;
+  color: #fff8e9;
+  box-shadow: 0 6px 0 #c5bba6;
+}
+.gw-arena::before,
+.gw-recap-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #132838d9 0%,
+    #172e4333 42%,
+    #102738c4 78%,
+    #102738 100%
+  );
+  z-index: -1;
+}
+.gw-arena-topline,
+.gw-recap-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 24px;
+  border-bottom: 1px solid #ffffff20;
+  color: #e8e1cf;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.gw-arena-topline b {
+  font-size: 22px;
+  letter-spacing: 4px;
+}
+.gw-arena-topline i {
+  font-style: normal;
+  font-size: 11px;
+  color: #f9946e;
+}
+.gw-arena-versus {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 70px minmax(0, 1fr);
+  gap: 4px;
+  padding: 23px 23px 0;
+  align-items: center;
+}
+.gw-arena-team {
+  min-width: 0;
+}
+.gw-arena-team > header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  min-height: 75px;
+}
+.career-app.game-mode.clubhouse .gw-arena-team small {
+  color: #ffa88a;
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  font-weight: 800;
+}
+.career-app.game-mode.clubhouse .gw-arena-team.is-rival small {
+  color: #86dfd1;
+}
+.career-app.game-mode.clubhouse .gw-arena-team h3 {
+  color: #fff8e9;
+  font-size: clamp(18px, 2vw, 26px);
+  margin: 4px 0 0;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.gw-arena-fighters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  margin-top: 20px;
+}
+.gw-team-member {
+  min-width: 0;
+  text-align: center;
+  padding-bottom: 18px;
+}
+.gw-athlete {
+  display: block;
+  width: 100%;
+  height: 228px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 7px 6px #06172588);
+}
+.gw-athlete-unknown {
+  opacity: 0.65;
+}
+.gw-team-member > span {
+  display: block;
+  margin: 12px 0 5px;
+  color: #e6c6a8;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.gw-team-member > strong {
+  display: block;
+  color: #fff8e9;
+  font-size: 10px;
+  line-height: 1.4;
+  padding: 0 3px;
+  min-height: 28px;
+  overflow-wrap: anywhere;
+}
+.gw-arena-vs {
+  text-align: center;
+  color: #fff5da;
+  text-shadow:
+    0 4px 0 #a44a35,
+    0 0 35px #f16b49;
+  font-size: 48px;
+  font-weight: 1000;
+  font-style: italic;
+  transform: rotate(-7deg);
+}
+.gw-arena-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: #102738eb;
+  border-top: 1px solid #ffffff28;
+  padding: 20px 24px;
+}
+.gw-arena-action > div:first-child {
+  max-width: 620px;
+}
+.gw-arena-action strong {
+  color: #fff3d9;
+  font-size: 18px;
+}
+.career-app.game-mode.clubhouse .gw-arena-action p {
+  color: #bed0d4;
+  font-size: 12px;
+  margin: 7px 0 0;
+  line-height: 1.6;
+}
+.gw-arena-action .career-action {
+  white-space: nowrap;
+  min-height: 50px;
+  box-shadow: 0 4px 0 #a4422c;
+}
+.gw-missing-divisions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.gw-team-settings,
+.gw-tactics,
+.gw-club-details {
+  border-radius: 10px;
+  background: #fff9ed;
+  border: 1px solid #d9ccb4;
+  padding: 0 18px;
+}
+.gw-team-settings > header,
+.gw-tactics > header,
+.gw-club-details > header {
+  padding: 18px 0;
+}
+.gw-team-settings > header h3,
+.gw-tactics > header h3,
+.gw-club-details > header h3 {
+  margin: 5px 0 0;
+  font-size: 22px;
+}
+.gw-team-settings > header p {
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#gym-wars-team-panel .war-lineup-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.gw-club-honors {
+  grid-column: 1 / -1;
+}
+.gw-honors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  gap: 10px;
+}
+.gw-honors-grid article {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 4px 8px;
+  align-items: center;
+  padding: 14px;
+  background: #eee6d6;
+  border: 1px solid #d0c3aa;
+  border-radius: 9px;
+}
+.gw-honors-grid article > span {
+  grid-row: span 2;
+  color: #946744;
+  font-size: 25px;
+}
+.gw-honors-grid article[data-earned="true"] {
+  background: #dce8d7;
+  border-color: #8ca588;
+}
+.gw-honors-grid article strong {
+  font-size: 13px;
+}
+.gw-honors-grid article small {
+  font-size: 11px;
+}
+.gw-key-exchanges {
+  margin: 20px 0 14px;
+  border-top: 1px solid #dbcfb9;
+}
+.gw-key-exchanges > h3 {
+  font-size: 17px;
+  margin: 17px 0 12px;
+}
+.gw-key-exchanges > p {
+  padding: 9px 12px;
+  border-left: 3px solid #c77e50;
+  background: #f2ead9;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.gw-key-exchanges > p > b {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+.war-lineup {
+  padding: 5px 0 18px;
+  min-width: 0;
+}
+.war-lineup > header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 14px;
+  font-size: 12px;
+}
+.war-lineup-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.war-lineup-cards article {
+  display: grid;
+  grid-template-columns: 45px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 12px;
+  background: #eee6d6;
+  border-radius: 8px;
+  min-width: 0;
+}
+.war-lineup-cards article > div {
+  min-width: 0;
+  font-size: 11px;
+}
+.war-lineup-cards article :is(strong, small, span) {
+  display: block;
+  color: #203747;
+  overflow-wrap: anywhere;
+}
+.war-lineup-cards .career-portrait {
+  width: 45px;
+  height: 54px;
+  border-radius: 6px;
+}
+.war-lineup button,
+.gw-club-details button,
+.gw-result-controls button {
+  font: inherit;
+  font-weight: 750;
+  padding: 9px 12px;
+  background: #fff8e9;
+  color: #203747;
+  border: 1px solid #c7bba4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.war-lineup article > button,
+.war-lineup-options {
+  grid-column: 1/-1;
+}
+.war-lineup-options {
+  display: grid;
+  gap: 6px;
+}
+.war-lineup-options button {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  text-align: left;
+  font-size: 11px;
+}
+.war-lineup-options button[aria-pressed="true"] {
+  background: #d0e2d7;
+}
+.war-defense-save {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 15px;
+  font-size: 12px;
+}
+.gw-tactics-grid,
+.gw-club-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  padding: 0 0 20px;
+}
+.gw-tactics-grid article {
+  background: #f0e7d5;
+  border-radius: 7px;
+  padding: 15px;
+  font-size: 12px;
+}
+.gw-tactics-grid small {
+  color: #a34731;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.gw-tactics-grid strong {
+  font-size: 14px;
+}
+.gw-tactics-grid p {
+  line-height: 1.6;
+}
+.gw-tactics-grid a,
+.gw-bout-breakdown a {
+  color: #a44730;
+  font-weight: 800;
+}
+.war-league-history {
+  display: grid;
+  gap: 9px;
+}
+.war-league-history h3 {
+  margin: 5px 0 8px;
+}
+.war-league-history button {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #d4c7b0;
+  border-radius: 9px;
+  background: #fff8e9;
+  padding: 12px 16px;
+  text-align: left;
+  font: inherit;
+  color: #203747;
+  cursor: pointer;
+}
+.war-league-history button > span:nth-child(2) {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 800;
+}
+.war-league-history button small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #6f7776;
+}
+.war-league-history button > strong {
+  font-size: 27px;
+}
+.war-league-history button > span:last-child {
+  font-size: 12px;
+  font-weight: 800;
+}
+.war-league-history .gw-club-crest {
+  width: 34px;
+  height: 40px;
+}
+.war-league-history .gw-club-crest b {
+  font-size: 12px;
+}
+.gw-history-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+}
+.war-league-history .gw-history-watch {
+  min-width: 0;
+}
+.war-league-history .gw-history-rematch {
+  justify-content: center;
+  max-width: 220px;
+  min-height: 44px;
+  color: #fff8e9;
+  background: #a83f2b;
+  font-size: 12px;
+  font-weight: 800;
+}
+@media (max-width: 600px) {
+  .gw-history-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .war-league-history .gw-history-rematch {
+    max-width: none;
+    border-radius: 0 0 9px 9px;
+  }
+  .war-league-history .gw-history-watch {
+    border-radius: 9px 9px 0 0;
+  }
+}
+.gw-club-details-grid section {
+  min-width: 0;
+  font-size: 12px;
+}
+.gw-club-details-grid h3 {
+  font-size: 18px;
+}
+.gw-club-details-grid button {
+  margin: 4px 4px 4px 0;
+  font-size: 12px;
+}
+.gw-standing {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0d5c3;
+}
+.war-notice {
+  background: #dce8da;
+  padding: 12px 16px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+.gw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* One visual result, a real score and four selectable division outcomes. */
+.gw-battle-result {
+  min-width: 0;
+  scroll-margin-top: 20px;
+  border-radius: 15px;
+  border: 1px solid #cfbfa2;
+  background: #fff8e9;
+  overflow: hidden;
+  padding: 0;
+}
+.gw-result-heading {
+  padding: 23px 25px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.career-app.game-mode.clubhouse .gw-result-heading h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  margin: 6px 0 0;
+  letter-spacing: -0.8px;
+}
+.gw-result-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+}
+.gw-result-controls button {
+  font-size: 11px;
+  min-height: 40px;
+}
+.gw-scoreboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px minmax(0, 1fr);
+  gap: 15px;
+  align-items: center;
+  padding: 19px 30px;
+  background: #203747;
+  color: #fff3dc;
+}
+.gw-scoreboard > div:not(.gw-score-numbers) {
+  display: grid;
+  grid-template-columns: 57px minmax(0, 1fr);
+  gap: 3px 13px;
+  align-items: center;
+}
+.gw-scoreboard .gw-club-crest {
+  grid-row: span 2;
+}
+.gw-scoreboard > div > span {
+  color: #f39a77;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  align-self: end;
+}
+.gw-scoreboard > div:last-child > span {
+  color: #8ad9cd;
+}
+.gw-scoreboard > div > strong {
+  color: #fff3dc;
+  font-size: clamp(17px, 2vw, 25px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  align-self: start;
+}
+.gw-score-numbers {
+  display: grid;
+  grid-template-columns: 1fr 35px 1fr;
+  text-align: center;
+  align-items: center;
+}
+.gw-score-numbers b {
+  font-size: 77px;
+  line-height: 1;
+  letter-spacing: -4px;
+  font-weight: 1000;
+  animation: gw-score-pop 0.25s ease-out;
+}
+.gw-score-numbers > span {
+  font-size: 30px !important;
+  align-self: center !important;
+  color: #d2bf9c !important;
+}
+.career-app.game-mode.clubhouse .gw-score-numbers small {
+  grid-column: 1/-1;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #d7c5a8;
+  padding-top: 7px;
+}
+.gw-card-reward {
+  padding: 15px 25px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: #efe3bf;
+}
+.gw-card-reward > span {
+  font-size: 29px;
+  color: #a75c2e;
+}
+.gw-card-reward p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+}
+.gw-card-reward small {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.gw-recap-stage {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px minmax(0, 1fr);
+  align-items: end;
+  padding: 65px 30px 0;
+  min-height: 390px;
+  background-position: center 55%;
+}
+.gw-recap-topline {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: 16px 24px;
+}
+.gw-recap-topline strong {
+  font-size: 15px;
+  color: #fff4d9;
+  text-transform: uppercase;
+}
+.gw-recap-athlete {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+  animation: gw-corner-in 0.35s ease-out both;
+}
+.gw-recap-athlete .gw-athlete {
+  height: 330px;
+  max-width: 270px;
+}
+.gw-recap-athlete > div:last-child {
+  position: absolute;
+  inset: auto 0 0;
+  text-align: center;
+  padding: 25px 7px 18px;
+  background: linear-gradient(transparent, #132b3fee 40%);
+}
+.career-app.game-mode.clubhouse .gw-recap-athlete small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #ffa184;
+  font-weight: 800;
+}
+.career-app.game-mode.clubhouse .gw-recap-athlete.is-rival small {
+  color: #8fdfcf;
+}
+.gw-recap-athlete strong {
+  display: block;
+  font-size: clamp(15px, 1.7vw, 23px);
+  margin-top: 5px;
+  color: #fff7e8;
+  overflow-wrap: anywhere;
+}
+.gw-recap-athlete b {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-top: 9px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 1.5px;
+  background: #ffffff1a;
+  color: #dfd4bf;
+}
+.gw-recap-athlete.is-winner b {
+  background: #f4d38a;
+  color: #213747;
+}
+.gw-recap-athlete.is-winner .gw-athlete {
+  filter: drop-shadow(0 0 24px #f4b95a66);
+}
+.gw-recap-stage[data-verdict="win"] .gw-recap-athlete.is-rival .gw-athlete,
+.gw-recap-stage[data-verdict="loss"]
+  .gw-recap-athlete:not(.is-rival)
+  .gw-athlete {
+  filter: saturate(0.45) brightness(0.8);
+}
+.gw-finish-stamp {
+  text-align: center;
+  align-self: center;
+  z-index: 2;
+  display: grid;
+  gap: 12px;
+  padding: 20px 0;
+  transform: rotate(-4deg);
+}
+.career-app.game-mode.clubhouse .gw-finish-stamp small {
+  font-size: 9px;
+  letter-spacing: 1.8px;
+  color: #f6c78f;
+  font-weight: 850;
+}
+.gw-finish-stamp strong {
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 1000;
+  color: #fff5dc;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-shadow: 0 3px 0 #a94530;
+  overflow-wrap: normal;
+}
+.gw-finish-stamp > span {
+  color: #ece3d2;
+  font-size: 11px;
+}
+.war-bout-reveal {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 16px 20px;
+  background: #e9e0ce;
+}
+.war-bout-reveal article {
+  min-width: 0;
+}
+.war-bout-reveal button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) 26px;
+  gap: 8px;
+  align-items: center;
+  padding: 12px;
+  text-align: left;
+  color: #203747;
+  font: inherit;
+  border: 1px solid #cdbfa3;
+  border-radius: 8px;
+  background: #fff8e9;
+  cursor: pointer;
+}
+.war-bout-reveal button[aria-pressed="true"] {
+  outline: 2px solid #db7250;
+  outline-offset: -2px;
+  background: #fff4d8;
+}
+.gw-bout-number {
+  color: #a09073;
+  font-size: 12px;
+  font-weight: 900;
+}
+.war-bout-reveal strong {
+  font-size: 11px;
+  display: block;
+}
+.war-bout-reveal small {
+  font-size: 8px;
+  display: block;
+  margin-top: 4px;
+  letter-spacing: 0.4px;
+}
+.war-bout-reveal button > b {
+  width: 26px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: #d5d8d1;
+  font-size: 14px;
+}
+.war-bout-reveal article[data-outcome="win"] button > b {
+  background: #cae4ce;
+  color: #286044;
+}
+.war-bout-reveal article[data-outcome="loss"] button > b {
+  background: #f0cbbb;
+  color: #8e3c26;
+}
+.gw-bout-faces {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.gw-bout-faces .career-portrait {
+  width: 38px;
+  height: 38px;
+  border-radius: 5px;
+}
+.gw-legacy-face,
+.gw-legacy-face .gw-athlete {
+  display: block;
+  width: 38px;
+  height: 38px;
+  background: #203747;
+  border-radius: 5px;
+}
+.gw-bout-faces > span {
+  font-size: 10px;
+  font-weight: 900;
+  color: #b36c47;
+}
+.gw-bout-breakdown {
+  padding: 4px 25px 22px;
+}
+.gw-bout-breakdown > p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.gw-bout-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin: 14px 0 20px;
+}
+.gw-bout-stats > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.gw-bout-stats b {
+  font-size: 15px;
+}
+.gw-bout-stats > div > span {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+}
+.gw-bout-stats i {
+  display: block;
+  margin-top: 6px;
+  height: 5px;
+  background: #5a9c9e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.gw-bout-stats em {
+  display: block;
+  height: 100%;
+  background: #e27956;
+}
+.gw-bout-breakdown details {
+  font-size: 12px;
+  margin: 12px 0 18px;
+}
+.gw-bout-breakdown summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+.gw-bout-breakdown details p {
+  line-height: 1.65;
+}
+.gw-bout-breakdown > a {
+  font-size: 12px;
+}
+.gw-result-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 25px;
+  border-top: 1px solid #d5c6aa;
+}
+.gw-result-footer small {
+  font-size: 10px;
+  max-width: 350px;
+  line-height: 1.6;
+}
+@keyframes gw-corner-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes gw-score-pop {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (max-width: 1100px) {
+  .war-league-rivals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .gw-arena-versus {
+    grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr);
+    padding: 17px 15px 0;
+  }
+  .gw-arena-vs {
+    font-size: 34px;
+  }
+  .gw-athlete {
+    height: 185px;
+  }
+  .war-lineup-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gw-scoreboard {
+    grid-template-columns: minmax(0, 1fr) 150px minmax(0, 1fr);
+    padding: 18px;
+  }
+  .gw-score-numbers b {
+    font-size: 65px;
+  }
+  .gw-scoreboard > div:not(.gw-score-numbers) {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 5px 9px;
+  }
+  .gw-scoreboard .gw-club-crest {
+    width: 40px;
+    height: 48px;
+  }
+  .gw-scoreboard .gw-club-crest b {
+    font-size: 15px;
+  }
+  .gw-recap-stage {
+    grid-template-columns: minmax(0, 1fr) 185px minmax(0, 1fr);
+    padding-inline: 14px;
+  }
+}
+@media (max-width: 600px) {
+  .career-wars {
+    gap: 16px;
+  }
+  .gw-mode-header {
+    align-items: start;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .gw-format-label {
+    font-size: 9px;
+    padding: 6px 10px;
+  }
+  .gw-league-strip {
+    flex-direction: column;
+    align-items: start;
+    gap: 7px;
+    font-size: 10px;
+  }
+  .gw-rival-board > header > span {
+    display: none;
+  }
+  .gw-rival-board > header > .gw-rival-mobile-hint {
+    display: block;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .gw-rival-board h3 {
+    font-size: 19px;
+  }
+  .war-league-rivals {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 44%;
+    overflow-x: auto;
+    padding-bottom: 7px;
+    scroll-snap-type: x proximity;
+    gap: 8px;
+  }
+  .war-league-rivals button {
+    padding: 10px;
+    scroll-snap-align: start;
+  }
+  .gw-rival-faces .career-portrait {
+    max-width: 33px;
+  }
+  .gw-arena-topline {
+    padding: 11px 13px;
+    font-size: 8px;
+  }
+  .gw-arena-topline > span:last-child {
+    display: none;
+  }
+  .gw-arena-versus {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 10px 12px 0;
+  }
+  .gw-arena-team > header {
+    justify-content: start;
+    min-height: 50px;
+    gap: 8px;
+  }
+  .gw-arena-team > header .gw-club-crest {
+    width: 35px;
+    height: 40px;
+  }
+  .gw-arena-team > header .gw-club-crest b {
+    font-size: 13px;
+  }
+  .gw-arena-fighters {
+    margin-top: 9px;
+  }
+  .gw-athlete {
+    height: 135px;
+  }
+  .gw-team-member {
+    padding-bottom: 8px;
+  }
+  .gw-team-member > span {
+    font-size: 7px;
+    margin-top: 5px;
+    letter-spacing: 0;
+  }
+  .gw-team-member > strong {
+    font-size: 9px;
+    min-height: 26px;
+  }
+  .gw-arena-vs {
+    font-size: 25px;
+    line-height: 1;
+  }
+  .gw-arena-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 17px;
+  }
+  .gw-arena-action .career-action {
+    width: 100%;
+    font-size: 13px;
+    min-height: 46px;
+  }
+  .gw-arena-action strong {
+    font-size: 16px;
+  }
+  .gw-arena-action p {
+    font-size: 11px;
+  }
+  .gw-tactics-grid,
+  .gw-club-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .war-lineup-cards {
+    grid-template-columns: 1fr;
+  }
+  #gym-wars-team-panel .war-lineup-cards {
+    grid-template-columns: 1fr;
+  }
+  .war-defense-save {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .war-league-history button {
+    padding: 10px;
+    gap: 9px;
+  }
+  .war-league-history button > span:nth-child(2) {
+    font-size: 11px;
+  }
+  .war-league-history button > span:last-child {
+    font-size: 9px;
+  }
+  .war-league-history button > strong {
+    font-size: 23px;
+  }
+  .gw-result-heading {
+    padding: 18px 15px;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+  .gw-result-controls {
+    justify-content: start;
+  }
+  .gw-scoreboard {
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    gap: 6px;
+    padding: 14px 10px;
+  }
+  .gw-scoreboard > div:not(.gw-score-numbers) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+  .gw-scoreboard .gw-club-crest {
+    width: 36px;
+    height: 41px;
+  }
+  .gw-scoreboard > div > span {
+    font-size: 7px;
+    align-self: center;
+  }
+  .gw-scoreboard > div > strong {
+    font-size: 12px;
+    align-self: center;
+    min-height: 28px;
+  }
+  .gw-score-numbers {
+    grid-template-columns: 1fr 15px 1fr;
+  }
+  .gw-score-numbers b {
+    font-size: 46px;
+  }
+  .gw-score-numbers > span {
+    font-size: 17px !important;
+  }
+  .gw-score-numbers small {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+  .gw-card-reward {
+    padding: 13px 15px;
+    gap: 9px;
+  }
+  .gw-card-reward p {
+    font-size: 11px;
+  }
+  .gw-card-reward small {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+  .gw-recap-stage {
+    min-height: 330px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4px;
+    padding: 80px 8px 0;
+  }
+  .gw-recap-topline {
+    padding: 12px;
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+  .gw-recap-topline strong {
+    font-size: 11px;
+  }
+  .gw-recap-topline > span:last-child {
+    display: none;
+  }
+  .gw-recap-athlete .gw-athlete {
+    height: 245px;
+  }
+  .gw-recap-athlete strong {
+    font-size: 13px;
+  }
+  .gw-recap-athlete small {
+    font-size: 7px;
+  }
+  .gw-recap-athlete b {
+    font-size: 8px;
+    margin-top: 6px;
+  }
+  .gw-finish-stamp {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    right: 10px;
+    gap: 6px;
+    padding: 0;
+  }
+  .gw-finish-stamp strong {
+    font-size: 25px;
+  }
+  .gw-finish-stamp small {
+    font-size: 7px;
+  }
+  .gw-finish-stamp > span {
+    font-size: 9px;
+  }
+  .war-bout-reveal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 12px;
+    gap: 7px;
+  }
+  .war-bout-reveal button {
+    padding: 10px;
+    gap: 6px;
+  }
+  .gw-bout-breakdown {
+    padding: 2px 15px 18px;
+  }
+  .gw-bout-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .gw-bout-stats > div > span {
+    font-size: 10px;
+  }
+  .gw-result-footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gw-recap-athlete,
+  .gw-score-numbers b {
+    animation: none;
+  }
+}
+
+.career-app .gw-club-cups {
+  margin: 24px 0;
+}
+.career-app .gw-club-cups > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.career-app .gw-club-cups article {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff8e9;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 #c9bba3;
+}
+.career-app .gw-club-cups article[data-selected="true"] {
+  box-shadow: 0 3px 0 #ed684e;
+}
+.career-app .gw-club-cups article > img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/8;
+  object-fit: cover;
+}
+.career-app .gw-club-cups article > div {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+.career-app .gw-club-cups :is(h4, p) {
+  margin: 0;
+}
+.career-app .gw-club-cups .career-action {
+  white-space: normal;
+  text-align: center;
+}
+@media (max-width: 850px) {
+  .career-app .gw-club-cups > div {
+    grid-template-columns: 1fr;
+  }
+}

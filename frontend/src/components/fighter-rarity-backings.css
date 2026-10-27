@@ -1,0 +1,144 @@
+/* Transparent fighter artwork sits directly on its rarity colour. These rules
+   change the portrait background, without changing established card geometry. */
+[data-rarity] {
+  --rarity-background: linear-gradient(155deg, #e2e4e2, #a8b0ae);
+  --rarity-label-ink: #33424d;
+  --rarity-label-paper: #e7ecef;
+}
+[data-rarity="journeyman"] {
+  --rarity-background: linear-gradient(155deg, #d3dbe0, #778995);
+  --rarity-label-ink: #33424d;
+  --rarity-label-paper: #e7ecef;
+}
+[data-rarity="prospect"] {
+  --rarity-background:
+    radial-gradient(ellipse at 45% 18%, #b9ebc8, transparent 65%),
+    linear-gradient(155deg, #6bbb8d, #246449);
+  --rarity-label-ink: #145339;
+  --rarity-label-paper: #dcf3e5;
+}
+[data-rarity="contender"] {
+  --rarity-background:
+    radial-gradient(ellipse at 45% 18%, #c1dff9, transparent 65%),
+    linear-gradient(155deg, #6cace2, #244b86);
+  --rarity-label-ink: #194b85;
+  --rarity-label-paper: #e0edfc;
+}
+[data-rarity="elite"] {
+  --rarity-background:
+    radial-gradient(
+      ellipse at 50% 15%,
+      #f0dcff 0%,
+      #d2a9ed80 35%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(125deg, #ffffff0a 0 2px, transparent 2px 30px),
+    linear-gradient(155deg, #a979ce, #513077);
+  --rarity-label-ink: #5e2787;
+  --rarity-label-paper: #f0e2fa;
+}
+[data-rarity="legend"] {
+  --rarity-background:
+    radial-gradient(
+      ellipse at 48% 13%,
+      #fff7d5 0%,
+      #ffe399b3 32%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(130deg, #fff3bd24 0 1px, transparent 1px 13px),
+    linear-gradient(155deg, #eac66d, #a46714);
+  --rarity-label-ink: #754507;
+  --rarity-label-paper: #fff0b9;
+}
+[data-rarity="unknown"] {
+  --rarity-background: linear-gradient(155deg, #e2e4e2, #a8b0ae);
+  --rarity-label-ink: #33424d;
+  --rarity-label-paper: #e7ecef;
+}
+
+/* Older screens also use this variable for frames. Keep those seams neutral;
+   rarity belongs inside the portrait, with the written badge as its label. */
+.career-app.game-mode.clubhouse [data-rarity] {
+  --rarity-frame: #cfc7b7;
+}
+
+.career-portrait[data-rarity],
+.career-app.game-mode.clubhouse .career-portrait[data-rarity] {
+  background: var(--rarity-background);
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+.career-app.game-mode.clubhouse
+  :is(
+    .career-fighter-art,
+    .fighter-identity-art,
+    .scout-prospect-art,
+    .offer-art,
+    .camp-opponent-art
+  ) {
+  background: var(--rarity-background);
+  padding: 0;
+  border: 0;
+}
+.career-app.game-mode.clubhouse .career-fighter > .career-fighter-art {
+  padding: 0;
+  border-bottom: 1px solid #cfc7b7;
+}
+
+.career-app.game-mode.clubhouse
+  :is(
+    .career-fighter,
+    .fighter-identity,
+    .scout-prospect-card,
+    .career-prospect,
+    .scout-dossier,
+    .club-fighter,
+    .gym-team-card,
+    .promoter-offer,
+    .prep-athlete,
+    .camp-opponent,
+    .camp-week-fighter,
+    .camp-team-result,
+    .booking-fighters > button,
+    .team-agenda > article
+  ) {
+  border: 1px solid #cfc7b7;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .career-fighter,
+    .fighter-identity,
+    .promoter-offer,
+    .career-prospect
+  )[data-rarity="legend"] {
+  border: 1px solid #cfc7b7;
+}
+
+.career-app.game-mode.clubhouse .fighter-rarity,
+.career-app.game-mode.clubhouse .scout-prospect-art .fighter-rarity,
+.career-app.game-mode.clubhouse .fighter-identity-art > .fighter-rarity {
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  max-width: 100%;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.3;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--rarity-label-paper);
+  color: var(--rarity-label-ink);
+  box-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .career-app.game-mode.clubhouse .fighter-rarity {
+    font-size: 11px;
+    padding: 4px 7px;
+  }
+}

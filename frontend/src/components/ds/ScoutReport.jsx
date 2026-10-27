@@ -18,8 +18,16 @@ export function ScoutReport({ region, styleLean, rarityRevealed = false, rarityT
   const pityPercent = Math.min(100, (pityCount / pityMax) * 100);
   const remaining = pityMax - pityCount;
 
+  // Reveal ceremony — bars sweep in after the card pops (double rAF so the
+  // zero-width frame paints first and the change transitions).
+  const [grown, setGrown] = React.useState(false);
+  React.useEffect(() => {
+    const raf = requestAnimationFrame(() => requestAnimationFrame(() => setGrown(true)));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
-    <div style={{
+    <div className="anim-pop" style={{
       background: 'var(--surface)', borderRadius: 'var(--radius-card)',
       boxShadow: rarityRevealed ? rarityGlows[rarityTier] : 'var(--shadow-sm)',
       padding: '16px', display: 'flex', flexDirection: 'column', gap: 12,
@@ -53,11 +61,12 @@ export function ScoutReport({ region, styleLean, rarityRevealed = false, rarityT
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'var(--surface-sunken)', borderRadius: 'var(--radius-md)', padding: '10px 12px' }}>
         {Object.entries(statRanges).map(([stat, [lo, hi]]) => (
           <div key={stat} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', width: 72, flexShrink: 0 }}>{stat}</span>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: '11px', color: 'var(--ink-muted)', textTransform: 'uppercase', letterSpacing: '0.04em', width: 90, flexShrink: 0 }}>{stat}</span>
             <div style={{ flex: 1, height: 4, background: 'var(--line)', borderRadius: 'var(--radius-full)', position: 'relative' }}>
               <div style={{
-                position: 'absolute', left: `${lo}%`, width: `${hi - lo}%`,
+                position: 'absolute', left: `${lo}%`, width: grown ? `${hi - lo}%` : 0,
                 height: '100%', background: 'var(--ink-muted)', borderRadius: 'var(--radius-full)', opacity: 0.5,
+                transition: 'width var(--duration-xslow) var(--ease-out) 150ms',
               }} />
             </div>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--ink-secondary)', width: 52, textAlign: 'right', flexShrink: 0 }}>{lo}–{hi}</span>
@@ -74,17 +83,17 @@ export function ScoutReport({ region, styleLean, rarityRevealed = false, rarityT
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--ink-muted)' }}>{pityCount}/{pityMax}</span>
         </div>
         <div style={{ height: 5, background: 'var(--surface-sunken)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
-          <div style={{ width: `${pityPercent}%`, height: '100%', background: 'var(--ember)', borderRadius: 'var(--radius-full)', transition: 'width 400ms var(--ease-out)' }} />
+          <div style={{ width: `${grown ? pityPercent : 0}%`, height: '100%', background: 'var(--ember)', borderRadius: 'var(--radius-full)', transition: 'width var(--duration-xslow) var(--ease-out) 250ms' }} />
         </div>
       </div>
 
       {/* Actions */}
       <div style={{ display: 'flex', gap: 8 }}>
-        <button onClick={onSign} style={{
+        <button onClick={onSign} className="pressable" style={{
           flex: 1, padding: '9px', fontFamily: 'var(--font-body)', fontSize: '13px', fontWeight: 600,
           background: 'var(--ember)', color: '#fff', border: 'none', borderRadius: 'var(--radius-button)', cursor: 'pointer',
         }}>Sign</button>
-        <button onClick={onPass} style={{
+        <button onClick={onPass} className="pressable" style={{
           flex: 1, padding: '9px', fontFamily: 'var(--font-body)', fontSize: '13px', fontWeight: 600,
           background: 'transparent', color: 'var(--ink-secondary)', border: '1.5px solid var(--line)', borderRadius: 'var(--radius-button)', cursor: 'pointer',
         }}>Pass</button>

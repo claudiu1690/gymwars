@@ -18,7 +18,14 @@ async function getMyGym(req, res) {
         const gym = await Gym.findById(req.user.gymId);
         if (!gym) return res.status(404).json({ message: "No gym found for this account" });
         await facilityService.completeUpgradeIfDue(gym);
-        res.json({ gym: gym.toObject() });
+        // Lazily top roster slots up to the current facility's allotment (never
+        // down) so existing gyms pick up widened slot counts on next load.
+        const tierSlots = FACILITY_TIERS[gym.facilityTier]?.rosterSlots ?? gym.rosterSlots;
+        if (gym.rosterSlots < tierSlots) { gym.rosterSlots = tierSlots; await gym.save(); }
+        const fightService = require("../services/fightService");
+        const onboardingService = require("../services/onboardingService");
+        const rookie = await facilityService.rookieState(gym._id);
+        res.json({ gym: { ...gym.toObject(), sparsLeft: fightService.sparsLeft(gym), rookie, onboarding: onboardingService.state(gym) } });
     } catch (err) { handle(res, err); }
 }
 
@@ -30,13 +37,11 @@ async function getOverview(req, res) {
         await facilityService.completeUpgradeIfDue(gym);
 
         const nextTier = FACILITY_TIERS[gym.facilityTier + 1] || null;
-        const [staff, pairs, wins, rep, fighters] = await Promise.all([
-            staffService.getStaff(gym._id),
-            mentoringService.getPairs(gym._id),
-            facilityService.totalGymWins(gym._id),
-            legacyService.reputation(gym),
-            Fighter.find({ gymId: gym._id, retired: { $ne: true } }).select("name age weightClass style traits").lean(),
-        ]);
+        const staff = await staffService.getStaff(gym._id);
+        const pairs = await mentoringService.getPairs(gym._id);
+        const wins = await facilityService.totalGymWins(gym._id);
+        const rep = await legacyService.reputation(gym);
+        const fighters = await Fighter.find({ gymId: gym._id, retired: { $ne: true } }).select("name age weightClass style traits").lean();
 
         res.json({
             gym: gym.toObject(),
@@ -50,8 +55,9 @@ async function getOverview(req, res) {
                     winMilestoneMet: !nextTier.winMilestone || wins >= nextTier.winMilestone,
                     gymWins: wins,
                 },
+                tiers: Object.entries(FACILITY_TIERS).map(([n, spec]) => ({ tier: Number(n), ...spec })),
             },
-            staff: staff.map((s) => s.toPublic()),
+            staff: staff.map((s) => ({ ...s.toPublic(), effects: staffService.describeEffects(s) })),
             mentoring: {
                 capacity: FACILITY_TIERS[gym.facilityTier].mentoringCapacity,
                 pairs: pairs.map((p) => p.toPublic()),
@@ -73,7 +79,8 @@ async function startUpgrade(req, res) {
 
 async function getStaffMarket(req, res) {
     try {
-        res.json({ market: staffService.generateMarket(req.user.gymId) });
+        const market = staffService.generateMarket(req.user.gymId).map((c) => ({ ...c, effects: staffService.describeEffects(c) }));
+        res.json({ market });
     } catch (err) { handle(res, err); }
 }
 
@@ -106,3 +113,5 @@ async function getHallOfFame(req, res) {
 }
 
 module.exports = { getMyGym, getOverview, startUpgrade, getStaffMarket, hireStaff, fireStaff, startMentoring, getHallOfFame };
+module.exports.getMyGym = require('../lib/atomic').handler(getMyGym);
+module.exports.getOverview = require('../lib/atomic').handler(getOverview);

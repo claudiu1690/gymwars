@@ -17,7 +17,7 @@ export function Button({ variant = 'primary', size = 'md', disabled = false, ico
     opacity: disabled ? 0.5 : 1,
     border: 'none',
     borderRadius: 'var(--radius-button)',
-    transition: 'background var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out)',
+    transition: 'background var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out), transform var(--duration-instant) var(--ease-out)',
     whiteSpace: 'nowrap',
     lineHeight: 1,
     textDecoration: 'none',
@@ -58,6 +58,7 @@ export function Button({ variant = 'primary', size = 'md', disabled = false, ico
 
   return (
     <button
+      className="pressable"
       style={{ ...base, ...sizes[size], ...variantMap[variant] }}
       disabled={disabled}
       onClick={onClick}

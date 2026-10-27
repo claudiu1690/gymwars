@@ -1,0 +1,25 @@
+{
+  "provider": "Higgsfield MCP",
+  "model": "gpt_image_2_5",
+  "generatedAt": "2026-10-14",
+  "jobId": "b0397b49-30ab-4898-9a34-81f1f2464d88",
+  "referenceJobId": "ac808798-c049-411d-a588-98ea4d97a992",
+  "brief": "Original stylized cartoon 3D fight-gym team; four distinct adult fighters, navy/cream/coral palette, warm arched-window gym, clear left space, no lettering or UI.",
+  "source": "output/art-source/landing-your-corner.png",
+  "assets": [
+    {
+      "file": "your-corner-mobile.webp",
+      "width": 1000,
+      "height": 790,
+      "bytes": 76700,
+      "sha256": "53d964fd4b2bb0fc9ef1f02583d2479884698480d3fa5ffca62ae0c7e799d9d2"
+    },
+    {
+      "file": "your-corner.webp",
+      "width": 1344,
+      "height": 752,
+      "bytes": 80956,
+      "sha256": "590ce72b64821aca6d49bff42b490263d8c623b3250e15a70e8f4468b31e1cc6"
+    }
+  ]
+}

@@ -1,0 +1,1753 @@
+/* Approved clubhouse direction: cream canvas, navy rail, coral actions. */
+.career-app.game-mode.clubhouse {
+  --c-paper: #f5efdf;
+  --c-white: #fffaf0;
+  --c-text: #213342;
+  --c-muted: #657078;
+  --c-line: #d9d0bf;
+  --c-navy: #233747;
+  --c-orange: #ed6b4e;
+  --c-orange-dark: #b94731;
+  --club-cream: #fffaf0;
+  --club-ink: #213342;
+  --club-muted: #637079;
+  background: #f5efdf;
+  color: #213342;
+  color-scheme: light;
+  padding-left: 200px;
+}
+.career-app.game-mode.clubhouse :is(h1, h2, h3, h4) {
+  color: #213342;
+}
+.career-app.game-mode.clubhouse :is(p, small) {
+  color: #616d73;
+}
+.career-app.game-mode.clubhouse a {
+  color: #294d63;
+}
+.career-app.game-mode.clubhouse .career-eyebrow {
+  color: #926347;
+  font-size: 11px;
+}
+.career-app.game-mode.clubhouse .career-main {
+  max-width: 1500px;
+  padding: 18px 32px 40px;
+}
+.career-app.game-mode.clubhouse .career-top {
+  margin-bottom: 24px;
+}
+.career-app.game-mode.clubhouse .career-top h1 {
+  font-size: clamp(30px, 3.7vw, 49px);
+  text-transform: uppercase;
+  line-height: 1.08;
+}
+.career-app.game-mode.clubhouse .game-nav {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 50;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 28px 0 22px;
+  gap: 7px;
+  background: #203342;
+  border: 0;
+  box-shadow: none;
+}
+.clubhouse .clubhouse-wordmark {
+  display: block;
+  text-align: center;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: 48px;
+  line-height: 0.92;
+  letter-spacing: -3px;
+  margin: 12px 0 50px;
+}
+.career-app.game-mode.clubhouse .clubhouse-wordmark {
+  color: #fff4dd;
+  text-decoration: none;
+}
+.clubhouse-wordmark > span {
+  display: block;
+  font-family: Inter, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  margin-top: 16px;
+  color: #b9c1c2;
+}
+.career-app.game-mode.clubhouse .game-nav > button {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px 22px;
+  background: transparent;
+  color: #f5eedc;
+  border: 0;
+  border-right: 5px solid transparent;
+  border-radius: 0;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: none;
+}
+.career-app.game-mode.clubhouse .game-nav > button.selected {
+  color: #ff8d70;
+  background: #2d4253;
+  border-right-color: #f27b5d;
+}
+.clubhouse .game-nav svg {
+  width: 26px;
+  height: 26px;
+}
+.clubhouse .clubhouse-clubmark {
+  margin: auto 20px 0;
+  border: 2px solid #6d8290;
+  clip-path: polygon(50% 0, 100% 15%, 100% 85%, 50% 100%, 0 85%, 0 15%);
+  padding: 30px 12px;
+  text-align: center;
+  color: #c9d1d3;
+}
+.clubhouse-clubmark strong {
+  display: block;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+.clubhouse-clubmark span {
+  font-size: 8px;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 12px;
+}
+.career-app.game-mode.clubhouse .game-hud {
+  min-height: 76px;
+  background: transparent;
+  border-bottom: 1px solid #ded5c3;
+  padding: 14px 32px;
+  gap: 18px;
+  color: #213342;
+}
+.career-app.game-mode.clubhouse .game-club-brand {
+  color: #213342;
+}
+.career-app.game-mode.clubhouse .game-club-brand small {
+  color: #67747a;
+}
+.career-app.game-mode.clubhouse .game-club-crest {
+  background: #213342;
+  color: #ffede1;
+  border-color: #ed795b;
+}
+.career-app.game-mode.clubhouse .game-resources :is(strong, span, small) {
+  color: #334853;
+}
+.clubhouse .game-legacy,
+.clubhouse .game-date strong,
+.clubhouse .game-next-event {
+  display: none;
+}
+.clubhouse .game-signout {
+  background: #ebe2d1;
+  color: #294351;
+  border-color: #d8cdbc;
+}
+.career-app.game-mode.clubhouse .career-action {
+  min-height: 48px;
+  padding: 13px 22px;
+  border-radius: 9px;
+  background: #ec694d;
+  color: #fff9ef;
+  border: 1px solid #c9533c;
+  border-bottom-width: 3px;
+  box-shadow: 0 2px 4px #293f4620;
+  font-size: 15px;
+  font-weight: 850;
+}
+.career-app.game-mode.clubhouse .career-action:hover {
+  background: #dd5a40;
+}
+.career-app.game-mode.clubhouse .career-action.secondary {
+  background: #e8e3d6;
+  color: #253d4a;
+  border-color: #bfc4bc;
+}
+.career-app.game-mode.clubhouse .career-action:disabled {
+  opacity: 0.5;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .career-panel,
+    .fighter-challenge,
+    .fighter-condition,
+    .fighter-title-chase,
+    .fighter-disclosure,
+    .camp-header,
+    .camp-opponent,
+    .camp-week-strip > div,
+    .camp-active,
+    .camp-ready-fight,
+    .camp-plan-card,
+    .camp-custom,
+    .camp-week-review,
+    .camp-week-fighter,
+    .camp-decision,
+    .camp-details,
+    .coach-board,
+    .coach-choice,
+    .coach-round-call,
+    .scout-dossier,
+    .scout-comparison,
+    .scout-report-note,
+    .scout-skill,
+    .scout-signing,
+    .scout-rulebook,
+    .scout-guarantees > div,
+    .scout-contract,
+    .offer-card,
+    .offer-confirm,
+    .booking-fighters button,
+    .career-result-row,
+    .career-ladder-row,
+    .gym-staff-card,
+    .gym-trait-choices button,
+    .gym-pick-fighters button,
+    .gym-history,
+    .development-stage,
+    .department-detail,
+    .development-summary,
+    .campaign-stage,
+    .campaign-hero,
+    .campaign-finale,
+    .war-result,
+    .war-history button
+  ) {
+  background: #fffaf0;
+  color: #243947;
+  border-color: #d7cfbe;
+  box-shadow: 0 3px 0 #d7cfbe55;
+  border-radius: 12px;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .camp-text-button,
+    .career-text-link,
+    .fighter-breadcrumb,
+    .scout-text-button,
+    .scout-rulebook > summary,
+    .camp-details > summary,
+    .fighter-disclosure > summary
+  ) {
+  color: #2c5267;
+  font-size: 14px;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fighter-condition > strong,
+    .fighter-condition b,
+    .fighter-title-chase strong,
+    .camp-plan-title,
+    .camp-plan-benefit,
+    .camp-plan-select,
+    .camp-week-strip strong,
+    .scout-skill strong,
+    .scout-skill span,
+    .scout-range-key,
+    .scout-card-copy > b,
+    .gym-work-label,
+    .gym-section-heading h2,
+    .gym-staff-card strong,
+    .gym-history-content strong
+  ) {
+  color: #233d4a;
+}
+.career-app.game-mode.clubhouse .camp-plan-card[aria-pressed="true"],
+.career-app.game-mode.clubhouse
+  .scout-compare-team
+  button[aria-pressed="true"] {
+  background: #fff0d9;
+  border-color: #de7556;
+  box-shadow: 0 0 0 2px #ed7856;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .scout-compare-team button,
+    .camp-focus-choices button,
+    .camp-shelves button,
+    .rank-weight-tabs button,
+    .fight-hub-tabs a
+  ) {
+  background: #eee6d5;
+  color: #2b4251;
+  border-color: #c6bfad;
+  border-radius: 8px;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .camp-shelves button[aria-pressed="true"],
+    .rank-weight-tabs button[aria-pressed="true"],
+    .fight-hub-tabs a[aria-current="page"]
+  ) {
+  background: #243b4b;
+  color: #fff4df;
+  border-color: #243b4b;
+}
+.career-app.game-mode.clubhouse
+  :is(.scout-skill-track, .fighter-condition-track, .career-track) {
+  background: #ded9cb;
+}
+.career-app.game-mode.clubhouse .scout-skill-track > span {
+  background: #67ac91;
+}
+.career-app.game-mode.clubhouse .scout-skill-track > i {
+  background: #c46142;
+  border-color: #c46142;
+}
+.career-app.game-mode.clubhouse .scout-hero {
+  background: #eee3cd;
+  border-color: #eb7857;
+  color: #243b48;
+}
+.career-app.game-mode.clubhouse .scout-hero h2 {
+  color: #243b48;
+}
+.career-app.game-mode.clubhouse .scout-resources > div {
+  background: #fff7e7;
+  border-color: #d8ccba;
+}
+.career-app.game-mode.clubhouse .scout-resources strong {
+  color: #2d4554;
+}
+.career-app.game-mode.clubhouse .scout-resources span {
+  color: #536b76;
+}
+.career-app.game-mode.clubhouse .scout-steps li {
+  background: #ece6d7;
+  color: #66716e;
+}
+.career-app.game-mode.clubhouse .scout-steps [data-active="true"] {
+  background: #f3d5b4;
+  color: #63432d;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .scout-estimate-note,
+    .scout-signed > strong,
+    p.scout-announcement,
+    .scout-guarantees strong
+  ) {
+  color: #315d4a;
+}
+.clubhouse .scout-announcement:empty {
+  display: block;
+  min-height: 22px;
+}
+.clubhouse .scout-announcement {
+  min-height: 22px;
+}
+.career-app.game-mode.clubhouse .career-save-slot {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 70;
+}
+.career-app.game-mode.clubhouse .career-save-slot:empty {
+  display: none;
+}
+.career-app.game-mode.clubhouse .fight-board {
+  --board-ink: #263e4d;
+  --board-paper: #fffaf0;
+  --board-muted: #647078;
+  background: #eee4ce;
+  border: 1px solid #d9cfba;
+  border-top: 4px solid #e87755;
+  box-shadow: 0 3px 0 #d1c4ac55;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fight-board-ticket,
+    .event-assignments > article,
+    .fight-board-date,
+    .fight-board-coach-note
+  ) {
+  background: #fffaf0;
+  border-color: #d7cfbe;
+  color: #294151;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fight-board-ticket span,
+    .fight-board-ticket strong,
+    .assignment-name,
+    .assignment-state,
+    .assignment-detail > span,
+    .fight-board-ticket-status,
+    .fight-board-section-title > span,
+    .fight-board-coach-note small
+  ) {
+  color: #385261;
+}
+.career-app.game-mode.clubhouse .fight-board-poster {
+  background: #223a4b;
+  border-color: #223a4b;
+  box-shadow: none;
+}
+.career-app.game-mode.clubhouse .fight-board-poster :is(h3, p, small, span) {
+  color: #fff1da;
+}
+.career-app.game-mode.clubhouse .fight-board-poster-top {
+  background: #dc7452;
+}
+.career-app.game-mode.clubhouse .fight-board-poster-top :is(span, strong) {
+  color: #fff8ef;
+}
+.career-app.game-mode.clubhouse .fight-board-matchup {
+  background:
+    linear-gradient(90deg, #10263dd9, #10263d38 50%, #10263dd9),
+    linear-gradient(0deg, #10263de8, transparent 80%),
+    url("/art/cartoon-fight-night.webp") center 61% / cover;
+}
+.career-app.game-mode.clubhouse .fight-board-billing > strong {
+  color: #ffeed3;
+}
+.career-app.game-mode.clubhouse .fight-board-date :is(strong, span, small) {
+  color: #2e4756;
+}
+.career-app.game-mode.clubhouse .fight-board-cta {
+  background: #ec694d;
+  color: #fff8ee;
+  border-color: #c8533e;
+}
+.career-app.game-mode.clubhouse .gym-history {
+  padding: 24px;
+}
+.clubhouse .gym-history-header {
+  margin-bottom: 20px;
+}
+.clubhouse .gym-history-header h2 {
+  margin: 0 0 8px;
+}
+.career-app.game-mode.clubhouse .gym-history-content {
+  border: 0;
+  padding: 0;
+}
+.career-app.game-mode.clubhouse .gym-history-content section {
+  padding: 18px;
+  background: #f3eddf;
+  border-radius: 9px;
+}
+.career-app.game-mode.clubhouse .gym-history-content :is(h3, p, small) {
+  color: #354d58;
+}
+.career-app.game-mode.clubhouse .gym-history-content .gym-hall-fighter {
+  background: #fffaf0;
+  color: #233a49;
+  border-color: #d5cdbd;
+}
+.clubhouse .fighter-main-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.clubhouse .fighter-main-actions .career-action {
+  min-height: 58px;
+  font-size: 18px;
+}
+.clubhouse .fighter-challenge-body > h3 {
+  font-size: 26px;
+}
+.clubhouse .fighter-skills {
+  padding: 20px;
+  background: #eee5d1;
+  border-radius: 12px;
+}
+.clubhouse .fighter-skills h3 {
+  margin: 0 0 14px;
+}
+.career-app.game-mode.clubhouse .fighter-attributes dd {
+  color: #244456;
+}
+.career-app.game-mode.clubhouse .fighter-condition-track span {
+  background: #6aa37b;
+}
+.career-app.game-mode.clubhouse
+  .gym-home-hero
+  :is(h2, p, small, .career-eyebrow, .gym-hero-stats strong) {
+  color: #fff1d8;
+}
+.career-app.game-mode.clubhouse .gym-area-tabs button {
+  background: #344d5d;
+  color: #ffeed4;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .gym-area-tabs button[aria-pressed="true"] {
+  background: #f17c59;
+  color: #fffaf3;
+  border-color: #e36847;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gym-idle-callout,
+    .gym-saved-camp,
+    .gym-staff-ranks li,
+    .department-benefit,
+    .camp-locked-specialist
+  ) {
+  background: #eee4cf;
+  border-color: #d3c2a7;
+  color: #334b58;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gym-idle-callout strong,
+    .department-detail strong,
+    .development-summary strong,
+    .development-stage strong,
+    .gym-staff-ranks li strong
+  ) {
+  color: #305365;
+}
+.career-app.game-mode.clubhouse .gym-idle-callout p {
+  color: #677377;
+}
+.career-app.game-mode.clubhouse .career-footer {
+  border-color: #d8cfba;
+}
+.career-app.game-mode.clubhouse .career-footer span {
+  color: #6a7679;
+}
+.career-app.game-mode.clubhouse .camp-decision {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 20px;
+}
+.clubhouse .camp-decision > div:first-child {
+  flex: 1;
+  min-width: 200px;
+}
+.clubhouse .camp-quick-team {
+  width: 100%;
+  border-top: 1px solid #d5ccba;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 18px;
+  font-size: 12px;
+  color: #5d6e72;
+}
+.clubhouse .camp-save-team {
+  font-size: 13px;
+}
+.clubhouse .camp-header .camp-coach-read {
+  display: none;
+}
+.clubhouse .camp-secondary-actions {
+  display: none;
+}
+.clubhouse .camp-week-strip {
+  display: none;
+}
+.clubhouse .camp-lengths {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.clubhouse .camp-lengths > div {
+  display: flex;
+  gap: 8px;
+}
+.clubhouse .camp-lengths button {
+  border-radius: 8px;
+  padding: 9px 15px;
+  min-height: 44px;
+  background: #ede5d5;
+  color: #304959;
+  border: 1px solid #cec5b2;
+}
+.clubhouse .camp-lengths button[aria-pressed="true"] {
+  background: #273e4e;
+  color: #fff5df;
+}
+.clubhouse .camp-lengths button span {
+  display: none;
+}
+.clubhouse .camp-plan-grid {
+  gap: 16px;
+}
+.clubhouse .camp-plan-card {
+  min-height: 260px;
+}
+.career-app.game-mode.clubhouse .camp-plan-top {
+  color: #b3563e;
+}
+.career-app.game-mode.clubhouse .camp-plan-icon {
+  background: #f7d9bd;
+  color: #734632;
+}
+.career-app.game-mode.clubhouse .camp-details {
+  padding: 18px;
+}
+.career-app.game-mode.clubhouse .camp-coach-effect {
+  display: none;
+}
+@media (max-width: 1050px) {
+  .career-app.game-mode.clubhouse {
+    padding-left: 160px;
+  }
+  .career-app.game-mode.clubhouse .game-nav {
+    width: 160px;
+  }
+  .career-app.game-mode.clubhouse .game-nav > button {
+    font-size: 15px;
+    padding: 14px 16px;
+  }
+  .clubhouse .clubhouse-wordmark {
+    font-size: 42px;
+  }
+  .career-app.game-mode.clubhouse .career-main {
+    padding: 18px 20px 32px;
+  }
+  .career-app.game-mode.clubhouse .game-hud {
+    flex-wrap: wrap;
+    padding: 12px 20px;
+  }
+  .clubhouse .game-resources {
+    margin-left: auto;
+  }
+  .clubhouse .game-turn {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .career-app.game-mode.clubhouse {
+    padding-left: 0;
+    padding-bottom: 70px;
+  }
+  .career-app.game-mode.clubhouse .game-nav {
+    inset: auto 0 0;
+    width: 100%;
+    height: 66px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid #455a67;
+  }
+  .clubhouse .clubhouse-wordmark,
+  .clubhouse .clubhouse-clubmark {
+    display: none !important;
+  }
+  .career-app.game-mode.clubhouse .game-nav > button {
+    min-height: 64px;
+    padding: 8px 2px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    border: 0;
+    border-top: 3px solid transparent;
+    font-size: 10px;
+  }
+  .career-app.game-mode.clubhouse .game-nav > button.selected {
+    border-top-color: #ed7b59;
+  }
+  .clubhouse .game-nav svg {
+    width: 23px;
+    height: 23px;
+  }
+  .career-app.game-mode.clubhouse .game-hud {
+    padding: 12px 16px;
+  }
+  .career-app.game-mode.clubhouse .career-main {
+    padding: 18px 14px 28px;
+  }
+  .career-app.game-mode.clubhouse .career-top h1 {
+    font-size: 30px;
+  }
+  .clubhouse .game-date {
+    display: none;
+  }
+  .clubhouse .game-resources {
+    width: auto;
+  }
+  .clubhouse .game-club-brand small {
+    display: none;
+  }
+  .clubhouse .game-signout {
+    display: none;
+  }
+  .clubhouse .game-club-brand strong {
+    font-size: 13px;
+  }
+  .clubhouse .game-resources strong {
+    font-size: 17px;
+  }
+  .clubhouse .fighter-main-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+  .clubhouse .fighter-main-actions .career-action {
+    font-size: 15px;
+    padding: 12px 8px;
+  }
+  .clubhouse .camp-decision .career-action {
+    width: 100%;
+  }
+  .clubhouse .camp-decision > div:first-child {
+    min-width: 0;
+  }
+  .clubhouse .camp-plan-card {
+    min-height: 0;
+  }
+  .clubhouse .camp-choices-heading {
+    display: block;
+  }
+  .clubhouse .camp-lengths {
+    margin-top: 12px;
+  }
+  .career-app.game-mode.clubhouse .game-hud {
+    gap: 8px;
+  }
+  .clubhouse .game-club-crest {
+    width: 32px;
+    height: 39px;
+  }
+}
+.clubhouse .war-simple {
+  gap: 24px;
+}
+.clubhouse .war-simple-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+.clubhouse .war-simple-heading h2 {
+  font-size: 30px;
+  margin: 7px 0 8px;
+}
+.clubhouse .war-exhibition-tag {
+  padding: 10px 14px;
+  background: #e4ebd9;
+  color: #376149;
+  font-size: 12px;
+  font-weight: 750;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+.clubhouse .war-rival-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.clubhouse .war-rival-picker > button {
+  text-align: left;
+  border: 2px solid #d4cab8;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fffaf0;
+  color: #263c49;
+  display: grid;
+  gap: 9px;
+  min-height: 155px;
+  cursor: pointer;
+}
+.clubhouse .war-rival-picker > button[aria-pressed="true"] {
+  border-color: #ed7050;
+  box-shadow: 0 0 0 2px #ed7050;
+  background: #fcebd7;
+}
+.clubhouse .war-rival-picker > button > span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #9b5639;
+}
+.clubhouse .war-rival-picker > button > strong {
+  font-size: 20px;
+}
+.clubhouse .war-rival-picker > button > small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.clubhouse .war-match-card {
+  border: 1px solid #d1c6b2;
+  border-radius: 14px;
+  background: #fffaf0;
+  overflow: hidden;
+  box-shadow: 0 4px 0 #e6dcc8;
+}
+.clubhouse .war-match-card > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 23px;
+  background: #e9dfcc;
+}
+.clubhouse .war-match-card > header h2 {
+  font-size: 22px;
+  margin: 5px 0;
+}
+.clubhouse .war-match-card > header em {
+  font-size: 16px;
+  margin: 0 9px;
+  color: #ad5b42;
+}
+.clubhouse .war-match-card > footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px;
+  border-top: 1px solid #ded5c2;
+}
+.clubhouse .war-match-card > footer p {
+  font-size: 12px;
+  max-width: 450px;
+}
+.clubhouse .war-match-card > footer .career-action {
+  min-width: 200px;
+  font-size: 20px;
+  min-height: 58px;
+}
+.clubhouse .war-matchup {
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr;
+  gap: 20px;
+  border-top: 1px solid #e0d6c4;
+}
+.clubhouse .war-corner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.clubhouse .war-corner .career-portrait {
+  width: 85px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #e9ddc6;
+}
+.clubhouse .war-corner > div {
+  display: grid;
+  gap: 8px;
+}
+.clubhouse .war-corner a,
+.clubhouse .war-corner strong {
+  font-size: 19px;
+  font-weight: 850;
+  text-decoration: none;
+}
+.clubhouse .war-corner small {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.clubhouse .war-corner span {
+  font-size: 13px;
+}
+.clubhouse .war-corner.rival {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+.clubhouse .war-match-division {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+.clubhouse .war-match-division b {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 36px;
+  color: #c76849;
+}
+.clubhouse .war-match-division span {
+  font-size: 11px;
+}
+.clubhouse .war-comparison {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.clubhouse .war-comparison > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  align-items: center;
+  background: #f0e9d8;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 11px;
+}
+.clubhouse .war-comparison strong {
+  font-size: 15px;
+}
+.clubhouse .war-result-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 20px;
+}
+.career-app.game-mode.clubhouse .war-bouts article {
+  background: #edf0e1;
+  border-color: #bdcbb7;
+}
+.career-app.game-mode.clubhouse .war-bouts span {
+  color: #3e654b;
+}
+.career-app.game-mode.clubhouse .war-result h2 > span {
+  color: #b4553b;
+}
+.career-app.game-mode.clubhouse .war-history :is(strong, span) {
+  color: #2c4656;
+}
+.clubhouse .war-history-panel > h2 {
+  font-size: 20px;
+}
+.clubhouse .war-short-rules {
+  font-size: 12px;
+  margin: 0;
+}
+.clubhouse .war-no-match {
+  padding: 24px;
+}
+.clubhouse .mentor-rule {
+  padding: 16px 20px;
+  background: #efe0c6;
+  border-left: 4px solid #d78a54;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.clubhouse .mentor-lessons {
+  display: grid;
+  gap: 16px;
+}
+.clubhouse .mentor-lesson {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  background: #fffaf0;
+  border: 1px solid #d9cdb8;
+  border-radius: 12px;
+  padding: 24px;
+}
+.clubhouse .mentor-pair-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.clubhouse .mentor-pair-art .career-portrait {
+  width: 68px;
+  height: 98px;
+  object-fit: cover;
+  border-radius: 9px;
+  background: #e7dfcb;
+  flex: 0 0 68px;
+  display: block;
+  overflow: hidden;
+}
+.clubhouse .mentor-pair-art > span {
+  color: #bf6848;
+  font-size: 24px;
+}
+.clubhouse .mentor-lesson-body h3 {
+  font-size: 23px;
+  margin: 9px 0;
+}
+.clubhouse .mentor-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+.clubhouse .mentor-terms > * {
+  padding: 8px 11px;
+  background: #f0e7d4;
+  border-radius: 7px;
+  font-size: 12px;
+}
+.clubhouse .mentor-confirm {
+  border-top: 1px solid #dacbb5;
+  padding-top: 12px;
+}
+.clubhouse .mentor-confirm .career-action {
+  margin: 8px 8px 0 0;
+}
+.career-app.game-mode.clubhouse .mentor-blocked {
+  color: #a4593b;
+}
+.clubhouse .mentor-active {
+  margin: 25px 0;
+}
+.clubhouse .mentor-active article {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  background: #e8ecd9;
+  border-radius: 12px;
+  margin-top: 14px;
+}
+.clubhouse .mentor-active strong {
+  font-size: 12px;
+  color: #436944;
+}
+.clubhouse .mentor-empty {
+  padding: 25px;
+  border: 1px dashed #c8bda6;
+  background: #fff7e8;
+  border-radius: 12px;
+  margin: 22px 0;
+}
+.clubhouse .clubhouse-play {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 30px;
+  background: #fff8ea;
+  border: 1px solid #d8c8ad;
+  border-radius: 14px;
+}
+.clubhouse .clubhouse-play h2 {
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+.clubhouse .clubhouse-play-action {
+  display: grid;
+  gap: 9px;
+  padding: 22px;
+  border-radius: 10px;
+  background: #e6e8d6;
+  border-bottom: 3px solid #b4bd9b;
+  text-decoration: none;
+}
+.clubhouse .clubhouse-play-action.fight {
+  background: #f6d3bc;
+  border-bottom-color: #d79474;
+}
+.clubhouse .clubhouse-play-action strong {
+  font-size: 22px;
+}
+.clubhouse .clubhouse-play-action span {
+  font-size: 13px;
+}
+.clubhouse .clubhouse-career-link {
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+}
+.clubhouse .club-development-link {
+  display: none;
+}
+.career-app.game-mode.clubhouse .club-campaign-ticket {
+  background: #eee4cf;
+  border-color: #d2c4ab;
+  padding: 15px 20px;
+  margin: 20px 0;
+}
+.career-app.game-mode.clubhouse .club-campaign-ticket :is(h2, p, span, strong) {
+  color: #3d5663;
+}
+.clubhouse .club-campaign-ticket p,
+.clubhouse .club-campaign-progress,
+.clubhouse .club-cup {
+  display: none;
+}
+.clubhouse .club-campaign-ticket h2 {
+  font-size: 17px;
+}
+.clubhouse .club-campaign-ticket .career-eyebrow {
+  font-size: 9px;
+}
+.career-app.game-mode.clubhouse .club-scene :is(h2, p, .career-eyebrow) {
+  color: #fff4d9;
+}
+.career-app.game-mode.clubhouse .club-fighter :is(h3, p, small) {
+  color: #e6edf5;
+}
+.career-app.game-mode.clubhouse .club-team .career-eyebrow {
+  color: #8b6549;
+}
+.career-app.game-mode.clubhouse .club-next-event {
+  background: #e9dfcd;
+  border-color: #cbbca3;
+  color: #294554;
+}
+@media (max-width: 1050px) {
+  .clubhouse .war-rival-picker {
+    grid-template-columns: 1fr;
+  }
+  .clubhouse .war-rival-picker > button {
+    min-height: 0;
+    padding: 16px;
+  }
+  .clubhouse .war-matchup {
+    grid-template-columns: 1fr 55px 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+  .clubhouse .war-corner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .clubhouse .war-corner.rival {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .clubhouse .war-comparison {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .clubhouse .war-simple-heading {
+    display: block;
+  }
+  .clubhouse .war-simple-heading h2 {
+    font-size: 24px;
+  }
+  .clubhouse .war-exhibition-tag {
+    display: inline-block;
+    margin: 5px 0;
+  }
+  .clubhouse .war-match-card > header {
+    padding: 17px;
+  }
+  .clubhouse .war-match-card > header h2 {
+    font-size: 19px;
+  }
+  .clubhouse .war-match-card > footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+    gap: 8px;
+  }
+  .clubhouse .war-corner .career-portrait {
+    width: 65px;
+    height: 92px;
+  }
+  .clubhouse .war-corner a,
+  .clubhouse .war-corner strong {
+    font-size: 15px;
+  }
+  .clubhouse .war-matchup {
+    grid-template-columns: 1fr 35px 1fr;
+    padding: 15px;
+    gap: 10px;
+  }
+  .clubhouse .war-match-division b {
+    font-size: 23px;
+  }
+  .clubhouse .war-match-division span {
+    font-size: 9px;
+    writing-mode: vertical-rl;
+    align-self: center;
+  }
+  .clubhouse .war-comparison > div {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .clubhouse .war-result-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .clubhouse .mentor-lesson {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 16px;
+  }
+  .clubhouse .mentor-pair-art {
+    justify-content: flex-start;
+  }
+  .clubhouse .mentor-active article {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .clubhouse .clubhouse-play {
+    padding: 20px;
+  }
+  .clubhouse .club-campaign-ticket {
+    display: block;
+  }
+  .clubhouse .club-campaign-ticket .club-ticket-action {
+    display: block;
+    margin-top: 10px;
+  }
+}
+/* Keep the existing illustrated cards readable within the new shell. */
+.career-app.game-mode.clubhouse
+  :is(.career-fighter, .fighter-identity, .gym-team-card, .scout-card)
+  :is(h2, h3, h4, a, .career-text-link) {
+  color: #fff5df;
+}
+.career-app.game-mode.clubhouse
+  :is(.career-fighter, .fighter-identity, .gym-team-card, .scout-card)
+  :is(p, small, .career-eyebrow, .scout-card-copy > b) {
+  color: #b9c9d4;
+}
+.career-app.game-mode.clubhouse .career-fighter-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+}
+.career-app.game-mode.clubhouse .career-fighter .career-portrait {
+  height: 340px;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fighter-matchup-read,
+    .fighter-condition p,
+    .fighter-title-chase span,
+    .scout-section-heading p,
+    .scout-comparison-heading span,
+    .booking-fighters small,
+    .booking-fighters span,
+    .club-next-fight span,
+    .camp-plan-detail,
+    .camp-plan-cost
+  ) {
+  color: #53646c;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gym-mentoring,
+    .gym-veteran-opportunity,
+    .gym-veteran-confirm,
+    .scout-signed
+  ) {
+  background: #fff8e9;
+  border-color: #d6c7aa;
+  color: #213342;
+}
+.career-app.game-mode.clubhouse .scout-signed {
+  background: #e2ecdb;
+}
+.career-app.game-mode.clubhouse .scout-signed > strong {
+  color: #2e6547;
+}
+.career-app.game-mode.clubhouse :is(.gym-team-empty, .club-empty-slot) {
+  background: #ebe2ce;
+  border-color: #b7ac94;
+  color: #304b5a;
+}
+.career-app.game-mode.clubhouse :is(.club-hotspot, .club-hotspot strong) {
+  color: #fff3da;
+}
+.career-app.game-mode.clubhouse .club-hotspot small {
+  color: #c7d3d9;
+}
+.career-app.game-mode.clubhouse .club-development-link {
+  display: none;
+}
+.career-app.game-mode.clubhouse .agenda-action {
+  background: #e7e2d5;
+  color: #244454;
+  border-color: #bcc2b8;
+}
+.career-app.game-mode.clubhouse .camp-active :is(p, small) {
+  color: #5b6e76;
+}
+.career-app.game-mode.clubhouse .camp-active .career-inline {
+  margin-top: 18px;
+}
+.career-app.game-mode.clubhouse .club-next-fight > span {
+  color: #516976;
+}
+@media (max-width: 700px) {
+  .career-app.game-mode.clubhouse .career-fighter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .career-app.game-mode.clubhouse .career-fighter .career-portrait {
+    height: 220px;
+  }
+  .career-app.game-mode.clubhouse .career-fighter-info {
+    padding: 12px;
+  }
+  .career-app.game-mode.clubhouse .career-fighter h3 {
+    font-size: 17px;
+  }
+}
+.career-app.game-mode.clubhouse
+  .scout-prospect-card
+  :is(h3, p, .scout-card-copy > b) {
+  color: #fff2db;
+}
+.career-app.game-mode.clubhouse .scout-prospect-card small {
+  color: #c0d0dc;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .scout-board-heading > span,
+    .scout-comparison-heading > span,
+    .fighter-condition p,
+    .fighter-challenge-body .fighter-matchup-read
+  ) {
+  color: #5d6d73;
+}
+.career-app.game-mode.clubhouse
+  :is(.club-scene-hotspot, .club-scene-hotspot strong) {
+  color: #fff3da;
+}
+.career-app.game-mode.clubhouse .club-scene-hotspot small {
+  color: #c7d3d9;
+}
+.career-app.game-mode.clubhouse .club-recruit-slot {
+  background: #ebe2ce;
+  border-color: #b7ac94;
+  color: #304b5a;
+}
+.career-app.game-mode.clubhouse .club-next-event > span:last-child {
+  color: #53646c;
+}
+.clubhouse .war-match-card > header .career-action {
+  flex-shrink: 0;
+  min-width: 170px;
+}
+@media (max-width: 700px) {
+  .clubhouse .war-rival-picker {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 3px 2px 10px;
+    gap: 12px;
+  }
+  .clubhouse .war-rival-picker > button {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .clubhouse .war-match-card > header {
+    flex-wrap: wrap;
+  }
+  .clubhouse .war-match-card > header .career-action {
+    width: 100%;
+  }
+  .clubhouse .war-match-division > span {
+    writing-mode: horizontal-tb;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .clubhouse .war-matchup {
+    position: relative;
+    padding-top: 36px;
+  }
+}
+.career-app.game-mode.clubhouse .camp-lengths > span {
+  color: #55676f;
+}
+.career-app.game-mode.clubhouse .camp-lengths button {
+  background: #e9e1d0;
+  color: #304959;
+}
+.career-app.game-mode.clubhouse .camp-lengths button[aria-pressed="true"] {
+  background: #263f4e;
+  color: #fff7e3;
+}
+.career-app.game-mode.clubhouse .camp-plan-card {
+  min-height: 0;
+  padding: 20px;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-top {
+  margin-bottom: 16px;
+}
+.career-app.game-mode.clubhouse
+  .camp-plan-card
+  .camp-plan-top
+  > span:last-child {
+  background: transparent;
+  color: #6d6356;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-icon {
+  background: #f1dbc0;
+  color: #864e34;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-title {
+  min-height: 0;
+  margin-bottom: 14px;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-intent {
+  min-height: 0;
+  color: #566970;
+  margin-bottom: 14px;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-tradeoff {
+  color: #596a70;
+  min-height: 0;
+  margin: 14px 0;
+}
+.career-app.game-mode.clubhouse .camp-plan-card .camp-plan-select {
+  background: #ece4d5;
+  color: #284859;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 7px;
+  margin-top: auto;
+}
+.career-app.game-mode.clubhouse
+  .camp-plan-card[aria-pressed="true"]
+  .camp-plan-select {
+  background: #f7d6b9;
+  color: #79402c;
+}
+.career-app.game-mode.clubhouse
+  .camp-team-report-heading
+  :is(h2, p, .career-eyebrow) {
+  color: #fff0d8;
+}
+.career-app.game-mode.clubhouse :is(.camp-team-result, .camp-report-next) {
+  background: #fffaf0;
+  color: #263e4b;
+  border-color: #d9ceba;
+}
+.career-app.game-mode.clubhouse .camp-result-skills dt {
+  color: #324b58;
+}
+.career-app.game-mode.clubhouse .camp-result-skills dd {
+  color: #287253;
+  font-size: 20px;
+}
+.career-app.game-mode.clubhouse .camp-result-readiness {
+  background: #e9e9da;
+  color: #27424e;
+}
+.career-app.game-mode.clubhouse .camp-result-prep {
+  background: #f4e4c5;
+  color: #715128;
+}
+.career-app.game-mode.clubhouse .camp-result-skills > div {
+  border-color: #ded4be;
+}
+/* Secondary rooms and combat use the same readable clubhouse palette. */
+.career-app.game-mode.clubhouse
+  :is(
+    .development-stage-action,
+    .development-room-detail,
+    .development-room-effect,
+    .development-team-effects,
+    .development-confirm,
+    .gym-staff-next,
+    .gym-staff-confirm,
+    .campaign-roadmap,
+    .campaign-lineup,
+    .campaign-live,
+    .campaign-locked,
+    .campaign-continuation,
+    .career-journey,
+    .fight-night-corner,
+    .fight-night .career-outcome
+  ) {
+  background: #f1e8d5;
+  color: #233e4b;
+  border-color: #d5c6ad;
+  box-shadow: 0 3px 0 #d1c6b344;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .development-stage-stats > span,
+    .development-stage-action > span,
+    .development-stage-action small,
+    .development-room-levels small,
+    .development-rooms-heading > span,
+    .gym-staff-card header small,
+    .gym-staff-action span,
+    .gym-staff-ranks summary,
+    .gym-staff-next small,
+    .campaign-stage-detail summary,
+    .campaign-prize > span,
+    .coach-tools button,
+    .coach-round-call > span > span
+  ) {
+  color: #576b75;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .development-room-detail h3,
+    .development-room-detail strong,
+    .development-room-effect strong,
+    .development-team-effects strong,
+    .fight-night-skills strong
+  ) {
+  color: #254b5b;
+}
+.career-app.game-mode.clubhouse .development-roadmap small {
+  color: #c5cfda;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fight-night-hero h2,
+    .fight-night-hero h3,
+    .fight-night-hero .career-eyebrow
+  ) {
+  color: #fff1d8;
+}
+.career-app.game-mode.clubhouse .fight-night-hero p {
+  color: #e6dbc8;
+}
+.career-app.game-mode.clubhouse .fight-night-corner :is(p, small, span) {
+  color: #48606a;
+}
+.career-app.game-mode.clubhouse .fight-night-corner .fighter-rarity {
+  color: var(--rarity-ink);
+}
+.career-app.game-mode.clubhouse .fight-night-corner :is(h2, h3, strong) {
+  color: #263f4c;
+}
+.career-app.game-mode.clubhouse .fight-night .career-outcome h2 {
+  color: #253e48;
+}
+.career-app.game-mode.clubhouse .fight-night .career-journey {
+  background: #eee3cc;
+  color: #294757;
+}
+.career-app.game-mode.clubhouse .campaign-prize strong {
+  color: #9b6224;
+}
+.career-app.game-mode.clubhouse .campaign-prize b {
+  color: #29795b;
+}
+.career-app.game-mode.clubhouse .campaign-trophy-stage > span {
+  color: #9b7129;
+}
+.career-app.game-mode.clubhouse .opponent-comparison {
+  background: #eee6d5;
+  color: #294452;
+  border-radius: 8px;
+  padding: 12px;
+}
+.career-app.game-mode.clubhouse .opponent-comparison :is(span, strong) {
+  color: #294452;
+}
+.career-app.game-mode.clubhouse .gym-empty-slot {
+  background: #ebe2ce;
+  border-color: #b7ac94;
+  color: #304b5a;
+}
+.career-app.game-mode.clubhouse .gym-empty-slot :is(h3, strong) {
+  color: #304b5a;
+}
+.career-app.game-mode.clubhouse .gym-staff-next-rank {
+  background: #eee5d1;
+  color: #305365;
+  border-color: #d08c67;
+  padding: 15px;
+  border-radius: 8px;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gym-staff-heading small,
+    .gym-staff-contract small,
+    .gym-staff-ladder-toggle,
+    .gym-staff-next-rank small
+  ) {
+  color: #5b6e73;
+}
+.career-app.game-mode.clubhouse .gym-staff-card .gym-staff-ladder-toggle {
+  color: #325468;
+}
+.career-app.game-mode.clubhouse .development-stage-action > p {
+  color: #566971;
+}
+.career-app.game-mode.clubhouse .development-stage-action {
+  padding: 24px;
+}
+.career-app.game-mode.clubhouse :is(.booking-hero, .booking-heading) {
+  background: #eee4d0;
+  color: #243f4d;
+}
+.career-app.game-mode.clubhouse .career-action:not(.secondary),
+.career-app.game-mode.clubhouse .fight-board-cta,
+.career-app.game-mode.clubhouse .gym-area-tabs button[aria-pressed="true"] {
+  background: #bd4c34;
+  color: #fff9ef;
+  border-color: #a8402c;
+}
+.career-app.game-mode.clubhouse .career-action:not(.secondary):hover {
+  background: #a9412d;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .gym-staff-heading > div > span,
+    .gym-staff-next-rank > span,
+    .gym-staff-contract > div > span,
+    .gym-staff-release summary,
+    .development-room-effect > span,
+    .development-room-effect > small,
+    .development-room-purchase > p,
+    .development-team-effects > span,
+    .development-room-levels li > span,
+    .booking-heading > span
+  ) {
+  color: #54666d;
+}
+.career-app.game-mode.clubhouse .campaign-kicker {
+  color: #8b5527;
+}
+.career-app.game-mode.clubhouse .camp-details p {
+  color: #56686e;
+}
+.career-app.game-mode.clubhouse .scout-blocker {
+  color: #91402e;
+}
+.career-app.game-mode.clubhouse
+  :is(.booking-intro, .promoter-offer, .career-setup) {
+  background: #fff8e9;
+  color: #294450;
+  border-color: #d7cbb3;
+}
+.career-app.game-mode.clubhouse .offer-content :is(h3, p, small),
+.career-app.game-mode.clubhouse .offer-stats :is(span, i) {
+  color: #3e5662;
+}
+.career-app.game-mode.clubhouse .starter-styles button {
+  background: #eee3ce;
+  color: #304959;
+  border-color: #d1bfa3;
+}
+.career-app.game-mode.clubhouse .starter-styles button small {
+  color: #4c6370;
+}
+.career-app.game-mode.clubhouse .starter-styles button[aria-pressed="true"] {
+  border-color: #bd5c39;
+  background: #f8dfbb;
+}
+.career-app.game-mode.clubhouse .fight-night-corner .career-badge.orange {
+  color: #8b381f;
+  background: #f4d3b8;
+}
+.career-app.game-mode.clubhouse
+  :is(
+    .fighter-layout,
+    .fighter-decisions,
+    .fighter-challenge,
+    .fighter-main-actions
+  ) {
+  min-width: 0;
+}
+@media (max-width: 400px) {
+  .career-app.game-mode.clubhouse .fighter-main-actions {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+  .career-app.game-mode.clubhouse .fighter-main-actions .career-action {
+    padding: 12px 6px;
+    white-space: normal;
+    font-size: 14px;
+  }
+  .career-app.game-mode.clubhouse .fighter-condition {
+    padding: 10px;
+  }
+  .career-app.game-mode.clubhouse .fighter-identity-name h2 {
+    font-size: 23px;
+    overflow-wrap: anywhere;
+  }
+}
+.career-app.game-mode.clubhouse .offer-content,
+.career-app.game-mode.clubhouse .career-setup form {
+  background: #fff8e9;
+  color: #294450;
+}
+.career-app.game-mode.clubhouse .scout-blocker {
+  background: #f1dec3;
+  color: #823e2b;
+  padding: 12px;
+  border-radius: 8px;
+}
+.career-app.game-mode.clubhouse .scout-hidden-skills b {
+  color: #355368;
+}
+.career-app.game-mode.clubhouse .gym-staff-release > button {
+  color: #425d6c;
+}
+.career-app.game-mode.clubhouse .development-room-purchase > span {
+  color: #54666d;
+}
+.career-app.game-mode.clubhouse .gym-idle-callout > span {
+  background: #956426;
+}
+@media (max-width: 700px) {
+  .career-app.game-mode.clubhouse .fighter-layout {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+  .career-app.game-mode.clubhouse .fighter-decisions {
+    min-width: 0;
+    width: 100%;
+  }
+  .career-app.game-mode.clubhouse .fighter-attributes {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+  .career-app.game-mode.clubhouse .fighter-attributes dt {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  .career-app.game-mode.clubhouse .fighter-attributes dd {
+    font-size: 18px;
+  }
+}
+.career-app.game-mode.clubhouse .scout-hidden-skills strong {
+  color: #355368;
+}
+.career-app.game-mode.clubhouse .fighter-decisions {
+  grid-template-columns: minmax(0, 1fr);
+}
+.career-app.game-mode.clubhouse .offer-date strong,
+.career-app.game-mode.clubhouse .offer-stats strong {
+  color: #284653;
+}
+.career-app.game-mode.clubhouse .offer-purse strong {
+  color: #855626;
+}
+.career-app.game-mode.clubhouse .offer-purse > span {
+  color: #297356;
+}
+.career-app.game-mode.clubhouse .offer-billing > small {
+  color: #d8e2e8;
+}
+/* A short introduction to the unchanged camp choices. */
+.career-app.game-mode.clubhouse .gym-training-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 26px;
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 16px 20px;
+  border: 1px solid #d7cbb3;
+  border-radius: 12px;
+  background: #fff8e9;
+  color: #284653;
+}
+.career-app.game-mode.clubhouse .gym-training-steps li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.career-app.game-mode.clubhouse .gym-training-steps b {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #233746;
+  color: #fff8e9;
+}
+.career-app.game-mode.clubhouse.training-page .career-top {
+  margin-bottom: 12px;
+}
+.career-app.game-mode.clubhouse.training-page .career-top h1 {
+  font-size: 32px;
+  line-height: 1.05;
+}

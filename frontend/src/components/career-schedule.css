@@ -1,0 +1,649 @@
+/* Headline fight poster, dated event tickets and the team's current commitments. */
+.gym-schedule.fight-board {
+  --board-ink: #203947;
+  --board-paper: #fbf4df;
+  background: #e9e6d9;
+  border: 1px solid #c5c5b5;
+  border-top: 5px solid var(--board-ink);
+  padding: 24px;
+  border-radius: 10px 10px 18px 18px;
+  color: var(--board-ink);
+  box-shadow: 0 5px 0 #cecfc2;
+  overflow: hidden;
+}
+.gym-schedule.fight-board > header {
+  gap: 18px;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 22px;
+}
+.gym-schedule.fight-board > header > div {
+  min-width: 0;
+}
+.fight-board > header h2 {
+  margin: 3px 0 4px;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+}
+.fight-board > header p {
+  margin: 7px 0 0;
+  font-size: 13px;
+  color: #50605d;
+}
+.fight-board .career-eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  color: #54645f;
+}
+.fight-board-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 1px;
+  width: 84px;
+  padding: 8px 6px;
+  background: var(--board-paper, #fbf4df);
+  color: #203947;
+  border: 1px solid #c1c3ae;
+  border-bottom: 4px solid #aab0a1;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 1.1;
+  transform: rotate(2deg);
+}
+.fight-board-date small {
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+.fight-board-date strong {
+  font-size: 31px;
+  font-weight: 950;
+  letter-spacing: -1px;
+}
+.fight-board-date > span {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.fight-board-poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid #203947;
+  background: #203947;
+  color: #fbf4df;
+  box-shadow: 0 5px 0 #bac1b4;
+}
+.fight-board-poster-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 11px 18px;
+  background: #efd077;
+  color: #203947;
+}
+.fight-board-poster-top > span {
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 1.8px;
+}
+.fight-board-poster-top > strong {
+  font-size: 12px;
+}
+.fight-board-matchup {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr);
+  gap: 5px;
+  padding: 22px 20px 18px;
+  background:
+    linear-gradient(90deg, #10263dd9, #10263d38 50%, #10263dd9),
+    linear-gradient(0deg, #10263de8, transparent 80%),
+    url("/art/cartoon-fight-night.webp") center 61% / cover;
+  align-items: center;
+}
+.career-app.game-mode.clubhouse .fight-board-matchup {
+  min-height: 285px;
+}
+.fight-board-contender {
+  display: grid;
+  grid-template-columns: minmax(72px, 106px) minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.fight-board-contender.rival {
+  grid-template-columns: minmax(0, 1fr) minmax(72px, 106px);
+  text-align: right;
+}
+.fight-board-contender.rival .career-portrait {
+  grid-column: 2;
+  grid-row: 1;
+}
+.fight-board-contender.rival > div {
+  grid-column: 1;
+  grid-row: 1;
+}
+.fight-board-contender .career-portrait {
+  width: 100%;
+  height: 133px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 3px solid var(--rarity-frame);
+  box-shadow: 0 4px 0 #122c38;
+}
+.fight-board .fight-board-contender small {
+  display: block;
+  color: #e3ce83;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.fight-board-contender h3 {
+  margin: 5px 0 7px;
+  color: #fff4d9;
+  font-size: clamp(19px, 2.1vw, 28px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.fight-board-contender span {
+  font-size: 11px;
+  color: #d5ded7;
+  line-height: 1.4;
+}
+.fight-board-versus {
+  font-size: 29px;
+  font-weight: 950;
+  font-style: italic;
+  text-align: center;
+  color: #ebc16a;
+  transform: rotate(-7deg);
+}
+.fight-board-poster-bottom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-top: 2px dashed #6e827d;
+  background: #19313d;
+}
+.fight-board-billing {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+.fight-board-billing > strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+.fight-board-billing > span {
+  font-size: 11px;
+  color: #d3dbd2;
+  line-height: 1.5;
+}
+.fight-board a.fight-board-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 18px;
+  min-height: 48px;
+  padding: 12px 18px;
+  background: #f3cb72;
+  border: 1px solid #e6af49;
+  border-bottom: 4px solid #b68135;
+  border-radius: 6px;
+  color: #253d46;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: center;
+}
+.fight-board a.fight-board-cta:hover {
+  background: #ffe099;
+}
+.fight-board-empty {
+  display: flex;
+  min-height: 240px;
+  align-items: center;
+  padding: 30px;
+  border: 2px solid #203947;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, #17313ef5 8%, #17313ed9 45%, #17313e75),
+    url("/art/cartoon-fight-night.webp") center 49% / cover;
+  color: #fff4d9;
+}
+.fight-board-empty > div {
+  max-width: 480px;
+}
+.fight-board-empty .career-eyebrow {
+  color: #efce80;
+}
+.fight-board-empty h3 {
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.05;
+  margin: 8px 0 10px;
+}
+.fight-board-empty p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #e0e6d8;
+  margin: 0 0 18px;
+}
+.fight-board-coach-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 2px;
+}
+.fight-board-coach-note > span {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: #294553;
+  color: #f7d37d;
+  font-weight: 950;
+  font-size: 18px;
+}
+.fight-board-coach-note p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.fight-board-coach-note small {
+  display: block;
+  font-size: 11px;
+  color: #53645f;
+  margin-top: 4px;
+}
+.fight-board-section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 4px 0 16px;
+}
+.fight-board-section-title h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 900;
+}
+.fight-board-section-title > span {
+  color: #596b66;
+  font-size: 11px;
+}
+.fight-board-stops {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+}
+.fight-board-stops > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 20px;
+  padding-bottom: 15px;
+}
+.fight-board-stops > li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 41px;
+  top: 35px;
+  bottom: -10px;
+  width: 3px;
+  background: #a0afa6;
+}
+.fight-board-stop-date {
+  position: relative;
+  z-index: 1;
+  padding-top: 12px;
+}
+.fight-board-stops .fight-board-date {
+  transform: none;
+  background: #ede9d6;
+  width: 84px;
+}
+.fight-board-stops .is-today .fight-board-date {
+  background: #f3d586;
+  border-color: #d1af54;
+}
+.fight-board-tickets {
+  display: grid;
+  gap: 9px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  align-items: start;
+}
+.fight-board a.fight-board-ticket {
+  display: flex;
+  position: relative;
+  gap: 12px;
+  min-height: 111px;
+  align-items: center;
+  padding: 13px 15px;
+  color: #294451;
+  background: #f8f4e6;
+  border: 1px solid #c9cbbb;
+  border-left: 4px solid #678d7a;
+  border-radius: 5px 11px 11px 5px;
+  text-decoration: none;
+  box-shadow: 0 3px 0 #cbd0c3;
+}
+.fight-board a.fight-board-ticket.fight {
+  border-left-color: #bd8743;
+  background: #fbefcf;
+}
+.fight-board a.fight-board-ticket.decision {
+  border-left-color: #a55e45;
+}
+.fight-board a.fight-board-ticket:hover {
+  background: #fffaf0;
+  border-color: #748d7c;
+}
+.fight-board-ticket .career-portrait {
+  width: 51px;
+  height: 70px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--rarity-frame);
+  border-radius: 5px;
+}
+.fight-board-ticket > div {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+.fight-board-ticket small {
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.8px;
+  color: #685d3c;
+}
+.fight-board-ticket strong {
+  font-size: 15px;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+.fight-board-ticket span {
+  font-size: 11px;
+  line-height: 1.4;
+}
+.fight-board-ticket .fight-board-ticket-status {
+  font-size: 10px;
+  color: #755526;
+  font-weight: 800;
+}
+.fight-board-ticket > b {
+  align-self: flex-start;
+  font-size: 19px;
+}
+.fight-board-team {
+  border-top: 2px dashed #b9c0ae;
+  padding-top: 20px;
+}
+.team-agenda.event-assignments {
+  gap: 12px;
+}
+.team-agenda.event-assignments > article {
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  background: #f9f6ea;
+  border: 1px solid #ccd0c1;
+  border-left: 4px solid var(--rarity-frame);
+  border-radius: 7px;
+  padding: 14px;
+}
+.team-agenda.event-assignments .assignment-portrait {
+  height: 79px;
+}
+.team-agenda.event-assignments .career-portrait {
+  width: 65px;
+  height: 79px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.team-agenda.event-assignments .assignment-detail {
+  min-width: 0;
+  gap: 4px;
+}
+.team-agenda.event-assignments .assignment-name {
+  color: #243e4d;
+  font-size: 15px;
+  font-weight: 850;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.team-agenda.event-assignments .assignment-state {
+  color: #346b53;
+  font-size: 12px;
+}
+.team-agenda.event-assignments [data-assignment="unassigned"] .assignment-state,
+.team-agenda.event-assignments [data-assignment="decision"] .assignment-state {
+  color: #99502d;
+}
+.team-agenda.event-assignments [data-assignment="fight"] .assignment-state {
+  color: #8b5f1b;
+}
+.team-agenda.event-assignments .assignment-detail > span {
+  color: #5b6a65;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.team-agenda.event-assignments .assignment-detail > .agenda-due {
+  color: #984b24;
+  font-weight: 800;
+}
+.team-agenda.event-assignments .agenda-action {
+  gap: 7px;
+  color: #294153;
+  background: #e1e8dc;
+  border: 1px solid #bdcabc;
+  border-bottom-width: 3px;
+  text-decoration: none;
+  font-size: 11px;
+}
+.team-agenda.event-assignments .agenda-action:hover {
+  background: #eff4e6;
+}
+.team-agenda.event-assignments.compact > article {
+  padding: 11px;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 10px;
+}
+.team-agenda.event-assignments.compact .assignment-portrait,
+.team-agenda.event-assignments.compact .career-portrait {
+  width: 48px;
+  height: 62px;
+}
+.fight-board a:focus-visible,
+.event-assignments a:focus-visible {
+  outline: 3px solid #cd7835;
+  outline-offset: 3px;
+}
+@media (max-width: 1050px) {
+  .fight-board-contender,
+  .fight-board-contender.rival {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .fight-board-contender .career-portrait,
+  .fight-board-contender.rival .career-portrait {
+    grid-column: 1;
+    grid-row: 1;
+    width: 110px;
+    height: 132px;
+  }
+  .fight-board-contender > div,
+  .fight-board-contender.rival > div {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .fight-board-poster-bottom {
+    flex-wrap: wrap;
+  }
+  .fight-board-poster-bottom .fight-board-cta {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .gym-schedule.fight-board {
+    padding: 15px;
+  }
+  .gym-schedule.fight-board > header {
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .fight-board > header h2 {
+    font-size: 27px;
+    letter-spacing: -0.8px;
+  }
+  .fight-board > header p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .fight-board > header .career-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+    line-height: 1.5;
+  }
+  .fight-board > header .fight-board-date {
+    width: 66px;
+  }
+  .fight-board-date strong {
+    font-size: 28px;
+  }
+  .fight-board-poster-top {
+    padding: 10px 12px;
+  }
+  .fight-board-poster-top > span,
+  .fight-board-poster-top > strong {
+    font-size: 10px;
+  }
+  .fight-board-matchup {
+    grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr);
+    padding: 18px 11px;
+    align-items: start;
+  }
+  .fight-board-contender .career-portrait,
+  .fight-board-contender.rival .career-portrait {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    aspect-ratio: 4/5;
+  }
+  .fight-board-contender h3 {
+    font-size: 18px;
+  }
+  .fight-board-contender span {
+    font-size: 10px;
+  }
+  .fight-board-contender small {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .fight-board-versus {
+    font-size: 23px;
+    align-self: center;
+  }
+  .fight-board-poster-bottom {
+    padding: 15px 12px;
+    gap: 12px;
+  }
+  .fight-board-poster-bottom .fight-board-date {
+    width: 63px;
+  }
+  .fight-board-billing > strong {
+    font-size: 14px;
+  }
+  .fight-board-billing > span {
+    font-size: 10px;
+  }
+  .fight-board-empty {
+    min-height: 260px;
+    padding: 20px;
+  }
+  .fight-board-empty .fight-board-cta {
+    width: 100%;
+  }
+  .fight-board-section-title {
+    margin-bottom: 12px;
+  }
+  .fight-board-section-title h3 {
+    font-size: 18px;
+  }
+  .fight-board-stops > li {
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .fight-board-stops > li:not(:last-child)::before {
+    left: 29px;
+  }
+  .fight-board-stops .fight-board-date {
+    width: 60px;
+    padding: 7px 3px;
+  }
+  .fight-board-stops .fight-board-date > span {
+    font-size: 8px;
+  }
+  .fight-board a.fight-board-ticket {
+    padding: 12px 10px;
+    gap: 9px;
+  }
+  .fight-board-ticket .career-portrait {
+    width: 39px;
+    height: 54px;
+  }
+  .fight-board-ticket strong {
+    font-size: 13px;
+  }
+  .fight-board-ticket small {
+    font-size: 8px;
+  }
+  .fight-board-ticket span {
+    font-size: 10px;
+  }
+  .fight-board-ticket > b {
+    display: none;
+  }
+  .team-agenda.event-assignments > article,
+  .team-agenda.event-assignments.compact > article {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 10px;
+    padding: 11px;
+  }
+  .team-agenda.event-assignments .assignment-portrait,
+  .team-agenda.event-assignments .career-portrait {
+    width: 48px;
+    height: 65px;
+  }
+  .team-agenda.event-assignments .agenda-action {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+  }
+  .team-agenda.event-assignments .assignment-name {
+    font-size: 14px;
+  }
+}

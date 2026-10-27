@@ -1,0 +1,71 @@
+.career-app.game-mode.clubhouse .gym-floor-hero > img {
+  width: 100%;
+  object-position: center 61%;
+}
+.career-app.game-mode.clubhouse .gym-floor-hero::after {
+  background:
+    linear-gradient(90deg, #11273de8, #11273d6b 52%, #11273d10),
+    linear-gradient(0deg, #11273de8, transparent 65%);
+}
+.career-app.game-mode.clubhouse .training-workspace .tw-room-heading {
+  min-height: 200px;
+  padding: 25px;
+  color: #fff8e9;
+  border-radius: 13px;
+  background:
+    linear-gradient(90deg, #10263ded, #10263d87 57%, #10263d30),
+    url("/art/cartoon-training-floor.webp") center 62% / cover;
+  box-shadow: 0 5px 0 #c8bda8;
+}
+.career-app.game-mode.clubhouse
+  .training-workspace
+  .tw-room-heading
+  :is(h2, p, small, strong, span) {
+  color: #fff8e9;
+}
+.career-app.game-mode.clubhouse
+  .training-workspace
+  .tw-room-heading
+  .tw-eyebrow {
+  color: #ffb38d;
+}
+.career-app.game-mode.clubhouse
+  .training-workspace
+  .tw-room-heading
+  .tw-condition {
+  padding: 13px;
+  border-radius: 10px;
+  background: #10263dc9;
+}
+.career-app.game-mode.clubhouse
+  .training-workspace
+  .tw-room-heading
+  .tw-selected-fighter
+  > .career-portrait {
+  width: 88px;
+  height: 110px;
+  border: 0;
+}
+@media (max-width: 600px) {
+  .career-app.game-mode.clubhouse .training-workspace .tw-room-heading {
+    padding: 18px;
+    min-height: 200px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .career-app.game-mode.clubhouse
+    .training-workspace
+    .tw-room-heading
+    .tw-selected-fighter
+    > .career-portrait {
+    width: 64px;
+    height: 85px;
+  }
+  .career-app.game-mode.clubhouse
+    .training-workspace
+    .tw-room-heading
+    .tw-condition {
+    margin-left: auto;
+    padding: 8px 13px;
+  }
+}

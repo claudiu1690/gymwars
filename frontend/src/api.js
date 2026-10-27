@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4101";
+const API_URL = import.meta.env?.VITE_API_URL || "http://localhost:4101";
 
 export function getToken() {
     return localStorage.getItem("gw_token");
@@ -13,13 +13,14 @@ export function setToken(token) {
  * Fetch wrapper: attaches the JWT, parses JSON, throws Error(message) on
  * non-2xx. A 401 clears the stored token so the router bounces to /login.
  */
-export async function api(path, { method = "GET", body } = {}) {
+export async function api(path, { method = "GET", body, signal } = {}) {
     const headers = { "Content-Type": "application/json" };
     const token = getToken();
     if (token) headers.Authorization = `Bearer ${token}`;
 
     const res = await fetch(`${API_URL}${path}`, {
         method,
+        signal,
         headers,
         body: body !== undefined ? JSON.stringify(body) : undefined,
     });

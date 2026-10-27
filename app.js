@@ -12,10 +12,11 @@ const campRoutes = require("./routes/campRoutes");
 const fightRoutes = require("./routes/fightRoutes");
 const rankingRoutes = require("./routes/rankingRoutes");
 const pvpRoutes = require("./routes/pvpRoutes");
+const liveFightRoutes = require("./routes/liveFightRoutes");
 const authMiddleware = require("./middleware/authMiddleware");
-const scheduler = require("./modules/scheduler");
 
 const app = express();
+app.use((req,res,next)=>{const started=Date.now();req.requestId=require('node:crypto').randomUUID();res.setHeader('X-Request-Id',req.requestId);res.on('finish',()=>{const durationMs=Date.now()-started;if(res.statusCode>=500||durationMs>=1000)console.warn(JSON.stringify({event:'http-request',requestId:req.requestId,method:req.method,path:req.path,status:res.statusCode,durationMs}));});next();});
 
 // Behind the host's edge proxy (Railway etc.): trust the first hop so
 // express-rate-limit and req.ip read the real client IP from X-Forwarded-For.
@@ -74,6 +75,7 @@ app.use(globalLimiter);
 
 // Public
 app.get("/health", (req, res) => res.json({ ok: true }));
+app.get("/ready",(req,res)=>{const ready=mongoose.connection.readyState===1;res.status(ready?200:503).json({ok:ready,database:ready?"connected":"unavailable",payments:"disconnected"});});
 app.use("/auth", authLimiter, authRoutes);
 
 // Protected — JWT required for all game routes
@@ -84,6 +86,9 @@ app.use("/camps", authMiddleware, campRoutes);
 app.use("/fights", authMiddleware, fightRoutes);
 app.use("/rankings", authMiddleware, rankingRoutes);
 app.use("/pvp", authMiddleware, pvpRoutes);
+app.use("/livefight", authMiddleware, liveFightRoutes);
+app.use('/career', authMiddleware, require('./routes/careerRoutes'));
+app.use('/account',authMiddleware,require('./routes/accountRoutes'));
 
 // ── 404 ──
 app.use((req, res) => {
@@ -91,7 +96,7 @@ app.use((req, res) => {
 });
 
 // ── Global error handler (MUST be last; 4 args) ──
-// Never leak internals: log full detail server-side, return a safe message.
+// Log correlation and error type, excluding bodies, tokens and query strings.
 // Client-fixable errors opt in via err.statusCode / err.expose.
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
@@ -99,16 +104,13 @@ app.use((err, req, res, next) => {
     const isCors = typeof err.message === "string" && err.message.startsWith("CORS:");
     const status = isBadJson ? 400 : isCors ? 403 : (err.statusCode || err.status || 500);
 
-    if (status >= 500) {
-        console.error("[error]", req.method, req.originalUrl, "-", err.stack || err.message);
-    } else {
-        console.warn("[error]", req.method, req.originalUrl, "-", err.message);
-    }
+    const log = status >= 500 ? console.error : console.warn;
+    log(JSON.stringify({event:"http-error",requestId:req.requestId,method:req.method,path:req.path,status,type:err.name || "Error"}));
 
     let message = "Internal server error";
     if (isBadJson) message = "Invalid JSON in request body.";
     else if (isCors) message = "Origin not allowed.";
-    else if (status < 500 && (err.expose || err.validation)) message = err.message;
+    else if (err.expose || (status < 500 && err.validation)) message = err.message;
 
     if (res.headersSent) return next(err);
     res.status(status).json({ message });
@@ -123,23 +125,38 @@ process.on("uncaughtException", (err) => {
     process.exit(1);
 });
 
-mongoose.connect(config.database.url, config.database.options)
+async function start() {
+if (process.env.NODE_ENV === 'production' && (!process.env.JWT_SECRET || config.jwtSecret.length < 32 || config.jwtSecret === 'gymwars_dev_secret_change_in_prod')) throw new Error('Production requires a private JWT_SECRET of at least 32 characters.');
+return mongoose.connect(config.database.url, config.database.options)
     .then(async () => {
         console.log("Connected to MongoDB");
+        await require('./scripts/migrateOwnerIndex').migrate(mongoose.connection);
+        // Do not accept a first request before the idempotency/ownership
+        // indexes exist, including on a completely empty database.
+        const {Snapshot,Exhibition}=require('./models/exhibitionModel');
+        await Promise.all([require('./models/careerModel').init(),require('./models/clubShopModel').init(),require('./models/alphaModel').AlphaEvent.init(),require('./models/alphaModel').SupportReport.init(),Snapshot.init(),Exhibition.init()]);
+        const hello = await mongoose.connection.db.admin().command({ hello: 1 });
+        const supportsLegacyTransactions = !!hello.setName || hello.msg === 'isdbgrid';
+        if (supportsLegacyTransactions) {
+            await require('./lib/atomic').Fence.updateOne({ _id: 'legacy' }, { $setOnInsert: { revision: 0 } }, { upsert: true });
+        }
         try {
-            await scheduler.startSchedulers();
+            if (supportsLegacyTransactions && process.env.DISABLE_SCHEDULER !== 'true') await require('./modules/scheduler').startSchedulers();
         } catch (err) {
             // Redis being down shouldn't stop local dev of the HTTP API — jobs
             // simply won't run until it's back. Deployed hosts always have Redis.
             console.error("[scheduler] Failed to start (continuing without jobs):", err.message);
         }
         // Every weight class has a champion from day one (GDD §8.3).
-        await require("./services/aiOpponentService").ensureChampionsExist();
-        app.listen(config.port, () => {
+        if (supportsLegacyTransactions) await require("./services/aiOpponentService").ensureChampionsExist();
+        return app.listen(config.port, process.env.HOST || undefined, () => {
             console.log(`Gym Wars API running on port ${config.port}`);
         });
     })
     .catch((err) => {
         console.error("Database connection failed:", err);
-        process.exit(1);
+        throw err;
     });
+}
+if (require.main === module) start().catch(() => process.exit(1));
+module.exports = { app, start };

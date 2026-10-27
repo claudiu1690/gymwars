@@ -1,0 +1,749 @@
+.scouting-hub {
+  --scout-navy: #203947;
+  --scout-paper: #fcf7e9;
+  --scout-gold: #f0ce77;
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+.scout-hero {
+  background: var(--scout-navy);
+  color: var(--scout-paper);
+  border-radius: 14px 14px 4px 4px;
+  padding: 25px;
+  border-top: 5px solid var(--scout-gold);
+}
+.scout-kicker {
+  display: block;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+}
+.career-app .scout-hero h2 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  margin: 8px 0;
+  font-weight: 900;
+  letter-spacing: -1.6px;
+}
+.career-app .scout-hero p {
+  color: #d0dce0;
+  margin: 0;
+}
+.scout-resources {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 24px;
+  border-top: 1px solid #ffffff25;
+  padding-top: 18px;
+  gap: 18px;
+}
+.scout-resources > div {
+  display: flex;
+  flex-direction: column;
+}
+.scout-resources strong {
+  font-size: 27px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+}
+.career-app .scout-resources strong small {
+  color: #a9b9bd;
+  font-size: 18px;
+  margin-left: 3px;
+}
+.scout-resources span {
+  font-size: 11px;
+  color: #c7d2d6;
+  margin-top: 6px;
+}
+.scout-resources [data-empty="true"] strong {
+  color: var(--scout-gold);
+}
+.scout-board-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.scout-board-heading > span {
+  color: #657581;
+  font-size: 11px;
+  max-width: 250px;
+  text-align: right;
+}
+.scout-prospect-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+.scout-prospect-card {
+  min-width: 0;
+  padding: 0;
+  background: var(--scout-paper);
+  color: var(--scout-navy);
+  text-align: left;
+  border: 2px solid var(--rarity-frame);
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 4px 0 #c7cbca;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.scout-prospect-card:hover {
+  transform: translateY(-3px);
+}
+.scout-prospect-card[aria-pressed="true"] {
+  box-shadow:
+    0 0 0 3px var(--scout-navy),
+    0 6px 0 3px #c2c7c7;
+}
+.scout-prospect-art {
+  position: relative;
+  background: radial-gradient(ellipse at 50% 115%, #678480, #293f51 75%);
+  overflow: hidden;
+  height: 180px;
+}
+.scout-prospect-art .career-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 0;
+}
+.scout-prospect-art .fighter-rarity {
+  position: absolute;
+  bottom: 9px;
+  left: 9px;
+  max-width: calc(100% - 18px);
+}
+.scout-card-number {
+  position: absolute;
+  top: 5px;
+  right: 9px;
+  font-size: 34px;
+  font-weight: 950;
+  color: #ffffff1b;
+}
+.scout-card-copy {
+  display: grid;
+  padding: 13px;
+  gap: 3px;
+}
+.scout-card-copy > strong {
+  font-size: 17px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.scout-card-copy > span {
+  font-size: 11px;
+  margin-top: 3px;
+}
+.scout-card-copy > small {
+  font-size: 10px;
+}
+.scout-card-copy > b {
+  font-size: 10px;
+  border-top: 1px solid #d6d8cd;
+  padding-top: 10px;
+  margin-top: 7px;
+}
+.scout-prospect-card[aria-pressed="true"] .scout-card-copy > b {
+  color: #91610e;
+}
+.career-app p.scout-announcement {
+  margin: 0;
+  font-weight: 750;
+  color: #236a53;
+}
+.scout-announcement:empty {
+  display: none;
+}
+.scout-dossier {
+  border: 1px solid #c7ccc5;
+  border-left: 5px solid var(--rarity-frame);
+  border-radius: 9px;
+  background: var(--scout-paper);
+  overflow: hidden;
+  box-shadow: 0 4px 0 #d7d9cf;
+}
+.scout-dossier > header {
+  padding: 22px 24px 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.career-app .scout-dossier h3 {
+  font-size: 28px;
+  margin: 5px 0;
+}
+.career-app .scout-dossier header p {
+  font-size: 12px;
+  margin: 0;
+}
+.scout-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  background: #dfdfd4;
+  border-block: 1px solid #dadbd0;
+}
+.scout-steps li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 8px;
+  background: #eeeee4;
+  color: #66756f;
+  font-size: 11px;
+  font-weight: 750;
+}
+.scout-steps li > span {
+  flex-shrink: 0;
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.scout-steps [data-active="true"] {
+  background: var(--scout-gold);
+  color: #273a3e;
+}
+.scout-unseen {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  padding: 24px;
+  gap: 26px;
+  align-items: center;
+}
+.scout-unseen-art {
+  position: relative;
+  height: 230px;
+  border-radius: 8px;
+  background: #dae0d9;
+  overflow: hidden;
+}
+.scout-unseen-art .career-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+.scout-unseen-art > span {
+  position: absolute;
+  bottom: 12px;
+  right: 10px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--scout-navy);
+  color: var(--scout-gold);
+  font-size: 29px;
+  font-weight: 900;
+}
+.career-app .scouting-hub h4 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+}
+.scout-unseen > div > p {
+  max-width: 520px;
+  font-size: 13px;
+}
+.scout-unseen > div > small {
+  display: block;
+  margin-top: 9px;
+}
+.scout-hidden-skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+  margin: 18px 0;
+}
+.scout-hidden-skills > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-bottom: 1px dashed #b8c3bb;
+  padding-bottom: 5px;
+  font-size: 11px;
+}
+.scout-hidden-skills strong {
+  font-size: 17px;
+  color: #7c8b86;
+}
+.scout-report-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.85fr);
+  align-items: start;
+  gap: 20px;
+  padding: 24px;
+}
+.scout-comparison {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid #c7d0c5;
+  border-radius: 12px;
+}
+.scout-comparison-heading {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.scout-comparison-heading > span {
+  flex-shrink: 0;
+  font-size: 10px;
+  color: #64716f;
+}
+.scout-compare-team {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 13px 0;
+}
+.scout-compare-team button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-width: 0;
+  border: 1px solid #b9c4bd;
+  border-radius: 9px;
+  color: var(--scout-navy);
+  background: #f5f5ec;
+  min-height: 44px;
+  padding: 5px 10px 5px 5px;
+  font-weight: 700;
+  font-size: 11px;
+}
+.scout-compare-team button[aria-pressed="true"] {
+  background: var(--scout-navy);
+  color: white;
+  border-color: var(--scout-navy);
+}
+.scout-compare-team button .career-portrait {
+  width: 28px;
+  height: 32px;
+  object-fit: contain;
+  background: #526965;
+  border-radius: 3px;
+}
+.scout-compare-team button > span {
+  overflow-wrap: anywhere;
+}
+.career-app .scout-range-key {
+  display: flex;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 16px 0 20px;
+}
+.scout-range-key > span {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-width: 0;
+}
+.scout-range-swatch {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 7px;
+  border-radius: 2px;
+  background: #387b6f;
+}
+.scout-teammate-swatch {
+  flex: 0 0 3px;
+  width: 3px;
+  height: 12px;
+  background: #9e5a0d;
+}
+.scout-skill-report {
+  display: grid;
+  gap: 12px;
+}
+.scout-skill {
+  min-width: 0;
+  padding: 13px 14px;
+  background: #f4f5ed;
+  border: 1px solid #d6ded2;
+  border-radius: 9px;
+}
+.scout-skill > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+.scout-skill > div > span {
+  font-weight: 850;
+  white-space: nowrap;
+}
+.career-app .scout-skill > div > span > small {
+  font-size: 9px;
+  font-weight: 400;
+}
+.scout-skill-track {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  background: #dfe4da;
+  border-radius: 3px;
+  margin: 8px 0;
+}
+.scout-skill-track > span {
+  position: absolute;
+  height: 100%;
+  background: #387b6f;
+  border-radius: 3px;
+}
+.scout-skill-track > i {
+  position: absolute;
+  width: 3px;
+  top: -4px;
+  bottom: -4px;
+  background: #9e5a0d;
+  border: 1px solid #7b4006;
+  transform: translateX(-50%);
+}
+.career-app .scout-skill > small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: 7px;
+}
+.career-app .scout-estimate-note {
+  border-top: 1px solid #dadcd2;
+  font-size: 10px;
+  padding-top: 14px;
+  margin: 20px 0 0;
+}
+.scout-decision {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+  align-content: start;
+}
+.scout-report-note {
+  border: 1px solid #c7d0c5;
+  border-radius: 12px;
+  padding: 18px;
+}
+.career-app .scout-report-note h4 {
+  font-size: 14px;
+}
+.career-app .scout-report-note p {
+  font-size: 11px;
+  margin: 8px 0 12px;
+}
+.scout-report-note > strong {
+  font-size: 12px;
+}
+.scout-signing,
+.scout-signed {
+  background: #e8eddf;
+  border: 1px solid #c1cdb7;
+  border-radius: 7px;
+  padding: 17px;
+}
+.scout-signing > span {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.scout-signing > strong {
+  display: block;
+  font-size: 27px;
+  letter-spacing: -1px;
+  margin-top: 3px;
+}
+.career-app .scout-signing p,
+.career-app .scout-signed p {
+  font-size: 11px;
+}
+.scout-signing > .career-action {
+  width: 100%;
+}
+.scout-signed > strong {
+  color: #21634f;
+}
+.scout-contract {
+  border-top: 1px dashed #a6b59c;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+.scout-contract > .career-action {
+  width: 100%;
+}
+.career-app .scout-contract h4 {
+  font-size: 14px;
+}
+.scout-text-button {
+  display: block;
+  border: 0;
+  color: #3d564e;
+  background: transparent;
+  padding: 11px 0 0;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.career-app p.scout-blocker {
+  padding: 10px 11px;
+  color: #87531b;
+  background: #f9e9c9;
+  border-left: 3px solid #c58829;
+  font-size: 11px;
+  border-radius: 3px;
+}
+.scout-veteran {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 20px;
+  padding: 21px;
+  border: 1px solid #bfcbc7;
+  border-radius: 10px;
+  background: #e8ede6;
+}
+.scout-veteran > .career-portrait {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  background: #d0dacf;
+  border-radius: 6px;
+}
+.career-app .scout-veteran h3 {
+  margin-top: 5px;
+  font-size: 22px;
+}
+.career-app .scout-veteran h3 small {
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.career-app .scout-veteran p {
+  font-size: 12px;
+  margin: 9px 0;
+}
+.career-app .scout-veteran div > small {
+  font-size: 10px;
+  display: block;
+}
+.scout-veteran-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+.scout-veteran-actions > strong {
+  color: #25634d;
+  font-size: 12px;
+}
+.scout-rulebook {
+  border-top: 1px solid #cad0c8;
+  padding: 16px 3px 0;
+  font-size: 12px;
+}
+.scout-rulebook > summary {
+  cursor: pointer;
+  font-weight: 750;
+  color: #526960;
+}
+.career-app .scout-rulebook p {
+  font-size: 11px;
+}
+.scout-guarantees {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.scout-guarantees > div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid var(--rarity-frame);
+  border-radius: 6px;
+  background: var(--rarity-tint);
+}
+.scout-guarantees strong {
+  font-size: 12px;
+}
+.career-app .scout-guarantees small {
+  font-size: 10px;
+}
+@media (min-width: 1450px) {
+  .scout-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+  }
+  .scout-resources {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 430px;
+  }
+}
+@media (max-width: 850px) {
+  .scout-prospect-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .scout-prospect-art {
+    height: 170px;
+  }
+  .scout-report-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .scout-decision {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+@media (max-width: 580px) {
+  .scouting-hub {
+    gap: 16px;
+  }
+  .scout-hero {
+    padding: 20px 16px;
+  }
+  .scout-resources {
+    gap: 9px;
+  }
+  .scout-resources strong {
+    font-size: 22px;
+  }
+  .career-app .scout-resources strong small {
+    font-size: 14px;
+  }
+  .scout-resources span {
+    font-size: 9px;
+  }
+  .scout-board-heading {
+    display: block;
+  }
+  .scout-board-heading > span {
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    max-width: none;
+  }
+  .scout-prospect-row {
+    gap: 11px;
+  }
+  .scout-prospect-art {
+    height: 150px;
+  }
+  .scout-card-copy {
+    padding: 10px;
+  }
+  .scout-card-copy > strong {
+    font-size: 15px;
+  }
+  .scout-card-copy > span {
+    font-size: 10px;
+  }
+  .scout-card-copy > b {
+    font-size: 9px;
+  }
+  .scout-prospect-art .fighter-rarity {
+    bottom: 7px;
+    left: 7px;
+    font-size: 9px;
+    padding: 3px 5px;
+  }
+  .scout-dossier > header {
+    padding: 18px 15px;
+    flex-wrap: wrap;
+  }
+  .career-app .scout-dossier h3 {
+    font-size: 24px;
+  }
+  .scout-steps li {
+    flex-direction: column;
+    font-size: 9px;
+    gap: 4px;
+    text-align: center;
+  }
+  .scout-unseen {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 18px 15px;
+  }
+  .scout-unseen-art {
+    display: none;
+  }
+  .scout-unseen .career-action {
+    width: 100%;
+  }
+  .scout-report-body {
+    padding: 16px 12px;
+    gap: 14px;
+  }
+  .scout-comparison {
+    padding: 14px 12px;
+  }
+  .scout-skill {
+    padding: 12px 10px;
+  }
+  .scout-skill > div:first-child {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+  }
+  .scout-report-note {
+    padding: 16px;
+  }
+  .scout-compare-team button {
+    flex: 1 1 100%;
+  }
+  .scout-decision {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .scout-veteran {
+    grid-template-columns: 62px minmax(0, 1fr);
+    padding: 16px 13px;
+    gap: 12px;
+  }
+  .scout-veteran > .career-portrait {
+    height: 105px;
+  }
+  .career-app .scout-veteran h3 small {
+    display: block;
+    margin: 4px 0;
+  }
+  .scout-veteran .career-action {
+    width: 100%;
+  }
+  .scout-guarantees {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scout-prospect-card {
+    transition: none;
+  }
+  .scout-prospect-card:hover {
+    transform: none;
+  }
+}

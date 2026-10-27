@@ -1,0 +1,442 @@
+.prep-workspace,
+.prep-planner {
+  display: grid;
+  gap: 20px;
+}
+.prep-contextbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 18px;
+  padding: 12px 16px;
+  border: 1px solid #d3dfdd;
+  border-radius: 10px;
+  background: #f0f5f3;
+  box-shadow: 0 3px 10px #203b4a0d;
+  font-size: 12px;
+}
+.prep-workspace [hidden] {
+  display: none;
+}
+.prep-matchup {
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #dfe6e8;
+  border-radius: 16px;
+}
+.prep-matchup-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.prep-matchup-heading .career-badge {
+  text-transform: none;
+}
+.prep-athletes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin: 22px 0;
+}
+.prep-athlete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.prep-athlete > img {
+  width: 82px;
+  height: 96px;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 12px;
+  background: #edf2f3;
+}
+.prep-athlete > div {
+  min-width: 0;
+}
+.prep-athlete h3 {
+  font-size: 19px;
+  overflow-wrap: anywhere;
+  margin-top: 4px;
+}
+.prep-athlete p {
+  font-size: 12px;
+  margin: 7px 0;
+}
+.prep-athlete small {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.prep-comparison {
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.prep-comparison > div {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr 1fr;
+  text-align: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-bottom: 1px solid #edf0f0;
+}
+.prep-comparison > div:nth-child(odd) {
+  background: #f5f7f6;
+  border-radius: 5px;
+}
+.prep-comparison span {
+  font-size: 12px;
+  color: var(--c-muted);
+}
+.prep-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 5px;
+  background: #e8eceb;
+  border-radius: 12px;
+}
+.prep-tabs button {
+  flex: 1;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #526673;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.prep-tabs button.selected {
+  background: #fff;
+  color: #b8472a;
+  box-shadow: 0 2px 6px #22374a0b;
+}
+.prep-timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0;
+  padding: 0;
+  list-style: none;
+  background: #f1f5f3;
+  border: 1px solid #dfe7e2;
+  border-radius: 12px;
+  margin: 24px 0;
+  overflow: hidden;
+}
+.prep-timeline li {
+  min-width: 0;
+  padding: 16px;
+  border-left: 1px solid #dfe7e2;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.prep-timeline li:first-child {
+  border-left: 0;
+}
+.prep-timeline li:last-child {
+  background: #fdf1e9;
+}
+.prep-timeline small {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+}
+.prep-timeline strong {
+  font-size: 14px;
+}
+.prep-advice {
+  padding: 16px 18px;
+  background: #f1f5f6;
+  border-left: 3px solid #76959d;
+  border-radius: 6px;
+}
+.prep-planner .career-coach-presets {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+.prep-planner .career-coach-presets button {
+  align-self: stretch;
+}
+.prep-planner .career-coach-presets strong {
+  display: block;
+  line-height: 1.4;
+}
+.prep-durations {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  border: 0;
+  padding: 0;
+  margin: 24px 0;
+  min-width: 0;
+}
+.prep-durations legend {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.career-app .prep-durations label {
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  border: 1px solid #ccd8db;
+  padding: 14px;
+  border-radius: 9px;
+  background: #fff;
+}
+.career-app .prep-durations input {
+  width: 17px;
+  height: 17px;
+  min-height: 17px;
+  flex-shrink: 0;
+  margin: 3px 0 0;
+  accent-color: #d85d3f;
+}
+.prep-durations span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.prep-durations .unavailable {
+  background: #f3f4f3;
+  border-style: dashed;
+  color: #78838a;
+}
+.prep-durations label:has(input:checked) {
+  border-color: #d9694b;
+  background: #fff6ef;
+}
+.prep-custom {
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+  padding: 16px 0;
+  margin-bottom: 20px;
+}
+.prep-custom summary,
+.prep-bonus summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.prep-forecast {
+  padding: 20px;
+  border-radius: 12px;
+  background: #edf4f2;
+  margin: 24px 0;
+}
+.prep-forecast-status {
+  min-height: 45px;
+  font-size: 12px;
+  color: #536a65;
+}
+.prep-estimates {
+  transition: opacity 0.12s ease;
+}
+.prep-estimates.updating {
+  opacity: 0.55;
+}
+.prep-estimates h3 {
+  margin-top: 12px;
+}
+.prep-estimates > p {
+  font-size: 12px;
+  margin: 7px 0 12px;
+}
+.prep-gains {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.prep-gains > div {
+  background: #ffffffb0;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.prep-gains span {
+  font-size: 11px;
+}
+.prep-gains strong {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.prep-readiness {
+  display: block;
+  font-size: 25px;
+  font-variant-numeric: tabular-nums;
+  margin: 8px 0 2px;
+}
+.prep-estimates > span {
+  display: block;
+  min-height: 42px;
+  font-size: 12px;
+}
+.prep-bonus {
+  border: 1px solid #e8dcc7;
+  background: #fffbf1;
+  padding: 18px;
+  border-radius: 12px;
+}
+.prep-bonus details {
+  font-size: 12px;
+}
+.prep-commit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-top: 24px;
+}
+.prep-commit > div {
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.prep-active > h2 {
+  margin-top: 14px;
+}
+.prep-rewards,
+.prep-recruit-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 22px 0;
+}
+.prep-recruit-summary {
+  grid-template-columns: repeat(3, 1fr);
+}
+.prep-rewards > div,
+.prep-recruit-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: #f0f4f4;
+  border-radius: 10px;
+}
+.prep-rewards span,
+.prep-recruit-summary span {
+  color: var(--c-muted);
+  font-size: 12px;
+}
+.prep-rewards strong {
+  font-size: 23px;
+}
+.prep-notice {
+  max-width: 360px;
+  margin: 20px 0;
+}
+.prep-booking > .prep-athlete {
+  margin-bottom: 24px;
+}
+.prep-booking .career-coach-offers article > button {
+  margin-top: 12px;
+}
+.prep-booking > .prep-matchup {
+  margin-top: 24px;
+}
+.prep-list-heading {
+  margin-top: 30px !important;
+  margin-bottom: 15px !important;
+}
+.prep-profile-action {
+  margin-top: 16px;
+}
+.career-coach-matchup {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ffffff30;
+}
+.preview-entry {
+  margin-bottom: 18px;
+  background: #edf4f4;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+.preview-entry p {
+  margin: 8px 0;
+}
+.preview-entry button {
+  margin: 6px 8px 0 0;
+}
+@media (max-width: 1020px) {
+  .career-sidebar nav {
+    flex-wrap: wrap;
+  }
+  .career-sidebar nav button {
+    min-width: 70px;
+  }
+  .prep-planner .career-coach-presets {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .career-sidebar nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .career-sidebar nav button {
+    min-width: 0;
+  }
+  .prep-matchup {
+    padding: 16px;
+  }
+  .prep-athletes {
+    gap: 12px;
+  }
+  .prep-athletes .prep-athlete {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .prep-athlete h3 {
+    font-size: 16px;
+  }
+  .prep-athlete > img {
+    width: 66px;
+    height: 80px;
+  }
+  .prep-timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .prep-timeline li {
+    border-bottom: 1px solid #dfe7e2;
+    padding: 12px;
+  }
+  .prep-durations {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .prep-durations span {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .prep-gains,
+  .prep-recruit-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .prep-commit .career-action {
+    width: 100%;
+  }
+  .prep-forecast {
+    padding: 15px;
+  }
+  .prep-tabs button {
+    padding: 11px 5px;
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prep-estimates {
+    transition: none;
+  }
+}

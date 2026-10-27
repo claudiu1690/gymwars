@@ -1,0 +1,38 @@
+name: Game validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+      - run: npm ci
+      - run: npm ci --prefix frontend
+      - run: npm audit --audit-level=low
+      - run: npm audit --prefix frontend --audit-level=low
+      - run: npm test
+        env:
+          GYMWARS_DB_TESTS: "1"
+      - run: npm run build --prefix frontend
+      - run: npm run validate:alpha
+      - run: npm run validate:supplies
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:e2e -- --config=playwright.release.config.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            output/e2e/report/
+            output/e2e/results/
+            output/e2e/results.json
+          retention-days: 7

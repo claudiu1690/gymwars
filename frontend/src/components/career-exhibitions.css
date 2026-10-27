@@ -1,0 +1,301 @@
+.war-screen {
+  display: grid;
+  gap: 20px;
+}
+.war-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 27px;
+  background: linear-gradient(110deg, #2c3e58, #293148);
+  border: 1px solid #68768e;
+  border-top: 3px solid #edc16a;
+  border-radius: 10px;
+}
+.war-hero > div {
+  max-width: 750px;
+}
+.career-app.game-mode .war-hero h2 {
+  font-size: 30px;
+}
+.career-app.game-mode .war-hero p {
+  margin-bottom: 0;
+}
+.war-lineup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 9px;
+}
+.war-lineup article {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px;
+  border: 1px solid #4c5b74;
+  background: #24334a;
+  border-radius: 7px;
+}
+.war-lineup .career-portrait {
+  width: 44px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.war-lineup article > div {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+.war-lineup strong {
+  font-size: 13px;
+  color: #eef3fb;
+}
+.war-lineup article span {
+  font-size: 11px;
+  color: #bed0e5;
+}
+.career-app.game-mode .war-lineup-state {
+  font-size: 12px;
+  color: #e8c582;
+  margin-bottom: 0;
+}
+.war-opponents {
+  display: grid;
+  gap: 14px;
+  margin-top: 17px;
+}
+.war-opponents > article {
+  padding: 19px;
+  border: 1px solid #4a5c76;
+  border-radius: 8px;
+  background: #152236;
+}
+.war-opponent {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.war-opponent-kind {
+  display: block;
+  color: #c7b6f1;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.war-opponent[data-ai="true"] .war-opponent-kind {
+  color: #91d9c4;
+}
+.war-opponent[data-ai="true"] {
+  border-top: 3px solid #799cbb;
+}
+.war-opponent[data-difficulty="Beginner"] {
+  border-top-color: #73d5ac;
+}
+.war-opponent[data-difficulty="Contender"] {
+  border-top-color: #c7a0eb;
+}
+.war-ai-opponents {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.war-opponents .war-difficulty {
+  border: 1px solid #687c97;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #2b3f59;
+  color: #e2eefb;
+  font-size: 11px;
+  font-weight: 750;
+}
+.war-opponent[data-difficulty="Beginner"] .war-difficulty {
+  color: #adf0ce;
+  background: #204838;
+  border-color: #4b9975;
+}
+.war-opponent[data-difficulty="Contender"] .war-difficulty {
+  color: #e5d0ff;
+  background: #413454;
+  border-color: #9679b5;
+}
+.career-app.game-mode .war-opponent-description {
+  margin: 0 0 14px;
+  color: #c7d6e8;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.career-app.game-mode .war-start-here {
+  margin: 0 0 14px;
+  color: #9ce9c5;
+  font-size: 11px;
+  font-weight: 700;
+}
+.career-app.game-mode .war-section-intro {
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+.war-opponent-roster {
+  margin-bottom: 14px;
+  padding: 0 12px;
+  border: 1px solid #3f5470;
+  border-radius: 7px;
+  background: #1c2e43;
+}
+.war-opponent-roster summary {
+  padding: 13px 0;
+  cursor: pointer;
+  color: #e0d3ff;
+  font-size: 12px;
+  font-weight: 650;
+  min-height: 44px;
+}
+.war-opponent-roster .war-lineup {
+  padding-bottom: 12px;
+}
+.war-opponent-roster .war-lineup article {
+  padding: 8px;
+}
+.war-opponent .war-lineup strong {
+  overflow-wrap: anywhere;
+}
+.war-result-kind {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #a5e6d1;
+}
+.war-opponents header,
+.war-opponents footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.war-opponents header {
+  margin-bottom: 14px;
+}
+.war-opponents header > span,
+.war-opponents footer > span {
+  font-size: 12px;
+  color: #bacbe0;
+}
+.war-opponents footer {
+  margin-top: auto;
+  padding-top: 13px;
+}
+.war-ai-opponents footer {
+  align-items: stretch;
+  flex-direction: column;
+}
+.war-ai-opponents footer .career-action {
+  width: 100%;
+}
+.war-empty {
+  padding: 23px;
+  margin-top: 18px;
+  border: 1px dashed #586f8b;
+  border-radius: 8px;
+  background: #23334b;
+}
+.war-empty p {
+  margin-bottom: 0;
+}
+.war-rules {
+  padding: 18px 22px;
+  border: 1px solid #3c4e67;
+  border-radius: 8px;
+  background: #152235;
+}
+.career-app.game-mode .war-rules p {
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+.war-bouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+.war-bouts article {
+  display: grid;
+  gap: 7px;
+  padding: 15px;
+  background: #23374b;
+  border: 1px solid #496579;
+  border-radius: 6px;
+}
+.war-bouts strong {
+  font-size: 13px;
+}
+.war-bouts span {
+  font-size: 12px;
+  color: #9be1c5;
+}
+.war-result h2 > span {
+  color: #f4cc73;
+  white-space: nowrap;
+}
+.war-result {
+  scroll-margin-top: 20px;
+}
+.war-result:focus-visible {
+  outline: 2px solid #c6b4f7;
+  outline-offset: 3px;
+}
+.war-history {
+  display: grid;
+  gap: 7px;
+  margin-top: 17px;
+}
+.war-history button {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  background: #25334b;
+  color: #e5eef9;
+  border: 1px solid #4b5c77;
+  padding: 12px;
+  border-radius: 6px;
+}
+.war-history button span:first-child {
+  flex: 1;
+}
+.war-history button small {
+  display: block;
+  font-size: 10px;
+  color: #bacde4;
+  margin-top: 5px;
+}
+.war-history button span:last-child {
+  color: #c6b4f7;
+  font-size: 11px;
+}
+@media (max-width: 1080px) {
+  .war-ai-opponents {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .war-hero {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .career-app.game-mode .war-hero h2 {
+    font-size: 24px;
+  }
+  .war-opponents > article {
+    padding: 14px;
+  }
+  .war-team .career-section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .war-history button {
+    font-size: 12px;
+    gap: 8px;
+  }
+}

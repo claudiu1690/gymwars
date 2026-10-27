@@ -1,0 +1,364 @@
+.first-fight-trail,
+.help-section {
+  padding: 24px;
+  background: #fff8e9;
+  border: 1px solid #d5c8b0;
+  border-radius: 14px;
+}
+.first-fight-trail {
+  margin: 25px 0;
+}
+.first-fight-trail > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.career-app.game-mode.clubhouse .first-fight-trail h2 {
+  font-size: 24px;
+  margin: 6px 0;
+}
+.first-fight-trail > header a {
+  color: #355b6a;
+  font-size: 13px;
+  font-weight: 800;
+}
+.first-fight-trail ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+  margin: 20px 0;
+}
+.first-fight-trail li > a {
+  display: grid;
+  gap: 8px;
+  height: 100%;
+  padding: 16px;
+  background: #eee8da;
+  border: 1px solid #d8d0bf;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #304c5b;
+}
+.first-fight-trail li b {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #d9dfda;
+  color: #4c6c61;
+  font-size: 13px;
+}
+.first-fight-trail li strong {
+  font-size: 15px;
+}
+.first-fight-trail li span,
+.career-app.game-mode.clubhouse .first-fight-trail > p {
+  color: #536b71;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.first-fight-trail li[data-state="current"] > a {
+  background: #223f50;
+  color: #fff1d8;
+  border-color: #223f50;
+}
+.first-fight-trail li[data-state="current"] span {
+  color: #d4e1df;
+}
+.first-fight-trail li[data-state="current"] b {
+  background: #ee7754;
+  color: #193747;
+}
+.fight-lessons {
+  padding: 20px;
+  margin: 22px 0;
+  background: #f5eddc;
+  border: 1px solid #d4c5a7;
+  border-radius: 12px;
+  color: #294a58;
+}
+.career-app.game-mode.clubhouse .fight-lessons h3 {
+  font-size: 20px;
+  margin: 7px 0 18px;
+  color: #294a58;
+}
+.fight-lessons > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.fight-lessons article {
+  padding: 15px;
+  border-radius: 9px;
+  background: #e5ebe6;
+}
+.fight-lessons article > span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #4e665e;
+  font-weight: 800;
+}
+.fight-lessons article > strong {
+  display: block;
+  margin: 9px 0;
+  font-size: 17px;
+  color: #284c44;
+}
+.career-app.game-mode.clubhouse .fight-lessons article p,
+.fight-lessons article p {
+  color: #526b64;
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 0;
+}
+.career-app.game-mode.clubhouse .fight-lessons .fight-lesson-note {
+  font-size: 11px;
+  color: #4e665e;
+  margin: 15px 0 5px;
+}
+.career-app.game-mode.clubhouse .fight-lessons a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-weight: 800;
+  font-size: 13px;
+  color: #345d66;
+}
+.result-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 14px;
+  border: 1px solid #d8cbb0;
+  border-radius: 10px;
+  background: #f7edda;
+  color: #395b61;
+  font-size: 12px;
+}
+.result-feedback button {
+  padding: 11px 15px;
+  min-height: 44px;
+  border: 1px solid #b7c7c0;
+  border-radius: 7px;
+  background: #e6eee8;
+  color: #355d50;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.result-feedback > small {
+  flex-basis: 100%;
+}
+.career-help {
+  display: grid;
+  gap: 24px;
+  padding-bottom: 25px;
+}
+.career-help > .help-section {
+  min-width: 0;
+  padding: 24px;
+  background: #fff8e9;
+  border: 1px solid #d8cbb4;
+  border-radius: 14px;
+}
+.career-help > .help-information .public-site-links {
+  justify-content: flex-start;
+}
+.career-help > .help-information .public-site-links > span {
+  text-align: left;
+}
+.help-reports li {
+  overflow-wrap: anywhere;
+}
+.help-section[id] {
+  scroll-margin-top: 95px;
+}
+.help-hero {
+  padding: 34px;
+  background:
+    linear-gradient(90deg, #193a4cf0, #193a4c80),
+    url("/art/cartoon-team-locker-room.webp") center/cover;
+  color: #fff2db;
+  border-radius: 15px;
+}
+.career-app.game-mode.clubhouse .help-hero h2 {
+  color: #fff2db;
+  font-size: clamp(29px, 4vw, 45px);
+  line-height: 1.08;
+  margin: 12px 0;
+}
+.career-app.game-mode.clubhouse .help-hero p {
+  color: #dce6df;
+  font-size: 14px;
+  margin: 15px 0 22px;
+}
+.career-app.game-mode.clubhouse .help-section h3 {
+  margin: 0 0 15px;
+  font-size: 23px;
+}
+.career-app.game-mode.clubhouse .help-section p {
+  color: #536c70;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.help-faq {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.help-faq > article {
+  padding: 18px;
+  background: #e8eeea;
+  border-radius: 9px;
+}
+.help-faq h4 {
+  font-size: 16px;
+  color: #31564b;
+  margin: 0 0 8px;
+}
+.help-faq p {
+  margin: 0;
+}
+.help-section form {
+  display: grid;
+  gap: 15px;
+  margin: 20px 0;
+}
+.help-password {
+  max-width: 500px;
+}
+.help-section label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3c5c60;
+}
+.help-section input,
+.help-section textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  color: #294858;
+  background: #fffdf5;
+  border: 1px solid #a7b7b4;
+  border-radius: 7px;
+  font: inherit;
+}
+.help-text-button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #bdcdc5;
+  border-radius: 8px;
+  color: #355d6e;
+  font-size: 13px;
+  font-weight: 800;
+  background: #e6eee8;
+  cursor: pointer;
+}
+.help-section .gw-choice-cards {
+  margin: 14px 0;
+}
+.career-app.game-mode.clubhouse .help-fine-print {
+  font-size: 12px;
+  color: #68756e;
+}
+.help-reports {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.help-reports li {
+  padding: 15px;
+  background: #eee8db;
+  border-radius: 8px;
+}
+.help-reports li > span {
+  margin-left: 12px;
+  font-size: 12px;
+  color: #4e665e;
+}
+.alpha-notice {
+  padding: 14px 18px;
+  background: #e4eddf;
+  color: #315b45;
+  border: 1px solid #bacfb1;
+  border-radius: 9px;
+  font-size: 13px;
+}
+.career-app[data-reduced-motion] *,
+.career-app[data-reduced-motion] *::before,
+.career-app[data-reduced-motion] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+.career-app :is(button, a, input, textarea):focus-visible {
+  outline: 3px solid #da8a42;
+  outline-offset: 4px;
+}
+@media (max-width: 700px) {
+  .first-fight-trail,
+  .help-section {
+    padding: 18px;
+  }
+  .first-fight-trail ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .first-fight-trail li > a {
+    padding: 13px;
+  }
+  .fight-lessons > div,
+  .help-faq {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .help-hero {
+    padding: 25px;
+  }
+  .help-section .gw-choice-cards button {
+    min-height: 44px;
+  }
+}
+.alpha-season-focus {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 24px;
+  margin-bottom: 22px;
+  color: #f5eddb;
+  background: #233d48;
+  border-radius: 16px;
+}
+.alpha-season-focus h3 {
+  color: #f5eddb;
+  margin: 4px 0;
+}
+.alpha-season-focus p {
+  color: #d4e0df;
+  max-width: 65ch;
+}
+.alpha-season-focus .career-eyebrow {
+  color: #f4c56b;
+}
+.career-app.game-mode.clubhouse .game-nav > .gw-shell-help {
+  display: flex;
+  min-height: 44px;
+  padding: 12px 18px;
+  margin-top: 8px;
+  color: #e9e7d9;
+  font-size: 14px;
+}

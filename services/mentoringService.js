@@ -27,7 +27,8 @@ const CONFLICTS = {
 
 /** Pure compatibility math — exported for tests. */
 function evaluatePairing(mentor, junior) {
-    const transferable = (mentor.traits || []).filter((t) =>
+    const implemented = require('../consts/fightConfig').FIGHT.traits;
+    const transferable = (mentor.traits || []).filter((t) => implemented[t] &&
         !(junior.traits || []).includes(t) && !(junior.traits || []).includes(CONFLICTS[t]));
     const sameFamily = STYLES[mentor.style]?.family === STYLES[junior.style]?.family;
     return {
@@ -46,10 +47,11 @@ async function startPairing(gymId, mentorId, juniorId, now = new Date()) {
     const active = await MentorPair.countDocuments({ gymId, status: "active" });
     if (active >= capacity) throw err(`Your facility supports ${capacity} mentoring pair${capacity === 1 ? "" : "s"} — upgrade for more`, 409);
 
-    const [mentor, junior] = await Promise.all([
-        Fighter.findOne({ _id: mentorId, gymId, retired: { $ne: true } }),
-        Fighter.findOne({ _id: juniorId, gymId, retired: { $ne: true } }),
-    ]);
+    const mentor = await Fighter.findOne({ _id: mentorId, gymId, retired: { $ne: true } });
+    const junior = await Fighter.findOne({ _id: juniorId, gymId, retired: { $ne: true } });
+    const Camp = require('../models/campModel');
+    const Fight = require('../models/fightModel');
+    if (await Camp.exists({ fighterId: { $in: [mentorId, juniorId] }, status: 'active' }) || await Fight.exists({ fighterId: { $in: [mentorId, juniorId] }, status: 'scheduled' })) throw err('Finish existing camps and bouts before mentoring', 409);
     if (!mentor || !junior) throw err("Fighter not found", 404);
     if (mentor.age < MENTOR_MIN_AGE) throw err(`A mentor needs the miles — age ${MENTOR_MIN_AGE}+ (this one is ${Math.floor(mentor.age)})`, 409);
 
@@ -121,3 +123,6 @@ async function isInActivePair(fighterId) {
 }
 
 module.exports = { startPairing, resolvePairIfDue, getPairs, isInActivePair, evaluatePairing, MENTOR_MIN_AGE };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

@@ -37,6 +37,7 @@ export default function GameplanEditor({ fighterId, gameplan, onSaved }) {
             onSaved?.(next);
         } catch (err) {
             setError(err.message);
+            setPlan(plan);
         } finally {
             setSaving(false);
         }
@@ -46,7 +47,7 @@ export default function GameplanEditor({ fighterId, gameplan, onSaved }) {
         <div className="card">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                 <div className="section-label" style={{ margin: 0 }}>Gameplan</div>
-                <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{saving ? "Saving…" : "Saved"}</span>
+                <span style={{ fontSize: 11, color: "var(--ink-muted)" }}>{saving ? "Saving…" : error ? "Not saved" : "Saved"}</span>
             </div>
             {error && <div className="form-error">{error}</div>}
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -57,6 +58,7 @@ export default function GameplanEditor({ fighterId, gameplan, onSaved }) {
                             {opts.map((o) => (
                                 <button
                                     key={o.value}
+                                    disabled={saving}
                                     onClick={() => set(key, o.value)}
                                     style={{
                                         flex: 1, padding: "6px 4px", fontSize: 12, fontWeight: 600, cursor: "pointer",
@@ -74,7 +76,7 @@ export default function GameplanEditor({ fighterId, gameplan, onSaved }) {
                 ))}
             </div>
             <p style={{ fontSize: 11, color: "var(--ink-muted)", margin: "10px 0 0" }}>
-                The saved gameplan is what runs in the corner on fight night — set it before the fight resolves.
+                Works the corner on fight night — and defends the gym when you're attacked offline. Set it before the fight resolves.
             </p>
         </div>
     );

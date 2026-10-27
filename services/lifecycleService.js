@@ -15,6 +15,15 @@ const { elapsedGameWeeks, getTimeWarp } = require("../consts/calendar");
 /** Resolve any due camp, then recover fatigue and age the fighter. Returns
  *  the (possibly updated) active camp for the fighter, or null. */
 async function ensureFresh(fighter, now = new Date()) {
+    const current = await Fighter.findById(fighter._id);
+    if (!current) throw new Error('Fighter no longer exists');
+    fighter.set(current.toObject());
+    // Resolve earlier fights before advancing this fighter past their event.
+    // The currently resolving fight is already claimed inside its transaction.
+    const Fight = require('../models/fightModel');
+    const due = await Fight.find({ $or: [{ fighterId: fighter._id }, { opponentId: fighter._id }], status: 'scheduled', scheduledAt: { $lte: now } }).sort({ scheduledAt: 1 });
+    for (const fight of due) await require('./fightService').resolveFightIfDue(fight._id, fight.scheduledAt);
+    if (due.length) fighter.set((await Fighter.findById(fighter._id)).toObject());
     // 1. Due camp? Resolve it (atomic/idempotent inside).
     let activeCamp = await Camp.findOne({ fighterId: fighter._id, status: "active" });
     if (activeCamp && activeCamp.endsAt <= now) {
@@ -66,6 +75,8 @@ async function ensureFresh(fighter, now = new Date()) {
             }
 
             if (fighter.age >= AGING.hardRetirementAge) {
+                if (fighter.isChampion && !fighter.championshipHistory.length) fighter.championshipHistory.push({ wonAt: fighter.signedAt, endedAt: now, defenses: 0 });
+                if (fighter.championshipHistory.length && !fighter.championshipHistory.at(-1).endedAt) fighter.championshipHistory.at(-1).endedAt = now;
                 fighter.retired = true;
                 fighter.retiredAt = now;
                 fighter.isChampion = false;
@@ -103,3 +114,6 @@ async function runDailySweep(now = new Date()) {
 }
 
 module.exports = { ensureFresh, runDailySweep };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

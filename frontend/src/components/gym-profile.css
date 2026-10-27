@@ -1,0 +1,373 @@
+.gym-profile {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+.gym-profile-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 36px;
+  min-height: 270px;
+  border-radius: 18px;
+  color: #fff0d5;
+  background:
+    linear-gradient(100deg, #152d40f5, #19394cc9),
+    url("/art/cartoon-team-locker-room.webp") center/cover;
+}
+.gym-profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-width: 0;
+}
+.gym-profile-identity > .shop-club-mark {
+  width: 135px;
+  height: 156px;
+  flex-shrink: 0;
+}
+.career-app.game-mode.clubhouse .gym-profile-hero h2 {
+  color: #fff0d5;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.05;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
+}
+.career-app .gym-profile-hero p {
+  color: #d0ddd9;
+  margin: 12px 0;
+}
+.gym-profile-identity strong {
+  color: #f7bc77;
+  font-size: 14px;
+}
+.gym-profile-actions {
+  display: grid;
+  gap: 12px;
+  width: 240px;
+  flex-shrink: 0;
+}
+.gym-profile-actions .career-action {
+  text-align: center;
+  white-space: normal;
+}
+.gym-profile-actions small {
+  line-height: 1.5;
+  color: #d2ded9;
+}
+.career-app.game-mode.clubhouse .gym-profile-hero :is(p, small) {
+  color: #dae6dd;
+}
+.career-app.game-mode.clubhouse .gym-profile-hero .career-eyebrow {
+  color: #f6bd89;
+}
+.career-app.game-mode.clubhouse .gym-profile-section-head h3 {
+  font-size: 30px;
+  margin: 6px 0;
+}
+.career-app.game-mode.clubhouse .game-nav a.gw-profile-entry {
+  color: #f3e4cb;
+  justify-content: center;
+  width: 100%;
+}
+.gym-profile-team-status {
+  padding: 14px;
+  color: #e7d5b8;
+  font-weight: 700;
+}
+.gym-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.gym-profile-stats article {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff8ea;
+  border-bottom: 3px solid #d5c6ae;
+}
+.gym-profile-stats article > span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.gym-profile-stats strong {
+  display: block;
+  font-size: 32px;
+  margin: 8px 0;
+  color: #213849;
+}
+.gym-profile-stats strong small {
+  font-size: 15px;
+  color: #65706c;
+}
+.gym-profile-stats p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.gym-profile-section-head {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.gym-profile-section-head h3 {
+  margin: 6px 0;
+  font-size: 30px;
+}
+.gym-profile-section-head p {
+  margin: 6px 0 0;
+  line-height: 1.5;
+}
+.gym-profile-section-head .career-action {
+  flex-shrink: 0;
+}
+.gym-profile-fighters {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.gym-profile-fighter {
+  min-width: 0;
+  border-radius: 14px;
+  background: #fff8ea;
+  box-shadow: 0 3px 0 #d5c6ae;
+}
+.gym-profile-fighter-art {
+  position: relative;
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #d7d6cb;
+}
+.gym-profile-fighter-art > .career-portrait {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+.gym-profile-fighter-art > .fighter-rarity {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.gym-profile-fighter-art > .fighter-signature-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.gym-profile-fighter-copy {
+  padding: 16px;
+}
+.gym-profile-fighter-copy > span {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.gym-profile-fighter-copy h4 {
+  font-size: 21px;
+  margin: 8px 0 5px;
+  overflow-wrap: anywhere;
+}
+.gym-profile-fighter-copy p {
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+.gym-profile-fighter-copy dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+.gym-profile-fighter-copy dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+}
+.gym-profile-fighter-copy dd {
+  margin: 0;
+  font-weight: 800;
+}
+.gym-profile-awards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.gym-profile-awards article {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+  background: #fff8ea;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #d5c6ae;
+}
+.gym-profile-awards .shop-club-mark {
+  width: 64px;
+  height: 75px;
+  flex-shrink: 0;
+}
+.gym-profile-awards h4 {
+  font-size: 19px;
+  margin: 6px 0;
+}
+.gym-profile-awards small {
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  font-size: 9px;
+  color: #68766c;
+}
+.gym-profile-awards p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+.gym-profile-empty {
+  padding: 28px;
+  background: #e5decd;
+  border-radius: 14px;
+}
+.gym-profile-empty h4 {
+  font-size: 24px;
+  margin: 0 0 10px;
+}
+.gym-profile-empty p {
+  line-height: 1.6;
+  margin: 0 0 16px;
+  max-width: 65ch;
+}
+.gym-profile-pennants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.gym-profile-pennants > span {
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #1d3849;
+  color: #f2cf8d;
+  font-weight: 700;
+  font-size: 13px;
+}
+.gym-profile-error .career-action {
+  margin: 10px 12px 0 0;
+}
+.career-app .gw-profile-entry {
+  color: inherit;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+}
+.gw-ranked-gym a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  min-height: 44px;
+  align-content: center;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.gw-ranked-gym a small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.gw-ranked-gym > div {
+  min-width: 0;
+}
+.career-app .gw-leader-challenge {
+  color: #a83f2b;
+  font-size: 12px;
+}
+.career-app .gw-shell-navigation > nav > .gw-profile-entry {
+  justify-content: center;
+  color: #f3e4cb;
+}
+.career-app .gw-history-profile {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 18px;
+  color: #29495c;
+  font-weight: 800;
+  min-height: 44px;
+}
+.gym-profile a:focus-visible,
+.gw-profile-entry:focus-visible,
+.gw-ranked-gym a:focus-visible,
+.gw-history-profile:focus-visible {
+  outline: 3px solid #f07851;
+  outline-offset: 4px;
+}
+@media (max-width: 1200px) {
+  .gym-profile-hero {
+    padding: 28px;
+    gap: 20px;
+  }
+  .gym-profile-identity {
+    gap: 18px;
+  }
+  .gym-profile-identity > .shop-club-mark {
+    width: 100px;
+    height: 116px;
+  }
+  .gym-profile-awards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .gym-profile-hero {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px;
+  }
+  .gym-profile-actions {
+    width: 100%;
+  }
+  .gym-profile-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gym-profile-fighters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .gym-profile-section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .gym-profile-awards {
+    grid-template-columns: 1fr;
+  }
+  .gym-profile-stats article {
+    padding: 16px;
+  }
+}
+@media (max-width: 450px) {
+  .gym-profile-identity {
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .gym-profile-identity > .shop-club-mark {
+    width: 66px;
+    height: 77px;
+  }
+  .gym-profile-fighter-copy {
+    padding: 12px;
+  }
+  .gym-profile-fighter-copy h4 {
+    font-size: 18px;
+  }
+  .gym-profile-fighter-copy dl > div {
+    font-size: 10px;
+  }
+  .gym-profile-fighters {
+    gap: 10px;
+  }
+}

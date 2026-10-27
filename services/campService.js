@@ -21,6 +21,7 @@ async function startCamp(gymId, fighterId, allocations, weeks) {
 
     const fighter = await Fighter.findOne({ _id: fighterId, gymId });
     if (!fighter) throw Object.assign(new Error("Fighter not found"), { statusCode: 404 });
+    await require('./lifecycleService').ensureFresh(fighter);
     if (fighter.retired) throw Object.assign(new Error("Retired fighters don't run camps"), { statusCode: 409, expose: true });
 
     const existing = await Camp.findOne({ fighterId, status: "active" });
@@ -32,6 +33,13 @@ async function startCamp(gymId, fighterId, allocations, weeks) {
         throw Object.assign(new Error("This fighter is in a mentoring arc — no camps until it completes"), { statusCode: 409, expose: true });
     }
 
+    // Amateur circuit: a rookie gym's camps run at high speed — the genre's
+    // "first training takes a minute" pattern. Gains are unchanged; only the
+    // clock compresses.
+    const facilityService = require("./facilityService");
+    const rookie = await facilityService.rookieState(gymId);
+    const durationMs = gameWeeksToMs(weeks) / (rookie.active ? rookie.campSpeedMult : 1);
+
     const now = new Date();
     const camp = await Camp.create({
         gymId,
@@ -40,13 +48,16 @@ async function startCamp(gymId, fighterId, allocations, weeks) {
         allocations,
         weeks,
         startedAt: now,
-        endsAt: new Date(now.getTime() + gameWeeksToMs(weeks)),
+        endsAt: new Date(now.getTime() + durationMs),
     });
+
+    await require("./onboardingService").complete(gymId, "camp");
 
     // Delayed resolution job; the lazy on-read check is the safety net.
     // Timeout-guarded — with Redis down the add() would retry forever, and a
     // camp must start regardless (lazy resolve carries it).
     try {
+        if (process.env.DISABLE_SCHEDULER === 'true') return camp;
         const { campQueue } = require("../modules/scheduler");
         const enqueue = campQueue.add(
             "resolve-camp",
@@ -67,6 +78,16 @@ async function startCamp(gymId, fighterId, allocations, weeks) {
  * filter — concurrent callers can't double-apply gains.
  */
 async function resolveCampIfDue(campId, now = new Date()) {
+    // A late camp job must not apply future training to an earlier booked bout.
+    // Keep the camp active until those bouts finish, so their readiness is
+    // evaluated at the event time, before this camp's gains are committed.
+    const pending = await Camp.findOne({ _id: campId, status: 'active', endsAt: { $lte: now } });
+    if (!pending) return null;
+    const earlier = await require('../models/fightModel').find({
+        $or: [{fighterId:pending.fighterId},{opponentId:pending.fighterId}],
+        status:'scheduled', scheduledAt:{$lt:pending.endsAt},
+    }).sort({scheduledAt:1});
+    for(const bout of earlier) await require('./fightService').resolveFightIfDue(bout._id,bout.scheduledAt);
     const camp = await Camp.findOneAndUpdate(
         { _id: campId, status: "active", endsAt: { $lte: now } },
         { $set: { status: "completed", resolvedAt: now } },
@@ -75,7 +96,7 @@ async function resolveCampIfDue(campId, now = new Date()) {
     if (!camp) return null; // not due yet, or already claimed
 
     const fighter = await Fighter.findById(camp.fighterId);
-    if (!fighter) return camp; // fighter gone (shouldn't happen) — camp stays closed
+    if (!fighter) throw new Error('Camp participant missing; outcome not committed');
 
     // The hired coach shapes the camp (GDD §4.4).
     const Staff = require("../models/staffModel");
@@ -93,7 +114,7 @@ async function resolveCampIfDue(campId, now = new Date()) {
 
     fighter.stats = results.newStats;
     fighter.fatigue.value = Math.min(100, fighter.fatigue.value + results.fatigueAdded);
-    fighter.fatigue.syncedAt = now;
+    fighter.fatigue.syncedAt = camp.endsAt;
     await fighter.save();
 
     camp.results = results;
@@ -114,3 +135,6 @@ async function lastCompletedCamp(fighterId) {
 }
 
 module.exports = { startCamp, resolveCampIfDue, activeCampsByFighter, lastCompletedCamp };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

@@ -1,0 +1,570 @@
+.shop-club-mark {
+  display: block;
+  width: 120px;
+  height: 138px;
+  object-fit: contain;
+  overflow: visible;
+  filter: drop-shadow(0 8px 3px #091c2740);
+}
+.shop-club-mark .mark-shadow {
+  fill: #152633;
+}
+.shop-club-mark .mark-rim {
+  fill: var(--look-color);
+  stroke: var(--look-light);
+  stroke-width: 1;
+}
+.shop-club-mark .mark-field {
+  fill: var(--look-dark);
+}
+.shop-club-mark .mark-detail {
+  stroke: var(--look-light);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.shop-club-mark .mark-icon {
+  fill: var(--look-light);
+}
+.shop-club-flag {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--look-light);
+  background: var(--look-dark);
+  padding: 20px;
+  border: 1px solid var(--look-color);
+  border-radius: 3px 3px 16px 16px;
+  box-shadow: 0 5px 12px #10253430;
+  overflow: hidden;
+}
+.shop-club-flag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  background: repeating-linear-gradient(
+    130deg,
+    transparent 0 24px,
+    var(--look-color) 24px 38px
+  );
+}
+.shop-club-flag[data-pattern="waves"]::before {
+  background: repeating-radial-gradient(
+    ellipse at 0 100%,
+    transparent 0 15px,
+    var(--look-color) 15px 20px,
+    transparent 20px 35px
+  );
+}
+.shop-club-flag[data-pattern="petals"]::before {
+  background: repeating-conic-gradient(
+    from 30deg at 50% 100%,
+    transparent 0deg 15deg,
+    var(--look-color) 15deg 30deg
+  );
+}
+.shop-club-flag > .shop-club-mark {
+  flex: 0 0 70px;
+  width: 70px;
+  height: 82px;
+}
+.shop-club-flag > span {
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+.shop-club-flag small {
+  display: block;
+  margin-top: 7px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+.career-app.game-mode.clubhouse .game-club-crest:has(.shop-club-mark) {
+  padding: 0;
+  background: transparent !important;
+  box-shadow: none;
+  width: 45px;
+}
+.game-club-crest > .shop-club-mark {
+  width: 43px;
+  height: 49px;
+}
+.career-app.game-mode.clubhouse .shop-sidebar-flag {
+  margin: auto 17px 20px;
+  padding: 14px 10px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 9px;
+}
+.career-app.game-mode.clubhouse .game-nav .shop-sidebar-flag > .shop-club-mark {
+  width: 75px;
+  height: 86px;
+}
+.shop-sidebar-flag > span {
+  font-size: 14px;
+}
+.shop-sidebar-flag small {
+  font-size: 8px;
+}
+.shop-home-flag,
+.shop-gym-flag {
+  position: absolute;
+  right: 22px;
+  top: 20px;
+  width: 145px;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 14px;
+  pointer-events: none;
+  z-index: 1;
+}
+.shop-home-flag > span,
+.shop-gym-flag > span {
+  font-size: 12px;
+}
+.shop-home-flag small,
+.shop-gym-flag small {
+  display: none;
+}
+.club-shop {
+  display: grid;
+  gap: 24px;
+  padding-bottom: 25px;
+}
+.shop-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 30px;
+  align-items: center;
+  min-height: 320px;
+  padding: 40px;
+  border-radius: 16px;
+  color: #fff1d6;
+  background: #1c3445;
+}
+.shop-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, #132c3feb, #132c3f65),
+    url("/art/cartoon-team-locker-room.webp") center 40% / cover;
+}
+.shop-kicker {
+  color: #efb67e;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.17em;
+}
+.career-app.game-mode.clubhouse .shop-hero h2 {
+  color: #fff2d5;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: 14px 0;
+}
+.career-app.game-mode.clubhouse .shop-hero p {
+  max-width: 400px;
+  color: #dedccc;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.shop-fair-play {
+  display: inline-flex;
+  color: #d8e5dc;
+  font-size: 12px;
+  border-top: 1px solid #ffffff30;
+  padding-top: 14px;
+}
+.shop-hero-crest {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+.shop-hero-crest > .shop-club-mark {
+  width: 166px;
+  height: 192px;
+  transform: rotate(6deg);
+}
+.shop-hero-crest > span {
+  color: #eee1c5;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+.shop-payment-mode {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 20px;
+  border: 1px solid #d8bf8e;
+  border-radius: 10px;
+  background: #f4e7cb;
+}
+.shop-payment-mode > strong {
+  font-size: 10px;
+  flex-shrink: 0;
+  color: #865d2c;
+  letter-spacing: 0.06em;
+}
+.career-app.game-mode.clubhouse .shop-payment-mode p {
+  margin: 0;
+  font-size: 12px;
+  color: #78664b;
+  line-height: 1.6;
+}
+.shop-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.career-app.game-mode.clubhouse .club-shop .gw-game-tabs button {
+  white-space: nowrap;
+  min-width: 120px;
+}
+.shop-text-button {
+  min-height: 44px;
+  border: 0;
+  padding: 8px 4px;
+  background: transparent;
+  color: #355b70;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.shop-text-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.shop-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.shop-product {
+  overflow: hidden;
+  border: 1px solid #d6c8af;
+  border-radius: 14px;
+  background: #fff8e9;
+  box-shadow: 0 3px 0 #cfc3aa80;
+}
+.shop-product-art {
+  position: relative;
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 28px;
+  min-height: 265px;
+  border: 0;
+  cursor: pointer;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    var(--look-color),
+    var(--look-dark)
+  );
+  color: var(--look-light);
+}
+.shop-product-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background: repeating-linear-gradient(
+    120deg,
+    transparent 0 25px,
+    #fff 25px 29px
+  );
+}
+.shop-product-art > span {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: var(--look-light);
+  background: #18273280;
+  border: 1px solid #ffffff25;
+  border-radius: 5px;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 7px 9px;
+}
+.shop-product-art > .shop-club-mark {
+  width: 125px;
+  height: 145px;
+  transition: transform 0.2s ease;
+}
+.shop-product-art:hover > .shop-club-mark {
+  transform: translateY(-4px) rotate(-3deg);
+}
+.shop-product-art > b {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.shop-product-copy {
+  padding: 22px;
+}
+.career-app.game-mode.clubhouse .shop-product-copy h3 {
+  margin: 0 0 10px;
+  color: #263f4e;
+  font-size: 24px;
+}
+.career-app.game-mode.clubhouse .shop-product-copy p {
+  margin: 0 0 13px;
+  color: #67746f;
+  font-size: 13px;
+  min-height: 42px;
+  line-height: 1.6;
+}
+.shop-product-copy > small {
+  font-size: 10px;
+  color: #8c8069;
+}
+.shop-product-copy > div {
+  margin-top: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.shop-product-copy > div > strong {
+  color: #233e4d;
+  font-size: 25px;
+}
+.career-app.game-mode.clubhouse .club-shop .career-action {
+  min-height: 44px;
+  font-size: 12px;
+}
+.shop-notice {
+  padding: 14px 18px;
+  background: #e1eddf;
+  color: #306453;
+  border: 1px solid #b7d0b7;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.shop-empty {
+  grid-column: 1 / -1;
+  padding: 35px 24px;
+  text-align: center;
+  border: 1px dashed #c5b699;
+  border-radius: 12px;
+  color: #69756f;
+}
+.shop-purchases {
+  padding: 23px;
+  border: 1px solid #d6cbb6;
+  border-radius: 12px;
+  background: #f8f1e1;
+}
+.career-app.game-mode.clubhouse .shop-purchases h3 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+.career-app.game-mode.clubhouse .shop-purchases p {
+  font-size: 12px;
+  color: #758079;
+  margin-bottom: 0;
+}
+.shop-purchases ul {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+.shop-purchases li {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+  border-top: 1px solid #ded5c1;
+}
+.shop-purchases li > div {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.shop-purchases li strong {
+  color: #3c574d;
+  font-size: 13px;
+}
+.shop-purchases li span,
+.shop-purchases li small {
+  color: #7b8175;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .shop-footer-note {
+  color: #7a8075;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.shop-checkout {
+  max-width: 520px;
+  margin: auto;
+}
+.shop-checkout h3 {
+  font-size: 25px;
+  margin: 22px 0 9px;
+  color: #294352;
+}
+.shop-checkout p {
+  font-size: 13px;
+  color: #68756d;
+  line-height: 1.7;
+}
+.shop-contents {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: grid;
+  gap: 10px;
+}
+.shop-contents li {
+  padding: 12px 15px;
+  background: #e8ece4;
+  border-left: 3px solid #6d8e7c;
+  border-radius: 0 7px 7px 0;
+  color: #355a4a;
+  font-size: 13px;
+}
+.shop-checkout .shop-preview-location {
+  font-size: 11px;
+}
+.shop-checkout-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  margin: 22px 0 14px;
+  padding: 16px 0;
+  border-block: 1px solid #d9cdb7;
+}
+.shop-checkout-total > span {
+  font-size: 12px;
+  color: #617367;
+}
+.shop-checkout-total > strong {
+  font-size: 28px;
+  color: #2e4753;
+}
+.shop-checkout-mode {
+  padding: 14px;
+  margin-bottom: 18px;
+  background: #efe3c9;
+  border-radius: 8px;
+}
+.shop-checkout-mode > strong {
+  font-size: 13px;
+  color: #815e34;
+}
+.shop-checkout-mode p {
+  margin: 6px 0 0;
+  color: #826c4e;
+  font-size: 12px;
+}
+.shop-checkout > .career-action {
+  width: 100%;
+}
+.shop-checkout > .shop-text-button {
+  width: 100%;
+  margin-top: 8px;
+}
+@media (max-width: 900px) {
+  .shop-hero {
+    padding: 30px;
+    gap: 15px;
+  }
+  .shop-payment-mode {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .shop-home-flag,
+  .shop-gym-flag {
+    width: 100px;
+    padding: 10px;
+  }
+  .shop-home-flag > .shop-club-mark,
+  .shop-gym-flag > .shop-club-mark {
+    width: 50px;
+    height: 58px;
+  }
+}
+@media (max-width: 700px) {
+  .shop-product-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shop-hero {
+    padding: 26px 21px;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  .shop-hero-crest {
+    position: absolute;
+    right: 17px;
+    top: 20px;
+    opacity: 0.22;
+    z-index: -1;
+  }
+  .shop-hero-crest > .shop-club-mark {
+    width: 130px;
+    height: 150px;
+  }
+  .shop-hero-crest > span {
+    display: none;
+  }
+  .shop-hero p {
+    max-width: 300px;
+  }
+  .shop-product-art {
+    min-height: 225px;
+    padding: 25px;
+  }
+  .shop-home-flag,
+  .shop-gym-flag {
+    position: static;
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px;
+    padding: 10px 14px;
+    pointer-events: none;
+  }
+  .shop-home-flag > span,
+  .shop-gym-flag > span {
+    font-size: 13px;
+  }
+  .shop-purchases {
+    padding: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shop-product-art > .shop-club-mark {
+    transition: none;
+  }
+}

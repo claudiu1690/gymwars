@@ -1,0 +1,30 @@
+{
+  "provider": "Higgsfield MCP",
+  "model": "gpt_image_2_5",
+  "generatedAt": "2026-10-14",
+  "styleReferenceJob": "ac808798-c049-411d-a588-98ea4d97a992",
+  "purpose": "Original fixed-content supply pack art; cosmetic-free shop",
+  "assets": [
+    {
+      "file": "training-pack.webp",
+      "job": "0d6b61b3-06ac-46c8-b888-da68e11172eb",
+      "prompt": "Use case: stylized-concept. Asset type: finished shop pack illustration for the browser game Gym Wars. Reference image is STYLE ONLY: match its appealing rounded cartoon 3D, soft painted materials, chunky simplified forms, warm gym lighting, navy blue, cream and coral palette. Original fictional sports equipment, no real brand logos. A premium collectible physical sports pack, clearly readable at small card size. Three-quarter front view, complete object centered with generous margins on a simple gym locker bench, blurred gym environment, gentle spotlight, tiny floating dust motes. No people, no faces, no letters, no numbers, no text, no price, no interface, no borders, no guns, no coins. Make it fun and tactile, not photorealistic. Subject: a compact navy and coral canvas training duffel, unzipped with a chunky pair of coral boxing gloves, neatly rolled cream hand wraps and a small navy water bottle. Warm amber light, cozy cream gym backdrop. The duffel is the main hero.",
+      "aspectRatio": "4:3",
+      "source": "output/shop-packs-2026-10-14/training-pack.png"
+    },
+    {
+      "file": "war-pack.webp",
+      "job": "3abee54f-aa48-4c7f-bb71-bcbd6684473c",
+      "prompt": "Use case: stylized-concept. Asset type: finished shop pack illustration for the browser game Gym Wars. Reference image is STYLE ONLY: match its appealing rounded cartoon 3D, soft painted materials, chunky simplified forms, warm gym lighting, navy blue, cream and coral palette. Original fictional sports equipment, no real brand logos. A premium collectible physical sports pack, clearly readable at small card size. Three-quarter front view, complete object centered with generous margins on a simple gym locker bench, blurred gym environment, gentle spotlight, tiny floating dust motes. No people, no faces, no letters, no numbers, no text, no price, no interface, no borders, no guns, no coins. Make it fun and tactile, not photorealistic. Subject: a navy hard-shell arena ticket case with coral corner protectors, opened enough to reveal TWO thick teal-blue hexagonal admission tokens embossed with a simple original white boxing glove symbol. Stadium spotlights softly blurred in a navy gym backdrop, electric teal accent glow without excessive particles. The ticket case and two chunky tokens are the hero.",
+      "aspectRatio": "4:3",
+      "source": "output/shop-packs-2026-10-14/war-pack.png"
+    },
+    {
+      "file": "club-pack.webp",
+      "job": "36c24c20-2a23-4fe1-bade-6cbb043bf9c0",
+      "prompt": "Use case: stylized-concept. Asset type: finished shop pack illustration for the browser game Gym Wars. Reference image is STYLE ONLY: match its appealing rounded cartoon 3D, soft painted materials, chunky simplified forms, warm gym lighting, navy blue, cream and coral palette. Original fictional sports equipment, no real brand logos. A premium collectible physical sports pack, clearly readable at small card size. Three-quarter front view, complete object centered with generous margins on a simple gym locker bench, blurred gym environment, gentle spotlight, tiny floating dust motes. No people, no faces, no letters, no numbers, no text, no price, no interface, no borders, no guns, no coins. Make it fun and tactile, not photorealistic. Subject: a larger coral and navy gym kit case, open with coral boxing gloves, rolled cream hand wraps and TWO thick gold hexagonal admission tokens embossed with a simple original white boxing glove symbol. Golden gym spotlights, navy backdrop, celebratory warm lighting. A complete gym training and battle kit, balanced compact composition.",
+      "aspectRatio": "4:3",
+      "source": "output/shop-packs-2026-10-14/club-pack.png"
+    }
+  ]
+}

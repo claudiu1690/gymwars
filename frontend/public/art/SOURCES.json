@@ -1,0 +1,155 @@
+{
+  "provider": "Higgsfield MCP",
+  "purpose": "Original fictional Gym Wars concept assets approved for project implementation",
+  "generatedAt": "2026-10-06",
+  "assets": [
+    {
+      "file": "fighter-0.webp",
+      "job": "eb987a3d-51f7-4fea-8c4b-5e0b173a1935",
+      "role": "approved original athlete"
+    },
+    {
+      "file": "fighter-1.webp",
+      "job": "3b7d377c-fe2a-49b2-9e48-1f879e159a8b",
+      "role": "original athlete variant"
+    },
+    {
+      "file": "fighter-2.webp",
+      "job": "257b1d9d-50af-4d3d-ba91-d42568ad22ad",
+      "role": "original athlete variant"
+    },
+    {
+      "file": "fighter-3.webp",
+      "job": "6a8f6393-230d-494f-83fd-c579e08cc2a0",
+      "role": "veteran athlete"
+    },
+    {
+      "file": "gym-starter.webp",
+      "job": "1ff36a80-c15a-48e5-934d-813363c55b90",
+      "role": "approved starter gym"
+    },
+    {
+      "file": "gym-contender.webp",
+      "job": "597b363a-2bb5-498a-b78e-0186e1b90a06",
+      "role": "expanded gym"
+    },
+    {
+      "file": "cartoon-fighter-0.webp",
+      "job": "e7daeb81-0fce-436b-ad59-cadeb4b98e62",
+      "role": "Approved cartoon style production asset"
+    },
+    {
+      "file": "cartoon-fighter-1.webp",
+      "job": "97327e57-f92f-47a0-860a-e78faca99eb6",
+      "role": "Approved cartoon style production asset"
+    },
+    {
+      "file": "cartoon-fighter-2.webp",
+      "job": "57abc6ae-1e11-431f-aed8-efb8aec5253f",
+      "role": "Approved cartoon style production asset"
+    },
+    {
+      "file": "cartoon-fighter-3.webp",
+      "job": "8464f312-c5a5-423d-aab8-98ddf4c8966f",
+      "role": "Approved cartoon style production asset"
+    },
+    {
+      "file": "cartoon-gym-starter.webp",
+      "job": "ac808798-c049-411d-a588-98ea4d97a992",
+      "role": "Approved cartoon style production asset"
+    },
+    {
+      "file": "cartoon-gym-contender.webp",
+      "job": "7b96fbc7-8618-4a3f-9c86-f531ec1fefc7",
+      "role": "Approved cartoon style production asset"
+    }
+  ],
+  "fightNightAsset": {
+    "file": "cartoon-fight-night.webp",
+    "job": "bde693a3-7f62-4f90-8df6-00a592fbbf41",
+    "model": "gpt_image_2_5",
+    "generatedAt": "2026-10-07",
+    "referenceJob": "ac808798-c049-411d-a588-98ea4d97a992",
+    "role": "Original cartoon arena backdrop for the dedicated fight-night page",
+    "source": "output/art-source/cartoon-fight-night.png",
+    "promptRecord": "output/art-source/fight-night-generation.json"
+  },
+  "activeStyle": "Cartoon 3D; reference bf41359e-61c9-4a36-9040-07a18837a671",
+  "roomAssets": {
+    "provider": "Higgsfield MCP",
+    "model": "gpt_image_2_5",
+    "generatedAt": "2026-10-08",
+    "referenceJob": "ac808798-c049-411d-a588-98ea4d97a992",
+    "promptRecord": "output/art-source/rooms/generation.json",
+    "assets": [
+      {
+        "file": "rooms/striking.webp",
+        "thumbnail": "rooms/striking-thumb.webp",
+        "role": "Striking bay room illustration",
+        "job": "62b73887-c004-4ef4-b290-2f38e9206332"
+      },
+      {
+        "file": "rooms/grappling.webp",
+        "thumbnail": "rooms/grappling-thumb.webp",
+        "role": "Grappling lab room illustration",
+        "job": "28329fb4-0656-49d9-9b6a-d8613410dae3"
+      },
+      {
+        "file": "rooms/conditioning.webp",
+        "thumbnail": "rooms/conditioning-thumb.webp",
+        "role": "Conditioning studio room illustration",
+        "job": "fbef1f4b-46b6-4143-941b-9e70d55ef1cf"
+      },
+      {
+        "file": "rooms/recovery.webp",
+        "thumbnail": "rooms/recovery-thumb.webp",
+        "role": "Recovery suite room illustration",
+        "job": "8fd8db8c-bc09-43e3-9dd1-f1e470d1bcaf"
+      },
+      {
+        "file": "rooms/film.webp",
+        "thumbnail": "rooms/film-thumb.webp",
+        "role": "Film room room illustration",
+        "job": "62b986da-cb28-44c7-996f-97e4cadc9d9a"
+      }
+    ]
+  },
+  "teamEnvironments": {
+    "provider": "Higgsfield MCP",
+    "model": "gpt_image_2_5",
+    "generatedAt": "2026-10-12",
+    "referenceJob": "bde693a3-7f62-4f90-8df6-00a592fbbf41",
+    "promptRecord": "output/art-source/team-environments-2026-10-12/generation.json",
+    "assets": [
+      {
+        "file": "cartoon-team-locker-room.webp",
+        "job": "9c927dee-cbce-46d6-bbd6-c456bce7129a",
+        "role": "Gym Wars team tactics backdrop"
+      },
+      {
+        "file": "cartoon-training-floor.webp",
+        "job": "39c90179-b35d-46dd-a72e-ec210a3ac8d7",
+        "role": "Training floor backdrop"
+      }
+    ]
+  },
+  "clubEnvironments": {
+    "provider": "Higgsfield",
+    "model": "gpt_image_2_5",
+    "generatedAt": "2026-10-12",
+    "referenceJob": "bde693a3-7f62-4f90-8df6-00a592fbbf41",
+    "promptRecord": "output/art-source/club-environments-2026-10-12/generation.json",
+    "assets": [
+      {
+        "file": "cartoon-club-headquarters.webp",
+        "job": "4b947904-0c57-4f6f-b522-d2a576ad35ba",
+        "role": "Home headquarters background"
+      },
+      {
+        "file": "cartoon-club-trophy-room.webp",
+        "job": "c09f2796-136b-40fc-babc-42b578d72a11",
+        "role": "Gym Wars Club profile background"
+      }
+    ]
+  }
+}

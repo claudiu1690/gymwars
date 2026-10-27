@@ -1,0 +1,79 @@
+# GymWars first-session and navigation review — 8 October 2026
+
+Status: design proposal for review, not an implementation. This audit applies the installed game-designer skill to the current React/Node career game. Findings below are source observations; player confusion and enjoyment effects are hypotheses until a fresh-player test observes them. No player save was changed.
+
+## Assessment
+
+The new illustrated training board and explicit End week are a substantial improvement. The core opportunity is now decision hierarchy: the game has the information and state machine to tell a new manager what to do, but the normal Home screen no longer exposes that guidance. More choices, extra screens, and a tutorial modal would make this worse. Put a clear next action into the existing illustrated Home and reuse it after important results.
+
+Keep the cartoon art, rarity-framed fighter cards, all six starter styles, custom and specialist training, coach/manual fight control, and one manual shared calendar. End week must remain the only UI action that moves career time. Advice must stay optional.
+
+## What a genuinely new career contains
+
+The populated demo is not representative of first-session onboarding. The new-career factory creates a save at week 0 / 5 October 2026 with $1,200, a starter gym, three roster places, $20 weekly upkeep, and one 23-year-old lightweight prospect. No fight or camp is booked. The selected style increases its family’s primary stat. See `engine/careerEngine.js:703`, `engine/careerEngine.js:739`, and `consts/career.js:1`.
+
+Setup is already economical: gym name, six style tiles, Begin career. Style subtitles explain standing, takedown, and submission identities. There is no need to add a questionnaire or separate tutorial choice. See `frontend/src/pages/Career.jsx:728`.
+
+Week-0 offers are a regular four-week event and a one-week short-notice event. Later normal offers can be six weeks away. The first-bout two-week sequence described in historical implementation notes is not the current offer rule. See `engine/careerEngine.js:840`. Training durations are 1, 4, and 6 weeks; training adds 9 fatigue per week and rest removes 18 at starter tier. See `consts/career.js:7` and `engine/careerEngine.js:155`.
+
+## Prioritized findings
+
+| Priority | Current evidence | Player risk / hypothesis | Recommended behavior | Scope |
+|---|---|---|---|---|
+| P0 | Home renders the guide action only when the save is blocked. Otherwise large Train your fighters and Fight another gym actions precede a small Book a career fight link. `frontend/src/components/CareerHome.jsx:72`; the first-session subtitle promises coaching at `frontend/src/pages/Career.jsx:332`. Correct fresh-state advice still exists in `frontend/src/careerGuide.mjs:177`. | A newcomer follows training or exhibitions without understanding the career goal. The page promises a coach that is absent in ordinary states. | Use the existing Home play panel for one prominent, save-aware objective and action: Book your first fight → Plan one-week training → End week → Recover → Enter fight night. Keep both modes available as secondary choices. Show a compact Book / Train / Rest / Fight strip on the same panel, derived from the save rather than another tutorial flag. | S; React presentation, existing guide and commands. |
+| P0 | Training preselects a balanced draft. It can display a selected tile, a full-camp skill forecast and Assign camp while the global End week bar correctly says zero fighters training. There is no draft check in the root End week command. `frontend/src/components/CareerTraining.jsx:414`, `frontend/src/components/CareerTraining.jsx:437`, `frontend/src/components/CareerTraining.jsx:1087`, `frontend/src/pages/Career.jsx:285`. The existing screenshot `output/validation/review11-training-end-week.jpg` visibly shows this combination. | A player may read the checked training tile as an assigned plan, then press End week and rest instead. This is a communication risk, not evidence that the engine advances incorrectly. | Make Draft / Assigned a prominent state, beside the selected fighter and preview action. Before assignment say “Preview only. Ousmane will rest this week.” After assignment say “Assigned: All-round training — 0/1 weeks. End week to train.” For an intentionally changed but unassigned draft, let the turn bar offer Assign camp or Rest this week inline. Never auto-commit a draft or silently advance. Avoid a confirmation modal on every turn and do not block ordinary rest merely because the initial default preview exists. | S–M; draft-awareness shared with the existing turn bar, no calendar change. |
+| P1 | After camp completion the training page selects recovery only below 70% readiness; a first one-week camp leaves 91%, so it offers another balanced draft. The save-derived guide already recognizes completed training and recommends recovery. `frontend/src/components/CareerTraining.jsx:414`; `frontend/src/components/CareerTraining.jsx:489`; `frontend/src/careerGuide.mjs:84`. | The interface directs the novice back into repeated training even when the relevant next step is reaching the booked fight fresh. A training result is visible, but the decision it enables is less obvious. | Under the camp result show the next booked fight and a suggested week: “Camp complete. Rest brings you to 100% before fight night.” Retain every training choice. For booked fighters show a short Train / Rest / Fight timeline with dates and expected condition at the fight, not merely condition at camp end. Mark 0 recovery weeks as a readable tradeoff; permit it when legal. | S–M; existing public stats, forecast and booking date; no new system. |
+| P1 | Home presents career booking and instant exhibitions together; Gym Wars exhibits no career-time/cash effects, while career fights use booked dates, readiness and purses. `frontend/src/components/CareerHome.jsx:84`; `frontend/src/components/CareerExhibitions.jsx:113`; `frontend/src/components/CareerTurnBar.jsx:232`. | Players may expect an exhibition to progress the career or unlock its first-bout milestones. This also blurs the meaning of the otherwise useful persistent End week on the instant-fight screen. | Label the two intents consistently: Career fights — train, earn, climb; Gym Wars exhibitions — fight immediately, no career progress. On exhibitions retain the calendar but visually subordinate End week to Fight now and identify it as Career week. Do not create a new mode-selection screen or require career completion to play an exhibition. | S; labels and hierarchy. |
+| P1 | Fight debrief offers “Back to coach · what’s next?” but its callback goes Home, whose normal coach guidance is absent. `frontend/src/components/CareerFightNight.jsx:254`; `frontend/src/pages/Career.jsx:549`. | The player finishes the most consequential early action and returns to an unfocused menu. They cannot connect the reward/unlocks to the next useful decision. | Send the player Home with a concise result/next-step panel: purse, record/ranking change, actual unlocks, next eligible bout date, and one relevant action. The first bout completion—not a required win—should celebrate “Gym open” and offer recruit or coach as optional follow-ons after recovery. Reuse the save-derived guide. | S; existing debrief and journey state. |
+| P2 | Unassigned fighters use “Ready to train” on Home, “Ready for a camp” on Gym, “Resting this week” in the training switcher, and “No camp assigned” on the fight-board agenda. `frontend/src/components/CareerHome.jsx:185`; `frontend/src/components/CareerGym.jsx:69`; `frontend/src/components/CareerTraining.jsx:84`; `frontend/src/components/CareerSchedule.jsx:69`. | Availability, condition, and committed weekly assignment are conflated. A new player may think rest must be assigned or that a full-readiness fighter is already doing useful training. | Use a common state vocabulary across every view: Resting this week, Camp assigned, Training 1/4 weeks, Check-in due, Mentoring, Fight ready. Put readiness separately. “Available” can describe choices; it should not replace the actual upcoming work. | S; shared label mapping. |
+| P2 | Locked specialist camps remain expanded in the training board and link to facilities before the first bout can unlock equipment. `frontend/src/components/CareerTraining.jsx:1041`; first-bout equipment gate at `engine/careerEngine.js:168`. | Decorative locks and upgrade routes compete with the first training decision and can send novices into a blocked purchase page. | Before the first bout show the three future specialist rooms as a compact preview: “First fight unlocks gym development.” Expand full locked-room comparisons on demand or once the first bout is complete. All unlocked choices remain visible and custom training stays directly accessible. | S; progressive presentation, unchanged eligibility. |
+
+## Recommended opening sequence
+
+1. **Start the gym.** Name and choose style. Show the starter’s name, portrait, signature strength and one sentence about the manager role.
+2. **Book a career debut.** Home’s primary action opens the existing opponent offers. Give a suggested beginner-safe date without promising a guaranteed win. The opponent choice remains real; show both skill matchup and preparation time before signing.
+3. **Plan training.** After signing, the existing route opens training for the booked fighter. Display the opponent/date, suggested one-week focus with its reason, and the other legal choices. One large Assign camp action commits only training. No calendar movement occurs.
+4. **End week.** The persistent button states the next date, $20 shared cost and the committed assignment. The result visibly shows skill gains and 100% → 91% condition.
+5. **Recover.** The next-action advice explains automatic rest and its effect; no additional “assign rest” ritual. End week reaches the next date. When a longer event has more empty weeks, tell the player “Ready for the bout in 14 days; your team is resting.” Keep the turn manual.
+6. **Fight.** The same turn control stops and points directly to the corner. Keep Play round and Let coach run the fight. Round feedback leads with what happened and why it matters, while detailed exchanges remain optional.
+7. **See the payoff.** Record, purse, ranking, starter’s story and actual first-bout unlocks. Home’s next action adapts to the save. Scouting, room upgrades and mentoring become optional reasons to continue, not required steps to dismiss a tutorial.
+
+### Opening-date choice requiring director decision
+
+**A. Keep the regular four-week debut (smallest scope).** One camp week plus rest introduces the real circuit and uses existing rules. It requires four End week presses to reach the first normal event, with likely low-value rest clicks after the first recovery. Improve advice and feedback first, then test whether those extra clicks feel tedious.
+
+**B. Add an optional two-week debut offer (recommended if first-fight pacing fails).** Only an unplayed career’s opening offer uses two weeks: one training week, one recovery week, fight. Keep ordinary opponent selection, short-notice alternatives, six style choices and all subsequent scheduling. Two manual turns cost $40 rather than the ordinary four-turn $80; no guaranteed win or inflated rewards are needed. Scope M: offer generation, offer identity/expiry/retry tests and explicit first-bout coverage. This is a proposal, not permission to change all event dates.
+
+## Common interaction rules
+
+- Clicking a fighter/room/opponent is selection. Assign, Sign and Purchase are clearly named commits. End week alone moves the career calendar. Each commit receives a visible state change beside its subject.
+- Every primary task answers: who, current goal, available choice, effect, and next commit. Existing optional detail sections can hold numeric explanations; do not make the user open more panels to identify the action.
+- Calendar blockers identify the fighter/opponent that needs attention; retain the stable End week location with an adjacent resolver. Unrelated legal planning remains possible.
+- A pending request should say what is pending, for example “Saving Alex’s camp” or “Playing 12–19 October,” then expose Retry that action after interruption. The current generic “Career saved” state is technically sound but contributes little feedback about what changed (`frontend/src/pages/Career.jsx:177`, `frontend/src/pages/Career.jsx:635`).
+- Rarity indicates a fighter’s tier, condition indicates freshness, and skill forecasts are estimates. None should be displayed as win probability. A single optional definition of readiness is enough; avoid new mandatory instructions.
+- Player saves, fighter choices and unlocked content must survive these presentation changes. First-session advice should derive from current commitments, not force experienced saves into a fresh tutorial.
+
+## Success criteria
+
+Functional acceptance before player tests:
+
+1. A new career’s Home displays a single relevant primary action with the correct fighter; no blocker is required for it to appear.
+2. On Home, fighter, Gym, training and fight board, the upcoming assignment uses the same label. A selected uncommitted camp is visually distinguishable from assigned training.
+3. Assigning/changing/cancelling an unplayed camp leaves calendar, money, skills and teammates unchanged. One End week advances all committed assignments exactly seven days. Advice never auto-advances or auto-commits.
+4. After an opening one-week camp, the next action explains recovery to the booked date while all legal training choices remain available.
+5. After fight completion, the displayed next action reflects real fatigue, turnaround, unlocks, funds and current commitments. Exhibitions cannot be mistaken for a paid career fight.
+6. At 390px and 1440px, primary choice/commit and the fixed turn control remain reachable without overlapping content. Keyboard order follows choice → commit → time advance; changes and results are announced.
+
+First-session product test, using fresh accounts rather than the populated demo:
+
+- Observe at least eight first-time players without coaching. Provisional target: six of eight finish the first career bout in ten minutes; record the median and every help request rather than treating this target as a current result.
+- After seeing a selected draft, ask what End week will do. Target: seven of eight correctly identify whether the fighter will train or rest and understand that it affects the whole team.
+- Before signing, players can name one opponent/date tradeoff. Before fight night, they can explain why they trained and then rested. A successful test must retain agency rather than measure only button-following.
+- Record rest-week boredom, unexpected advancement, accidental uncommitted-draft turns, loss comprehension, and which action players voluntarily choose after the first bout.
+- No first-session change is validated merely by automated tests or attractive screenshots. Compare observed clarity and continuation against the current build before adding another system.
+
+## Handoff and boundaries
+
+Frontend engineer: Home next-action panel, shared assignment vocabulary, training draft/assignment hierarchy and debrief handoff. Backend engineer only if the director selects the optional two-week debut. QA: fresh-state flow, returning saves, custom plans, multiple fighters, interruption recovery, camp/fight blockers and mobile/keyboard routes. Existing room art is sufficient; no new generated assets are necessary for these fixes.
+
+This pass should not rebalance late-game income, remove training options, add injuries, require multiplayer, introduce daily tasks or invent another currency. Those are separate product decisions; first establish that the current core loop is legible and enjoyable.

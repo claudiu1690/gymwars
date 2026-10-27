@@ -1,0 +1,22 @@
+[
+  { "id": 0, "src": "/art/fighter-cutout-0.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 1, "src": "/art/fighter-cutout-1.webp", "weightClasses": ["heavyweight"], "faceCrop": "180 10 240 240" },
+  { "id": 2, "src": "/art/fighter-cutout-2.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 3, "src": "/art/fighter-cutout-3.webp", "weightClasses": ["middleweight"], "faceCrop": "180 10 240 240", "minAge": 38 },
+  { "id": 4, "src": "/art/fighters/featherweight-shaved.webp", "weightClasses": ["featherweight"], "faceCrop": "180 10 240 240" },
+  { "id": 5, "src": "/art/fighters/featherweight-redcrop.webp", "weightClasses": ["featherweight"], "faceCrop": "180 10 240 240" },
+  { "id": 6, "src": "/art/fighters/featherweight-moustache.webp", "weightClasses": ["featherweight"], "faceCrop": "180 10 240 240" },
+  { "id": 7, "src": "/art/fighters/featherweight-fringe.webp", "weightClasses": ["featherweight"], "faceCrop": "180 10 240 240" },
+  { "id": 8, "src": "/art/fighters/lightweight-afro.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 9, "src": "/art/fighters/lightweight-buzzcut.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 10, "src": "/art/fighters/lightweight-goatee.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 11, "src": "/art/fighters/lightweight-centerpart.webp", "weightClasses": ["lightweight"], "faceCrop": "180 10 240 240" },
+  { "id": 12, "src": "/art/fighters/middleweight-cornrows.webp", "weightClasses": ["middleweight"], "faceCrop": "180 10 240 240" },
+  { "id": 13, "src": "/art/fighters/middleweight-brownbeard.webp", "weightClasses": ["middleweight"], "faceCrop": "180 10 240 240" },
+  { "id": 14, "src": "/art/fighters/middleweight-topknot.webp", "weightClasses": ["middleweight"], "faceCrop": "180 10 240 240" },
+  { "id": 15, "src": "/art/fighters/middleweight-silvercrop.webp", "weightClasses": ["middleweight"], "faceCrop": "180 10 240 240" },
+  { "id": 16, "src": "/art/fighters/heavyweight-blackbeard.webp", "weightClasses": ["heavyweight"], "faceCrop": "180 10 240 240" },
+  { "id": 17, "src": "/art/fighters/heavyweight-redbraid.webp", "weightClasses": ["heavyweight"], "faceCrop": "180 10 240 240" },
+  { "id": 18, "src": "/art/fighters/heavyweight-moustache.webp", "weightClasses": ["heavyweight"], "faceCrop": "180 10 240 240" },
+  { "id": 19, "src": "/art/fighters/heavyweight-silverstreak.webp", "weightClasses": ["heavyweight"], "faceCrop": "180 10 240 240" }
+]

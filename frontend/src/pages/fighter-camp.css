@@ -1,0 +1,1130 @@
+/* Fighter-first management: identity, a decision, then its consequence. */
+.fighter-focus-mode {
+  --c-paper: #eeeae1;
+  --c-white: #fffdf7;
+  --c-line: #d8d7cf;
+}
+.fighter-focus-mode .career-calendar,
+.fighter-focus-mode .career-advance-summary,
+.fighter-focus-mode .career-top > div > p {
+  display: none;
+}
+.fighter-focus-mode .career-top {
+  margin-bottom: 8px;
+}
+.fighter-focus-mode .career-top h1 {
+  font-size: 22px;
+}
+.fighter-focus-mode .career-save-slot:empty {
+  min-height: 0;
+}
+.fighter-workspace,
+.camp-workspace,
+.camp-week-report {
+  min-width: 0;
+}
+.fighter-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  color: #5c6a77;
+  font-size: 12px;
+  margin: 4px 0 20px;
+}
+.fighter-breadcrumb a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 6px 0;
+}
+.fighter-focus-mode .career-action:not(.secondary) {
+  background: #efb83f;
+  border-color: #ab7d22;
+  color: #243544;
+  box-shadow: 0 3px 0 #9c7222;
+  font-weight: 800;
+}
+.fighter-focus-mode .career-action:not(.secondary):hover {
+  background: #f7c65b;
+}
+.fighter-focus-mode .career-action:not(.secondary):active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #9c7222;
+}
+.fighter-layout {
+  display: grid;
+  grid-template-columns: minmax(235px, 31%) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.fighter-identity {
+  background: #fffdf7;
+  border: 3px solid var(--rarity-frame);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 0 #c8ccc8;
+}
+.fighter-identity[data-rarity="legend"] {
+  border-width: 5px;
+  border-style: double;
+}
+.fighter-identity-art {
+  position: relative;
+  background: #294560;
+}
+.fighter-identity-art > .career-portrait {
+  display: block;
+  width: 100%;
+  height: 315px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
+}
+.fighter-identity-art > .fighter-rarity {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+.fighter-belt {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background: #efbf53;
+  color: #243544;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  padding: 7px;
+  border-radius: 5px;
+}
+.fighter-identity-name {
+  padding: 21px;
+}
+.fighter-identity-name h2 {
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 850;
+  line-height: 1.02;
+  text-transform: uppercase;
+  margin: 7px 0;
+  overflow-wrap: anywhere;
+}
+.fighter-identity-name p {
+  margin: 10px 0 1px;
+  font-size: 12px;
+}
+.fighter-identity-name > small {
+  font-size: 12px;
+}
+.fighter-record {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid #d9dbd5;
+  padding: 16px 0 0;
+  margin: 18px 0 0;
+}
+.fighter-record > div {
+  flex: 1;
+}
+.fighter-record dd {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 850;
+}
+.fighter-record dt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64717d;
+}
+.fighter-decisions {
+  display: grid;
+  gap: 19px;
+  min-width: 0;
+}
+.fighter-challenge {
+  background: #fffdf7;
+  border: 1px solid #d6d8d2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.fighter-challenge > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 19px;
+  background: #e3e2d8;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.fighter-challenge-body {
+  padding: 21px;
+}
+.fighter-opponent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.fighter-opponent > div {
+  min-width: 0;
+}
+.fighter-opponent h3 {
+  font-size: 28px;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.fighter-opponent .career-eyebrow {
+  margin-bottom: 8px;
+}
+.fighter-opponent p {
+  font-size: 12px;
+  margin: 7px 0 0;
+}
+.fighter-opponent > .career-portrait {
+  width: 85px;
+  height: 111px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #294560;
+}
+.fighter-challenge-body .fighter-matchup-read {
+  color: #3e5361;
+  margin: 18px 0;
+  font-size: 13px;
+}
+.fighter-challenge-body > .career-action {
+  width: 100%;
+}
+.fighter-challenge-body > .camp-text-button {
+  margin-top: 12px;
+}
+.fighter-challenge-body .fighter-commitment {
+  font-size: 12px;
+  color: #346451;
+  font-weight: 650;
+}
+.fighter-condition {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.fighter-condition > strong {
+  font-size: 32px;
+  font-weight: 850;
+  color: #946021;
+}
+.fighter-condition > div {
+  flex: 1;
+}
+.fighter-condition b {
+  font-size: 14px;
+}
+.fighter-condition p {
+  font-size: 12px;
+  margin: 4px 0 8px;
+}
+.fighter-condition-track {
+  height: 5px;
+  background: #d7d9d4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fighter-condition-track span {
+  display: block;
+  height: 100%;
+  background: #487a7c;
+}
+.fighter-traits {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.fighter-traits > div {
+  flex: 1 1 150px;
+  border-left: 3px solid #70948a;
+  padding: 3px 0 3px 10px;
+}
+.fighter-traits strong {
+  display: block;
+  font-size: 12px;
+}
+.fighter-traits span {
+  display: block;
+  font-size: 11px;
+  color: #566c77;
+  margin-top: 3px;
+}
+.fighter-title-chase {
+  background: #e1e7df;
+  border-radius: 8px;
+  padding: 13px 15px;
+}
+.fighter-title-chase strong {
+  display: block;
+  font-size: 13px;
+}
+.fighter-title-chase span {
+  display: block;
+  font-size: 12px;
+  margin-top: 3px;
+  color: #4e665a;
+}
+.fighter-disclosure {
+  border-top: 1px solid #cfd4ce;
+}
+.fighter-disclosure summary,
+.camp-details summary {
+  padding: 12px 0;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.fighter-attributes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin: 5px 0 16px;
+}
+.fighter-attributes > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 7px;
+}
+.fighter-attributes dt {
+  font-size: 13px;
+}
+.fighter-attributes dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+.fighter-story p {
+  border-bottom: 1px solid #d8dcd6;
+  padding-bottom: 12px;
+  font-size: 13px;
+}
+.fighter-story small {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+.camp-text-button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: #4d6470;
+  font-weight: 650;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 9px 0;
+  text-align: left;
+  min-height: 38px;
+}
+.camp-header {
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  margin: 0 0 24px;
+}
+.camp-header > .career-portrait {
+  width: 77px;
+  height: 98px;
+  object-fit: contain;
+  border: 2px solid var(--rarity-frame);
+  border-radius: 11px;
+  background: #294560;
+}
+.camp-header > div {
+  flex: 1;
+  min-width: 0;
+}
+.camp-header h2 {
+  font-size: clamp(27px, 3vw, 38px);
+  font-weight: 850;
+  text-transform: uppercase;
+  line-height: 1.08;
+}
+.camp-header .camp-coach-read {
+  border-left: 3px solid #dba734;
+  padding-left: 13px;
+  margin: 12px 0 0;
+  max-width: 760px;
+  color: #4a5f6a;
+  font-size: 13px;
+}
+.camp-header .career-eyebrow {
+  margin-bottom: 7px;
+}
+.camp-week-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  border: 1px solid #d4d6cf;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fffdf7;
+  margin-bottom: 21px;
+}
+.camp-week-strip > div {
+  padding: 13px 16px;
+  min-width: 0;
+}
+.camp-week-strip > div + div {
+  background: #e4e5dc;
+}
+.camp-week-strip small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  margin-bottom: 3px;
+}
+.camp-week-strip strong {
+  font-size: 13px;
+}
+.camp-choices-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.camp-lengths {
+  font-size: 12px;
+}
+.camp-lengths summary {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 7px 0;
+}
+.camp-lengths > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+.camp-lengths button {
+  border: 1px solid #bcc9c8;
+  border-radius: 7px;
+  padding: 10px 13px;
+  background: #fffdf7;
+  color: #243d4b;
+  text-align: left;
+}
+.camp-lengths button[aria-pressed="true"] {
+  border-color: #997120;
+  background: #f4e4bd;
+}
+.camp-lengths strong,
+.camp-lengths span {
+  display: block;
+}
+.camp-lengths span {
+  font-size: 11px;
+  margin-top: 4px;
+}
+.camp-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 0 22px;
+}
+.camp-plan-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+  border: 2px solid #d0d5ce;
+  background: #fffdf7;
+  border-radius: 13px;
+  padding: 20px 17px 15px;
+  color: #263b4c;
+  box-shadow: 0 4px 0 #c9cec6;
+  transition: transform 140ms ease;
+}
+.camp-plan-card:hover {
+  transform: translateY(-3px);
+}
+.camp-plan-card[aria-pressed="true"] {
+  border-color: #a16a20;
+  box-shadow: 0 4px 0 #a16a20;
+  background: #fffaf0;
+}
+.camp-plan-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+.camp-plan-top > span:last-child {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #62717b;
+  text-align: right;
+}
+.camp-plan-icon {
+  display: flex;
+  padding: 11px;
+  border-radius: 10px;
+  background: #eae9df;
+}
+.camp-plan-title {
+  font-size: 23px;
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -0.035em;
+  min-height: 50px;
+  max-width: 205px;
+}
+.camp-plan-intent {
+  font-size: 12px;
+  color: #586f7b;
+  margin: 12px 0 20px;
+  min-height: 55px;
+  line-height: 1.6;
+}
+.camp-plan-benefit {
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: auto;
+}
+.camp-plan-benefit small,
+.camp-plan-tradeoff small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.camp-plan-tradeoff {
+  font-size: 12px;
+  font-weight: 650;
+  color: #8c511a;
+  margin: 15px 0 17px;
+  min-height: 63px;
+}
+.camp-plan-tradeoff small {
+  color: #5c6e78;
+}
+.camp-plan-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-top: 1px solid #d8dbd3;
+  padding-top: 13px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.camp-plan-card[aria-pressed="true"] .camp-plan-select {
+  color: #94601c;
+}
+.camp-decision,
+.camp-report-next {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: #fffdf7;
+  padding: 18px 20px;
+  border: 1px solid #d4d7d0;
+  border-radius: 11px;
+}
+.camp-decision > div,
+.camp-report-next > div {
+  min-width: 0;
+}
+.camp-decision > .career-action,
+.camp-report-next > .career-action {
+  flex-shrink: 0;
+}
+.camp-decision p,
+.camp-report-next p {
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+.camp-details {
+  border-top: 1px solid #cfd5cd;
+  margin-top: 20px;
+  padding-bottom: 8px;
+}
+.camp-details p,
+.camp-preparation-note {
+  font-size: 12px;
+  line-height: 1.7;
+}
+.camp-exact-gains {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  margin: 6px 0 18px;
+}
+.camp-exact-gains > div {
+  padding: 8px 0;
+  border-bottom: 1px solid #d6dbd3;
+}
+.camp-exact-gains dt {
+  font-size: 12px;
+}
+.camp-exact-gains dd {
+  margin: 5px 0 0;
+  font-size: 17px;
+  font-weight: 750;
+}
+.camp-exact-gains dd span {
+  color: #376b53;
+}
+.camp-details .camp-estimate-note {
+  font-size: 11px;
+}
+.camp-secondary-actions {
+  display: flex;
+  gap: 9px 22px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.camp-custom {
+  padding: 20px;
+  margin: 0 0 20px;
+  background: #fffdf7;
+  border: 1px solid #c6d1c7;
+  border-radius: 11px;
+}
+.camp-custom select {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #c6d1c7;
+  border-radius: 6px;
+}
+.camp-custom p,
+.camp-custom label {
+  font-size: 12px;
+}
+.camp-active {
+  padding: 24px;
+  border: 1px solid #d1d8d0;
+  border-radius: 13px;
+  background: #fffdf7;
+}
+.camp-active-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.camp-active-title h3 {
+  font-size: 25px;
+  margin-top: 6px;
+}
+.camp-active-title p {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.camp-active-title > strong {
+  font-size: 29px;
+  text-align: right;
+}
+.camp-active-title small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+}
+.camp-active > progress {
+  display: block;
+  appearance: none;
+  border: none;
+  width: 100%;
+  height: 7px;
+  background: #e1e5dc;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.camp-active > progress::-webkit-progress-bar {
+  background: #e1e5dc;
+}
+.camp-active > progress::-webkit-progress-value {
+  background: #4c896e;
+}
+.camp-active > progress::-moz-progress-bar {
+  background: #4c896e;
+}
+.camp-midpoint-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 23px;
+  margin-top: 23px;
+}
+.camp-midpoint-choices article {
+  border-left: 3px solid #d4b663;
+  padding-left: 16px;
+}
+.camp-midpoint-choices p {
+  font-size: 13px;
+}
+.camp-blocker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #d6af70;
+  border-radius: 9px;
+  background: #fff0d6;
+}
+.camp-blocker p {
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+.camp-blocker > .career-action {
+  flex-shrink: 0;
+}
+.camp-week-review {
+  max-width: 790px;
+  margin: 0 auto;
+}
+.camp-week-review > h2 {
+  font-size: 33px;
+  margin: 8px 0 10px;
+  font-weight: 850;
+  max-width: 650px;
+}
+.camp-week-review > p {
+  font-size: 13px;
+}
+.camp-week-team {
+  margin: 22px 0 10px;
+}
+.camp-week-fighter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid #cbd2c9;
+  padding: 16px 0;
+}
+.camp-week-fighter > .career-portrait {
+  width: 51px;
+  height: 65px;
+  object-fit: contain;
+  background: #294560;
+  border-radius: 8px;
+}
+.camp-week-fighter > div:nth-child(2) {
+  flex: 1;
+}
+.camp-week-fighter strong,
+.camp-week-fighter span {
+  display: block;
+}
+.camp-week-fighter span {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #5d717b;
+}
+.camp-week-condition {
+  text-align: right;
+}
+.camp-week-condition strong {
+  font-size: 19px;
+}
+.camp-week-condition small {
+  font-size: 11px;
+}
+.camp-week-cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 9px;
+  background: #dfe4d9;
+}
+.camp-week-cost small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #4e6358;
+}
+.camp-week-cost > strong {
+  font-size: 23px;
+}
+.camp-review-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-top: 23px;
+}
+.camp-review-actions .career-action {
+  flex-shrink: 0;
+}
+.camp-report-hero {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 25px;
+}
+.camp-report-hero > .career-portrait {
+  width: 115px;
+  height: 146px;
+  object-fit: contain;
+  background: #294560;
+  border: 3px solid var(--rarity-frame);
+  border-radius: 13px;
+}
+.camp-report-hero h2 {
+  font-size: 35px;
+  font-weight: 850;
+  margin: 10px 0;
+}
+.camp-report-hero p {
+  margin: 0;
+  font-size: 13px;
+}
+.camp-earned {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 27px;
+  background: #fffdf7;
+  border: 1px solid #d2d9cd;
+  padding: 26px;
+  border-radius: 12px;
+}
+.camp-earned > div > strong {
+  font-size: 43px;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #316c50;
+  font-weight: 850;
+}
+.camp-earned h3 {
+  font-size: 15px;
+  margin-top: 12px;
+}
+.camp-earned p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.camp-prepared {
+  margin-top: 18px;
+  border-left: 3px solid #d4a333;
+  padding: 15px 18px;
+  background: #e7e7dc;
+}
+.camp-prepared p {
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+.camp-report-next {
+  margin-top: 23px;
+}
+.camp-ready-fight {
+  background: #fffdf7;
+  padding: 25px;
+  border-radius: 12px;
+}
+.camp-ready-fight > .career-portrait {
+  float: right;
+  width: 115px;
+  height: 145px;
+  background: #294560;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-left: 17px;
+}
+.camp-ready-fight::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+@media (max-width: 1100px) {
+  .fighter-layout {
+    grid-template-columns: minmax(215px, 34%) minmax(0, 1fr);
+    gap: 20px;
+  }
+  .fighter-identity-art > .career-portrait {
+    height: 285px;
+  }
+  .camp-plan-card {
+    padding: 17px 13px 14px;
+  }
+  .camp-plan-title {
+    font-size: 21px;
+  }
+  .camp-plan-top > span:last-child {
+    font-size: 10px;
+  }
+  .camp-plan-intent {
+    min-height: 75px;
+  }
+  .camp-decision,
+  .camp-report-next {
+    gap: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .camp-plan-grid {
+    grid-template-columns: 1fr;
+  }
+  .camp-plan-card {
+    display: grid;
+    grid-template-columns: 51px 1fr;
+    gap: 0 14px;
+    padding: 16px;
+  }
+  .camp-plan-top {
+    grid-row: 1 / 3;
+    margin: 0;
+    align-items: start;
+  }
+  .camp-plan-top > span:last-child {
+    display: none;
+  }
+  .camp-plan-title {
+    min-height: 0;
+    max-width: none;
+    font-size: 22px;
+    align-self: center;
+  }
+  .camp-plan-intent {
+    min-height: 0;
+    margin: 5px 0 14px;
+  }
+  .camp-plan-benefit,
+  .camp-plan-tradeoff,
+  .camp-plan-select {
+    grid-column: 1 / -1;
+  }
+  .camp-plan-tradeoff {
+    min-height: 0;
+    margin: 11px 0 13px;
+  }
+  .camp-plan-select {
+    padding-top: 11px;
+  }
+  .camp-plan-grid {
+    gap: 16px;
+  }
+  .fighter-layout {
+    grid-template-columns: minmax(190px, 36%) minmax(0, 1fr);
+    gap: 18px;
+  }
+  .fighter-identity-name {
+    padding: 16px;
+  }
+  .fighter-challenge-body {
+    padding: 17px;
+  }
+  .fighter-opponent h3 {
+    font-size: 24px;
+  }
+  .fighter-opponent > .career-portrait {
+    width: 65px;
+    height: 90px;
+  }
+  .camp-review-actions {
+    flex-wrap: wrap;
+  }
+  .camp-decision,
+  .camp-report-next {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+@media (max-width: 560px) {
+  .fighter-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+  }
+  .fighter-identity {
+    display: grid;
+    grid-template-columns: 40% minmax(0, 1fr);
+    width: 100%;
+  }
+  .fighter-identity-art {
+    min-height: 245px;
+  }
+  .fighter-identity-art > .career-portrait {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    object-position: 50% 28%;
+  }
+  .fighter-identity-art > .fighter-rarity {
+    top: 7px;
+    left: 7px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+  .fighter-identity-name {
+    align-self: center;
+    padding: 16px 12px;
+  }
+  .fighter-identity-name h2 {
+    font-size: 28px;
+  }
+  .fighter-record {
+    gap: 8px;
+  }
+  .fighter-record dd {
+    font-size: 22px;
+  }
+  .fighter-record dt {
+    font-size: 9px;
+  }
+  .fighter-decisions {
+    width: 100%;
+    gap: 17px;
+  }
+  .fighter-opponent > .career-portrait {
+    width: 74px;
+    height: 96px;
+  }
+  .fighter-condition {
+    gap: 12px;
+  }
+  .camp-header {
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 21px;
+  }
+  .camp-header > .career-portrait {
+    width: 56px;
+    height: 74px;
+  }
+  .camp-header h2 {
+    font-size: 27px;
+  }
+  .camp-header .camp-coach-read {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+  .camp-week-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+  .camp-week-strip > div:last-child:nth-child(3) {
+    grid-column: 1 / -1;
+    border-top: 1px solid #d4d6cf;
+  }
+  .camp-week-strip > div {
+    padding: 10px 12px;
+  }
+  .camp-week-strip small {
+    font-size: 10px;
+  }
+  .camp-plan-intent {
+    display: none;
+  }
+  .camp-plan-top {
+    grid-row: 1;
+  }
+  .camp-plan-benefit {
+    margin-top: 16px;
+  }
+  .camp-plan-title {
+    font-size: 21px;
+  }
+  .camp-custom,
+  .camp-active {
+    padding: 17px;
+  }
+  .camp-custom .career-section-head {
+    flex-wrap: wrap;
+  }
+  .camp-custom input,
+  .camp-custom select {
+    font-size: 16px;
+  }
+  .camp-midpoint-choices {
+    grid-template-columns: 1fr;
+  }
+  .camp-active-title {
+    align-items: flex-start;
+  }
+  .camp-active-title h3 {
+    font-size: 22px;
+  }
+  .camp-active-title > strong {
+    font-size: 25px;
+  }
+  .camp-blocker {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .camp-week-review > h2 {
+    font-size: 29px;
+  }
+  .camp-week-fighter {
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+  .camp-week-fighter > .career-portrait {
+    width: 42px;
+    height: 55px;
+  }
+  .camp-week-fighter strong {
+    font-size: 13px;
+  }
+  .camp-week-condition strong {
+    font-size: 16px;
+  }
+  .camp-week-condition small {
+    font-size: 10px;
+  }
+  .camp-week-cost {
+    padding: 14px;
+  }
+  .camp-week-cost small {
+    font-size: 11px;
+  }
+  .camp-week-cost > strong {
+    font-size: 20px;
+  }
+  .camp-review-actions > .career-action {
+    width: 100%;
+  }
+  .camp-report-hero {
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .camp-report-hero > .career-portrait {
+    width: 77px;
+    height: 103px;
+  }
+  .camp-report-hero h2 {
+    font-size: 27px;
+  }
+  .camp-earned {
+    padding: 18px;
+    gap: 22px;
+  }
+  .camp-earned > div > strong {
+    font-size: 33px;
+  }
+  .camp-earned h3 {
+    font-size: 14px;
+  }
+  .camp-ready-fight > .career-portrait {
+    float: none;
+    display: block;
+    margin: 0 0 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camp-plan-card {
+    transition: none;
+  }
+}

@@ -1,0 +1,87 @@
+.sporting-goals {
+  margin: 24px 0;
+  color: #203345;
+}
+.sporting-goals header p {
+  color: #65717b;
+  margin: 8px 0 16px;
+}
+.sporting-goals h2 {
+  margin: 4px 0;
+}
+.sporting-goal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 16px;
+}
+.sporting-goal {
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 26px;
+  background: #f5ecd9;
+  box-shadow: 0 5px 16px #132c4114;
+}
+.sporting-goal h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
+  margin: 8px 0 12px;
+}
+.sporting-goal p {
+  line-height: 1.55;
+  max-width: 40ch;
+}
+.sporting-goal strong {
+  display: block;
+  margin: 16px 0;
+}
+.sporting-goal .career-action {
+  display: inline-flex;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.sporting-cup {
+  color: #fff5e7;
+  background:
+    linear-gradient(90deg, #142d43f5 20%, #142d43c9 65%, #142d4366),
+    var(--sporting-art) center / cover;
+}
+.sporting-cup .career-eyebrow {
+  color: #ffd5a7;
+}
+/* The clubhouse's global light-theme headings must not override scene copy. */
+.career-app.game-mode.clubhouse .sporting-goals > header h2 {
+  font-size: 26px;
+}
+.career-app.game-mode.clubhouse .sporting-goal h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.15;
+  margin: 8px 0 12px;
+}
+.career-app.game-mode.clubhouse .sporting-cup :is(h3, p, small, strong) {
+  color: #fff5e7;
+}
+.career-app.game-mode.clubhouse .sporting-cup .career-eyebrow {
+  color: #ffd5a7;
+}
+.sporting-honor {
+  background:
+    linear-gradient(105deg, #fff5e7fa 30%, #fff5e7e8 70%, #fff5e780),
+    url("/art/cartoon-club-trophy-room.webp") center / cover;
+}
+.sporting-honor label {
+  display: block;
+  font-weight: 700;
+}
+.sporting-honor progress {
+  display: block;
+  width: min(100%, 300px);
+  height: 10px;
+  margin-top: 8px;
+  accent-color: #db674b;
+}
+@media (max-width: 600px) {
+  .sporting-goal {
+    padding: 20px;
+  }
+}

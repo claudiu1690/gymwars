@@ -1,0 +1,117 @@
+/* Dark surfaces for the fighter workspace and fight-night components. */
+.career-app.game-mode .fighter-condition > strong {
+  color: #f5cd6a;
+}
+.career-app.game-mode .fighter-condition-track {
+  background: #34445b;
+}
+.career-app.game-mode .fighter-condition-track span {
+  background: #78dcc0;
+}
+.career-app.game-mode .fighter-commitment {
+  color: #a0e2c9;
+}
+.career-app.game-mode .camp-week-strip > div + div {
+  background: #293850;
+}
+.career-app.game-mode .camp-secondary-actions > .camp-text-button {
+  color: #f3f6fc;
+}
+.career-app.game-mode .camp-exact-gains dd span {
+  color: #9fe6c8;
+}
+.career-app.game-mode .camp-exact-gains > div {
+  border-color: #3b4a61;
+}
+.career-app.game-mode .camp-ready-fight {
+  background: #1b2535;
+  border: 1px solid #3b4960;
+}
+.career-app.game-mode .camp-week-fighter > .camp-week-condition {
+  background: #24374a;
+}
+.career-app.game-mode .camp-week-fighter .review-fight-date {
+  color: #b9d3e6;
+}
+.career-app.game-mode .camp-unassigned-notice {
+  background: #3d3424;
+  border-color: #ba9349;
+  color: #f6d594;
+}
+.career-app.game-mode .camp-unassigned-notice p {
+  color: #e8ce9d;
+}
+.career-app.game-mode .camp-assignment-flag {
+  color: #f6cc83;
+}
+.career-app.game-mode .camp-assignment-rest {
+  color: #9ae4c9;
+}
+.career-app.game-mode .camp-focus-choices button {
+  background: #202d43;
+  border-color: #475772;
+  color: #e6edf9;
+}
+.career-app.game-mode .camp-focus-choices button[aria-pressed="true"] {
+  background: #3b3454;
+  border-color: #bba1ff;
+  color: #f1eaff;
+  box-shadow: 0 3px 0 #181e31;
+}
+.career-app.game-mode .camp-plan-error {
+  color: #ffc0bd;
+}
+.career-app.game-mode .camp-active > progress,
+.career-app.game-mode .camp-active > progress::-webkit-progress-bar {
+  background: #33445b;
+}
+.career-app.game-mode .camp-active > progress::-webkit-progress-value {
+  background: #78dcc0;
+}
+.career-app.game-mode .camp-active > progress::-moz-progress-bar {
+  background: #78dcc0;
+}
+.career-app.game-mode .fight-night-corner {
+  background: #1b2535;
+  box-shadow: 0 3px 0 #0a101c;
+}
+.career-app.game-mode .fight-night-corner-cue {
+  background: #25364c;
+}
+.career-app.game-mode
+  .fight-night
+  :is(.coach-choice, .coach-round-call):not([aria-pressed="true"]) {
+  box-shadow: 0 3px 0 #0d1522;
+}
+.career-app.game-mode .fight-night .career-outcome {
+  background: #233b39;
+  border-color: #53796d;
+}
+.career-app.game-mode .fight-night .career-track {
+  background: #374861;
+}
+.career-app.game-mode .fight-night .career-track > span {
+  background: #89b8dc;
+}
+.career-app.game-mode .fight-night .career-track > span.green {
+  background: #78d5b4;
+}
+.career-app.game-mode .fight-night .career-journey {
+  background: #233247;
+  border-color: #4c6474;
+}
+.career-app.game-mode .fight-night .career-journey-steps .done,
+.career-app.game-mode .fight-night .career-journey-legacy {
+  color: #9ae4c9;
+}
+.career-app.game-mode .fight-night .career-journey-steps .done span {
+  color: #f2faf6;
+  background: #285b4d;
+  border-color: #649e87;
+}
+@media (max-width: 600px) {
+  .career-app.game-mode .fight-night-corners h2 {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+}

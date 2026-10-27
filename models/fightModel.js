@@ -15,6 +15,9 @@ const fightSchema = new mongoose.Schema({
     rounds: { type: Number, default: 3 },
     title: { type: Boolean, default: false },
     tier: { type: String, required: true }, // ladder tier the bout was booked at
+    /** Sparring exhibition — instant, no record/ranking stakes (small purse,
+     *  fatigue, and trait discovery only). The genre's "friendly match" lane. */
+    exhibition: { type: Boolean, default: false, index: true },
 
     bookedAt: { type: Date, required: true },
     scheduledAt: { type: Date, required: true, index: true },

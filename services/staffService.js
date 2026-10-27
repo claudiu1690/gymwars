@@ -98,4 +98,34 @@ function scoutNoise(scout, baseNoise) {
     return Math.max(STAFF.scout.noiseFloor, Math.round(baseNoise - scout.accuracy * STAFF.scout.noiseShrinkPerAccuracy));
 }
 
-module.exports = { generateMarket, hire, fire, getStaff, coachGainMult, coachFightMult, scoutNoise };
+/** Which fighter styles a coach specialty covers (for chemistry copy). */
+const SPECIALTY_STYLES = Object.entries(STYLES).reduce((m, [style, spec]) => {
+    (m[spec.family] ||= []).push(spec.label);
+    return m;
+}, {});
+
+/**
+ * Plain-English effect lines for a staff member — what they actually do for
+ * this gym, with numbers derived from the same constants the sim uses. Shape:
+ * [{ attr, value, effect }]. The UI shows these instead of bare attributes.
+ */
+function describeEffects(staff) {
+    if (staff.role === "coach") {
+        return [
+            { attr: "Motivation", value: staff.motivation, effect: `+${Math.round(staff.motivation * STAFF.coach.motivationGainPerPoint * 100)}% camp stat gains` },
+            { attr: "Prospect Dev", value: staff.prospectDev, effect: `+${Math.round(staff.prospectDev * STAFF.coach.prospectDevGainPerPoint * 100)}% more for young (Rising) fighters` },
+            { attr: "Tactical IQ", value: staff.tacticalIq, effect: `+${(staff.tacticalIq * STAFF.coach.tacticalIqEffPerPoint * 100).toFixed(1)}% sharper in the corner on fight night` },
+            { attr: "Specialty", value: staff.specialty, effect: `+${Math.round(STAFF.coach.chemistryBonus * 100)}% camp gains for ${(SPECIALTY_STYLES[staff.specialty] || []).join(" / ")} fighters (${Math.round(STAFF.coach.chemistryPenalty * 100)}% for others)` },
+        ];
+    }
+    const { SCOUTING } = require("../consts/scouting");
+    const tighter = Math.round(Math.min(staff.accuracy * STAFF.scout.noiseShrinkPerAccuracy, SCOUTING.baseReportNoise - STAFF.scout.noiseFloor));
+    return [
+        { attr: "Accuracy", value: staff.accuracy, effect: `Scout reports ~${tighter} pts tighter — you see truer stats before signing` },
+    ];
+}
+
+module.exports = { generateMarket, hire, fire, getStaff, coachGainMult, coachFightMult, scoutNoise, describeEffects };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

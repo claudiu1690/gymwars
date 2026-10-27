@@ -1,6 +1,35 @@
 node_modules/
 .env
+.env.*
+!.env.example
+!**/.env.example
 *.log
 dist/
 frontend/dist/
 .DS_Store
+output/preview-snapshots/
+output/local-staging/
+output/**/*.ejson
+output/**/preview-db-cold-backup/
+output/**/cold-backup-manifest.json
+output/e2e/
+output/playthrough-*/
+
+output/organic-improvements/
+
+output/balance-fixes/
+
+# Generated reports, media exports, staging databases and local account backups.
+/output/
+/marketing/
+/tmp/
+coverage/
+playwright-report/
+test-results/
+*.ejson
+
+# Private credentials and local certificate material.
+*.pem
+*.key
+*.p12
+*.pfx

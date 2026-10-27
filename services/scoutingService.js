@@ -141,6 +141,7 @@ async function investigate(gymId, slot, now = new Date()) {
     await gym.save();
 
     const report = await ScoutReport.create({ gymId, seed: identity.seed, fighter, statRanges, boardDay: anchor, boardSlot: slot });
+    await require("./onboardingService").complete(gymId, "scout");
     return report.toPublic();
 }
 
@@ -181,6 +182,7 @@ async function resolveReport(gymId, reportId, action, now = new Date()) {
         traits: f.traits,
         discoveredTraits: [],
     });
+    await require("./onboardingService").complete(gymId, "sign");
 
     report.status = "signed";
     report.signedFighterId = fighter._id;
@@ -191,3 +193,6 @@ async function resolveReport(gymId, reportId, action, now = new Date()) {
 }
 
 module.exports = { getState, getBoard, investigate, resolveReport, ensureFreshDay, dailyAllotment, BOARD_SIZE };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

@@ -1,0 +1,216 @@
+.fighter-rarity-emblem {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+.fighter-rarity {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.career-app.game-mode.clubhouse .rarity-nameplate {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.career-app.game-mode.clubhouse .rarity-nameplate .fighter-rarity {
+  position: static;
+  font-size: 12px;
+  padding: 5px 8px;
+}
+.career-app.game-mode.clubhouse .fighter-identity-name > .rarity-nameplate {
+  margin: 7px 0 10px;
+}
+.career-app.game-mode.clubhouse .scout-card-copy > .fighter-rarity {
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.career-app.game-mode.clubhouse .fighter-rarity-benefits {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  position: relative;
+  isolation: isolate;
+  gap: 22px;
+  padding: 18px 24px;
+  background: #fffbf1;
+  border-bottom: 1px solid #dbd1be;
+  overflow: hidden;
+}
+.rarity-benefit-art {
+  height: 140px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--rarity-background);
+}
+.career-app.game-mode.clubhouse .rarity-benefit-art > .career-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 0;
+}
+.rarity-benefit-copy {
+  min-width: 0;
+  align-self: center;
+}
+.career-app.game-mode.clubhouse .rarity-benefit-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--rarity-label-ink);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.career-app.game-mode.clubhouse .rarity-benefit-copy h4 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 9px;
+  color: #203747;
+  font-size: 21px;
+  line-height: 1.2;
+}
+.career-app.game-mode.clubhouse .rarity-benefit-copy ul {
+  display: grid;
+  gap: 5px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  color: #203747;
+  font-size: 13px;
+  font-weight: 700;
+}
+.career-app.game-mode.clubhouse .rarity-benefit-copy small {
+  display: block;
+  color: #5b686d;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .rarity-skip {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  color: #203747;
+  background: #fffaf1;
+  border: 1px solid #cfc7b7;
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.career-app.game-mode.clubhouse
+  .fighter-rarity-benefits[data-revealing="true"] {
+  background: var(--rarity-label-paper);
+}
+.fighter-rarity-benefits[data-revealing="true"] .rarity-benefit-art {
+  animation: gw-rarity-reveal 850ms ease-out both;
+}
+.fighter-rarity-benefits[data-revealing="true"] .rarity-benefit-copy {
+  animation: gw-rarity-copy 600ms ease-out both;
+  padding-right: 85px;
+}
+@keyframes gw-rarity-reveal {
+  from {
+    opacity: 0.2;
+    transform: translateY(9px) scale(0.96);
+    filter: brightness(1.35);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes gw-rarity-copy {
+  from {
+    opacity: 0.3;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Arena fighters keep the approved environment. The stamp carries their tier
+   without turning the scene into eight rectangular portrait backings. */
+.career-app.game-mode.clubhouse .fight-event-identity > .fighter-rarity,
+.career-app.game-mode.clubhouse .gw-team-member > .fighter-rarity {
+  position: relative;
+  margin: 5px auto;
+  font-size: 10px;
+  padding: 3px 6px;
+}
+.career-app.game-mode.clubhouse .gw-team-member > .fighter-rarity {
+  z-index: 3;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-member
+  > .fighter-rarity
+  .fighter-rarity-emblem {
+  width: 14px;
+  height: 14px;
+  flex-basis: 14px;
+}
+.career-app[data-reduced-motion="true"]
+  .fighter-rarity-benefits
+  :is(.rarity-benefit-art, .rarity-benefit-copy) {
+  animation: none;
+}
+
+@media (max-width: 1100px) {
+  .career-app.game-mode.clubhouse .gw-team-member > .fighter-rarity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-height: 31px;
+    padding: 3px;
+    font-size: 9px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .career-app.game-mode.clubhouse
+    .gw-team-member
+    > .fighter-rarity
+    .fighter-rarity-emblem {
+    width: 12px;
+    height: 12px;
+    flex-basis: 12px;
+  }
+}
+@media (max-width: 700px) {
+  .career-app.game-mode.clubhouse .fighter-rarity-benefits {
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px 12px;
+  }
+  .rarity-benefit-art {
+    height: 116px;
+  }
+  .career-app.game-mode.clubhouse .rarity-benefit-copy h4 {
+    font-size: 17px;
+  }
+  .career-app.game-mode.clubhouse .rarity-benefit-copy ul {
+    font-size: 12px;
+  }
+  .career-app.game-mode.clubhouse .rarity-benefit-copy small {
+    font-size: 10px;
+  }
+  .career-app.game-mode.clubhouse
+    .fighter-rarity-benefits[data-revealing="true"] {
+    padding-top: 48px;
+  }
+  .fighter-rarity-benefits[data-revealing="true"] .rarity-benefit-copy {
+    padding-right: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fighter-rarity-benefits[data-revealing="true"]
+    :is(.rarity-benefit-art, .rarity-benefit-copy) {
+    animation: none;
+  }
+}

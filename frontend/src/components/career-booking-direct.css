@@ -1,0 +1,97 @@
+/* The booking decision stays visible: opponent, contract, consequence, action. */
+.career-app.game-mode.clubhouse .booking-direct .promoter-offers {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+.career-app.game-mode.clubhouse .booking-direct .offer-art { height: 165px; }
+.career-app.game-mode.clubhouse .booking-direct .offer-billing { padding: 28px 18px 16px; }
+.career-app.game-mode.clubhouse .booking-direct .offer-billing > strong { font-size: clamp(24px, 2.5vw, 32px); }
+.career-app.game-mode.clubhouse .booking-direct .offer-content { padding: 18px; }
+.career-app.game-mode.clubhouse .booking-direct-suggestion {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  background: #edf2e4;
+  color: #395641;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: 750;
+}
+.career-app.game-mode.clubhouse .booking-direct-terms {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid #ded1b7;
+  border-radius: 8px;
+  background: #f6eddc;
+}
+
+.career-app.game-mode.clubhouse .booking-choice-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px 24px;
+  margin-bottom: 16px; flex-wrap: wrap;
+}
+.career-app.game-mode.clubhouse .booking-choice-header h2 { margin: 0; font-size: 23px; }
+.career-app.game-mode.clubhouse .booking-choice-header p { margin: 5px 0 0; font-size: 13px; line-height: 1.45; }
+.career-app.game-mode.clubhouse .booking-choice-header > p { max-width: 37ch; }
+.career-app.game-mode.clubhouse .booking-fighters-compact {
+  display: flex; gap: 8px; overflow-x: auto; margin: 0 0 16px; padding-bottom: 5px;
+}
+.career-app.game-mode.clubhouse .booking-fighters-compact > button {
+  flex: 0 0 auto; min-height: 60px; padding: 8px 12px; gap: 10px;
+}
+.career-app.game-mode.clubhouse .booking-fighters-compact .career-portrait { width: 40px; height: 44px; }
+.career-app.game-mode.clubhouse .booking-fighters-compact strong { font-size: 14px; }
+.career-app.game-mode.clubhouse .booking-fighters-compact small { font-size: 12px; }
+.career-app.game-mode.clubhouse .booking-fighters-compact .booking-fighter-style { display: none; }
+.career-app.game-mode.clubhouse .booking-recovery-note {
+  margin: 0 0 16px; padding: 12px 16px; color: #435746; background: #e8eddf;
+  border-radius: 8px; font-size: 13px; line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .booking-recovery-note strong { color: inherit; }
+.career-app.game-mode.clubhouse .booking-date-available { color: #365c3b; font-size: 13px; }
+.career-app.game-mode.clubhouse .booking-direct .career-warning {
+  color: #71462c; background: #fff0d5; border: 1px solid #ddbc86;
+  padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.45;
+}
+.career-app.game-mode.clubhouse .booking-comparison {
+  width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; table-layout: fixed;
+}
+.career-app.game-mode.clubhouse .booking-comparison caption { text-align: left; font-weight: 750; padding-bottom: 8px; }
+.career-app.game-mode.clubhouse .booking-comparison th { font-weight: 600; text-align: left; }
+.career-app.game-mode.clubhouse .booking-comparison :is(th, td) { padding: 7px 4px; border-bottom: 1px solid #dfd3bd; }
+.career-app.game-mode.clubhouse .booking-comparison :is(th, td):not(:first-child) { width: 25%; text-align: center; }
+.career-app.game-mode.clubhouse .booking-comparison td[data-leading="true"] { color: #345c3b; background: #e8eddf; font-weight: 800; }
+.career-app.game-mode.clubhouse .booking-scout-notes { font-size: 13px; line-height: 1.5; margin-top: 14px; }
+.career-app.game-mode.clubhouse .booking-scout-notes p { margin: 9px 0; }
+.career-app.game-mode.clubhouse .booking-scout-notes .offer-scout-read { padding: 0; background: none; margin: 9px 0; color: #405865; }
+.career-app.game-mode.clubhouse .booking-direct-terms > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 3px 14px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .booking-direct-terms dt {
+  color: #5c6b6f;
+  font-size: 13px;
+  font-weight: 500;
+}
+.career-app.game-mode.clubhouse .booking-direct-terms dd {
+  margin: 0;
+  color: #2b4653;
+  font-size: 14px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .booking-direct .offer-content > .career-action { min-height: 48px; }
+.career-app.game-mode.clubhouse .booking-direct .booking-footnote { margin-top: 24px; font-size: 13px; line-height: 1.5; }
+
+@media (max-width: 650px) {
+  .career-app.game-mode.clubhouse .booking-direct .promoter-offers { grid-template-columns: minmax(0, 1fr); }
+  .career-app.game-mode.clubhouse .booking-direct .offer-content { padding: 18px; }
+}

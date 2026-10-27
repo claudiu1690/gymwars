@@ -18,7 +18,7 @@ export default function Rankings() {
     return (
         <>
             <h1 className="page-title">Rankings</h1>
-            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+            <div className="stagger" style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
                 {data.classes.map((c) => (
                     <div key={c.weightClass} className="card">
                         <div className="section-label">{c.label}</div>

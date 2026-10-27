@@ -85,3 +85,6 @@ async function getChampion(weightClass) {
 }
 
 module.exports = { generateOpponent, ensureChampionsExist, getChampion };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

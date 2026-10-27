@@ -1,0 +1,257 @@
+.pack-shop .pack-shop-hero {
+  min-height: 290px;
+  padding: 36px;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+.pack-shop .pack-shop-hero > div {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+.pack-shop .pack-shop-hero::before {
+  background:
+    linear-gradient(90deg, #142b3ff2, #142b3f80),
+    url("/art/cartoon-team-locker-room.webp") center / cover;
+}
+.pack-shop .pack-hero-art {
+  width: 100%;
+  height: auto;
+  max-width: 390px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 20px 38px #07151f60;
+  transform: rotate(3deg);
+  justify-self: end;
+}
+.career-app.game-mode.clubhouse .pack-shop .shop-fair-play { color: #e4eadb; }
+.career-app.game-mode.clubhouse .pack-shop .shop-hero h2 {
+  font-size: clamp(36px, 4.1vw, 62px);
+}
+.pack-shop .supply-balances {
+  gap: 12px;
+  margin: 0;
+}
+.pack-shop .supply-balances > div {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 16px 22px;
+  background: #e5eade;
+  border-color: #cdd4c2;
+}
+.pack-shop .supply-balances b {
+  grid-row: span 2;
+  font-size: 36px;
+  margin-right: 12px;
+}
+.pack-shop .supply-products {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.pack-shop .pack-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 5px 0 #c4b39555,
+    0 14px 30px #23374b0a;
+}
+.pack-shop .pack-club-pack {
+  border: 2px solid #caa55d;
+}
+.pack-shop .pack-product-art {
+  display: block;
+  padding: 0;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  background: #1b344a;
+  overflow: hidden;
+}
+.pack-shop .pack-product-art::after {
+  display: none;
+}
+.pack-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.pack-product-art > .pack-illustration {
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+.pack-product-art:hover > .pack-illustration {
+  transform: scale(1.035);
+}
+.pack-shop .pack-product-art > span {
+  color: #fff7df;
+  background: #142c41e6;
+  top: 12px;
+  left: 12px;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.pack-shop .pack-product-art .pack-saving {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #f1cf7e;
+  color: #42341e;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 10px;
+  letter-spacing: 0.03em;
+}
+.pack-shop .shop-product-copy {
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.career-app.game-mode.clubhouse .pack-shop .shop-product-copy h3 {
+  margin: 0 0 4px;
+  font-size: clamp(22px, 2vw, 28px);
+}
+.pack-subtitle {
+  color: #7c7468;
+  font-size: 11px;
+}
+.pack-grants {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.pack-grants > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  background: #e8e8d9;
+  color: #294555;
+  font-size: 11px;
+  font-weight: 700;
+}
+.pack-grants .supply-icon {
+  width: 23px;
+  height: 23px;
+  color: #486a73;
+  flex-shrink: 0;
+}
+.pack-grants b {
+  font-size: 19px;
+}
+.pack-shop .shop-product-copy > .pack-grants {
+  justify-content: flex-start;
+  margin: 16px 0;
+}
+.career-app.game-mode.clubhouse .pack-shop .shop-product-copy p {
+  margin-bottom: 14px;
+  min-height: 62px;
+  color: #5c6b6c;
+}
+.pack-shop .shop-product-copy > small {
+  line-height: 1.5;
+  color: #6d6b60;
+}
+.pack-shop .shop-product-copy > div:last-child {
+  margin-top: auto;
+  padding-top: 20px;
+}
+.pack-shop .shop-product-copy > div:last-child > strong {
+  font-size: 29px;
+}
+.pack-shop .shop-product-copy .career-action {
+  min-width: 100px;
+}
+.pack-checkout-art {
+  max-width: 270px;
+  border-radius: 12px;
+  margin: 0 auto 16px;
+}
+.shop-checkout .pack-grants {
+  justify-content: center;
+}
+.pack-shop .shop-footer-note {
+  color: #626d6a;
+  line-height: 1.65;
+}
+.pack-shop button:focus-visible {
+  outline: 3px solid #df7148;
+  outline-offset: 4px;
+}
+@media (max-width: 1150px) {
+  .pack-shop .supply-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pack-shop .pack-club-pack {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .pack-shop .pack-club-pack .pack-product-art {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .pack-shop .pack-club-pack .pack-illustration {
+    min-height: 280px;
+  }
+}
+@media (max-width: 650px) {
+  .pack-shop .pack-shop-hero {
+    padding: 26px 22px;
+    min-height: 230px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pack-shop .pack-hero-art {
+    display: none;
+  }
+  .pack-shop .supply-products {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .pack-shop .pack-club-pack {
+    display: flex;
+    grid-column: auto;
+  }
+  .pack-shop .pack-club-pack .pack-product-art {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .pack-shop .pack-club-pack .pack-illustration {
+    min-height: 0;
+  }
+  .pack-shop .supply-balances {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pack-shop .supply-balances > div {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+  }
+  .pack-shop .supply-balances b {
+    margin: 0;
+    font-size: 29px;
+  }
+  .pack-shop .supply-balances span {
+    font-size: 11px;
+  }
+  .pack-shop .supply-balances small {
+    font-size: 10px;
+  }
+  .pack-shop .shop-product-copy {
+    padding: 20px;
+  }
+  .career-app.game-mode.clubhouse .pack-shop .shop-product-copy p {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-product-art > .pack-illustration {
+    transition: none;
+  }
+}

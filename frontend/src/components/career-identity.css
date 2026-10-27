@@ -1,0 +1,311 @@
+.career-app.game-mode.clubhouse :is(.gw-ambition, .gw-circuit-payoff) {
+  padding: 20px;
+  background: #f6f0e3;
+  border: 1px solid #d8d0bf;
+  border-radius: 12px;
+  color: #203441;
+  margin: 18px 0;
+}
+.career-app.game-mode.clubhouse .gw-ambition h2 {
+  margin: 6px 0;
+  font-size: 24px;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-ambition, .gw-circuit-payoff, .gw-signature-picker)
+  p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.career-app.game-mode.clubhouse .gw-ambition meter {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: 13px;
+  margin: 12px 0;
+}
+.career-app.game-mode.clubhouse .gw-ambition-payoff {
+  color: #385448;
+}
+.career-app.game-mode.clubhouse .gw-ambition-options .gw-ambition-description {
+  margin-top: 3px;
+}
+.career-app.game-mode.clubhouse .gw-circuit-payoff > strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.career-app.game-mode.clubhouse .gw-circuit-payoff > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #294d60;
+  font-weight: 700;
+}
+.career-app.game-mode.clubhouse .gw-signature-line {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 6px 0;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .gw-signature-picker {
+  margin: 16px 0;
+  padding: 14px 0;
+  border-top: 1px solid #d8d0bf;
+  border-bottom: 1px solid #d8d0bf;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-picker, .gw-ambition-chooser)
+  > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-choices, .gw-ambition-options) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-choices, .gw-ambition-options)
+  button {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  text-align: left;
+  padding: 13px;
+  color: #203441;
+  background: #fffaf0;
+  border: 1px solid #d8d0bf;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-choices, .gw-ambition-options)
+  button[aria-pressed="true"] {
+  background: #e1ecdf;
+  border-color: #617b5b;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-choices, .gw-ambition-options)
+  button:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-signature-choices, .gw-ambition-options)
+  :is(span, small, b),
+.career-app.game-mode.clubhouse .gw-ambition-options > div > small {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-ambition-options > div > small {
+  display: block;
+  padding: 5px 8px;
+}
+.career-app.game-mode.clubhouse .gw-identity-text-button {
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-ambition, .gw-signature-picker)
+  :is(button, a, summary):focus-visible {
+  outline: 3px solid #db7650;
+  outline-offset: 3px;
+}
+@media (max-width: 580px) {
+  .career-app.game-mode.clubhouse
+    :is(.gw-signature-choices, .gw-ambition-options) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .career-app.game-mode.clubhouse .gw-ambition {
+    padding: 16px;
+  }
+}
+.career-app.game-mode.clubhouse .gw-coaching-practice {
+  margin: 18px 0;
+  padding: 12px 0;
+  border-block: 1px solid #d8d0bf;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-coaching-practice, .gw-practice-calls, .gw-practice-result)
+  summary {
+  min-height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.career-app.game-mode.clubhouse .gw-coaching-practice :is(p, li, label) {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-coaching-practice select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 44px;
+  margin: 6px 0 12px;
+  background: #fffaf0;
+  color: #203441;
+  border: 1px solid #d8d0bf;
+  padding: 8px;
+  font: inherit;
+}
+.career-app.game-mode.clubhouse .gw-practice-rounds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0;
+}
+.career-app.game-mode.clubhouse .gw-practice-rounds button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #d8d0bf;
+  background: #fffaf0;
+  color: #203441;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+}
+.career-app.game-mode.clubhouse
+  .gw-practice-rounds
+  button[aria-pressed="true"] {
+  background: #e1ecdf;
+  border-color: #617b5b;
+}
+.career-app.game-mode.clubhouse .gw-practice-result {
+  margin-top: 15px;
+  padding: 15px;
+  background: #fffaf0;
+  border-radius: 8px;
+}
+.career-app.game-mode.clubhouse
+  .gw-coaching-practice
+  :is(button, summary, select):focus-visible {
+  outline: 3px solid #db7650;
+  outline-offset: 3px;
+}
+.career-app.game-mode.clubhouse .gw-followed-rival {
+  padding: 18px 20px;
+  margin: 18px 0;
+  background: #f6f0e3;
+  border: 1px solid #d8d0bf;
+  border-radius: 10px;
+  color: #203441;
+}
+.career-app.game-mode.clubhouse :is(.gw-followed-rival, .gw-rival-control) p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-rival-control {
+  padding: 12px 18px;
+}
+.career-app.game-mode.clubhouse .gw-rival-control summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+.career-app.game-mode.clubhouse .gw-rival-control select {
+  min-height: 44px;
+  padding: 8px;
+  display: block;
+  max-width: 100%;
+  margin: 7px 0;
+  font: inherit;
+  background: #fffaf0;
+  color: #203441;
+  border: 1px solid #d8d0bf;
+}
+.career-app.game-mode.clubhouse
+  :is(.gw-followed-rival, .gw-rival-control)
+  :is(button, summary, select):focus-visible {
+  outline: 3px solid #db7650;
+  outline-offset: 3px;
+}
+.club-goal-tracker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px;
+  margin: 18px 0;
+  border-radius: 13px;
+  border: 1px solid #d6c7a9;
+  background: #f4ead6;
+}
+.club-goal-tracker > div {
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .club-goal-tracker h3 {
+  margin: 5px 0 9px;
+  color: #294756;
+  font-size: 21px;
+}
+.career-app.game-mode.clubhouse .club-goal-tracker p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+.club-goal-tracker progress {
+  display: block;
+  width: min(100%, 320px);
+  height: 7px;
+  accent-color: #3c8477;
+  margin: 14px 0 8px;
+}
+.club-goal-tracker strong {
+  font-size: 12px;
+  color: #63746c;
+}
+.career-app.game-mode.clubhouse .club-goal-tracker > a {
+  flex-shrink: 0;
+  padding: 12px 15px;
+  background: #294858;
+  color: #fff5de;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.gw-ambition {
+  scroll-margin-top: 24px;
+}
+.career-app.game-mode.clubhouse .club-goal-explainer {
+  max-width: 760px;
+  padding: 14px;
+  background: #ece8dc;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+@media (max-width: 700px) {
+  .club-goal-tracker {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 17px;
+  }
+}

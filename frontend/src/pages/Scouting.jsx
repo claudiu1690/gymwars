@@ -100,7 +100,7 @@ export default function Scouting() {
             {state?.board && (
                 <div style={{ marginBottom: "var(--space-4)" }}>
                     <div className="section-label">Today's Board</div>
-                    <div style={{ display: "grid", gap: 10, gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
+                    <div className="stagger" style={{ display: "grid", gap: 10, gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))" }}>
                         {state.board.map((p) => (
                             <div key={p.slot} className="card" style={{ padding: 12, opacity: p.investigated && p.reportStatus !== "pending" ? 0.55 : 1 }}>
                                 <div style={{ fontFamily: "var(--font-display)", fontSize: 14, textTransform: "uppercase", letterSpacing: "0.03em", marginBottom: 6 }}>
@@ -135,7 +135,7 @@ export default function Scouting() {
             {state?.reports?.length > 0 && (
                 <div>
                     <div className="section-label">Reports on the Desk</div>
-                    <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
+                    <div className="stagger" style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
                         {state.reports.map((r) => (
                             <ScoutReport
                                 key={r.id}

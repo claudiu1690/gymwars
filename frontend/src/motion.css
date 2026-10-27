@@ -1,0 +1,114 @@
+/* ── Motion — keyframes & animation utilities (Fight Poster) ──
+   Entrance animations use fill-mode `both` so delayed elements stay
+   hidden until their turn. Everything is disabled for reduced-motion. */
+
+/* ── Keyframes ─────────────────────────────────────────────
+   Entrance keyframes deliberately omit the end frame — the animation
+   settles to the element's own computed style, so elements with their
+   own opacity/transform (e.g. dimmed cards) aren't overridden by
+   fill-mode: both once the animation finishes. */
+@keyframes mo-rise {
+    from { opacity: 0; transform: translateY(10px); }
+}
+@keyframes mo-fade {
+    from { opacity: 0; }
+}
+@keyframes mo-pop {
+    from { opacity: 0; transform: scale(0.82); }
+}
+@keyframes mo-punch {
+    0%  { opacity: 0; transform: scale(1.7); filter: blur(3px); }
+    55% { opacity: 1; transform: scale(0.94); filter: blur(0); }
+}
+@keyframes mo-slide-left {
+    from { opacity: 0; transform: translateX(-28px); }
+}
+@keyframes mo-slide-right {
+    from { opacity: 0; transform: translateX(28px); }
+}
+@keyframes mo-line {
+    from { opacity: 0; transform: translateY(5px); }
+}
+@keyframes mo-ping {
+    from { transform: scale(1); opacity: 0.65; }
+    to   { transform: scale(2.6); opacity: 0; }
+}
+@keyframes mo-pulse {
+    50% { opacity: 0.55; }
+}
+@keyframes mo-gold-breathe {
+    50% { filter: drop-shadow(0 0 7px rgba(212, 160, 23, 0.55)); }
+}
+@keyframes mo-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+/* ── Page transition (Shell re-keys this per route) ────── */
+.page-enter { animation: mo-rise var(--duration-slow) var(--ease-out) both; }
+
+/* ── Staggered children — lists & dashboards ───────────── */
+.stagger > * { animation: mo-rise var(--duration-slow) var(--ease-out) both; animation-delay: 420ms; }
+.stagger > *:nth-child(1)  { animation-delay: 0ms; }
+.stagger > *:nth-child(2)  { animation-delay: 35ms; }
+.stagger > *:nth-child(3)  { animation-delay: 70ms; }
+.stagger > *:nth-child(4)  { animation-delay: 105ms; }
+.stagger > *:nth-child(5)  { animation-delay: 140ms; }
+.stagger > *:nth-child(6)  { animation-delay: 175ms; }
+.stagger > *:nth-child(7)  { animation-delay: 210ms; }
+.stagger > *:nth-child(8)  { animation-delay: 245ms; }
+.stagger > *:nth-child(9)  { animation-delay: 280ms; }
+.stagger > *:nth-child(10) { animation-delay: 315ms; }
+.stagger > *:nth-child(11) { animation-delay: 350ms; }
+.stagger > *:nth-child(12) { animation-delay: 385ms; }
+
+/* ── Entrance utilities ─────────────────────────────────────
+   Declared after .stagger so an element's own anim-* class wins the
+   animation itself, while the higher-specificity nth-child rules above
+   still stagger its delay. */
+.anim-rise        { animation: mo-rise var(--duration-slow) var(--ease-out) both; }
+.anim-fade        { animation: mo-fade var(--duration-slow) var(--ease-out) both; }
+.anim-pop         { animation: mo-pop var(--duration-normal) var(--ease-spring) both; }
+.anim-punch       { animation: mo-punch var(--duration-xslow) var(--ease-out) both; }
+.anim-slide-left  { animation: mo-slide-left var(--duration-slow) var(--ease-out) both; }
+.anim-slide-right { animation: mo-slide-right var(--duration-slow) var(--ease-out) both; }
+
+/* Indexed line reveal — set `--i` per line (and optionally `--line-base`
+   on a parent) for a play-by-play cascade. Delay caps at 28 lines. */
+.anim-line {
+    animation: mo-line 280ms var(--ease-out) both;
+    animation-delay: calc(var(--line-base, 0s) + min(var(--i, 0), 28) * 40ms);
+}
+
+/* ── Interaction feedback ───────────────────────────────── */
+.card-lift {
+    transition: transform var(--duration-normal) var(--ease-out),
+                filter var(--duration-normal) var(--ease-out);
+}
+.card-lift:hover  { transform: translateY(-2px); filter: brightness(1.02); }
+.card-lift:active { transform: translateY(0) scale(0.99); filter: none; }
+
+.pressable { transition: transform var(--duration-instant) var(--ease-out); }
+.pressable:active { transform: scale(0.96); }
+
+/* ── Ambient loops ──────────────────────────────────────── */
+.timer-urgent { animation: mo-pulse 1.2s var(--ease-in-out) infinite; }
+.glow-legend  { animation: mo-gold-breathe 2.8s var(--ease-in-out) infinite; }
+
+.gold-shimmer {
+    background: linear-gradient(100deg, var(--gold) 25%, #F2D98A 45%, var(--gold) 65%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: mo-shimmer 2.2s linear infinite;
+}
+
+/* ── Reduced motion — kill everything at once ───────────── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

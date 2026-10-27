@@ -1,0 +1,235 @@
+.coach-plan-summary {
+  display: grid;
+  gap: 4px;
+  padding: 17px 18px;
+  margin: 18px 0;
+  border-radius: 4px 14px 14px 4px;
+  border-left: 5px solid #d9ad62;
+  background: #203749;
+  color: #fffaf0;
+  box-shadow: 0 4px 0 #172936;
+}
+.career-app .coach-plan-summary small {
+  color: #e8c793;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.coach-plan-summary > strong {
+  font-size: 20px;
+}
+.coach-plan-summary > span {
+  font-size: 12px;
+  color: #dae4e8;
+}
+.coach-board {
+  display: grid;
+  gap: 22px;
+  margin: 20px 0;
+}
+.coach-choice-group {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.coach-choice-group legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+.coach-choice-group legend > span {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 8px;
+  background: #e7dbc3;
+  color: #5a4627;
+  font-size: 11px;
+}
+.coach-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.coach-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  text-align: left;
+  min-width: 0;
+  min-height: 122px;
+  padding: 13px;
+  border: 2px solid #d9dfdf;
+  border-radius: 12px;
+  background: #fffdf8;
+  box-shadow: 0 3px 0 #d9dfdf;
+  color: #233a4c;
+}
+.coach-choice > strong {
+  font-size: 14px;
+  line-height: 1.25;
+}
+.coach-choice > span {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #5c6b72;
+}
+.career-app .coach-choice > small {
+  margin-top: auto;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.coach-choice[aria-pressed="true"] {
+  border-color: #b88b43;
+  background: #fcf0d9;
+  box-shadow: 0 3px 0 #9e7638;
+}
+.career-app .coach-choice[aria-pressed="true"] > small {
+  color: #6b4813;
+}
+.coach-choice:not(:disabled):hover,
+.coach-round-call:not(:disabled):hover {
+  border-color: #ae864c;
+}
+.coach-choice:not(:disabled):active,
+.coach-round-call:not(:disabled):active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+.coach-gas-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.coach-gas-choices button {
+  min-height: 44px;
+  border: 2px solid #d9dfdf;
+  border-radius: 10px;
+  padding: 8px 13px;
+  background: #fffdf8;
+  color: #233a4c;
+  font-weight: 750;
+}
+.coach-gas-choices button[aria-pressed="true"] {
+  background: #203749;
+  color: #fff8e8;
+  border-color: #203749;
+}
+.career-app .coach-gas-rule p {
+  margin-top: 0;
+  font-size: 12px;
+}
+.coach-round-calls {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 14px;
+}
+.coach-round-call {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #d9dfdf;
+  border-radius: 12px;
+  background: #fffdf8;
+  box-shadow: 0 3px 0 #d9dfdf;
+  color: #233a4c;
+  text-align: left;
+}
+.coach-call-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 9px 4px 9px 4px;
+  background: #e8ddc8;
+  color: #6b542d;
+  font-size: 15px;
+  font-weight: 850;
+}
+.coach-round-call > span:last-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.coach-round-call strong {
+  font-size: 16px;
+}
+.coach-round-call > span > span {
+  font-size: 11px;
+  color: #5e6b73;
+}
+.career-app .coach-round-call small {
+  color: #637078;
+  font-size: 10px;
+}
+.coach-round-call[aria-pressed="true"] {
+  background: #fcf0d9;
+  border-color: #b88b43;
+  box-shadow: 0 3px 0 #9e7638;
+}
+.coach-round-call[aria-pressed="true"] .coach-call-number {
+  background: #203749;
+  color: #edc886;
+}
+.coach-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 16px;
+}
+.coach-tools button {
+  min-height: 44px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: #294a61;
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.coach-round-board {
+  padding: 1px 12px;
+  margin-bottom: 20px;
+  background: #f1f1e9;
+  border-radius: 12px;
+}
+.coach-round-board .coach-choice-grid {
+  grid-template-columns: 1fr;
+}
+.coach-round-board .coach-choice {
+  min-height: 0;
+  padding: 10px 12px;
+  gap: 3px;
+}
+.coach-round-board .coach-choice small {
+  display: none;
+}
+@media (max-width: 650px) {
+  .coach-choice-grid {
+    grid-template-columns: 1fr;
+  }
+  .coach-choice {
+    min-height: 0;
+    padding: 12px 14px;
+    gap: 4px;
+  }
+  .coach-choice > small {
+    display: none;
+  }
+  .coach-round-call {
+    padding: 10px;
+    gap: 9px;
+  }
+  .coach-plan-summary > strong {
+    font-size: 18px;
+  }
+}

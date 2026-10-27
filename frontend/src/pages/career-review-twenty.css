@@ -1,0 +1,443 @@
+/* Review 19: visible decisions, truthful assignments and a complete week recap. */
+.career-app.game-mode.clubhouse .scouting-hub {
+  --scout-navy: #203947;
+  --scout-paper: #fffaf0;
+  --scout-gold: #d5a851;
+}
+.career-app.game-mode.clubhouse .scouting-hub .scout-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 1.2fr);
+  align-items: center;
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid #d8c9ae;
+  border-radius: 12px;
+  background: #eee3cd;
+  color: #203947;
+}
+.career-app.game-mode.clubhouse .scout-hero :is(p, .scout-kicker) {
+  color: #52636a;
+}
+.career-app.game-mode.clubhouse .scout-hero h2 {
+  color: #203947;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.6px;
+}
+.career-app.game-mode.clubhouse .scouting-hub .scout-resources {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  gap: 10px;
+}
+.career-app.game-mode.clubhouse .scout-resources > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 94px;
+  padding: 13px;
+  border: 1px solid #d8c9ae;
+  border-radius: 9px;
+  background: #fffaf0;
+  box-shadow: 0 3px 0 #d8c9ae80;
+}
+.career-app.game-mode.clubhouse .scout-resources strong {
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: #203947;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse .scout-resources strong small {
+  font-size: 15px;
+  color: #65747a;
+}
+.career-app.game-mode.clubhouse .scout-resources span {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #52636a;
+}
+.career-app.game-mode.clubhouse .scout-resources [data-empty="true"] strong {
+  color: #a84e30;
+}
+.scout-weight-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.career-app.game-mode.clubhouse .scout-weight-filters > a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  min-height: 48px;
+  padding: 9px 14px;
+  border: 1px solid #c7bda9;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #203947;
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+}
+.scout-weight-filters > a span {
+  font-size: 11px;
+  font-weight: 450;
+}
+.career-app.game-mode.clubhouse .scout-weight-filters > a[aria-current="page"] {
+  color: #fffaf0;
+  background: #203947;
+  border-color: #203947;
+}
+.scout-weight-filters > a:focus-visible {
+  outline: 3px solid #bc6640;
+  outline-offset: 3px;
+}
+.scout-empty {
+  padding: 22px;
+  border: 1px dashed #b8aa91;
+  border-radius: 10px;
+  background: #fffaf0;
+}
+.career-app.game-mode.clubhouse .scout-rulebook {
+  padding: 22px;
+  border: 1px solid #d8c9ae;
+  border-radius: 12px;
+  background: #f5eddc;
+}
+.career-app.game-mode.clubhouse .scout-rulebook h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+.career-app.game-mode.clubhouse .scout-rulebook p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.career-app.game-mode.clubhouse .career-rarity-guide {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #d8c9ae;
+}
+.career-app.game-mode.clubhouse .career-rarity-guide h4 {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+.career-app.game-mode.clubhouse .career-face-crop {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.career-app.game-mode.clubhouse .training-workspace .tw-details h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+/* Native modal keeps every other game control inert until the player continues. */
+.career-app .career-week-screen {
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  padding: max(24px, env(safe-area-inset-top, 0px))
+    max(20px, env(safe-area-inset-right, 0px))
+    max(24px, env(safe-area-inset-bottom, 0px))
+    max(20px, env(safe-area-inset-left, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 0;
+  background: #f4eddf;
+  color: #203947;
+}
+.career-week-screen::backdrop {
+  background: #203947;
+}
+.career-week-screen:not([open]) {
+  display: none;
+}
+.career-app.game-mode.clubhouse.gw-responsive-shell
+  .career-week-screen
+  .career-turn-results {
+  position: static;
+  width: 100%;
+  max-width: 1060px;
+  max-height: none;
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.career-app.game-mode.clubhouse.gw-responsive-shell
+  .career-week-screen
+  .career-turn-result-heading {
+  position: static;
+  padding: 0 0 20px;
+  margin-bottom: 20px;
+  background: transparent;
+}
+.career-app.game-mode.clubhouse
+  .career-week-screen
+  .career-turn-result-heading
+  h2 {
+  font-size: clamp(27px, 4vw, 40px);
+  margin-block: 5px 10px;
+}
+.career-app .career-week-screen .career-turn-result-team {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.career-week-screen .career-turn-result-fighter {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #d6c9b1;
+  border-radius: 12px;
+  background: #fffaf0;
+  align-items: start;
+}
+.career-week-screen .career-turn-result-fighter > .career-portrait {
+  width: 64px;
+  height: 64px;
+  border-radius: 9px;
+}
+.career-week-screen .career-turn-result-work > strong {
+  color: #203947;
+  font-size: 18px;
+  line-height: 1.25;
+}
+.career-week-screen .career-week-activity {
+  font-size: 13px;
+  color: #8d4d32;
+  font-weight: 750;
+}
+.career-week-screen .career-turn-result-work > span {
+  font-size: 13px;
+  line-height: 1.5;
+}
+.career-week-screen .career-turn-result-gains {
+  gap: 6px;
+  margin-top: 9px;
+}
+.career-week-screen .career-turn-result-gains > span {
+  padding: 5px 7px;
+  border-radius: 5px;
+  background: #eaf0e2;
+  font-size: 12px;
+}
+.career-week-screen .career-turn-result-condition {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid #e3d7c3;
+  margin: 0;
+}
+.career-week-screen .career-turn-result-condition > span {
+  font-size: 13px;
+}
+.career-week-screen .career-turn-result-condition > strong {
+  font-size: 17px;
+  color: #203947;
+}
+.career-week-screen .career-turn-result-events {
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #d6c9b1;
+  border-radius: 10px;
+  background: #fffaf0;
+}
+.career-week-screen .career-turn-result-events h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #203947;
+}
+.career-week-continue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+/* Every result section is open. Timeline rows own their text and spacing. */
+.career-app.game-mode.clubhouse .fight-night-arena .fn-section-title {
+  padding: 20px 24px;
+  font-size: 21px;
+  line-height: 1.3;
+  color: #203947;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-fighter-details h3 {
+  margin: 14px 0;
+  font-size: 14px;
+  color: #52636a;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-full-log {
+  padding-top: 24px;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-full-log > section {
+  margin-top: 20px;
+  padding: 0;
+  border: 1px solid #d7cfbd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-full-log h4 {
+  margin: 0;
+  padding: 13px 16px;
+  background: #203947;
+  color: #fffaf0;
+  font-size: 16px;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-full-log .fn-events {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  > li {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  border-bottom: 1px solid #e3dac7;
+  border-radius: 0;
+  background: #fffaf0;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  > li:last-child {
+  border-bottom: 0;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  > li[data-highlight="true"] {
+  border-left: 4px solid #bf8d36;
+  background: #f8efd9;
+  padding-left: 12px;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  time {
+  display: block;
+  color: #5e7078;
+  padding: 2px 0;
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-full-log .fn-events p {
+  margin: 0;
+  color: #203947;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  p
+  + p {
+  margin-top: 5px;
+}
+.career-app.game-mode.clubhouse
+  .fight-night-arena
+  .fn-full-log
+  .fn-events
+  .fn-reset {
+  color: #647579;
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-key-moment {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  color: #654619;
+  background: #ecd5a6;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1050px) {
+  .career-app.game-mode.clubhouse .scouting-hub .scout-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+@media (max-width: 620px) {
+  .career-app .career-week-screen .career-turn-result-team {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .career-week-screen .career-turn-result-fighter {
+    padding: 15px;
+  }
+  .career-week-continue .career-action {
+    width: 100%;
+  }
+  .career-app.game-mode.clubhouse .scout-resources > div {
+    padding: 10px;
+    min-height: 90px;
+  }
+  .career-app.game-mode.clubhouse .scout-resources span {
+    font-size: 11px;
+  }
+  .scout-weight-filters > a {
+    flex: 1 1 28%;
+    padding: 9px;
+    font-size: 13px;
+  }
+  .career-app.game-mode.clubhouse .scouting-hub .scout-hero {
+    padding: 16px;
+  }
+  .career-app.game-mode.clubhouse .fight-night-arena .fn-section-title {
+    padding: 17px 18px;
+    font-size: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .career-app.game-mode.clubhouse
+    .fight-night-arena
+    .fn-full-log
+    .fn-events
+    > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 5px;
+  }
+}
+@media (orientation: landscape) and (max-height: 620px) {
+  .career-app .career-week-screen {
+    padding-block: max(14px, env(safe-area-inset-top, 0px));
+  }
+  .career-app.game-mode.clubhouse
+    .career-week-screen
+    .career-turn-result-heading
+    h2 {
+    font-size: 27px;
+  }
+  .career-week-screen .career-turn-result-fighter {
+    padding: 14px;
+  }
+}

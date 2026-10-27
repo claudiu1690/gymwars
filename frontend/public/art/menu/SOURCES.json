@@ -1,0 +1,81 @@
+{
+  "provider": "Higgsfield MCP",
+  "model": "gpt_image_2_5",
+  "generatedAt": "2026-10-14",
+  "styleReferenceJob": "ac808798-c049-411d-a588-98ea4d97a992",
+  "purpose": "Transparent cartoon 3D menu icon family",
+  "assets": [
+    {
+      "file": "home.webp",
+      "source": "output/menu-refresh-2026-10-14/home.png",
+      "job": "88512ba2-26d9-453f-8d3d-8a15e72c63c7",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: a compact welcoming gym clubhouse building with a simple coral pitched roof and a navy open doorway; no signage.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "roster.webp",
+      "source": "output/menu-refresh-2026-10-14/roster.png",
+      "job": "a5450278-2fd8-486e-a838-85dfd580f3ea",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: two simple faceless athlete bust silhouettes side by side, one slightly in front of the other, cream heads, navy sports tops and a coral accent. Clearly reads as a team, not a single person.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "fights.webp",
+      "source": "output/menu-refresh-2026-10-14/fights.png",
+      "job": "a4217d27-ec90-4f60-ae81-e0869a5e3180",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: one big padded cream boxing glove, raised upright, coral wrist wrap and navy seam. Bold fist silhouette.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "career.webp",
+      "source": "output/menu-refresh-2026-10-14/career.png",
+      "job": "e7e3b764-4a7f-4a7b-bb49-7a6b9bdd18be",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: three ascending cream podium steps with a short coral pennant flag at the top. Clearly reads as a career path and progression.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "gym.webp",
+      "source": "output/menu-refresh-2026-10-14/gym.png",
+      "job": "04bd8a67-cbb6-4a18-bbde-c1546d038b2e",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: a single chunky cream kettlebell with an oversized navy handle and small coral base accent.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "wars.webp",
+      "source": "output/menu-refresh-2026-10-14/wars.png",
+      "job": "74542b73-6ded-4fe5-aa1f-12501e9469de",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: two chunky padded boxing gloves facing each other, cream on the left and coral on the right, with a small cream lightning bolt between them. Clearly two teams confronting each other; one unified balanced icon.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "achievements.webp",
+      "source": "output/menu-refresh-2026-10-14/achievements.png",
+      "job": "8ca3e5b0-21db-479d-ad04-49a74dfda1d2",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: a chunky warm golden trophy cup with two handles, cream highlights, navy stem and a coral base. Simple prestigious achievement reward.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "shop.webp",
+      "source": "output/menu-refresh-2026-10-14/shop.png",
+      "job": "d10e8de5-0119-40b2-a0ce-b6948b695529",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: a compact cream gym duffel bag with coral carrying handles, navy zipper and one broad navy panel, no contents or labels. Match the sports supply pack design language.",
+      "outputSize": 192,
+      "alpha": true
+    },
+    {
+      "file": "help.webp",
+      "source": "output/menu-refresh-2026-10-14/help.png",
+      "job": "04101725-cd0d-4430-b717-87af4bc487e6",
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated navigation icon for Gym Wars, a friendly MMA gym management game. Reference is STYLE only: match the rounded cartoon 3D gym game materials, navy / cream / coral sports palette and toy-like proportions. Primary request: a single bold easily recognizable icon, centered on a GENUINELY TRANSPARENT background with alpha, no backdrop, no tile, no enclosing shield, no frame or circle. Use oversized simple shapes and minimal details to stay crisp at 36 pixels. Cream/off-white main surfaces, dark navy edges, coral accent, soft warm highlights. Consistent three-quarter orthographic view, silhouette occupies 78% of square canvas, all objects fully in frame, minimal contact shadow, no floor. No text, letters, numbers, checkmarks, watermark, brand logos or photorealism. Subject: a single chunky cream gear wheel with eight broad teeth, a coral hub and a navy inner hole, simple settings icon.",
+      "outputSize": 192,
+      "alpha": true
+    }
+  ]
+}

@@ -1,0 +1,495 @@
+.career-app.game-mode.clubhouse .gw-team-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  min-height: 245px;
+  padding: 28px;
+  border-radius: 15px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #13283de8, #13283d75 52%, #13283d08),
+    url("/art/cartoon-team-locker-room.webp") center 57% / cover;
+  color: #fff8e9;
+  box-shadow: 0 5px 0 #c9bba3;
+}
+.career-app.game-mode.clubhouse .gw-team-hero .career-eyebrow {
+  color: #ffb28e;
+}
+.career-app.game-mode.clubhouse .gw-team-hero h3 {
+  color: #fff8e9;
+  font-size: clamp(26px, 3vw, 39px);
+  max-width: 430px;
+  line-height: 1.08;
+  margin: 8px 0 12px;
+}
+.career-app.game-mode.clubhouse .gw-team-hero p {
+  color: #fff2dc;
+  font-size: 14px;
+  max-width: 350px;
+}
+.gw-team-stamp {
+  align-self: flex-end;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: #13283de3;
+  border: 1px solid #89ccc180;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+.career-app.game-mode.clubhouse .gw-team-workbench {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+  padding: 0;
+}
+.gw-team-rail {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.gw-team-rail-heading h3 {
+  font-size: 18px;
+  margin: 5px 0 3px;
+}
+.career-app.game-mode.clubhouse .gw-team-fighter {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  width: 100%;
+  min-height: 105px;
+  text-align: left;
+  padding: 11px;
+  border: 2px solid #d3c6b0;
+  background: #fff8e9;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #d7c9af;
+  color: #203747;
+}
+.gw-team-fighter > span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.career-app.game-mode.clubhouse .gw-team-fighter .career-portrait {
+  width: 57px;
+  height: 73px;
+  flex-shrink: 0;
+  border-radius: 7px;
+}
+.career-app.game-mode.clubhouse .gw-team-fighter small {
+  color: inherit;
+  opacity: 0.85;
+  font-size: 10px;
+}
+.gw-team-fighter strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.gw-team-fighter span > span {
+  font-size: 11px;
+}
+.gw-team-fighter b {
+  font-size: 10px;
+  color: #9b432e;
+}
+.career-app.game-mode.clubhouse .gw-team-fighter[aria-pressed="true"] {
+  background: #203747;
+  color: #fff8e9;
+  border-color: #ed855f;
+  box-shadow: 0 3px 0 #d16a45;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-fighter[aria-pressed="true"]
+  :is(b, small, strong, span) {
+  color: inherit;
+}
+.gw-team-editor {
+  min-width: 0;
+  padding: 22px;
+  background: #fffaf0;
+  border: 1px solid #d4c6ae;
+  border-radius: 13px;
+}
+.gw-tactic-fighter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.gw-tactic-fighter > div:last-child {
+  min-width: 0;
+  flex: 1;
+}
+.gw-tactic-portrait {
+  width: 112px;
+  height: 156px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.career-app.game-mode.clubhouse .gw-tactic-portrait .career-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+.career-app.game-mode.clubhouse .gw-tactic-fighter h3 {
+  font-size: 27px;
+  margin: 6px 0 4px;
+}
+.career-app.game-mode.clubhouse .gw-tactic-fighter p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  margin: 0 0 7px;
+}
+.gw-tactic-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 13px 0 0;
+}
+.gw-tactic-stats > div {
+  display: grid;
+  gap: 4px;
+}
+.gw-tactic-stats dt {
+  font-size: 10px;
+  color: #56656a;
+}
+.gw-tactic-stats dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 850;
+}
+.gw-team-reserves {
+  padding: 16px 0 3px;
+  border-top: 1px solid #dfd4bf;
+  margin-top: 17px;
+}
+.gw-team-reserves h4 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+.gw-team-reserves .war-lineup-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.career-app.game-mode.clubhouse .gw-team-reserves button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 10px;
+  text-align: left;
+}
+.gw-team-reserves button > span {
+  flex: 1;
+  min-width: 0;
+}
+.gw-team-reserves button :is(strong, small) {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.gw-team-reserves button strong {
+  font-size: 12px;
+}
+.gw-team-reserves button small {
+  font-size: 10px;
+}
+.gw-team-reserves button > b {
+  font-size: 9px;
+}
+.gw-team-reserves .career-portrait {
+  width: 39px;
+  height: 46px;
+  border-radius: 5px;
+}
+.career-app.game-mode.clubhouse .gw-team-reserves button[aria-pressed="true"] {
+  border-color: #bd553c;
+  background: #fce1c8;
+}
+.gw-team-matchup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 12px;
+  background: #e9eee6;
+  border: 1px solid #ccd6c9;
+  border-radius: 9px;
+}
+.gw-team-matchup .career-portrait {
+  width: 43px;
+  height: 49px;
+  border-radius: 6px;
+}
+.gw-team-matchup > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.gw-team-matchup small {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+.gw-team-matchup strong {
+  font-size: 13px;
+}
+.gw-team-matchup span {
+  font-size: 11px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-board {
+  margin: 23px 0 18px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  gap: 20px;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  min-height: 108px;
+  padding: 12px;
+  background: #f9f1e3;
+  border: 2px solid #d6c8b0;
+  box-shadow: 0 3px 0 #dfd1b8;
+  color: #203747;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-choice > strong {
+  color: #203747;
+  font-size: 13px;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-choice > span {
+  color: #465b63;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-choice > small {
+  color: #5c4e3a;
+  font-size: 9px;
+  margin-top: auto;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-editor
+  .coach-choice[aria-pressed="true"] {
+  background: #fce0c5;
+  border-color: #b65739;
+  box-shadow: 0 3px 0 #b65739;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-editor
+  .coach-choice[aria-pressed="true"]
+  > small {
+  color: #843b29;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-editor
+  .coach-gas-choices
+  button[aria-pressed="true"] {
+  background: #203747;
+  color: #fff8e9;
+  border-color: #203747;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-plan-summary {
+  margin: 0;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-plan-summary small {
+  color: #f1c78f;
+}
+.career-app.game-mode.clubhouse .gw-team-editor .coach-gas-choices button {
+  background: #f9f1e3;
+  color: #203747;
+  border: 2px solid #d6c8b0;
+}
+.career-app.game-mode.clubhouse
+  .gw-team-editor
+  .coach-gas-choices
+  button[aria-pressed="true"] {
+  background: #fce0c5;
+  color: #843b29;
+  border-color: #b65739;
+  box-shadow: 0 2px 0 #b65739;
+}
+.career-app.game-mode.clubhouse .gw-team-plan-note {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 12px 0 0;
+  color: #53636a;
+}
+.career-app.game-mode.clubhouse .gw-team-save {
+  position: sticky;
+  bottom: 12px;
+  z-index: 5;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 16px 20px;
+  background: #203747;
+  color: #fff8e9;
+  border: 1px solid #62716f;
+  border-radius: 11px;
+  box-shadow: 0 5px 18px #14263830;
+}
+.gw-team-save > div {
+  flex: 1;
+}
+.gw-team-save strong {
+  font-size: 14px;
+}
+.career-app.game-mode.clubhouse .gw-team-save p {
+  font-size: 11px;
+  color: #eee7d9;
+  margin: 4px 0 0;
+}
+.career-app.game-mode.clubhouse .gw-team-save .career-action {
+  background: #f16b49;
+  color: #fff8e9;
+  border-color: #e77753;
+}
+.career-app.game-mode.clubhouse .gw-team-save .career-action.secondary {
+  background: #fff8e9;
+  color: #203747;
+  border-color: #e2d5bc;
+}
+.career-app.game-mode.clubhouse .gw-tactics-grid article > button {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 850;
+  border: 1px solid #bdcdc5;
+  border-radius: 8px;
+  background: #e6eee8;
+  color: #284c5a;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+@media (max-width: 1050px) {
+  .career-app.game-mode.clubhouse .gw-team-workbench {
+    grid-template-columns: 1fr;
+  }
+  .gw-team-rail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .gw-team-rail-heading {
+    grid-column: 1 / -1;
+  }
+  .career-app.game-mode.clubhouse .gw-team-fighter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 600px) {
+  .career-app.game-mode.clubhouse .gw-team-hero {
+    padding: 20px;
+    min-height: 220px;
+    background-position: 65% center;
+  }
+  .gw-team-hero > div {
+    max-width: 245px;
+  }
+  .gw-team-stamp {
+    display: none;
+  }
+  .gw-team-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .career-app.game-mode.clubhouse .gw-team-fighter {
+    flex-direction: row;
+    gap: 7px;
+    padding: 8px;
+    min-height: 94px;
+  }
+  .career-app.game-mode.clubhouse .gw-team-fighter .career-portrait {
+    width: 38px;
+    height: 55px;
+  }
+  .gw-team-fighter strong {
+    font-size: 12px;
+  }
+  .gw-team-fighter span > span {
+    font-size: 10px;
+  }
+  .gw-team-editor {
+    padding: 16px;
+  }
+  .gw-tactic-fighter {
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .gw-tactic-portrait {
+    width: 73px;
+    height: 108px;
+  }
+  .career-app.game-mode.clubhouse .gw-tactic-fighter h3 {
+    font-size: 22px;
+  }
+  .gw-tactic-fighter .career-eyebrow {
+    font-size: 8px;
+  }
+  .gw-tactic-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px;
+  }
+  .gw-tactic-stats dd {
+    font-size: 17px;
+  }
+  .gw-team-reserves .war-lineup-options {
+    grid-template-columns: 1fr;
+  }
+  .career-app.game-mode.clubhouse .gw-team-editor .coach-choice-grid {
+    grid-template-columns: 1fr;
+  }
+  .career-app.game-mode.clubhouse .gw-team-editor .coach-choice {
+    min-height: 76px;
+    position: relative;
+    padding-right: 62px;
+  }
+  .career-app.game-mode.clubhouse .gw-team-editor .coach-choice > small {
+    position: absolute;
+    right: 11px;
+    top: 15px;
+    max-width: 46px;
+    text-align: right;
+  }
+  .career-app.game-mode.clubhouse .gw-team-save {
+    bottom: 6px;
+    padding: 13px;
+    gap: 10px;
+    flex-direction: row;
+    align-items: stretch;
+    min-width: 0;
+    width: 100%;
+  }
+  .gw-team-save > div {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+  .career-app.game-mode.clubhouse .gw-team-save .career-action {
+    flex: 1;
+    padding: 12px;
+    font-size: 12px;
+    min-width: 0;
+    white-space: normal;
+  }
+}

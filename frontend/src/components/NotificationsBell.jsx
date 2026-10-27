@@ -55,10 +55,10 @@ export default function NotificationsBell() {
                 {unread > 0 && <span className="dot" />}
             </button>
             {open && (
-                <div style={{
+                <div className="anim-pop" style={{
                     position: "absolute", right: 0, top: "calc(100% + 8px)", width: 320, maxHeight: 400, overflowY: "auto",
                     background: "var(--surface)", border: "1px solid var(--line)", borderRadius: "var(--radius-lg)",
-                    boxShadow: "var(--shadow-lg)", zIndex: 40, padding: 8,
+                    boxShadow: "var(--shadow-lg)", zIndex: 40, padding: 8, transformOrigin: "top right",
                 }}>
                     {items.length === 0 && (
                         <p style={{ fontSize: 12, color: "var(--ink-muted)", textAlign: "center", padding: "16px 8px", margin: 0 }}>Nothing yet — quiet week at the gym.</p>

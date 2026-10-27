@@ -4,13 +4,12 @@ const Gym = require("../models/gymModel");
 const email = require("../lib/email");
 
 /** Create an in-app notification; "attacked" also goes out by email — the
- *  genre's strongest same-day-return driver (GDD §9.5). Fire-and-forget. */
+ *  genre's strongest same-day-return driver (GDD §9.5). Email follows commit. */
 async function notify(gymId, type, message, data = {}) {
     const notification = await Notification.create({ gymId, type, message, data });
 
     if (type === "attacked") {
-        sendAttackedEmail(gymId, message).catch((err) =>
-            console.error("[notify] attacked email failed:", err.message));
+        await require('../lib/atomic').afterCommit(()=>sendAttackedEmail(gymId, message));
     }
     return notification;
 }

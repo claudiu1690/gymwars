@@ -3,10 +3,16 @@
   "configurations": [
     {
       "name": "frontend",
-      "runtimeExecutable": "C:\\Users\\Claudiu\\AppData\\Roaming\\nvm\\v22.12.0\\npm.cmd",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
       "runtimeArgs": ["run", "dev"],
       "cwd": "frontend",
       "port": 5175
+    },
+    {
+      "name": "api",
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+      "runtimeArgs": ["run", "dev:local"],
+      "port": 4101
     }
   ]
 }

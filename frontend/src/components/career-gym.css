@@ -1,0 +1,1040 @@
+.gym-hub {
+  display: grid;
+  gap: 34px;
+  padding-bottom: 24px;
+}
+.gym-hub section[id],
+.gym-hub div[id] {
+  scroll-margin-top: 24px;
+}
+.gym-home-hero {
+  position: relative;
+  min-height: 314px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #192e40;
+  isolation: isolate;
+  color: #fff;
+  box-shadow: 0 7px 0 #d8dee0;
+}
+.gym-home-hero > img {
+  position: absolute;
+  width: 68%;
+  height: 100%;
+  right: 0;
+  object-fit: cover;
+  z-index: -2;
+}
+.gym-home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #192e40 12%, #192e40ed 37%, #192e4040 78%),
+    linear-gradient(0deg, #192e40ee, transparent 70%);
+  z-index: -1;
+}
+.gym-hero-copy {
+  padding: 28px 30px 92px;
+  max-width: 720px;
+}
+.gym-home-hero .career-eyebrow {
+  color: #e4bd69;
+}
+.career-app .gym-hero-copy h2 {
+  color: #fff;
+  font-size: clamp(27px, 3vw, 40px);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+  margin-top: 9px;
+}
+.career-app .gym-hero-copy p {
+  color: #d9e2e6;
+}
+.gym-hero-copy nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.gym-hero-copy nav a {
+  background: #ffffff12;
+  border: 1px solid #ffffff30;
+  border-radius: 7px;
+  padding: 6px 11px;
+  font-weight: 750;
+  font-size: 12px;
+}
+.gym-hero-copy nav a:hover {
+  background: #f3c76a;
+  color: #192e40;
+}
+.gym-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #182b3ce6;
+  border-top: 1px solid #ffffff25;
+}
+.gym-hero-stats > span {
+  display: grid;
+  padding: 14px 22px;
+  color: #bdcdd8;
+  font-size: 11px;
+  border-right: 1px solid #ffffff15;
+}
+.gym-hero-stats strong {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.3;
+}
+.gym-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.gym-section-heading .career-eyebrow,
+.gym-facility-copy > .career-eyebrow {
+  color: #98662b;
+}
+.gym-section-heading h2 {
+  margin-top: 4px;
+}
+.career-app .gym-section-heading p {
+  margin: 6px 0 0;
+}
+.gym-section-heading > .career-action {
+  flex-shrink: 0;
+}
+.gym-idle-callout {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 17px;
+  background: #fff2d8;
+  border: 1px solid #e5ba63;
+  border-left: 5px solid #c98926;
+  border-radius: 10px;
+  margin-bottom: 17px;
+}
+.gym-idle-callout > span {
+  display: grid;
+  place-items: center;
+  background: #c98926;
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  font-size: 18px;
+  font-weight: 850;
+}
+.gym-idle-callout strong {
+  color: #795020;
+}
+.gym-saved-camp {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 17px;
+  background: #e4f1e9;
+  border: 1px solid #87b9a0;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  color: #2f7154;
+}
+.gym-saved-camp > span {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #3b8865;
+  color: white;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.career-app .gym-saved-camp p {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: #4d775f;
+}
+.career-app .gym-idle-callout p {
+  margin: 3px 0 0;
+  color: #795f3d;
+  font-size: 12px;
+}
+.gym-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+.gym-team-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 2px solid #d6dfe3;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 #dde3e5;
+}
+.gym-team-card[data-state="idle"],
+.gym-team-card[data-state="recovery"] {
+  border-color: #d2aa65;
+}
+.gym-fighter-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  background: #22394d;
+  color: #fff;
+  position: relative;
+}
+.gym-fighter-top .career-portrait {
+  width: 78px;
+  height: 94px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: 7px;
+  border: 2px solid var(--rarity-frame, #b5c3cf);
+  box-shadow: 0 3px 0 #101e2b;
+}
+.gym-fighter-top > div {
+  min-width: 0;
+}
+.gym-fighter-top h3 {
+  margin: 7px 0 4px;
+  color: white;
+  font-size: 18px;
+}
+.gym-fighter-top .fighter-rarity {
+  font-size: 9px;
+  padding: 3px 5px;
+}
+.gym-fighter-top > div > span:last-child {
+  font-size: 11px;
+  color: #c2d0da;
+}
+.gym-open-arrow {
+  position: absolute;
+  right: 9px;
+  top: 7px;
+  font-size: 17px;
+  color: #d4bd88;
+}
+.gym-team-work {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px;
+}
+.gym-work-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+  margin-bottom: 9px;
+}
+.gym-work-label i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #458779;
+}
+.gym-team-card[data-state="idle"] .gym-work-label,
+.gym-team-card[data-state="recovery"] .gym-work-label {
+  color: #97631d;
+}
+.gym-team-card[data-state="idle"] .gym-work-label i,
+.gym-team-card[data-state="recovery"] .gym-work-label i {
+  background: #ca902f;
+}
+.gym-team-card[data-state="decision"] .gym-work-label,
+.gym-team-card[data-state="fight"] .gym-work-label {
+  color: #b44429;
+}
+.gym-team-card[data-state="decision"] .gym-work-label i,
+.gym-team-card[data-state="fight"] .gym-work-label i {
+  background: #dc6743;
+}
+.gym-team-work > strong {
+  font-size: 15px;
+  line-height: 1.4;
+}
+.career-app .gym-team-work > p {
+  font-size: 12px;
+  margin: 6px 0 14px;
+  min-height: 36px;
+}
+.gym-readiness {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 11px;
+}
+.gym-readiness-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #e3e9e9;
+}
+.gym-readiness-track i {
+  display: block;
+  height: 100%;
+  background: #558b7f;
+  border-radius: 4px;
+}
+.gym-team-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+.gym-team-actions .career-action {
+  font-size: 12px;
+  padding: 10px 13px;
+}
+.gym-small-link {
+  font-size: 11px;
+  font-weight: 750;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+.gym-empty-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  min-height: 240px;
+  background: #eef0eb;
+  border: 2px dashed #cad4ce;
+  border-radius: 14px;
+  text-align: center;
+}
+.gym-empty-slot > span {
+  font-size: 35px;
+  line-height: 1;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border: 2px dashed #b8c5bc;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  color: #7b9486;
+}
+.gym-empty-slot > strong {
+  max-width: 180px;
+  font-size: 17px;
+}
+.career-app .gym-empty-slot p {
+  font-size: 12px;
+  margin: 6px 0 16px;
+}
+.gym-empty-slot > b {
+  font-size: 12px;
+}
+.gym-staff-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.gym-staff-card {
+  padding: 23px;
+  border: 1px solid #d4dce0;
+  border-top: 5px solid #c6a062;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 0 #e0e4e4;
+}
+.gym-staff-card[data-role="scout"] {
+  border-top-color: #649386;
+}
+.gym-staff-heading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+.gym-staff-emblem {
+  flex: 0 0 62px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  color: #dfbb76;
+  background: #233b4f;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+}
+.gym-staff-heading .career-eyebrow {
+  font-size: 9px;
+  color: #7f673f;
+}
+.gym-staff-heading h3 {
+  font-size: 22px;
+  margin: 3px 0 4px;
+}
+.gym-staff-heading > div > span:last-child {
+  color: #72808a;
+  font-size: 12px;
+}
+.gym-staff-effect {
+  font-size: 18px;
+}
+.career-app .gym-staff-card > p {
+  font-size: 12px;
+  margin: 6px 0 18px;
+}
+.gym-staff-ranks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  gap: 5px;
+}
+.gym-staff-next-rank {
+  border-left: 3px solid #b9a0ed;
+  background: #192334;
+  padding: 10px 12px;
+  display: grid;
+  gap: 5px;
+  margin: 0 0 10px;
+}
+.gym-staff-next-rank > span {
+  color: #b6c3d8;
+  font-size: 10px;
+}
+.gym-staff-next-rank > strong {
+  color: #f2f3f8;
+  font-size: 14px;
+}
+.career-app .gym-staff-next-rank p {
+  color: #bfa8ee;
+  font-size: 12px;
+  margin: 0;
+}
+.gym-staff-ladder-toggle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #c4d0e3;
+  font-size: 11px;
+  text-align: left;
+  padding: 9px 0 14px;
+  cursor: pointer;
+}
+.gym-staff-card .gym-staff-ranks {
+  grid-template-columns: repeat(auto-fit, minmax(93px, 1fr));
+}
+.gym-veteran-opportunity {
+  display: flex;
+  gap: 16px;
+  border: 1px solid #897544;
+  border-radius: 10px;
+  padding: 17px;
+  margin-top: 21px;
+  background: #2c2c2c;
+}
+.gym-veteran-opportunity > .career-portrait {
+  width: 78px;
+  height: 98px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 2px solid #e1b762;
+  flex-shrink: 0;
+}
+.gym-veteran-opportunity > div {
+  min-width: 0;
+}
+.gym-veteran-opportunity .career-eyebrow {
+  color: #f4c451;
+  font-size: 9px;
+}
+.career-app .gym-veteran-opportunity h3 {
+  margin: 5px 0 8px;
+  color: #fff0ca;
+}
+.career-app .gym-veteran-opportunity h3 small {
+  color: #b7c3d5;
+  font-size: 11px;
+}
+.career-app .gym-veteran-opportunity p {
+  color: #c4cbda;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.gym-veteran-opportunity .career-action {
+  font-size: 11px;
+}
+.gym-veteran-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.gym-veteran-confirm > p {
+  width: 100%;
+}
+@media (max-width: 500px) {
+  .gym-veteran-opportunity {
+    flex-direction: column;
+    padding: 14px;
+  }
+  .gym-veteran-opportunity > .career-portrait {
+    width: 65px;
+    height: 80px;
+  }
+}
+.gym-staff-ranks li {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: #f2f4f3;
+  border: 1px solid #e0e5e3;
+  border-radius: 6px;
+  padding: 9px 7px;
+}
+.gym-staff-ranks li > span {
+  color: #a8b4b4;
+  font-size: 22px;
+  line-height: 1;
+}
+.gym-staff-ranks li strong {
+  font-size: 10px;
+}
+.career-app .gym-staff-ranks li small {
+  font-size: 10px;
+  line-height: 1.4;
+}
+.gym-staff-ranks li[data-state="earned"] {
+  background: #fff2d7;
+  border-color: #dcb768;
+}
+.gym-staff-ranks li[data-state="earned"] > span {
+  color: #b38735;
+}
+.gym-staff-ranks li[data-state="next"] {
+  border-color: #b4c3cc;
+  background: #edf3f5;
+}
+.gym-staff-contract {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  border-top: 1px solid #e0e5e4;
+}
+.gym-staff-contract > div {
+  display: grid;
+  gap: 4px;
+}
+.gym-staff-contract strong {
+  font-size: 12px;
+}
+.gym-staff-contract span {
+  font-size: 11px;
+  color: #667782;
+}
+.gym-staff-contract .career-action {
+  font-size: 12px;
+}
+.career-app .gym-lock-reason {
+  font-size: 12px;
+  color: #9a512b;
+  margin: 9px 0 0;
+}
+.gym-staff-release {
+  margin-top: 15px;
+}
+.gym-staff-release button {
+  background: transparent;
+  border: 0;
+  padding: 3px 0;
+  color: #77848a;
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-right: 14px;
+}
+.career-app .gym-staff-release p {
+  font-size: 11px;
+  margin: 0 0 5px;
+  color: #a04f36;
+}
+.gym-facility {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1.2fr);
+  border-radius: 17px;
+  overflow: hidden;
+  background: #f0e8d6;
+  border: 1px solid #dfd1b1;
+}
+.gym-facility-picture {
+  position: relative;
+  min-height: 320px;
+}
+.gym-facility-picture img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
+.gym-facility-picture > span {
+  position: absolute;
+  bottom: 19px;
+  left: 20px;
+  border-radius: 5px;
+  background: #22394def;
+  padding: 7px 13px;
+  font-size: 11px;
+  font-weight: 850;
+  color: #efca84;
+}
+.gym-facility-copy {
+  padding: 27px;
+}
+.gym-facility-copy h2 {
+  margin: 5px 0 18px;
+}
+.gym-expansion-gains {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.gym-expansion-gains span {
+  display: grid;
+  gap: 5px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+.gym-expansion-gains strong {
+  font-size: 20px;
+  color: #805b28;
+}
+.career-app .gym-facility-copy p {
+  font-size: 12px;
+  color: #716852;
+}
+.gym-mentoring {
+  background: #fff;
+  border: 1px solid #d7dfdf;
+  border-radius: 17px;
+  padding: 26px;
+}
+.gym-capacity {
+  font-size: 12px;
+  font-weight: 750;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: 1px solid #c8d3d4;
+  border-radius: 7px;
+}
+.gym-mentoring-tradeoff {
+  display: grid;
+  grid-template-columns: 1fr 26px 1.7fr;
+  align-items: center;
+  gap: 13px;
+  padding: 18px;
+  background: #eef2ef;
+  border-radius: 10px;
+}
+.gym-mentoring-tradeoff > span {
+  text-align: center;
+  color: #8a9892;
+  font-size: 12px;
+}
+.gym-mentoring-tradeoff strong {
+  font-size: 14px;
+}
+.career-app .gym-mentoring-tradeoff p {
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+.gym-active-pairs {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+.gym-active-pairs article {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  padding: 17px;
+  background: #eaf2ef;
+  border: 1px solid #a4c7b8;
+  border-radius: 12px;
+}
+.gym-pair-faces {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.gym-pair-faces .career-portrait {
+  width: 65px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.gym-pair-faces > span {
+  font-size: 18px;
+  color: #458270;
+}
+.gym-active-pairs h3 {
+  font-size: 15px;
+}
+.gym-active-pairs .career-eyebrow {
+  font-size: 9px;
+  color: #39816a;
+}
+.gym-active-pairs strong {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.career-app .gym-active-pairs p {
+  font-size: 11px;
+  margin: 3px 0;
+}
+.gym-mentor-step {
+  padding-top: 23px;
+}
+.gym-mentor-step h3 {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.gym-mentor-step h3 > span {
+  font-size: 11px;
+  color: #967239;
+  border: 1px solid #cbb98f;
+  border-radius: 5px;
+  padding: 5px;
+}
+.career-app .gym-mentor-step > p {
+  font-size: 12px;
+  margin: 7px 0 12px;
+}
+.gym-pick-fighters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 235px), 1fr));
+  gap: 10px;
+}
+.gym-pick-fighters > button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: #f8f9f7;
+  border: 2px solid #dde4e3;
+  border-radius: 9px;
+  padding: 9px;
+  color: #2c4253;
+}
+.gym-pick-fighters > button[aria-pressed="true"] {
+  border-color: #ad8643;
+  background: #fff1d4;
+}
+.gym-pick-fighters .career-portrait {
+  width: 49px;
+  height: 61px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.gym-pick-fighters > button > span {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+}
+.gym-pick-fighters strong {
+  font-size: 12px;
+}
+.career-app .gym-pick-fighters small {
+  font-size: 10px;
+}
+.gym-pick-fighters em {
+  font-style: normal;
+  font-size: 10px;
+  color: #7d6b4c;
+  line-height: 1.3;
+}
+.gym-pick-fighters b {
+  color: #ad8643;
+  font-size: 18px;
+}
+.gym-trait-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.gym-trait-choices > button {
+  text-align: left;
+  padding: 17px;
+  background: #f9f8f2;
+  border: 2px solid #e0dfd6;
+  border-radius: 10px;
+}
+.gym-trait-choices > button[aria-pressed="true"] {
+  background: #fff0ce;
+  border-color: #b28a41;
+}
+.gym-trait-choices > button > span {
+  display: block;
+  font-size: 24px;
+  color: #b28a41;
+  margin-bottom: 8px;
+}
+.gym-trait-choices strong {
+  font-size: 13px;
+  color: #2c4050;
+}
+.career-app .gym-trait-choices p {
+  font-size: 12px;
+  margin: 6px 0 11px;
+}
+.career-app .gym-trait-choices small {
+  font-size: 10px;
+  color: #8a6730;
+}
+.career-app .gym-empty {
+  background: #f5f6f3;
+  border: 1px dashed #d1d9d3;
+  padding: 17px;
+  border-radius: 8px;
+}
+.gym-empty a {
+  font-weight: 800;
+  text-decoration: underline !important;
+}
+.gym-mentor-commit {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 24px;
+  background: #213b4d;
+  border-radius: 11px;
+  color: #fff;
+}
+.gym-mentor-commit .career-eyebrow {
+  display: block;
+  font-size: 10px;
+  color: #e2bd7a;
+  margin-bottom: 5px;
+}
+.gym-mentor-commit > div > strong {
+  font-size: 19px;
+}
+.career-app .gym-mentor-commit p {
+  font-size: 12px;
+  color: #c7d4dd;
+  margin: 7px 0 0;
+}
+.career-app .gym-mentor-commit .gym-lock-reason {
+  color: #f2c384;
+}
+.gym-mentor-commit > .career-action {
+  flex-shrink: 0;
+}
+.gym-history {
+  border-top: 1px solid #d6dfdf;
+  padding-top: 4px;
+}
+.gym-history > button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 15px 0;
+  color: #314959;
+}
+.gym-history > button > span {
+  display: grid;
+  gap: 3px;
+}
+.gym-history > button b {
+  font-size: 11px;
+}
+.gym-history-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  padding: 17px;
+  background: #fff;
+  border-radius: 10px;
+}
+.career-app .gym-history-content p {
+  font-size: 12px;
+}
+.gym-hall-fighter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #e3e7e5;
+  text-align: left;
+  padding: 12px 0;
+  width: 100%;
+}
+.gym-hall-fighter .career-portrait {
+  width: 43px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.gym-hall-fighter > span {
+  display: grid;
+  flex: 1;
+}
+@media (max-width: 1100px) {
+  .gym-staff-card {
+    padding: 17px;
+  }
+  .gym-staff-heading {
+    gap: 9px;
+  }
+  .gym-staff-heading h3 {
+    font-size: 20px;
+  }
+  .gym-staff-emblem {
+    flex-basis: 52px;
+    height: 58px;
+  }
+  .gym-mentor-commit {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .gym-section-heading {
+    flex-wrap: wrap;
+  }
+  .gym-facility-copy {
+    padding: 21px;
+  }
+}
+@media (max-width: 760px) {
+  .gym-staff-grid {
+    grid-template-columns: 1fr;
+  }
+  .gym-home-hero {
+    min-height: 370px;
+  }
+  .gym-home-hero > img {
+    width: 100%;
+    opacity: 0.65;
+  }
+  .gym-hero-copy {
+    padding: 24px 22px 144px;
+  }
+  .gym-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gym-hero-stats > span {
+    padding: 11px 19px;
+    border-top: 1px solid #ffffff12;
+  }
+  .gym-facility {
+    grid-template-columns: 1fr;
+  }
+  .gym-facility-picture {
+    min-height: 190px;
+  }
+  .gym-facility-picture img {
+    object-position: center 57%;
+  }
+  .gym-mentoring {
+    padding: 18px;
+  }
+  .gym-mentoring-tradeoff {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 15px;
+  }
+  .gym-mentoring-tradeoff > span {
+    text-align: left;
+  }
+  .gym-active-pairs article {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .gym-history-content {
+    grid-template-columns: 1fr;
+  }
+  .gym-team-grid {
+    gap: 14px;
+  }
+  .gym-hub {
+    gap: 29px;
+  }
+}
+@media (max-width: 400px) {
+  .gym-hero-copy {
+    padding: 20px 17px 138px;
+  }
+  .gym-hero-copy nav a {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+  .gym-hero-stats strong {
+    font-size: 18px;
+  }
+  .gym-hero-stats > span {
+    padding: 10px 16px;
+  }
+  .gym-staff-ranks {
+    gap: 3px;
+  }
+  .gym-staff-ranks li {
+    padding: 8px 5px;
+  }
+  .gym-staff-ranks li strong,
+  .career-app .gym-staff-ranks li small {
+    font-size: 9px;
+  }
+  .gym-expansion-gains {
+    gap: 8px;
+  }
+  .gym-expansion-gains strong {
+    font-size: 18px;
+  }
+  .gym-mentoring {
+    padding: 14px;
+  }
+  .gym-mentor-commit {
+    padding: 16px;
+  }
+  .gym-section-heading .career-action {
+    width: 100%;
+  }
+  .gym-team-card .gym-fighter-top {
+    padding: 12px;
+  }
+  .gym-pick-fighters {
+    grid-template-columns: 1fr;
+  }
+}

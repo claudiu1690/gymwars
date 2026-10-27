@@ -46,7 +46,7 @@ function Portrait({ rarity = 'journeyman', size = 56 }) {
 /** Compact list row */
 function CompactCard({ name, weightClass, style, stats, record, rarity, status, careerPhase }) {
   return (
-    <div style={{
+    <div className={rarity === 'legend' ? 'card-lift glow-legend' : 'card-lift'} style={{
       display: 'flex', alignItems: 'center', gap: 10,
       background: 'var(--surface)', borderRadius: 'var(--radius-md)',
       padding: '10px 12px', boxShadow: RARITY_GLOWS[rarity] || RARITY_GLOWS.journeyman,
@@ -73,7 +73,7 @@ function CompactCard({ name, weightClass, style, stats, record, rarity, status, 
 function GridCard({ name, weightClass, style, age, careerPhase, stats, record, rarity, status }) {
   const phase = PHASE_COLORS[careerPhase] || PHASE_COLORS.Prime;
   return (
-    <div style={{
+    <div className={rarity === 'legend' ? 'card-lift glow-legend' : 'card-lift'} style={{
       background: 'var(--surface)', borderRadius: 'var(--radius-card)',
       boxShadow: RARITY_GLOWS[rarity] || RARITY_GLOWS.journeyman,
       padding: '14px', display: 'flex', flexDirection: 'column', gap: 10,
@@ -117,7 +117,7 @@ function GridCard({ name, weightClass, style, age, careerPhase, stats, record, r
 function DetailCard({ name, weightClass, style, age, careerPhase, stats, record, rarity, status }) {
   const phase = PHASE_COLORS[careerPhase] || PHASE_COLORS.Prime;
   return (
-    <div style={{
+    <div className={rarity === 'legend' ? 'glow-legend' : undefined} style={{
       background: 'var(--surface)', borderRadius: 'var(--radius-card)',
       boxShadow: RARITY_GLOWS[rarity] || RARITY_GLOWS.journeyman,
       padding: '20px',

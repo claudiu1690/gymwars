@@ -6,7 +6,7 @@
 const FACILITY_TIERS = {
     1: {
         label: "Garage Gym",
-        rosterSlots: 2,
+        rosterSlots: 3,
         scoutBonus: 0,
         fatigueRecoveryMult: 1.0,
         calloutBonus: 0,
@@ -16,7 +16,7 @@ const FACILITY_TIERS = {
     },
     2: {
         label: "Local Gym",
-        rosterSlots: 3,
+        rosterSlots: 5,
         scoutBonus: 1,               // +1 scout/day (already honored by scoutingService)
         fatigueRecoveryMult: 1.15,   // basic recovery
         calloutBonus: 0,
@@ -26,7 +26,7 @@ const FACILITY_TIERS = {
     },
     3: {
         label: "Regional Camp",
-        rosterSlots: 5,
+        rosterSlots: 7,
         scoutBonus: 1,
         fatigueRecoveryMult: 1.15,
         calloutBonus: 1,             // stands in for the GDD's "Gym War cooldown −10%" under the daily-allowance model
@@ -36,7 +36,7 @@ const FACILITY_TIERS = {
     },
     4: {
         label: "Fight Factory",
-        rosterSlots: 8,
+        rosterSlots: 10,
         scoutBonus: 1,
         fatigueRecoveryMult: 1.35,   // advanced recovery
         calloutBonus: 1,

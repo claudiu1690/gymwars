@@ -16,6 +16,9 @@ function err(message, statusCode = 400) {
 
 /** Complete a due upgrade (idempotent — guarded by the upgrade field itself). */
 async function completeUpgradeIfDue(gym, now = new Date()) {
+    const current = await Gym.findById(gym._id);
+    if (!current) throw err('Gym not found', 404);
+    gym.set(current.toObject());
     if (!gym.facilityUpgrade?.tier || !gym.facilityUpgrade.endsAt || gym.facilityUpgrade.endsAt > now) return false;
     const tier = gym.facilityUpgrade.tier;
     gym.facilityTier = tier;
@@ -56,4 +59,20 @@ async function totalGymWins(gymId) {
     return fighters.reduce((s, f) => s + (f.record?.wins ?? 0), 0);
 }
 
-module.exports = { startUpgrade, completeUpgradeIfDue, totalGymWins };
+/** Amateur-circuit acceleration — active until the gym's first few wins. */
+async function rookieState(gymId) {
+    const { ROOKIE } = require("../consts/rookie");
+    const wins = await totalGymWins(gymId);
+    return {
+        active: wins < ROOKIE.winsThreshold,
+        wins,
+        winsThreshold: ROOKIE.winsThreshold,
+        campSpeedMult: ROOKIE.campSpeedMult,
+        rushFightHours: ROOKIE.rushFightHours,
+    };
+}
+
+module.exports = { startUpgrade, completeUpgradeIfDue, totalGymWins, rookieState };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

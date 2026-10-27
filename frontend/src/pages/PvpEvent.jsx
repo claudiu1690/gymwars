@@ -24,24 +24,24 @@ export default function PvpEvent() {
     return (
         <div style={{ padding: "0 0 20px" }}>
             <div style={{ textAlign: "center", padding: "22px 16px 14px" }}>
-                <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--night-muted)", marginBottom: 14 }}>
+                <div className="anim-fade" style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--night-muted)", marginBottom: 14 }}>
                     {event.type === "gymwar" ? "Gym War" : "Callout"}{event.revengeOf ? " · Revenge" : ""} · {event.role === "attacker" ? "You attacked" : "You were attacked"}
                 </div>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
-                    <div style={{ flex: 1, textAlign: "right" }}>
+                    <div className="anim-slide-left" style={{ flex: 1, textAlign: "right", animationDelay: "100ms" }}>
                         <div style={{ fontFamily: "var(--font-display)", fontSize: 20, color: "var(--ember)", textTransform: "uppercase", lineHeight: 1.1 }}>{event.you}</div>
                     </div>
-                    <div style={{ fontFamily: "var(--font-display)", fontSize: 26, color: "var(--night-text)", flexShrink: 0 }} className="mono">
+                    <div className="mono anim-pop" style={{ fontFamily: "var(--font-display)", fontSize: 26, color: "var(--night-text)", flexShrink: 0, animationDelay: "320ms" }}>
                         {event.tally.you}–{event.tally.them}
                     </div>
-                    <div style={{ flex: 1, textAlign: "left" }}>
+                    <div className="anim-slide-right" style={{ flex: 1, textAlign: "left", animationDelay: "100ms" }}>
                         <div style={{ fontFamily: "var(--font-display)", fontSize: 20, color: "var(--corner-red)", textTransform: "uppercase", lineHeight: 1.1 }}>{event.them}</div>
                     </div>
                 </div>
-                <div style={{ marginTop: 10, fontFamily: "var(--font-display)", fontSize: 22, letterSpacing: "0.04em", textTransform: "uppercase", color: draw ? "var(--night-text)" : won ? "var(--win)" : "var(--corner-red)" }}>
+                <div className="anim-punch" style={{ marginTop: 10, fontFamily: "var(--font-display)", fontSize: 22, letterSpacing: "0.04em", textTransform: "uppercase", color: draw ? "var(--night-text)" : won ? "var(--win)" : "var(--corner-red)", animationDelay: "500ms" }}>
                     {draw ? "DRAW" : won ? "VICTORY" : "DEFEAT"}
                 </div>
-                <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 8 }}>
+                <div className="anim-rise" style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 8, animationDelay: "850ms" }}>
                     <span className="mono" style={{ fontSize: 13, color: event.ratingDelta >= 0 ? "var(--win)" : "var(--corner-red)" }}>
                         {event.ratingDelta >= 0 ? "+" : ""}{event.ratingDelta} rating
                     </span>
@@ -54,7 +54,7 @@ export default function PvpEvent() {
             {/* Card */}
             <div style={{ margin: "0 16px", display: "flex", flexDirection: "column", gap: 8 }}>
                 {event.bouts.map((b, i) => (
-                    <div key={i} style={{ background: "var(--night-surface)", borderRadius: "var(--radius-lg)", border: "1px solid var(--night-line)", padding: 12 }}>
+                    <div key={i} className="anim-rise" style={{ background: "var(--night-surface)", borderRadius: "var(--radius-lg)", border: "1px solid var(--night-line)", padding: 12, animationDelay: `${700 + i * 110}ms` }}>
                         <button onClick={() => setOpenBout(openBout === i ? -1 : i)} style={{ width: "100%", background: "none", border: "none", cursor: "pointer", padding: 0, textAlign: "left" }}>
                             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                 <span style={{ fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--night-muted)" }}>{CLASS_LABELS[b.weightClass]}</span>
@@ -80,7 +80,7 @@ export default function PvpEvent() {
                         {openBout === i && b.log?.length > 0 && (
                             <div style={{ marginTop: 10, paddingTop: 8, borderTop: "1px solid var(--night-line)", display: "flex", flexDirection: "column", gap: 4 }}>
                                 {b.log.map((e, j) => (
-                                    <div key={j} style={{ display: "flex", gap: 8, background: e.finish ? "rgba(255,90,41,0.1)" : "transparent", borderRadius: e.finish ? 4 : 0, padding: e.finish ? "3px 5px" : 0 }}>
+                                    <div key={j} className="anim-line" style={{ "--i": j, display: "flex", gap: 8, background: e.finish ? "rgba(255,90,41,0.1)" : "transparent", borderRadius: e.finish ? 4 : 0, padding: e.finish ? "3px 5px" : 0 }}>
                                         <span className="mono" style={{ fontSize: 11, color: "var(--night-muted)", flexShrink: 0 }}>R{e.round} {e.time}</span>
                                         <span className="mono" style={{ fontSize: 11, fontWeight: e.finish ? 600 : 400, color: e.actor === "you" ? "var(--ember)" : e.actor === "them" ? "var(--corner-red)" : "var(--night-muted)" }}>{e.text}</span>
                                     </div>
@@ -92,7 +92,7 @@ export default function PvpEvent() {
             </div>
 
             <div style={{ margin: "16px 16px 0" }}>
-                <Link to="/fights" style={{ fontSize: 13, color: "var(--ember)", textDecoration: "none", fontWeight: 600 }}>← All fights</Link>
+                <Link to="/fights" style={{ fontSize: 13, color: "var(--ember)", textDecoration: "none", fontWeight: 600 }}>All fights</Link>
             </div>
         </div>
     );

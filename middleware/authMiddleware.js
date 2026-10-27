@@ -28,7 +28,7 @@ async function authMiddleware(req, res, next) {
         return res.status(401).json({ message: "Invalid or expired token" });
     }
     try {
-        const user = await User.findById(payload.id).select("sessionEpoch deleted gymId email").lean();
+        const user = await User.findById(payload.id).select("sessionEpoch deleted gymId email analyticsEnabled").lean();
         if (!user || user.deleted) {
             return res.status(401).json({ message: "Account no longer accessible", code: "account_deleted" });
         }
@@ -38,7 +38,7 @@ async function authMiddleware(req, res, next) {
             // Token was minted before a password change / reset — force re-login.
             return res.status(401).json({ message: "Session expired", code: "session_revoked" });
         }
-        req.user = { ...payload, gymId: user.gymId, email: user.email };
+        req.user = { ...payload, gymId: user.gymId, email: user.email, analyticsEnabled: !!user.analyticsEnabled };
         next();
     } catch (err) {
         console.error("authMiddleware error:", err);

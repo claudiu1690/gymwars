@@ -1,0 +1,20 @@
+{
+  "notes": "Fictional small browser-game sample: replace with a snapshot of your real config.",
+  "session_estimates": {
+    "xp_earned": 80,
+    "currency_earned": 45
+  },
+  "target_max_sessions_to_first_meaningful_unlock": 3,
+  "levels": [
+    { "level": 1, "total_xp_required": 0, "unlock_ids": ["basic_action"] },
+    { "level": 2, "total_xp_required": 60, "unlock_ids": ["first_choice"] },
+    { "level": 3, "total_xp_required": 180, "unlock_ids": ["new_ability"] },
+    { "level": 4, "total_xp_required": 350, "unlock_ids": ["challenge_variant"] },
+    { "level": 5, "total_xp_required": 600, "unlock_ids": ["second_build_slot"] }
+  ],
+  "meaningful_unlock_ids": ["first_choice", "new_ability"],
+  "upgrades": [
+    { "id": "mobility_rune", "cost_currency": 90, "requires_level": 2 },
+    { "id": "companion_tool", "cost_currency": 160, "requires_level": 3 }
+  ]
+}

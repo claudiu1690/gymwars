@@ -36,8 +36,10 @@ const gymSchema = new mongoose.Schema({
     // In-fiction currency, earned from fight purses.
     purse: { type: Number, default: 0 },
 
-    // Roster slots currently unlocked (starts at 2 per GDD §4.1).
-    rosterSlots: { type: Number, default: 2 },
+    // Roster slots currently unlocked. Starts at the Garage Gym tier's count —
+    // deep enough that a couple of camps never lock the whole roster (genre
+    // norm: squad depth is the anti-dead-time mechanic).
+    rosterSlots: { type: Number, default: 3 },
 
     // ── Scouting state (GDD §6) ───────────────────────────────────
     scouting: {
@@ -64,6 +66,15 @@ const gymSchema = new mongoose.Schema({
         calloutsToday: { type: Number, default: 0 },
         gymWarsToday: { type: Number, default: 0 },
     },
+    /** Daily sparring allowance — the always-available instant lane. */
+    spar: {
+        dayAnchor: { type: Date, default: null },
+        usedToday: { type: Number, default: 0 },
+    },
+    /** First Fight Week checklist — task keys completed (rewards auto-paid). */
+    onboarding: {
+        done: [{ type: String }],
+    },
     /**
      * Standing defense lineup (GDD §9.6): fighter per weight class, each
      * defending with their saved gameplan when the gym is attacked offline.
@@ -77,9 +88,9 @@ const gymSchema = new mongoose.Schema({
     },
 
     createdAt: { type: Date, default: Date.now },
-});
+}, { autoIndex: false });
 
-// Unique per user, but sparse so AI gyms (userId null) don't collide.
-gymSchema.index({ userId: 1 }, { unique: true, sparse: true });
+// Explicit nulls must not participate in the unique owner index.
+gymSchema.index({ userId: 1 }, { unique: true, partialFilterExpression: { userId: { $type: 'objectId' } } });
 
 module.exports = mongoose.model("Gym", gymSchema);

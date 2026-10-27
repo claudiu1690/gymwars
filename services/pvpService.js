@@ -9,6 +9,7 @@ const { newSeed, createRng } = require("../utils/rng");
 const { PVP, eloDelta } = require("../consts/pvp");
 const { utcDayStart } = require("../consts/calendar");
 const { WEIGHT_CLASSES } = require("../consts/weightClasses");
+const { FACILITY_TIERS } = require("../consts/facilities");
 
 /**
  * PvP — Callouts & Gym Wars (GDD §9). Attacks resolve INSTANTLY against the
@@ -22,6 +23,11 @@ const { WEIGHT_CLASSES } = require("../consts/weightClasses");
 
 function err(message, statusCode = 400) {
     return Object.assign(new Error(message), { statusCode, expose: true });
+}
+
+/** Daily callout allowance — base plus the facility-tier bonus (GDD §4.3). */
+function calloutAllowance(gym) {
+    return PVP.calloutsPerDay + (FACILITY_TIERS[gym.facilityTier]?.calloutBonus ?? 0);
 }
 
 function ensurePvpDay(gym, now = new Date()) {
@@ -168,7 +174,7 @@ async function callout(gymId, fighterId, { revengeOfEventId = null } = {}, now =
     const attacker = await Gym.findById(gymId);
     if (!attacker) throw err("Gym not found", 404);
     ensurePvpDay(attacker, now);
-    if (attacker.pvp.calloutsToday >= PVP.calloutsPerDay) throw err("No callouts left today", 429);
+    if (attacker.pvp.calloutsToday >= calloutAllowance(attacker)) throw err("No callouts left today", 429);
 
     const fighter = await Fighter.findOne({ _id: fighterId, gymId, retired: { $ne: true } });
     if (!fighter) throw err("Fighter not found", 404);
@@ -189,6 +195,7 @@ async function callout(gymId, fighterId, { revengeOfEventId = null } = {}, now =
 
     const byClass = await rosterByClass(defender._id);
     const defFighter = defenseFighterFor(defender, byClass, fighter.weightClass);
+    await lifecycleService.ensureFresh(defFighter, now);
 
     const seed = newSeed();
     const breakdown = resolveFight({
@@ -284,6 +291,7 @@ async function gymWar(gymId, { revengeOfEventId = null } = {}, now = new Date())
         }
 
         await lifecycleService.ensureFresh(mine, now);
+        await lifecycleService.ensureFresh(theirs, now);
         const breakdown = resolveFight({
             a: toEngineInput(mine),
             b: toEngineInput(theirs),
@@ -360,7 +368,7 @@ async function getState(gymId, now = new Date()) {
     return {
         rating: gym.rating,
         shieldUntil: gym.shieldUntil && gym.shieldUntil > now ? gym.shieldUntil : null,
-        calloutsLeft: Math.max(0, PVP.calloutsPerDay - gym.pvp.calloutsToday),
+        calloutsLeft: Math.max(0, calloutAllowance(gym) - gym.pvp.calloutsToday),
         gymWarsLeft: Math.max(0, PVP.gymWarsPerDay - gym.pvp.gymWarsToday),
         classesCovered: Object.keys(byClass).length,
         minClassesForWar: PVP.minClassesCovered,
@@ -443,3 +451,6 @@ async function getEvent(gymId, eventId) {
 }
 
 module.exports = { callout, gymWar, getState, setDefenseLineup, listEvents, getEvent };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);

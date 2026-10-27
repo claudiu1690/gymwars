@@ -1,0 +1,56 @@
+{
+  "provider": "Higgsfield",
+  "model": "gpt_image_2_5",
+  "generatedAt": "2026-10-12",
+  "referenceJob": "bde693a3-7f62-4f90-8df6-00a592fbbf41",
+  "assets": [
+    {
+      "id": "clean-combinations",
+      "prompt": "Create one original square ability illustration for an MMA gym management game. Match the supplied arena reference's chunky stylized 3D cartoon art: rounded toy-like geometry, matte surfaces, deep navy shadows, warm cream highlights, coral and teal cinematic rim light. A premium casual game ability icon with a strong instantly readable silhouette at small size. One centered sculptural subject fills 75 percent of the square, softly lit against a simple navy studio background with a subtle colored glow. Playful, not realistic, no gritty textures. No words, letters, numerals, badges, borders, logos, UI or watermark. Ability: Clean Combinations. Two chunky coral boxing gloves, one extending forward and the second following with a clear one-two punch rhythm. Short curved cream motion trails reinforce a precise combination. Glove props only; no human body. Warm coral amber accents.",
+      "job": "05adab88-b0a9-4c7f-8e1d-427059bdcb00",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261012_162145_05adab88-b0a9-4c7f-8e1d-427059bdcb00.png",
+      "runtime": "frontend/public/art/abilities/clean-combinations.webp",
+      "sourceSize": {
+        "width": 1024,
+        "height": 1024
+      },
+      "runtimeBytes": 13526
+    },
+    {
+      "id": "chain-wrestling",
+      "prompt": "Create one original square ability illustration for an MMA gym management game. Match the supplied arena reference's chunky stylized 3D cartoon art: rounded toy-like geometry, matte surfaces, deep navy shadows, warm cream highlights, coral and teal cinematic rim light. A premium casual game ability icon with a strong instantly readable silhouette at small size. One centered sculptural subject fills 75 percent of the square, softly lit against a simple navy studio background with a subtle colored glow. Playful, not realistic, no gritty textures. No words, letters, numerals, badges, borders, logos, UI or watermark. Ability: Chain Wrestling. Two simple chunky wrestling training figurines, one navy and one warm cream, performing a low double-leg takedown entry on a small teal mat. Readable unified sculptural silhouette, rounded faceless heads and exaggerated strong limbs, friendly toy-diorama style. A curved teal motion swoosh connects the sequential movement. Cool teal blue accents. No realistic people.",
+      "job": "c326345e-116a-458f-9356-3cb2878fcfef",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261012_162149_c326345e-116a-458f-9356-3cb2878fcfef.png",
+      "runtime": "frontend/public/art/abilities/chain-wrestling.webp",
+      "sourceSize": {
+        "width": 1024,
+        "height": 1024
+      },
+      "runtimeBytes": 16300
+    },
+    {
+      "id": "escape-artist",
+      "prompt": "Create one original square ability illustration for an MMA gym management game. Match the supplied arena reference's chunky stylized 3D cartoon art: rounded toy-like geometry, matte surfaces, deep navy shadows, warm cream highlights, coral and teal cinematic rim light. A premium casual game ability icon with a strong instantly readable silhouette at small size. One centered sculptural subject fills 75 percent of the square, softly lit against a simple navy studio background with a subtle colored glow. Playful, not realistic, no gritty textures. No words, letters, numerals, badges, borders, logos, UI or watermark. Ability: Escape Artist. A chunky white-wrapped fighter's fist smoothly slipping free between two separating oversized purple padded chain links. The opening around the wrist reads clearly as a clever escape. Small curved cream movement trails. Wrapped fist and prop links only, no body. Muted violet with cream and teal accents.",
+      "job": "bcf5a695-247a-4f16-b86c-e24b2aefc3be",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261012_162154_bcf5a695-247a-4f16-b86c-e24b2aefc3be.png",
+      "runtime": "frontend/public/art/abilities/escape-artist.webp",
+      "sourceSize": {
+        "width": 1024,
+        "height": 1024
+      },
+      "runtimeBytes": 12938
+    },
+    {
+      "id": "pace-keeper",
+      "prompt": "Create one original square ability illustration for an MMA gym management game. Match the supplied arena reference's chunky stylized 3D cartoon art: rounded toy-like geometry, matte surfaces, deep navy shadows, warm cream highlights, coral and teal cinematic rim light. A premium casual game ability icon with a strong instantly readable silhouette at small size. One centered sculptural subject fills 75 percent of the square, softly lit against a simple navy studio background with a subtle colored glow. Playful, not realistic, no gritty textures. No words, letters, numerals, badges, borders, logos, UI or watermark. Ability: Pace Keeper. A chunky teal round training stopwatch paired with a simple raised cream heartbeat zigzag across its face, and one small coral boxing glove at its base. The watch has clean minimal marks and a single gold pointer, no numbers. A compact circular cream motion arc suggests steady sustainable rhythm. Teal green and cream accents.",
+      "job": "227b69d6-a930-465f-b7dd-e52b5f348494",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261012_162158_227b69d6-a930-465f-b7dd-e52b5f348494.png",
+      "runtime": "frontend/public/art/abilities/pace-keeper.webp",
+      "sourceSize": {
+        "width": 1024,
+        "height": 1024
+      },
+      "runtimeBytes": 14934
+    }
+  ]
+}

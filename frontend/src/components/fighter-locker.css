@@ -1,0 +1,149 @@
+.career-app.game-mode.clubhouse .fighter-opponent {
+  padding: 18px;
+  background: #e8edf0;
+  border-radius: 12px;
+  border: 1px solid #cbd7db;
+}
+.career-app.game-mode.clubhouse .fighter-opponent h3 {
+  margin: 4px 0;
+  font-size: clamp(22px, 2.3vw, 30px);
+}
+.locker-bout-label {
+  display: block;
+  margin-top: 9px;
+  color: #526776;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.career-app.game-mode.clubhouse .fighter-matchup-read {
+  padding: 12px 15px;
+  border-left: 3px solid #b1844d;
+  background: #f1e7d4;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.6;
+}
+.fighter-matchup-read > strong {
+  display: block;
+  color: #745437;
+}
+.locker-assignment {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.locker-assignment > span {
+  color: #63717b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.career-app.game-mode.clubhouse .locker-traits,
+.career-app.game-mode.clubhouse .locker-skills {
+  padding: 22px;
+  border: 1px solid #d6cbb8;
+  background: #fff9ed;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.career-app.game-mode.clubhouse .locker-traits h3,
+.career-app.game-mode.clubhouse .locker-skills h3 {
+  margin: 5px 0;
+  font-size: 23px;
+}
+.career-app.game-mode.clubhouse .locker-traits header p,
+.career-app.game-mode.clubhouse .locker-skills header p {
+  margin: 0 0 18px;
+  color: #697478;
+  font-size: 13px;
+}
+.locker-trait-grid {
+  display: grid;
+  gap: 10px;
+}
+.locker-trait-grid > div {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #ede7da;
+  border-radius: 9px;
+  padding: 14px;
+}
+.locker-trait-symbol {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  height: 42px;
+  color: #8a633f;
+  background: #dfd3ba;
+  border-radius: 50%;
+  font-size: 26px;
+}
+.locker-trait-grid strong,
+.locker-trait-grid div div > span {
+  display: block;
+}
+.locker-trait-grid strong {
+  font-size: 15px;
+  color: #2b4757;
+  margin-bottom: 4px;
+}
+.locker-trait-grid div div > span {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #65716f;
+}
+.career-app.game-mode.clubhouse .locker-skills .fighter-attributes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+.career-app.game-mode.clubhouse .locker-skills .fighter-attributes > div {
+  display: block;
+  background: #e9eef0;
+  border: 1px solid #d1dcdf;
+  padding: 15px;
+  border-radius: 10px;
+}
+.career-app.game-mode.clubhouse .locker-skills dt {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #536977;
+  font-size: 12px;
+}
+.career-app.game-mode.clubhouse .locker-skills dd {
+  margin: 10px 0;
+  font-size: 29px;
+  font-weight: 900;
+  color: #243e4d;
+}
+.career-app.game-mode.clubhouse .locker-skills dd small {
+  font-size: 12px;
+  color: #73828a;
+  margin-left: 5px;
+}
+.locker-skill-track {
+  height: 6px;
+  background: #d0dbdd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.locker-skill-track > span {
+  display: block;
+  height: 100%;
+  background: #438479;
+}
+@media (max-width: 480px) {
+  .career-app.game-mode.clubhouse .locker-traits,
+  .career-app.game-mode.clubhouse .locker-skills {
+    padding: 16px;
+  }
+  .career-app.game-mode.clubhouse .locker-skills .fighter-attributes > div {
+    padding: 12px;
+  }
+}

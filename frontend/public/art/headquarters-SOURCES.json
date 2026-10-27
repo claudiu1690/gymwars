@@ -1,0 +1,26 @@
+{
+  "provider": "Higgsfield MCP",
+  "model": "gpt_image_2_5",
+  "referenceJob": "ac808798-c049-411d-a588-98ea4d97a992",
+  "date": "2026-10-14",
+  "assets": [
+    {
+      "file": "headquarters-tier-4.webp",
+      "job": "5675361e-9cce-4d70-8fa8-6f73d6c5bcaa",
+      "prompt": "Game environment illustration for Gym Wars, stylized cartoon 3D with exaggerated chunky rounded architecture, matte softly painted surfaces, navy shadows, warm cream, coral and teal accents. Match the reference's cartoon rendering only, not its subject. An expanded regional fight academy reception, two connected training spaces beyond, four navy lockers, a coral boxing ring at left and broad teal grappling mats at right. Warm oak front desk, tall arched windows, a modest gallery wall with empty pennant mounts. Spacious but personal. Landscape wide composition viewed from entrance at eye height. Keep upper-left space calm for a live title and bottom strip calm for buttons. Distinct readable silhouettes, playful toy-like scale, cozy inviting warm daylight. No humans, no text, no letters, no logos, no interface, no borders, no photorealism, no gritty details.",
+      "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261014_104700_5675361e-9cce-4d70-8fa8-6f73d6c5bcaa.png"
+    },
+    {
+      "file": "headquarters-tier-5.webp",
+      "job": "d2564444-b85e-451e-8312-8ab50ff07855",
+      "prompt": "Game environment illustration for Gym Wars, stylized cartoon 3D with exaggerated chunky rounded architecture, matte softly painted surfaces, navy shadows, warm cream, coral and teal accents. Match the reference's cartoon rendering only, not its subject. A prestigious champions fight academy atrium with a mezzanine overlooking a boxing ring, teal grappling studio behind glass, curved navy reception desk, symmetrical warm hanging pendant lights, wide cream columns. Large club banner mounts with abstract geometric cloth only. Clearly a much bigger building. Landscape wide composition viewed from entrance at eye height. Keep upper-left space calm for a live title and bottom strip calm for buttons. Distinct readable silhouettes, playful toy-like scale, cozy inviting warm daylight. No humans, no text, no letters, no logos, no interface, no borders, no photorealism, no gritty details.",
+      "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261014_104705_d2564444-b85e-451e-8312-8ab50ff07855.png"
+    },
+    {
+      "file": "headquarters-tier-6.webp",
+      "job": "80dc09a4-6106-4e72-b27f-a3f0c37f6769",
+      "prompt": "Game environment illustration for Gym Wars, stylized cartoon 3D with exaggerated chunky rounded architecture, matte softly painted surfaces, navy shadows, warm cream, coral and teal accents. Match the reference's cartoon rendering only, not its subject. A spectacular yet welcoming world-class gym headquarters, double-height atrium, curved upper spectator balcony and skylight above a central training cage, dedicated striking and grappling wings visible to left and right, premium navy and coral reception desk, warm cream architecture, a large blank central club pennant. The ultimate earned headquarters. Landscape wide composition viewed from entrance at eye height. Keep upper-left space calm for a live title and bottom strip calm for buttons. Distinct readable silhouettes, playful toy-like scale, cozy inviting warm daylight. No humans, no text, no letters, no logos, no interface, no borders, no photorealism, no gritty details.",
+      "source": "https://d8j0ntlcm91z4.cloudfront.net/user_3Fm0kNjK8H1h9vxqgaJ9hJB0NtN/hf_20261014_104709_80dc09a4-6106-4e72-b27f-a3f0c37f6769.png"
+    }
+  ]
+}

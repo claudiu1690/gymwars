@@ -79,3 +79,6 @@ async function findOrCreateAiGym(targetRating, band) {
 }
 
 module.exports = { findOrCreateAiGym, generateAiGym };
+
+// All database changes commit together; retryable transaction failures roll back.
+module.exports = require("../lib/atomic").protect(module.exports);
