@@ -16,6 +16,8 @@ Target: `https://gymwars.groundandpound.net`. This prepares the existing game fo
 
 - Rule/database/rendering tests: **459 passed, none skipped** with `GYMWARS_DB_TESTS=1`.
 - Full browser release suite: **212 passed**, with four explicit LAN-only skips; a separate real Wi-Fi-origin run passed **all four**, covering all 216 scenarios in total. Fixed a test timing race by waiting for the career home screen before reading the newly created save. Desktop, phone, narrow/landscape and WebKit coverage all passed.
+- The first Linux CI pass exposed a compact Home fighter-card padding issue in phone landscape that Windows did not reproduce. Added actual inset spacing to that card button, retaining the full signature explanation and existing card actions. The same text-boundary assertions remain enabled; they were not relaxed.
+- A targeted rerun also exposed a WebKit test-navigation race: forced document navigation could cancel follow-up Home reads after the original 100ms quiet interval. The harness now waits for 500ms without pending API reads before its hard navigations. Trace evidence showed the cancellation at `page.goto`; browser-error assertions and normal in-game navigation remain unchanged.
 - Backend and frontend `npm audit`: **zero vulnerabilities** in each graph.
 - Production build: passed with the relative API path and no real-time comparison mode.
 - Actual production startup: passed against a new authenticated disposable MongoDB. Tested an ordinary fresh career, one normal week, refused simulated purchase, protected/private routes, CORS rejection and saved state/session continuity across restart.

@@ -16,7 +16,9 @@ function prepareWebkitNavigation(page) {
     const changed = (request) => {
       if (request && !isRead(request)) return;
       clearTimeout(quiet);
-      if (!reads.size) quiet = setTimeout(() => { cleanup(); resolve(); }, 100);
+      // React can schedule follow-up Home reads after the first response.
+      // Give those reads the normal network-idle window before hard navigation.
+      if (!reads.size) quiet = setTimeout(() => { cleanup(); resolve(); }, 500);
     };
     const deadline = setTimeout(() => { cleanup(); reject(new Error("Background API reads did not settle before document navigation")); }, 5000);
     for (const event of ["request", "requestfinished", "requestfailed"]) page.on(event, changed);

@@ -39,7 +39,6 @@ jobs:
             output/production-smoke/
           retention-days: 7
   production-container:
-    needs: regression
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
