@@ -5,6 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "start:production": "node server.js",
+    "build:production": "node scripts/buildProduction.cjs",
+    "check:production": "node scripts/checkProductionConfig.cjs",
+    "test:production": "node scripts/checkProductionSmoke.cjs",
     "start:local": "cross-env LOCAL_MODE=true node app.js",
     "dev": "node --watch app.js",
     "dev:local": "cross-env LOCAL_MODE=true node --watch app.js",

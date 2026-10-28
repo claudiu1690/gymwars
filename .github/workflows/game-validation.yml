@@ -22,10 +22,11 @@ jobs:
       - run: npm test
         env:
           GYMWARS_DB_TESTS: "1"
-      - run: npm run build --prefix frontend
+      - run: npm run build:production
       - run: npm run validate:alpha
       - run: npm run validate:supplies
       - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:production -- --browser
       - run: npm run test:e2e -- --config=playwright.release.config.cjs
       - uses: actions/upload-artifact@v4
         if: always()
@@ -35,4 +36,53 @@ jobs:
             output/e2e/report/
             output/e2e/results/
             output/e2e/results.json
+            output/production-smoke/
           retention-days: 7
+  production-container:
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build --target runtime -t gymwars-production .
+      - name: Production image refuses missing credentials
+        run: |
+          if docker run --rm gymwars-production > startup.log 2>&1; then
+            echo "Production must not start without its required configuration"
+            exit 1
+          fi
+          grep -q 'Production configuration errors' startup.log
+      - name: Production image excludes the embedded test database
+        run: |
+          docker run --rm gymwars-production node -e "try { require.resolve('mongodb-memory-server'); process.exit(1); } catch (e) { if (e.code !== 'MODULE_NOT_FOUND') throw e; }"
+      - name: Production container boots against an isolated authenticated database
+        shell: bash
+        run: |
+          set -euo pipefail
+          trap 'docker rm -f gymwars-check-app gymwars-check-db >/dev/null 2>&1 || true; docker network rm gymwars-check >/dev/null 2>&1 || true' EXIT
+          docker network create gymwars-check
+          docker run -d --name gymwars-check-db --network gymwars-check \
+            -e MONGO_INITDB_ROOT_USERNAME=container_check \
+            -e MONGO_INITDB_ROOT_PASSWORD=isolated_ci_database_password mongo:7.0.14
+          for attempt in $(seq 1 40); do
+            if docker exec gymwars-check-db mongosh --quiet -u container_check -p isolated_ci_database_password --authenticationDatabase admin --eval 'db.adminCommand({ping:1}).ok' >/dev/null 2>&1; then break; fi
+            sleep 2
+          done
+          docker run -d --name gymwars-check-app --network gymwars-check -p 127.0.0.1:8080:8080 \
+            -e PUBLIC_URL=https://gymwars.testing.invalid \
+            -e MONGODB_URI='mongodb://container_check:isolated_ci_database_password@gymwars-check-db:27017/gymwars_container_check?authSource=admin' \
+            -e JWT_SECRET="$(openssl rand -hex 32)" \
+            -e RESEND_API_KEY=isolated_ci_no_delivery \
+            -e 'EMAIL_FROM=Gym Wars <accounts@testing.invalid>' \
+            -e SUPPORT_EMAIL=support@testing.invalid \
+            -e PUBLIC_SERVICE_DETAILS='Isolated CI container. No public service, real email or payments.' gymwars-production
+          for attempt in $(seq 1 40); do
+            if curl --silent --fail http://127.0.0.1:8080/api/ready >/dev/null; then break; fi
+            sleep 2
+          done
+          curl --silent --fail http://127.0.0.1:8080/api/ready
+          curl --silent --fail http://127.0.0.1:8080/login | grep -q 'Gym Wars'
+          test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/api/career)" = 401
+          test "$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/api/pvp)" = 404
+          docker stop --time 20 gymwars-check-app
+          test "$(docker inspect --format '{{.State.ExitCode}}' gymwars-check-app)" = 0

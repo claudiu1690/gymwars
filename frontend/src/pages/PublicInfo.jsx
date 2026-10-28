@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../auth";
 import SiteLinks from "../components/SiteLinks";
+import { api } from "../api";
 import "./public-info.css";
 
 const pages = {
@@ -34,6 +35,18 @@ function Section({ title, children, id }) {
 
 export default function PublicInfo({ kind }) {
   const { authed } = useAuth();
+  const [site, setSite] = useState(null);
+  useEffect(() => {
+    let active = true;
+    api("/site")
+      .then((value) => {
+        if (active) setSite(value);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
   const page = pages[kind];
   const helpHref = authed ? "/career/help#support" : "/login";
   useEffect(() => {
@@ -83,7 +96,7 @@ export default function PublicInfo({ kind }) {
         </header>
         {kind !== "support" && (
           <p className="public-info-date">
-            Updated 16 October 2026 · Operator: Digital Olive
+            Updated 28 October 2026 · Operator: Digital Olive
           </p>
         )}
         <div className="public-info-grid">
@@ -145,8 +158,26 @@ export default function PublicInfo({ kind }) {
                   Reset your password
                 </Link>
                 <p className="public-info-note">
-                  In this local preview, password-reset emails are unavailable.
-                  Digital Olive has not announced a public support email yet.
+                  {site?.supportEmail ? (
+                    <>
+                      Contact us at{" "}
+                      <a href={`mailto:${site.supportEmail}`}>
+                        {site.supportEmail}
+                      </a>{" "}
+                      if you cannot access your account.
+                    </>
+                  ) : site?.localPreview ? (
+                    <>
+                      In this local preview, password-reset emails are
+                      unavailable. Digital Olive has not announced a public
+                      support email yet.
+                    </>
+                  ) : (
+                    <>
+                      The support page is loading its contact details. Please
+                      try again if they do not appear.
+                    </>
+                  )}
                 </p>
               </Section>
             </>
@@ -161,10 +192,17 @@ export default function PublicInfo({ kind }) {
                   contact route.
                 </p>
                 <p className="public-info-note">
-                  This notice describes the current local preview. Public
-                  operator contact details, hosting providers and
-                  international-transfer arrangements will be stated before the
-                  public service opens.
+                  {site?.localPreview ? (
+                    <>
+                      This notice describes the current local preview. Public
+                      operator contact details, hosting providers and
+                      international-transfer arrangements will be stated before
+                      the public service opens.
+                    </>
+                  ) : (
+                    site?.serviceDetails ||
+                    "Service information is loading. Please contact Support if it does not appear."
+                  )}
                 </p>
               </Section>
               <Section title="Account and game data">
@@ -231,9 +269,20 @@ export default function PublicInfo({ kind }) {
                 </p>
                 <p>
                   No payment provider is connected and Gym Wars does not collect
-                  payment-card details. This local preview does not send account
-                  emails. The providers and retention schedule for the public
-                  service must be disclosed when they are selected.
+                  payment-card details.{" "}
+                  {site?.localPreview ? (
+                    <>
+                      This local preview does not send account emails. The
+                      providers and retention schedule for the public service
+                      must be disclosed when they are selected.
+                    </>
+                  ) : (
+                    <>
+                      Account verification and password recovery use the
+                      configured transactional email service. Service providers
+                      and processing arrangements are described above.
+                    </>
+                  )}
                 </p>
               </Section>
               <Section title="Your choices and requests">

@@ -1,0 +1,26 @@
+.git
+.env
+.env.*
+**/.env
+**/.env.*
+node_modules
+**/node_modules
+frontend/dist
+output
+marketing
+tmp
+tests
+docs
+.agents
+.claude
+.codex
+.github
+Gym Wars Design System
+*.zip
+*.docx
+*.log
+*.ejson
+*.pem
+*.key
+*.p12
+*.pfx

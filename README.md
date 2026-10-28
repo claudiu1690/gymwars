@@ -31,6 +31,20 @@ Optional preview settings are documented in `.env.example`: `STAGING_INSTANCE`, 
 
 For a separately running local MongoDB, use `npm run dev:local` for the backend and `npm run dev --prefix frontend` for the frontend. Set the local database and API URL values for that environment. The optional real-time comparison mode also needs Redis and a MongoDB replica set; it is separate from the manual-week career.
 
+## Production deployment preparation
+
+The public entry point is `server.js`. It serves the built website and `/api` on one port and defaults to the manual-week career only. It requires an authenticated external MongoDB, a private JWT secret, a real email configuration, a support inbox and confirmed service disclosures. It refuses local simulation settings and incomplete configuration.
+
+```sh
+npm run build:production
+npm run check:production
+npm run start:production
+```
+
+Set private environment values using `deploy/production.env.example`; do not use a local player's staging configuration. `PUBLIC_URL` is intended to be `https://gymwars.groundandpound.net` after its DNS and TLS setup. Before that, use the private staging host's actual HTTPS origin.
+
+`Dockerfile` and `railway.json` prepare an unprivileged single-service deployment with `/api/ready` health checks. No provider resources, DNS records, email sending or payments are activated by this preparation. Read [the production runbook](docs/operations/production-deployment.md) for the remaining operator setup and release gates.
+
 ## Validation
 
 ```sh
@@ -47,6 +61,8 @@ npm run test:e2e -- --config=playwright.release.config.cjs
 ```
 
 The GitHub Actions workflow runs the game validation checks on pushes and pull requests. Design and release notes are in `docs`.
+
+The additional `npm run test:production -- --browser` check uses a disposable authenticated database and ordinary fresh career to verify the actual production bootstrap, phone/desktop login, contact information, save continuity and disconnected checkout. It requires the production build and Playwright Chromium.
 
 ## Repository contents
 

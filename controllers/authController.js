@@ -137,24 +137,18 @@ async function login(req, res) {
 
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_SEC = 60 * 60; // 1 hour
-// Redis-based rate limit on forgot-password by email. Falls back to a no-op
-// when Redis is unavailable — better to accept the request than fail closed
-// on a security-noise endpoint.
-async function checkAndIncrementRateLimit(emailLower) {
-  try {
-    const { redis, ensureRedisConnected } = require("../lib/redis");
-    await ensureRedisConnected();
-    const key = `pwreset:rate:${emailLower}`;
-    const count = await redis.incr(key);
-    if (count === 1) await redis.expire(key, RATE_LIMIT_WINDOW_SEC);
-    return count <= RATE_LIMIT_MAX;
-  } catch (e) {
-    console.warn(
-      "[forgot-password] rate limit unavailable, allowing:",
-      e.message,
-    );
-    return true;
-  }
+// No legacy queue connection is required for password recovery. Keep the
+// public response identical when throttled, including for unknown accounts.
+const allowPasswordReset = require("../lib/windowLimiter").windowLimiter({
+  limit: RATE_LIMIT_MAX,
+  windowMs: RATE_LIMIT_WINDOW_SEC * 1000,
+});
+function checkAndIncrementRateLimit(emailLower) {
+  const key = require("node:crypto")
+    .createHash("sha256")
+    .update(emailLower)
+    .digest("hex");
+  return allowPasswordReset(key);
 }
 
 async function forgotPassword(req, res) {
