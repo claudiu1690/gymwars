@@ -15,6 +15,7 @@ Target: `https://gymwars.groundandpound.net`. This prepares the existing game fo
 ## Validation
 
 - Rule/database/rendering tests: **459 passed, none skipped** with `GYMWARS_DB_TESTS=1`.
+- Full browser release suite: **212 passed**, with four explicit LAN-only skips; a separate real Wi-Fi-origin run passed **all four**, covering all 216 scenarios in total. Fixed a test timing race by waiting for the career home screen before reading the newly created save. Desktop, phone, narrow/landscape and WebKit coverage all passed.
 - Backend and frontend `npm audit`: **zero vulnerabilities** in each graph.
 - Production build: passed with the relative API path and no real-time comparison mode.
 - Actual production startup: passed against a new authenticated disposable MongoDB. Tested an ordinary fresh career, one normal week, refused simulated purchase, protected/private routes, CORS rejection and saved state/session continuity across restart.

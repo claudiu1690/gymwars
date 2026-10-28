@@ -56,6 +56,7 @@ test("phone-origin signup, camp assignment, End week and profile work without se
     page.getByRole("button", { name: "Begin career", exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Begin career", exact: true }).click();
+  await expect(page.locator(".club-home")).toBeVisible();
   const before = await save(page);
   expect(before.career.week).toBe(0);
   await page.goto(origin + "/career/gym/training/starter");
