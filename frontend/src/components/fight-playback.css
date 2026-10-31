@@ -1,0 +1,48 @@
+/* Round replay: recorded exchanges revealed over a few seconds. */
+.career-app.game-mode.clubhouse .fight-night-arena .fight-playback { position: relative; display: grid; gap: 16px; padding: 22px 24px; color: #f4efe2; background: linear-gradient(180deg, #1c2d3a, #14222c); border: 1px solid #2f4757; border-radius: 14px; overflow: hidden; }
+.career-app.game-mode.clubhouse .fight-night-arena .fight-playback header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fight-playback .fn-eyebrow { color: #f6c75c; }
+.career-app.game-mode.clubhouse .fight-night-arena .fight-playback .fp-skip { padding: 7px 12px; color: #d9e2e6; background: transparent; border: 1px solid #4b6474; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; }
+.career-app.game-mode.clubhouse .fight-night-arena .fight-playback .fp-skip:hover { background: #ffffff14; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-corners { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-corner { display: grid; gap: 6px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-corner > strong { font-size: 15px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-corner.B > strong { text-align: right; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-bar { display: grid; grid-template-columns: 52px minmax(0, 1fr) 42px; align-items: center; gap: 8px; font-size: 12px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-bar > span { color: #9fb0ba; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-bar > b { text-align: right; font-variant-numeric: tabular-nums; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-track { height: 10px; background: #0d1820; border-radius: 999px; overflow: hidden; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-track i { display: block; height: 100%; border-radius: inherit; transition: width 600ms ease-out; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-bar.health i { background: linear-gradient(90deg, #d0573f, #f08a5d); }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-bar.gas i { background: linear-gradient(90deg, #4f9c86, #78dcc0); }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed { display: grid; gap: 8px; max-height: 300px; margin: 0; padding: 0; overflow-y: auto; list-style: none; scroll-behavior: smooth; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; padding: 9px 12px; background: #ffffff0d; border-radius: 9px; animation: fp-in 260ms ease-out; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed time { color: #8ea1ac; font-size: 12px; font-variant-numeric: tabular-nums; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed p { margin: 0; font-size: 14px; line-height: 1.5; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed p[data-actor="A"] { color: #ffe3c2; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed li[data-moment] { background: #a8473b33; border: 1px solid #e0715a; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed li[data-moment] strong { display: block; color: #ffb199; font-size: 12px; letter-spacing: 0.08em; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-moment { position: absolute; inset: 40% 0 auto; margin: 0; color: #fff; font-family: var(--font-display, inherit); font-size: clamp(34px, 7vw, 64px); font-weight: 900; letter-spacing: 0.04em; text-align: center; text-shadow: 0 4px 24px #000a; pointer-events: none; animation: fp-moment 1400ms ease-out forwards; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-moment[data-actor="B"] { color: #ffb199; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; border-top: 1px solid #2f4757; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-card { display: grid; gap: 2px; margin: 0; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-card strong { font-size: 16px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-card span { color: #b6c3ca; font-size: 13px; font-variant-numeric: tabular-nums; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-card[data-winner="A"] strong { color: #9fe0c6; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-card[data-winner="B"] strong { color: #ffb199; }
+.career-app.game-mode.clubhouse .fight-night-arena .fight-watch-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+@keyframes fp-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes fp-moment { 0% { opacity: 0; transform: scale(1.4); } 18% { opacity: 1; transform: scale(1); } 70% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .career-app.game-mode.clubhouse .fight-night-arena .fp-feed li, .career-app.game-mode.clubhouse .fight-night-arena .fp-moment { animation: none; }
+  .career-app.game-mode.clubhouse .fight-night-arena .fp-track i { transition: none; }
+}
+@media (max-width: 540px) {
+  .career-app.game-mode.clubhouse .fight-night-arena .fight-playback { padding: 18px 14px; }
+  .career-app.game-mode.clubhouse .fight-night-arena .fp-corners { grid-template-columns: 1fr; gap: 12px; }
+  .career-app.game-mode.clubhouse .fight-night-arena .fp-corner.B > strong { text-align: left; }
+}
+
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed { scrollbar-color: #4b6474 transparent; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed p { color: #e7edf0; }
+.career-app.game-mode.clubhouse .fight-night-arena .fp-feed p[data-actor="A"] { color: #ffe3c2; }

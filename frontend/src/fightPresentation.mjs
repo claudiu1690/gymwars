@@ -114,7 +114,8 @@ export function roundFeedback(b, names = { A: "You", B: "Opponent" }) {
     else if (latest.A.takedowns >= 2)
       observation = `You completed ${latest.A.takedowns} takedowns this round.`;
     else
-      observation = `Damage dealt this round: you ${latest.A.damageDealt}, ${names.B} ${latest.B.damageDealt}.`;
+      // Same numbers as the judges' scoreline when the bout recorded them.
+      observation = `Damage this round: you ${latest.A.scoring?.damage ?? latest.A.damageDealt}, ${names.B} ${latest.B.scoring?.damage ?? latest.B.damageDealt}.`;
   }
   return {
     round,
@@ -636,5 +637,52 @@ export function careerGoal(s, preferred) {
       reigns > 0,
       defenses > 0,
     ],
+  };
+}
+
+const bigMoments = {
+  knockdown: "KNOCKDOWN",
+  ko: "KNOCKOUT",
+  tko: "TKO",
+  sub: "SUBMISSION",
+  submission: "SUBMISSION",
+};
+
+/** Everything a round replay needs, from recorded data only: the exchanges
+ * in order, condition at the start and end, the judges' card and the big
+ * moments. Returns null when the round has no recorded events. */
+export function roundPlayback(b, round, names) {
+  const events =
+    b.result?.rounds?.find((r) => r.round === round)?.events ||
+    ((b.decisions?.length || 0) === round ? b.latestEvents : null) ||
+    [];
+  const groups = roundRecap(events, names).filter((group) =>
+    group.lines.some((line) => !["round-start", "round-end"].includes(line.type)),
+  );
+  if (!groups.length) return null;
+  const summary = (b.roundSummaries || b.result?.roundSummaries || []).find(
+    (r) => r.round === round,
+  );
+  const card = roundScorecards(b).find((r) => r.round === round) || null;
+  return {
+    round,
+    groups: groups.map((group) => {
+      const big = group.events.find((e) => bigMoments[e.type]);
+      return { ...group, moment: big ? bigMoments[big.type] : null, actor: big?.actor || null };
+    }),
+    condition: summary
+      ? ["A", "B"].reduce(
+          (all, side) => ({
+            ...all,
+            [side]: {
+              health: [summary[side].healthBefore, summary[side].healthAfter],
+              gas: [summary[side].gasBefore, summary[side].gasAfter],
+            },
+          }),
+          {},
+        )
+      : null,
+    card,
+    finish: summary?.finish || null,
   };
 }

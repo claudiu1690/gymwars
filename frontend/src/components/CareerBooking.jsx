@@ -215,7 +215,12 @@ export default function FightBooking({
                   </div>
                   <span className="fight-offer-purpose">
                     <strong>{offerPurpose(s, f, entry).label}</strong>
-                    <small>{offerPurpose(s, f, entry).matchup}</small>
+                    <small
+                      className="fight-offer-difficulty"
+                      data-level={offerPurpose(s, f, entry).matchup.toLowerCase()}
+                    >
+                      {offerPurpose(s, f, entry).matchup}
+                    </small>
                   </span>
                   <span
                     className="fight-offer-tag"
@@ -256,7 +261,9 @@ export default function FightBooking({
             </div>
             <strong>
               {purpose.matchup}
-              <small>Compare skills and tactics below.</small>
+              <small>
+                {purpose.matchupDetail} Compare skills and tactics below.
+              </small>
             </strong>
           </section>
           <section

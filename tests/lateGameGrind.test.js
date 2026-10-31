@@ -85,7 +85,8 @@ test("public offer advice prefers reachable sporting steps, honors explicit circ
   assert.ok(offerPurpose(s, f, next).gap >= -12);
   const world = suggestedOffer(s, f, eligible, "world");
   assert.equal(world.circuit.id, "world");
-  assert.equal(offerPurpose(s, f, world).matchup, "Stronger opponent");
+  assert.equal(offerPurpose(s, f, world).matchup, "Harder");
+  assert.match(offerPurpose(s, f, world).matchupDetail, /higher than yours/);
   assert.ok(suggestedOffer(s, f, eligible, "invalid"));
   assert.equal(suggestedOffer(s, f, []), undefined);
   assert.deepEqual(s, before);

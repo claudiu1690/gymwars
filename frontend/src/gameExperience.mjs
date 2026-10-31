@@ -111,6 +111,23 @@ export function playSound(kind) {
     return false;
   }
 }
+// Shared with fight night: replays are on unless the player turned them off.
+export const watchRoundsKey = "gw-watch-rounds";
+export function watchingRounds() {
+  try {
+    return globalThis.localStorage?.getItem(watchRoundsKey) !== "off";
+  } catch {
+    return true;
+  }
+}
+
+export function resultSound(b) {
+  if (b?.status !== "resolved") return;
+  playSound(
+    b.result.winner === "A" ? "win" : b.result.winner === "B" ? "loss" : "draw",
+  );
+}
+
 export function acceptedSound(body, data) {
   if (data.duplicate) return;
   const cmd = body.command;
@@ -125,6 +142,8 @@ export function acceptedSound(body, data) {
   if (cmd.type === "advance") return playSound("week");
   if (["round", "auto-fight"].includes(cmd.type)) {
     const b = data.career.fights.find((b) => b.id === cmd.fightId);
+    // A watched replay plays the result sound when it reaches the result.
+    if (b?.status === "resolved" && watchingRounds()) return;
     if (b?.status === "resolved")
       return playSound(
         b.result.winner === "A"

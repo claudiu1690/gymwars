@@ -731,3 +731,9 @@
 .fight-purpose-brief p { margin: 0; font-size: 14px; line-height: 1.5; }
 .fight-purpose-brief > strong { font-size: 14px; }
 .fight-purpose-brief small { display: block; margin-top: 4px; font-size: 12px; font-weight: 500; }
+
+/* Difficulty at a glance: Easier / Even / Harder. */
+.fight-offer-purpose > small.fight-offer-difficulty { justify-self: start; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+.fight-offer-difficulty[data-level="easier"] { color: #2f5c47; background: #dcebdf; }
+.fight-offer-difficulty[data-level="even"] { color: #5a4a1f; background: #f1e3c4; }
+.fight-offer-difficulty[data-level="harder"] { color: #8b2f25; background: #f6d6cf; }

@@ -21,6 +21,13 @@ import { calendarDate } from "../careerCalendar.mjs";
 import "./fight-night-arena.css";
 import { GameDialog } from "./GameUI";
 import FightLessons, { ResultFeedback } from "./FightLessons";
+import FightPlayback from "./FightPlayback";
+
+import {
+  resultSound,
+  watchingRounds,
+  watchRoundsKey,
+} from "../gameExperience.mjs";
 
 const label = (value = "") =>
   value.replaceAll("-", " ").replace(/^./, (c) => c.toUpperCase());
@@ -320,6 +327,8 @@ export default function CareerFightNight({
   const [plan, setPlan] = useState(() => b.decisions?.at(-1)?.a || savedPlan);
   const [playing, setPlaying] = useState(false);
   const [coaching, setCoaching] = useState(false);
+  const [watch, setWatch] = useState(null);
+  const [watchRounds, setWatchRounds] = useState(watchingRounds);
   const actionLock = useRef(false);
   const names = { A: f.name, B: opponent.name };
   const resolved = b.status === "resolved";
@@ -327,6 +336,8 @@ export default function CareerFightNight({
   const rewards = resolved ? fightRewardSummary(b) : null;
   const feedback = roundFeedback(b, names);
   const roundsDone = b.decisions?.length || 0;
+  const lastRound = resolved ? b.result.round : roundsDone;
+  const watching = watch != null && watch <= lastRound;
   const nextRound = Math.min(b.rounds, roundsDone + 1);
   const score =
     feedback?.score || (roundsDone === 0 && !resolved ? { A: 0, B: 0 } : null);
@@ -351,8 +362,15 @@ export default function CareerFightNight({
     if (actionLock.current || disabled || resolved) return;
     actionLock.current = true;
     setPlaying(true);
+    const from = roundsDone + 1;
     try {
-      await command({ type, fightId: b.id, expectedRound: roundsDone, plan });
+      const saved = await command({
+        type,
+        fightId: b.id,
+        expectedRound: roundsDone,
+        plan,
+      });
+      if (saved && watchRounds) setWatch(from);
     } finally {
       actionLock.current = false;
       setPlaying(false);
@@ -424,7 +442,18 @@ export default function CareerFightNight({
         </div>
       </header>
 
-      {resolved ? (
+      {watching ? (
+        <FightPlayback
+          bout={b}
+          names={names}
+          first={watch}
+          last={lastRound}
+          onDone={() => {
+            setWatch(null);
+            resultSound(b);
+          }}
+        />
+      ) : resolved ? (
         <>
           <section
             className={`fn-result ${b.result.winner === "A" ? "victory" : ""}`}
@@ -703,6 +732,24 @@ export default function CareerFightNight({
                 {playing ? "Resolving…" : `Play round ${nextRound}`}
               </Action>
             </div>
+            <label className="fight-watch-toggle">
+              <input
+                type="checkbox"
+                checked={watchRounds}
+                onChange={(event) => {
+                  setWatchRounds(event.target.checked);
+                  try {
+                    localStorage.setItem(
+                      watchRoundsKey,
+                      event.target.checked ? "on" : "off",
+                    );
+                  } catch {
+                    // Without storage the choice lasts for this visit.
+                  }
+                }}
+              />
+              Watch each round play out
+            </label>
             <div className="fn-coach-finish">
               <Action
                 secondary
@@ -730,7 +777,7 @@ export default function CareerFightNight({
         </>
       )}
 
-      {(resolved || roundsDone > 0) && (
+      {!watching && (resolved || roundsDone > 0) && (
         <section
           className="fn-disclosure fn-fight-report"
           aria-labelledby="fn-report-title"
@@ -807,7 +854,7 @@ export default function CareerFightNight({
           </div>
         </section>
       )}
-      {resolved && (
+      {resolved && !watching && (
         <>
           <section
             className="fn-disclosure fn-final-condition"

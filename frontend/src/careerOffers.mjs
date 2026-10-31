@@ -7,12 +7,13 @@ const average = (fighter) =>
 // changes an offer, or books on the player's behalf.
 export function offerPurpose(s, f, offer) {
   const gap = average(f) - average(offer.opponent);
-  const matchup =
-    gap < -12
-      ? "Stronger opponent"
-      : gap > 12
-        ? "Favorable skills"
-        : "Competitive skills";
+  // One plain difficulty word per offer, from average public skills.
+  const matchup = gap > 4 ? "Easier" : gap < -4 ? "Harder" : "Even";
+  const size = Math.round(Math.abs(gap));
+  const matchupDetail =
+    matchup === "Even"
+      ? "Skills are close on average."
+      : `Their skills average ${size} ${gap > 0 ? "lower" : "higher"} than yours.`;
   let kind = "record",
     label = "Build your record",
     priority = 20;
@@ -80,7 +81,7 @@ export function offerPurpose(s, f, offer) {
     Math.abs(gap) * 4 +
     (offer.notice >= 3 ? 15 : 0) -
     (offer.demand?.multiplier < 1 ? 20 : 0);
-  return { kind, label, description, matchup, gap, score };
+  return { kind, label, description, matchup, matchupDetail, gap, score };
 }
 
 export function suggestedOffer(s, f, offers, circuitId = null) {

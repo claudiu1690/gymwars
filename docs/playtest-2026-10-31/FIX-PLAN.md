@@ -162,3 +162,18 @@ After batches A and B, replay the same opening (Muay Thai starter vs Flores) on 
   - Labels: legacy, Club level, Facility.
   - Quiet weeks show a toast.
 - **Not verified in the browser:** the scouting text after signing, plain signature wording on the choice screen (unit-tested only), and the "Need $X more" state (render-tested).
+
+## Status update (31 Oct 2026): E2 and E3 implemented
+
+- **E2, round playback:** after each round, or after "Finish fight", fight night replays the recorded exchanges over about 6 seconds.
+  - Health and gas bars fall from their start-of-round to their end-of-round values.
+  - Knockdowns and finishes flash as big moments.
+  - Each round ends on its scorecard, and multi-round replays move on by themselves.
+  - "Skip replay" is always available, and a "Watch each round play out" toggle (remembered on this device) turns it off.
+  - The result, the final-condition panel and the win/loss sound wait until the replay ends. Reduced-motion players get no flash or slide.
+  - It uses only recorded data and doesn't change the engine.
+- **E3, booking choices:**
+  - After a fight, a quick-call date that fell inside the recovery window now moves to the first week the fighter can compete, instead of showing "Unavailable". The player always has two real offers.
+  - A running camp still keeps the promoter's date fixed, as the earlier rule intended.
+  - Every offer reads **Easier**, **Even** or **Harder** from average skills (±4), with a one-line explanation in the brief.
+- **Seen in passing:** different opponents can share portrait art in the offer cards. That's the portrait pool for rival fighters, separate from the player-vs-opponent fix.

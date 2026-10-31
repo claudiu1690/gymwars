@@ -60,14 +60,20 @@ test("promoter offers keep dates and terms fixed; stale and edited contracts fai
   assert.equal(s.fights.length, 0);
 });
 
-test("short-notice offers respect recovery and existing camps", () => {
+test("offers respect recovery and existing camps", () => {
   let s = fresh(),
     f = s.fighters[0];
   f.nextBoutWeek = 4;
-  let offer = engine.offers(s, f).find((o) => o.shortNotice);
-  assert.ok(offer.unavailable);
-  assert.throws(() => accept(s, f, offer), /recovery period/);
+  // Recovery moves a quick-call date to the first week the fighter can make,
+  // so the player still has two real offers after a fight.
+  const recovering = engine.offers(s, f);
+  assert.equal(recovering.length, 2);
+  assert.ok(recovering.every((o) => !o.unavailable));
+  assert.ok(recovering.every((o) => o.eventWeek >= 4));
+  assert.ok(recovering.every((o) => !o.shortNotice));
+  assert.doesNotThrow(() => accept(s, f, recovering[1]));
   f.nextBoutWeek = 0;
+  let offer;
   s = engine.applyCommand(s, {
     type: "camp",
     fighterId: f.id,

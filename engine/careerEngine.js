@@ -1989,17 +1989,20 @@ function offers(s, f) {
       r.isChampion ||
       (f.isChampion && r.rankingPoints >= CAREER.titleShotPoints)
     );
-    const shortNotice = index === 1 && !title;
-    const notice = shortNotice ? 1 + (s.week % 2) : s.week % 3 === 2 ? 6 : 4;
-    const eventWeek = s.week + notice;
+    const quickCall = index === 1 && !title;
+    const asked = quickCall ? 1 + (s.week % 2) : s.week % 3 === 2 ? 6 : 4;
+    // A date inside post-fight recovery moves to the first week the fighter
+    // can compete, so recovery never leaves a rematch as the only choice.
+    // A running camp still keeps the promoter's date fixed.
+    const eventWeek = Math.max(s.week + asked, f.nextBoutWeek || 0);
+    const notice = eventWeek - s.week;
+    const shortNotice = quickCall && notice === asked;
     const unavailable =
-      eventWeek < (f.nextBoutWeek || 0)
-        ? "Your fighter is still in the post-fight recovery period."
-        : f.camp && f.camp.endWeek > eventWeek
-          ? "Your current camp ends after this event."
-          : notice > 8
-            ? "Finish the current commitment before taking another fight."
-            : null;
+      f.camp && f.camp.endWeek > eventWeek
+        ? "Your current camp ends after this event."
+        : notice > 8
+          ? "Finish the current commitment before taking another fight."
+          : null;
     const rematching = r === rematch;
     return {
       id: r.id,

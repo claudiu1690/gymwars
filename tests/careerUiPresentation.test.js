@@ -1162,8 +1162,12 @@ test("booking keeps blocked offers, title length and earned challenge prizes tru
   recovering.fighters[0].nextBoutWeek = 3;
   let s = publicState(recovering),
     f = s.fighters[0];
-  const blocked = f.offers.find((offer) => offer.unavailable);
-  assert.ok(blocked);
+  // Recovery moves offer dates, so every engine offer stays bookable.
+  assert.ok(f.offers.every((offer) => !offer.unavailable));
+  assert.ok(f.offers.every((offer) => offer.eventWeek >= 3));
+  // A stale or hand-edited date inside recovery is still refused clearly.
+  const blocked = { ...f.offers[0], offerId: "stale-offer", eventWeek: 1 };
+  f.offers = [...f.offers, blocked];
   const all = render(Booking, { s, f, command: noop });
   assert.match(all, /Unavailable · review why/);
   assert.match(all, /Next fight from/);

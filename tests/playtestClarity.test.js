@@ -178,3 +178,58 @@ test("an empty week bank ends the session with what is waiting, not a dead end",
   const book = { kind: "book", cta: "Book the next fight" };
   assert.equal(sessionPause(s, empty, book, now).next.guide, book);
 });
+
+test("every offer reads as Easier, Even or Harder from average skills", async () => {
+  const { offerPurpose } = await load("careerOffers.mjs");
+  const stats = (n) => ({ striking: n, grappling: n, submissions: n, conditioning: n });
+  const f = { stats: stats(50), offers: [] };
+  const s = { fights: [] };
+  const offer = (n) => ({ opponent: { stats: stats(n) }, notice: 4 });
+  assert.equal(offerPurpose(s, f, offer(40)).matchup, "Easier");
+  assert.match(offerPurpose(s, f, offer(40)).matchupDetail, /10 lower/);
+  assert.equal(offerPurpose(s, f, offer(53)).matchup, "Even");
+  assert.equal(offerPurpose(s, f, offer(60)).matchup, "Harder");
+});
+
+test("a round replay uses only recorded exchanges, condition and the judges' card", async () => {
+  const { roundPlayback } = await load("fightPresentation.mjs");
+  const { resolveFight, ROUND_SCORING_VERSION } = require("../engine/fightEngine");
+  const fighter = (name, style) => ({
+    name,
+    style,
+    traits: [],
+    fatigue: 0,
+    stats: { striking: 50, grappling: 50, submissions: 50, conditioning: 50 },
+    gameplan: { approach: "balanced", pace: "measured", finish: "hunt-finish", conserveBelow: 30 },
+  });
+  const names = { A: "Alex", B: "Jonas" };
+  let checked = 0;
+  for (let i = 0; i < 20; i++) {
+    const result = resolveFight({
+      a: fighter("Alex", "boxing"),
+      b: fighter("Jonas", "wrestling"),
+      seed: `replay-${i}`,
+      engineVersion: ROUND_SCORING_VERSION,
+    });
+    const b = { result, roundSummaries: result.roundSummaries };
+    for (let round = 1; round <= result.round; round++) {
+      const play = roundPlayback(b, round, names);
+      assert.ok(play.groups.length > 0);
+      const summary = result.roundSummaries[round - 1];
+      assert.deepEqual(play.condition.A.health, [summary.A.healthBefore, summary.A.healthAfter]);
+      if (summary.finish) assert.equal(play.finish.method, result.method);
+      else assert.equal(play.card.winner, summary.winner);
+      const downs = result.rounds[round - 1].events.filter((e) => e.type === "knockdown").length;
+      assert.equal(play.groups.filter((g) => g.moment === "KNOCKDOWN").length > 0, downs > 0);
+      checked++;
+    }
+    assert.equal(roundPlayback(b, result.round + 1, names), null);
+  }
+  assert.ok(checked > 20);
+  // A live bout replays its latest round from the events it just received.
+  const live = { decisions: [{}], latestEvents: [
+    { round: 1, time: "0:30", actor: "A", type: "strike", text: "x" },
+  ] };
+  assert.equal(roundPlayback(live, 1, names).groups.length, 1);
+  assert.equal(roundPlayback(live, 1, names).condition, null);
+});
