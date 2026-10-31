@@ -115,13 +115,9 @@ The fun of the game is in the fight, and the fight currently contradicts what th
 
 ## Batch E: Bigger design changes
 
-**E1. Reach Gym Wars in the first session (design decision, then S to M)**
-- Today: 8 starting weeks (`services/careerAllowances.js:11`), each fight cycle costs about 4, and Gym Wars needs 4 fighters. The first session stops after 2 fights.
-- Options, with my recommendation first:
-  1. **The opening chapter costs no weeks** until the first Gym Wars battle. The rule is clear, and players learn the loop without hitting the bank. `careerService.js:94-102` skips `spend()` while `journey.chapter === 1`.
-  2. Start with 16 weeks. This is a one-line change, but check how `initial` above `maximum` behaves: the code suggests grants above the cap survive.
-  3. Lend starter fighters for the first Gym Wars card, so the player can try the mode with 2 of their own fighters.
-- Option 1 or 3 keeps the economy for later sessions unchanged.
+**E1. Reach Gym Wars in the first session: dropped (owner decision, 31 Oct 2026)**
+- Gym Wars stays a goal for a later session, so players have something to come back to. The 8-week starting bank is unchanged.
+- What remains is to make the stop point feel deliberate rather than like hitting a wall. When the weeks run out, show what's waiting (the refill countdown, the next fight, how many divisions Gym Wars still needs) as a reason to return.
 
 **E2. Play rounds out with drama (L)**
 - The round events already arrive as a list (`advanceRound().events`). In `CareerFightNight.jsx`, reveal them over 5–10 s:
