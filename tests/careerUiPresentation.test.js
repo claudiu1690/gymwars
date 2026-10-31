@@ -164,6 +164,15 @@ test("gym investment screen consumes real budget and room payoff contracts", () 
   const html = render(Development, { s, command: noop });
   assert.match(html, /Cash remaining/);
   assert.match(html, /before future fight income/);
+  // A purchase the gym cannot afford says how much is missing, not a
+  // negative balance.
+  const poor = start();
+  poor.boutsCompleted = 1;
+  poor.cash = 100;
+  const short = render(Development, { s: publicState(poor), command: noop });
+  assert.match(short, /Need \$[\d,]+ more/);
+  assert.doesNotMatch(short, /\$-/);
+  assert.match(short, /Build time: \d+ weeks/);
   assert.match(html, /What changes for/);
   assert.match(html, /estimated permanent gains/);
   assert.match(html, /CHALLENGE|CHAPTER/);
@@ -214,7 +223,7 @@ test("resolved preparation comparison uses frozen fight values instead of later 
       readiness: b.readiness.you,
     });
   assert.match(html, />77</);
-  assert.match(html, /includes \+3 prep/);
+  assert.match(html, /74 \+ 3 camp/);
   assert.match(html, /grappling: 44 vs 22/);
   assert.match(html, /55% ready/);
   assert.match(html, /FIGHT DATE/);
@@ -500,11 +509,22 @@ test("specialist duration previews show the total next-fight skill bonus for eve
         ),
       );
     assert.match(html, /including \+1 for finishing 4 weeks/);
-    assert.match(html, /apply once, within 8 game weeks/);
+    assert.match(html, /used in your next fight within 8 weeks/);
     assert.doesNotMatch(html, /extra prep ·/);
     assert.equal(f.camp, null);
   }
   storage.clear();
+});
+
+test("refills read as a countdown, never as a real calendar date", async () => {
+  const { refillText, countdown } = await import("../frontend/src/careerCompetition.mjs");
+  const now = Date.parse("2026-10-31T12:00:00Z");
+  const at = (h) => ({ refill: 4, maximum: 12, nextRefillAt: new Date(now + h * 3600000).toISOString() });
+  assert.equal(refillText(at(18), "weeks", now), "+4 weeks in 18 h");
+  assert.equal(refillText(at(0.5), "weeks", now), "+4 weeks in 30 min");
+  assert.equal(refillText(at(1.25), "weeks", now), "+4 weeks in 1 h 15 min");
+  assert.equal(refillText(at(-1), "weeks", now), "+4 weeks any moment now");
+  assert.equal(countdown(3 * 86400000), "in 3 days");
 });
 
 test("allowance copy distinguishes ready weeks from bank capacity", () => {
@@ -517,7 +537,8 @@ test("allowance copy distinguishes ready weeks from bank capacity", () => {
   const full = render(AllowanceLine, { allowance });
   assert.match(full, /8 career weeks ready/);
   assert.match(full, /Free weeks bank up to 12/);
-  assert.match(full, /Real-time refill: \+4 weeks on/);
+  assert.match(full, /Next free refill: \+4 weeks (in|any moment)/);
+  assert.doesNotMatch(full, /weeks on /);
   assert.doesNotMatch(full, /8\/12/);
   const compact = render(AllowanceLine, { allowance, compact: true });
   assert.match(compact, />8 weeks ready<\/strong>/);
@@ -570,8 +591,8 @@ test("empty real-time week bank keeps team planning visible without permitting a
   };
   const html = render(TurnBar, { s, allowance, onEndWeek: noop });
   assert.match(html, /0 weeks ready/);
-  assert.match(html, /\+4 weeks on/);
-  assert.match(html, /Real-time refill:/);
+  assert.match(html, /\+4 weeks (in|any moment)/);
+  assert.match(html, /Next free refill:/);
   assert.doesNotMatch(html, /id="career-end-week"/);
   assert.match(html, /class="gw-turn-free-play"/);
   assert.match(html, /Review your team while weeks refill/);
@@ -974,7 +995,7 @@ test("winning the Career Invitational leaves a concrete next challenge and rewar
   const html = render(Campaign, { s, command: noop });
   assert.match(html, /Academy Trophy/);
   assert.match(html, /Defeat the academy champion/);
-  assert.match(html, /Academy Cup · \+40 reputation/);
+  assert.match(html, /Academy Cup · \+40 legacy/);
   assert.match(html, /Prepare the academy challenger/);
   assert.match(html, /3 fighters · 2 wins to claim the trophy/);
 });
@@ -1181,7 +1202,7 @@ test("booking keeps blocked offers, title length and earned challenge prizes tru
   );
   assert.ok(
     challengeHtml.includes(
-      "+" + challenge.challengeReward.legacy + " career reputation for a win",
+      "+" + challenge.challengeReward.legacy + " legacy for a win",
     ),
   );
   f.offers = [title];
@@ -1326,7 +1347,7 @@ test("the selected ambition and every chooser option visibly explain the goal an
   assert.match(html, /book and win a regional championship bout/);
   assert.match(html, /0 \/ 1 belts won/);
   assert.match(html, /Featherweight, Lightweight, Middleweight, Heavyweight/);
-  assert.match(html, /National Showcase pennant and \+35 reputation/);
+  assert.match(html, /National Showcase pennant and \+35 legacy/);
 });
 
 test("all rarities use the same three style signature choices; scheduled fighters can equip and ready fighters cannot", () => {

@@ -1283,7 +1283,7 @@ function ambitionProjection(s, selection) {
             ? "Earn Champions circuit entry, then beat the invited ground specialist with a fighter who completed a mentoring lesson."
             : "Earn World circuit entry, then beat the final invited opponent in a career bout.";
       payoff = challenge
-        ? `${challenge.reward.trophy} and +${challenge.reward.legacy} reputation.`
+        ? `${challenge.reward.trophy} and +${challenge.reward.legacy} legacy.`
         : "Adds a challenge victory to your club history.";
       progressUnit = "challenge victories";
       break;
@@ -2661,7 +2661,7 @@ function completeFight(s, b, state) {
     log(
       s,
       "club-challenge",
-      `${f.name} wins ${challengeSpec.name}. Your gym earns the ${challengeAward.trophy} and ${challengeAward.legacy} reputation.`,
+      `${f.name} wins ${challengeSpec.name}. Your gym earns the ${challengeAward.trophy} and ${challengeAward.legacy} legacy.`,
       f.id,
     );
   }

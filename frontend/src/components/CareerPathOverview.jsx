@@ -65,7 +65,7 @@ export function CareerPathHero({ s }) {
         <PathAction action={focus.action} />
       </div>
       <div className="path-club-level">
-        <span>CLUB REPUTATION · LEVEL {s.careerCircuit?.level || 1}</span>
+        <span>CLUB LEVEL {s.careerCircuit?.level || 1}</span>
         <strong>
           {(s.careerCircuit?.name || "Regional").replace(" circuit", "")}
         </strong>
@@ -82,12 +82,12 @@ export function CircuitRoadmap({ s }) {
     <section
       id="club-levels"
       className="path-promotions"
-      aria-label="Club reputation unlock levels"
+      aria-label="Club level unlocks"
     >
       <header className="path-section-heading">
         <div>
-          <span className="path-eyebrow">SIX CLUB REPUTATION LEVELS</span>
-          <h2>Grow your gym’s reputation</h2>
+          <span className="path-eyebrow">SIX CLUB LEVELS</span>
+          <h2>Raise your club level</h2>
           <p>
             These are unlock levels for your gym: new opponents and larger
             purses. Your fighters still compete for the same four regional
@@ -197,7 +197,7 @@ export function CircuitRoadmap({ s }) {
         })}
       </ol>
       <p className="path-fine-print">
-        Club reputation changes the fights available, not your regional ranking.
+        Club level changes the fights available, not your regional ranking.
         Each offer shows its exact prize money.
       </p>
     </section>
@@ -248,7 +248,7 @@ export function ClubChallenges({ s }) {
               {challenge.reward.trophy}
             </strong>
             <small>
-              +{challenge.reward.legacy} reputation
+              +{challenge.reward.legacy} legacy
               {challenge.reward.cash > 0 &&
                 ` · $${challenge.reward.cash.toLocaleString("en-US")} first-victory prize`}
             </small>

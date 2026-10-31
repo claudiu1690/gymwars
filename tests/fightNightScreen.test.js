@@ -164,9 +164,9 @@ test("quick calls and advanced choices feed exactly one current-version round, t
   const props = () => propsFor(raw, { command });
   let tree = mount(props());
   const savedGasRule = raw.fights[0].savedPlan.conserveBelow;
-  button(tree, "Work the feet").props.onClick();
+  button(tree, "Strike and finish").props.onClick();
   tree = mount(props());
-  assert.equal(button(tree, "Work the feet").props["aria-pressed"], true);
+  assert.equal(button(tree, "Strike and finish").props["aria-pressed"], true);
   button(tree, "Set custom tactics").props.onClick();
   tree = mount(props());
   const fields = elements(tree, (node) => node.type?.name === "PlanFields")[0];
@@ -204,7 +204,7 @@ test("quick calls and advanced choices feed exactly one current-version round, t
   assert.ok(button(tree, "Play round 2"));
   const html = render(props());
   assert.match(html, /Between rounds/);
-  assert.match(html, /Switches to cautious pace below 40% gas/);
+  assert.match(html, /Switches to Slow it down below 40% gas/);
   assert.match(html, /Round 1 stats &amp; exchanges/);
   assert.match(html, /aria-valuenow="85"/);
   assert.match(html, /aria-valuenow="83"/);

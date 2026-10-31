@@ -307,6 +307,7 @@
   .gw-responsive-shell .gw-turn-date { min-width: 0; margin-right: auto; }
   .gw-responsive-shell .gw-turn-date > strong { font-size: 13px; }
   .gw-responsive-shell .gw-turn-plans-full { display: none; }
+  .gw-responsive-shell .gw-turn-plans-short { display: inline; }
   .career-app.game-mode.clubhouse.gw-responsive-shell .gw-turn-plans > summary { min-width: 58px; padding: 8px; font-size: 13px; }
   .career-app.game-mode.clubhouse.gw-responsive-shell :is(.career-turn-end, .career-turn-resolve, .gw-turn-free-play) { min-width: 116px; padding: 9px 10px; font-size: 14px; }
   .career-app.game-mode.clubhouse.gw-responsive-shell :is(.gw-turn-plan-panel, .career-turn-results) { right: max(10px, env(safe-area-inset-right, 0px)); width: min(760px, calc(100vw - 20px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); padding: 14px; }
@@ -373,3 +374,14 @@
   .gw-responsive-shell .gw-turn-dock *::before,
   .gw-responsive-shell .gw-turn-dock *::after { animation: none; transition: none; scroll-behavior: auto; }
 }
+
+.gw-turn-plans-short { display: none; }
+
+/* Quiet-week summary: a short toast above the turn bar, gone in a few seconds. */
+.gw-week-toast { position: fixed; z-index: 40; left: 50%; bottom: calc(var(--gw-turn-measured, calc(var(--gw-turn-height, 68px) + env(safe-area-inset-bottom, 0px))) + 14px); display: flex; align-items: center; gap: 10px; max-width: min(640px, calc(100vw - 32px)); padding: 10px 12px 10px 16px; color: #fffaf0; background: #203746; border: 1px solid #3c5a6c; border-radius: 10px; box-shadow: 0 8px 24px #0005; font-size: 14px; line-height: 1.4; transform: translateX(-50%); }
+.gw-week-toast strong { flex: none; color: #f6c75c; }
+.gw-week-toast span { min-width: 0; }
+.gw-week-toast button { flex: none; width: 28px; height: 28px; color: inherit; background: transparent; border: 0; border-radius: 6px; font-size: 18px; cursor: pointer; }
+.gw-week-toast button:hover { background: #ffffff1a; }
+@media (prefers-reduced-motion: no-preference) { .gw-week-toast { animation: gw-toast-in 180ms ease-out; } }
+@keyframes gw-toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }

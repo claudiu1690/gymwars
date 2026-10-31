@@ -238,3 +238,50 @@ export function bookingWeeks(s, f) {
     ),
   );
 }
+
+// The menu grows with the career so a new gym sees only what it can use.
+// `fresh` marks the step that just unlocked, for a one-time "new" dot.
+// A page that is open always stays in the menu, so deep links never strand.
+export function careerNav(s, activePage = null) {
+  const bouts = s?.boutsCompleted || 0;
+  const team = (s?.fighters || []).filter(
+    (f) => !f.retired && !f.released,
+  ).length;
+  const items = [
+    { id: "home", label: "Home", icon: "home", unlocked: true },
+    { id: "roster", label: "Roster", icon: "roster", unlocked: true },
+    { id: "fights", label: "Fights", icon: "fights", unlocked: true },
+    // Training lives in the Gym, so it belongs to the core loop from day one.
+    { id: "gym", label: "Gym", icon: "gym", unlocked: true },
+    {
+      id: "campaign",
+      label: "Career Path",
+      icon: "career",
+      unlocked: bouts >= 1,
+      fresh: bouts === 1,
+    },
+
+    {
+      id: "gym-wars",
+      label: "Gym Wars",
+      icon: "wars",
+      unlocked: team >= 2 || bouts >= 2,
+      fresh: bouts <= 2,
+    },
+    {
+      id: "achievements",
+      label: "Achievements",
+      icon: "achievements",
+      unlocked: bouts >= 2,
+      fresh: bouts === 2,
+    },
+    {
+      id: "shop",
+      label: "Supply Shop",
+      icon: "shop",
+      unlocked: bouts >= 2,
+      fresh: bouts === 2,
+    },
+  ];
+  return items.filter((item) => item.unlocked || item.id === activePage);
+}

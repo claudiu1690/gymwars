@@ -16,8 +16,10 @@ const SIGNATURE_FIGHT_VERSION = 4;
 const BALANCED_FINISH_VERSION = 5;
 const STYLE_SIGNATURE_VERSION = 6;
 const MENTORING_BALANCE_VERSION = 8;
-const CURRENT_FIGHT_VERSION = MENTORING_BALANCE_VERSION;
-const SUPPORTED_FIGHT_VERSIONS = Object.freeze([1, 2, 3, 4, 5, 6, 7, 8]);
+// v9 changes no outcome: it only records each round's judging inputs.
+const ROUND_SCORING_VERSION = 9;
+const CURRENT_FIGHT_VERSION = ROUND_SCORING_VERSION;
+const SUPPORTED_FIGHT_VERSIONS = Object.freeze([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 /**
  * Fight engine — GDD §7. Pure and fully seeded: no DB, no Date.now, no
@@ -162,6 +164,16 @@ function advanceRound(state) {
       finishEffortGas: r1(
         (100 * (c.finishGasSpent - effortBefore[side])) / c.gasMax,
       ),
+      // The judges' inputs for this round, exactly as scoreRound added them.
+      ...(state.engineVersion >= ROUND_SCORING_VERSION
+        ? {
+            scoring: {
+              damage: r1(c.roundDamage),
+              control: r1(c.roundControl),
+              total: r1(c.roundDamage + c.roundControl),
+            },
+          }
+        : {}),
       ...(c.signatureActivations > 0
         ? {
             signature: {
@@ -929,6 +941,7 @@ module.exports = {
   liveSnapshot,
   CURRENT_FIGHT_VERSION,
   MENTORING_BALANCE_VERSION,
+  ROUND_SCORING_VERSION,
   LEGACY_FIGHT_VERSION,
   ROUND_FEEDBACK_VERSION,
   EFFORT_FINISH_VERSION,

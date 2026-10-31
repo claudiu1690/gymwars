@@ -626,7 +626,7 @@ export default function CareerCampaign({
           <span className="career-eyebrow">BEYOND THE CAREER TROPHY</span>
           <h2>Build your club’s cup collection</h2>
           <p>
-            Gym tiers 4, 5 and 6 each unlock a fixed 4v4 rival with a different
+            Facilities 4, 5 and 6 each unlock a fixed 4v4 rival with a different
             fighting identity. Win a ranked card to earn their permanent crest.
             Your core career completion stays earned.
           </p>

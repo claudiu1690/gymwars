@@ -137,7 +137,7 @@ test("training comparisons use observed growth limits without disclosing hidden 
 });
 
 test("new Slow Starter keeps an opening weakness and rallies from round two; accepted v7 fights keep old timing", () => {
-  assert.equal(CURRENT_FIGHT_VERSION, 8);
+  assert.equal(CURRENT_FIGHT_VERSION, 9);
   const fighter = {
     name: "Learner",
     style: "boxing",

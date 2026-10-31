@@ -424,7 +424,7 @@ export default function FightBooking({
                       Challenge trophy: {offer.challengeReward.trophy}
                     </strong>
                     <p>
-                      +{offer.challengeReward.legacy} career reputation for a
+                      +{offer.challengeReward.legacy} legacy for a
                       win.
                       {offer.challengeReward.cash > 0 &&
                         ` ${fightMoney(offer.challengeReward.cash)} first-victory prize, separate from the bout purse. Awarded once per gym.`}

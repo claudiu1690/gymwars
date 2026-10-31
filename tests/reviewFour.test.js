@@ -10,13 +10,15 @@ const accept = (s, f, offer) =>
     offerId: offer.offerId,
   });
 
-test("calendar dates are stable through DST, month/year boundaries and old saves", async () => {
+test("career time reads as year and week, stable across year boundaries and old saves", async () => {
   const { calendarDate, careerDay, calendarText } =
     await import("../frontend/src/careerCalendar.mjs");
   const s = fresh();
-  assert.equal(calendarDate(s), "5 Oct 2026");
-  assert.equal(calendarDate(s, 4), "2 Nov 2026");
-  assert.equal(calendarDate(s, 13), "4 Jan 2027");
+  assert.equal(calendarDate(s), "Week 1");
+  assert.equal(calendarDate(s, 4), "Week 5");
+  assert.equal(calendarDate(s, 4, true), "Year 1 · Week 5");
+  assert.equal(calendarDate(s, 52), "Week 1, Year 2");
+  assert.equal(calendarDate(s, 60, true), "Year 2 · Week 9");
   assert.equal(
     careerDay({ week: 0, calendarStart: "2028-02-28" }, 1)
       .toISOString()
@@ -25,9 +27,9 @@ test("calendar dates are stable through DST, month/year boundaries and old saves
   );
   delete s.calendarStart;
   const original = structuredClone(s);
-  assert.equal(calendarDate(engine.publicState(s)), "5 Oct 2026");
+  assert.equal(calendarDate(engine.publicState(s)), "Week 1");
   assert.deepEqual(s, original);
-  assert.equal(calendarText(s, "Booked in week 4."), "Booked in 2 Nov 2026.");
+  assert.equal(calendarText(s, "Booked in week 4."), "Booked in Week 5.");
 });
 
 test("promoter offers keep dates and terms fixed; stale and edited contracts fail atomically", () => {

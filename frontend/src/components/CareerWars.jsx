@@ -527,7 +527,7 @@ export default function CareerWars({ revision, s, allowances, onRefresh }) {
                         <span className="career-eyebrow">
                           {club.complete
                             ? "CREST EARNED"
-                            : `GYM TIER ${club.challenge.minTier}`}
+                            : `FACILITY ${club.challenge.minTier}`}
                         </span>
                         <h4>{club.name}</h4>
                         <p>{club.description}</p>

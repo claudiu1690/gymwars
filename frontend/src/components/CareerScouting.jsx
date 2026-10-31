@@ -104,16 +104,37 @@ export default function CareerScouting({ s, command, disabled, onFighter }) {
   const remaining = Math.max(0, s.rules.scoutsPerWeek - s.scoutsUsed);
   const locked = disabled || !!pending;
   const exactScout = s.staffOptions?.scout?.current?.reportWidth === 0;
-  const exactReport =
-    selected?.investigated &&
-    skills.every((skill) => {
-      const [low, high] = selected.fighter.statRanges[skill];
-      return low === high;
-    });
   const isSelectedContract = contract === selected?.id;
   const selectedFighter =
     s.fighters.find((fighter) => fighter.id === selected?.fighter.id) ||
     selected?.fighter;
+  // Once signed, the report shows the fighter's real skills, not estimates.
+  const reportFighter =
+    selected?.signed && selectedFighter?.stats
+      ? {
+          ...selected.fighter,
+          statRanges: Object.fromEntries(
+            skills.map((skill) => [
+              skill,
+              [selectedFighter.stats[skill], selectedFighter.stats[skill]],
+            ]),
+          ),
+        }
+      : selected?.fighter;
+  const exactReport =
+    (selected?.investigated || selected?.signed) &&
+    skills.every((skill) => {
+      const [low, high] = reportFighter.statRanges[skill];
+      return low === high;
+    });
+  // The prospect never counts as their own teammate after signing.
+  const divisionHasOthers =
+    !!selected &&
+    team.some(
+      (f) =>
+        f.id !== selected.fighter.id &&
+        f.weightClass === selected.fighter.weightClass,
+    );
 
   useEffect(() => {
     setSelectedId(board.find((report) => !report.signed)?.id || board[0]?.id);
@@ -545,12 +566,14 @@ export default function CareerScouting({ s, command, disabled, onFighter }) {
                         selected.fighter.weightClass,
                       ).toLowerCase()}{" "}
                       teammate to compare yet.{" "}
-                      {exactReport
-                        ? "Your global network confirms their current skills."
-                        : "Estimated skill ranges. Sign to see exact numbers."}
+                      {selected.signed
+                        ? "Signed: these are their exact skills."
+                        : exactReport
+                          ? "Your global network confirms their current skills."
+                          : "Estimated skill ranges. Sign to see exact numbers."}
                     </p>
                   )}
-                  <SkillReport fighter={selected.fighter} teammate={teammate} />
+                  <SkillReport fighter={reportFighter} teammate={teammate} />
                   {selected.fighter.scoutReport && (
                     <section className="scout-development-report">
                       <h4>Development report</h4>
@@ -593,16 +616,14 @@ export default function CareerScouting({ s, command, disabled, onFighter }) {
                 <div className="scout-decision">
                   <div className="design-recruit-fit">
                     <strong>
-                      {team.some(
-                        (f) => f.weightClass === selected.fighter.weightClass,
-                      )
+                      {divisionHasOthers
                         ? "Adds depth to your division"
-                        : "Opens another division"}
+                        : selected.signed
+                          ? "Opened a new division"
+                          : "Opens another division"}
                     </strong>
                     <p>
-                      {team.some(
-                        (f) => f.weightClass === selected.fighter.weightClass,
-                      )
+                      {divisionHasOthers
                         ? "Another option when a teammate is training, resting or unavailable."
                         : `Your first ${label(selected.fighter.weightClass).toLowerCase()} fighter gives your gym more matchups.`}
                     </p>

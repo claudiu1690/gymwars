@@ -111,7 +111,7 @@ test("result lessons use saved readiness, preparation and each side’s recorded
   assert.match(a[0].value, /65/);
   assert.match(a[1].value, /\+4 striking/);
   assert.match(a[2].detail, /15%/);
-  assert.match(b[2].value, /Grappling.*cautious/);
+  assert.match(b[2].value, /Take it to the ground · Slow it down · Stay composed/);
   assert.deepEqual(
     fightLessons({ status: "resolved", result: { winner: "A" } }),
     [],

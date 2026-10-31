@@ -2,7 +2,7 @@ import { fighterPortrait } from "../fighterPortraits.mjs";
 import { calendarDate, daysUntil } from "../careerCalendar.mjs";
 import { matchupRead } from "../careerAssignment.mjs";
 import { skillLabel } from "../trainingPlans.mjs";
-import { fightStatDisplay } from "../fightPresentation.mjs";
+import { fightStatDisplay, tacticSummary } from "../fightPresentation.mjs";
 import { SignatureLine } from "./CareerIdentity";
 import SignatureBadge from "./SignatureBadge";
 import { RarityBadge } from "./FighterRarity";
@@ -17,7 +17,7 @@ export const fightSkills = [
 ];
 export const fightMoney = (value) => `$${value.toLocaleString("en-US")}`;
 
-export function PosterFighter({ fighter, rival, bout }) {
+export function PosterFighter({ fighter, rival, bout, across = null }) {
   const shownFighter =
     bout?.status && bout.status !== "scheduled" && fighter
       ? {
@@ -35,7 +35,7 @@ export function PosterFighter({ fighter, rival, bout }) {
       {fighter ? (
         <img
           className="fight-event-athlete"
-          src={fighterPortrait(fighter).src}
+          src={fighterPortrait(fighter, rival ? across : null).src}
           alt={`${fighter.name}, fighter`}
           loading="eager"
         />
@@ -101,7 +101,7 @@ export function FightPoster({ s, f, opponent, bout, eyebrow, children }) {
         <span className="fight-event-vs" aria-hidden="true">
           VS
         </span>
-        <PosterFighter fighter={opponent} rival bout={bout} />
+        <PosterFighter fighter={opponent} rival bout={bout} across={f} />
       </div>
       {children}
     </article>
@@ -170,7 +170,7 @@ export function FightIntel({ s, f, opponent, bout, story }) {
       <table className="fight-skill-table">
         <caption>
           {bout.preparation
-            ? "Fight skills · valid preparation included"
+            ? "Fight-night skills · camp bonuses included"
             : "Current skills"}
         </caption>
         <thead>
@@ -200,7 +200,10 @@ export function FightIntel({ s, f, opponent, bout, story }) {
                       />
                     </span>
                     {stat?.bonus > 0 && (
-                      <small>includes +{stat.bonus} prep</small>
+                      <small>
+                        {Math.round((stat.value - stat.bonus) * 10) / 10} + {stat.bonus}{" "}
+                        {stat.sources.join(" + ") || "camp"}
+                      </small>
                     )}
                   </td>
                 );
@@ -224,12 +227,9 @@ export function FightIntel({ s, f, opponent, bout, story }) {
         {story && differentStory && <p>{story}</p>}
         {opponent.gameplan && (
           <p>
-            <strong>Scouted plan:</strong>{" "}
-            {skillLabel(opponent.gameplan.approach)} ·{" "}
-            {skillLabel(opponent.gameplan.pace)} pace ·{" "}
-            {skillLabel(opponent.gameplan.finish)}
+            <strong>Scouted plan:</strong> {tacticSummary(opponent.gameplan)}
             {opponent.gameplan.conserveBelow
-              ? ` · eases off below ${opponent.gameplan.conserveBelow}% gas`
+              ? ` · slows it down below ${opponent.gameplan.conserveBelow}% gas`
               : ""}
             .
           </p>

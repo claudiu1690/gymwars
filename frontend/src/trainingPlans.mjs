@@ -463,3 +463,50 @@ export function importantWeekReport(report) {
       )),
   );
 }
+
+/** The midpoint check-in, in numbers: fight-night readiness and the camp
+ * bonus for each choice. Readiness is null when no fight is booked. */
+export function campReviewOutcomes(s, f) {
+  if (!f.camp) return null;
+  const bout = fighterBout(s, f);
+  const fightWeek = bout?.status === "scheduled" ? bout.eventWeek : null;
+  const remaining = Math.max(0, f.camp.weeks - f.camp.completed);
+  const stat = planIdentity[f.camp.preset]?.stat || null;
+  const bonus = stat
+    ? preparationValue(s, f.camp.preset) + (f.camp.commitmentBonus || 0)
+    : f.camp.commitmentBonus || 0;
+  const atFight = (value, fromWeek) =>
+    fightWeek == null
+      ? null
+      : Math.min(
+          100,
+          Math.round(value + Math.max(0, fightWeek - fromWeek) * restRecovery(s)),
+        );
+  return {
+    remaining,
+    keep: {
+      readiness: atFight(
+        campEndReadiness(s, f, remaining, f.camp),
+        s.week + remaining,
+      ),
+      bonus,
+      stat: stat || (bonus ? "conditioning" : null),
+    },
+    stop: { readiness: atFight(readiness(f), s.week), bonus: 0, stat: null },
+  };
+}
+
+/** A one-line result for quiet weeks, when the full report stays closed:
+ * each fighter's biggest gain and readiness. */
+export function weekSummary(report, limit = 2) {
+  const rows = (report?.fighters || []).filter((row) => row.outcome !== "retired");
+  const parts = rows.slice(0, limit).map((row) => {
+    const [skill, gain] = Object.entries(row.gains || {}).sort(
+      (a, b) => b[1] - a[1],
+    )[0] || [null, 0];
+    const first = String(row.name || "").split(" ")[0];
+    return `${first} ${gain > 0 ? `+${gain} ${skillLabel(skill).toLowerCase()} · ` : ""}${row.readiness}% ready`;
+  });
+  if (rows.length > limit) parts.push(`+${rows.length - limit} more`);
+  return parts.join(" | ");
+}

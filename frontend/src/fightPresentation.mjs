@@ -86,8 +86,25 @@ export function roundFeedback(b, names = { A: "You", B: "Opponent" }) {
     : latest?.winner
       ? `Round ${round} ${latest.winner === "A" ? "won" : "lost"}`
       : `Round ${round} completed`;
+  // The judges' inputs, when this bout recorded them. Old bouts show none.
+  const scorecard =
+    latest?.A?.scoring && latest?.B?.scoring && !finish
+      ? {
+          winner: latest.winner,
+          A: latest.A.scoring,
+          B: latest.B.scoring,
+          // Control decided it: the winner landed less but scored more.
+          controlDecided:
+            latest.winner &&
+            latest[latest.winner].scoring.damage <
+              latest[latest.winner === "A" ? "B" : "A"].scoring.damage,
+        }
+      : null;
   let observation = null;
-  if (latest) {
+  if (scorecard?.controlDecided) {
+    const w = scorecard.winner;
+    observation = `${w === "A" ? "You" : names.B} landed less but won the round on control. Takedowns and top position score even when the other fighter lands more.`;
+  } else if (latest) {
     if (latest.A.gasAfter < 30)
       observation = `Your gas is ${latest.A.gasAfter}%. Cautious pace slows further gas loss; it does not refill the tank.`;
     else if (latest.B.takedowns >= 2)
@@ -106,6 +123,7 @@ export function roundFeedback(b, names = { A: "You", B: "Opponent" }) {
     A: latest?.A || null,
     B: latest?.B || null,
     observation,
+    scorecard,
     recorded: !!latest,
   };
 }
@@ -279,6 +297,27 @@ export function roundRecap(events = [], names = { A: "You", B: "Opponent" }) {
   return groups;
 }
 
+// One vocabulary for tactics on every screen: prep, fight night, takeaways.
+export const tacticLabels = {
+  approach: {
+    strike: "Keep it standing",
+    balanced: "Mix it up",
+    grapple: "Take it to the ground",
+  },
+  pace: {
+    high: "Push the pace",
+    measured: "Stay measured",
+    cautious: "Slow it down",
+  },
+  finish: { "hunt-finish": "Hunt the finish", "play-safe": "Stay composed" },
+};
+export function tacticSummary(plan = {}) {
+  return ["approach", "pace", "finish"]
+    .map((key) => tacticLabels[key][plan[key]])
+    .filter(Boolean)
+    .join(" · ");
+}
+
 export function fightLessons(b, side = "A") {
   if (b.status !== "resolved" || !b.result) return [];
   const other = side === "A" ? "B" : "A",
@@ -311,22 +350,30 @@ export function fightLessons(b, side = "A") {
   const rounds = b.roundSummaries || b.result.roundSummaries || [],
     last = rounds.at(-1)?.[side];
   const plan = b.decisions?.at(-1)?.[side === "A" ? "a" : "b"] || b.savedPlan;
+  const lost = b.result.winner === other;
+  const stopped = ["KO", "TKO", "SUB"].includes(b.result.method);
+  const gasLine = Number.isFinite(last?.gasAfter)
+    ? stopped && last.gasAfter >= 30
+      ? `${lost ? "You were stopped" : "You finished it"} in round ${b.result.round} with ${last.gasAfter}% gas, so the tank was not the deciding factor.`
+      : last.gasAfter < 30
+      ? `You finished at ${last.gasAfter}% gas. The tank ran low: try a slower pace, or switch to Save your gas earlier.`
+      : lost
+        ? `You finished with ${last.gasAfter}% gas left, so there was fuel to push harder late.`
+        : `You finished with ${last.gasAfter}% gas, enough for the late exchanges.`
+    : null;
   if (plan?.approach && plan?.pace)
     lessons.push({
       id: "tactics",
-      label: "SAVED CORNER CALL",
-      value: `${{ strike: "Striking", grapple: "Grappling", balanced: "Mixed attack" }[plan.approach] || plan.approach} · ${plan.pace} pace`,
-      detail: `${plan.finish === "hunt-finish" ? "You hunted the finish, committing more gas." : "You chose to stay composed rather than force a finish."}${Number.isFinite(last?.gasAfter) ? ` Last recorded gas: ${last.gasAfter}%. ${last.gasAfter < 30 ? "Compare a steadier pace or an earlier gas-saving rule next time." : "Your pace left fuel for the late exchanges."}` : " Compare the recorded rounds before changing your approach."}`,
+      label: b.decisions?.length ? "LAST CORNER CALL" : "SAVED CORNER CALL",
+      value: tacticSummary(plan),
+      detail: gasLine || "Compare the recorded rounds before changing your approach.",
     });
-  if (!plan && Number.isFinite(last?.gasAfter))
+  if (!plan && gasLine)
     lessons.push({
       id: "gas",
       label: "FINAL RECORDED ROUND",
       value: `${last.gasAfter}% gas left`,
-      detail:
-        last.gasAfter < 30
-          ? "Your tank ran low. Compare a steadier pace or earlier gas-saving rule next time; cautious pace slows spending rather than refilling gas."
-          : "Your pace left fuel for the late exchanges. Keep weighing pressure against endurance.",
+      detail: gasLine,
     });
   if (
     lessons.length < 3 &&
@@ -335,13 +382,17 @@ export function fightLessons(b, side = "A") {
   ) {
     const a = b.result.totals[side].damage,
       o = b.result.totals[other].damage;
+    const cards = roundScorecards(b);
+    const control = (k) =>
+      Math.round(cards.reduce((n, r) => n + r[k].control, 0) * 10) / 10;
     if (Number.isFinite(a) && Number.isFinite(o))
       lessons.push({
         id: "damage",
-        label: "RECORDED DAMAGE",
+        label: "DAMAGE AND CONTROL",
         value: `${Math.round(a)} dealt · ${Math.round(o)} received`,
-        detail:
-          "Damage is one part of the result alongside control, scored rounds and finishing exchanges. Compare the opponent before choosing your next training focus.",
+        detail: cards.length
+          ? `Rounds are scored on damage plus control. Control over the fight: you ${control(side)}, ${other === "B" ? "them" : "you"} ${control(other)}.`
+          : "Rounds are scored on damage plus control from takedowns and top position.",
       });
   }
   const discoveries = side === "A" ? b.rewards?.discoveredTraits || [] : [];
@@ -367,19 +418,109 @@ export function fightLessons(b, side = "A") {
   return lessons;
 }
 
+/** Rounds as the judges saw them. Empty for bouts that predate scoring. */
+export function roundScorecards(b) {
+  return (b.roundSummaries || b.result?.roundSummaries || [])
+    .filter((r) => r.A?.scoring && r.B?.scoring)
+    .map((r) => ({
+      round: r.round,
+      winner: r.winner,
+      finish: r.finish,
+      A: r.A.scoring,
+      B: r.B.scoring,
+      takedowns: { A: r.A.takedowns || 0, B: r.B.takedowns || 0 },
+      controlDecided:
+        !!r.winner &&
+        r[r.winner].scoring.damage <
+          r[r.winner === "A" ? "B" : "A"].scoring.damage,
+    }));
+}
+
+/** One plain sentence on why the fight went the way it did, written to
+ * the player's corner (A), plus one thing to try next time. */
+export function fightVerdict(b, names) {
+  const result = b.result;
+  if (!result) return null;
+  const winner = result.winner;
+  const a = result.totals.A,
+    o = result.totals.B;
+  const why = winner === "A" ? "Why you won" : "Why you lost";
+  if (winner === "draw")
+    return {
+      text: `Draw: ${a.roundsWon}–${o.roundsWon} on scored rounds, and neither fighter had a clear damage edge.`,
+      next: null,
+    };
+  const loser = winner === "A" ? "B" : "A";
+  if (["KO", "TKO", "SUB"].includes(result.method)) {
+    const downs = result.totals[winner].knockdowns;
+    const how = {
+      KO: "knocked out",
+      TKO: "stopped",
+      SUB: "submitted",
+    }[result.method];
+    return {
+      text: `${why}: ${names[winner]} ${how} ${names[loser]} in round ${result.round}${result.method !== "SUB" && downs > 1 ? ` after ${downs} knockdowns` : ""}.`,
+      next:
+        winner === "A"
+          ? null
+          : result.method === "SUB"
+            ? "Next camp: train grappling and submissions, or choose Keep it standing."
+            : "Next camp: rest up so readiness is high, and avoid Push the pace when your gas is low.",
+    };
+  }
+  const cards = roundScorecards(b);
+  const lost = cards.filter((r) => r.winner === loser);
+  const won = cards.filter((r) => r.winner === winner);
+  const controlRounds = won.filter((r) => r.controlDecided);
+  // Bouts recorded before per-round scoring: if the winner landed less in
+  // total but took the opponent down, control is what won the rounds.
+  const w = result.totals[winner],
+    l = result.totals[loser];
+  if (
+    !cards.length &&
+    w.roundsWon > l.roundsWon &&
+    w.damage < l.damage &&
+    w.takedowns > 0
+  )
+    return {
+      text: `${why}: ${names[winner]} landed less but won the rounds on control with ${w.takedowns} takedown${w.takedowns === 1 ? "" : "s"}. Takedowns and top position score even when the other fighter lands more.`,
+      next:
+        winner === "A"
+          ? null
+          : "Next camp: train grappling to stop takedowns, or choose Keep it standing.",
+    };
+  if (controlRounds.length) {
+    const tds = controlRounds.reduce((n, r) => n + r.takedowns[winner], 0);
+    return {
+      text: `${why}: ${names[winner]} took ${controlRounds.length === 1 ? "a round" : `${controlRounds.length} rounds`} on control${tds ? ` with ${tds} takedown${tds === 1 ? "" : "s"}` : ""}. Takedowns and top position score even when the other fighter lands more.`,
+      next:
+        winner === "A"
+          ? null
+          : "Next camp: train grappling to stop takedowns, or choose Keep it standing.",
+    };
+  }
+  if (a.roundsWon === o.roundsWon)
+    return {
+      text: `${why}: the rounds were split ${a.roundsWon}–${o.roundsWon}, so total damage decided it.`,
+      next: null,
+    };
+  return {
+    text: cards.length
+      ? `${why}: ${names[winner]} out-scored ${names[loser]} in ${won.length} of ${cards.length} rounds${lost.length ? "" : ", every round"}.`
+      : `${why}: ${names[winner]} won ${result.totals[winner].roundsWon} of ${a.roundsWon + o.roundsWon} scored rounds.`,
+    next:
+      winner === "A"
+        ? null
+        : "Next camp: train the skill where the matchup showed your biggest gap.",
+  };
+}
+
 export function fightReport(b, names) {
   const result = b.result;
   if (!result) return null;
   const winner = result.winner;
-  const decision = ["DEC", "SPLIT-DEC", "DRAW"].includes(result.method);
-  const a = result.totals.A,
-    other = result.totals.B;
-  const explanation =
-    winner === "draw"
-      ? `Neither fighter took the decision: ${a.roundsWon}–${other.roundsWon} scored rounds, with no decisive damage advantage.`
-      : decision
-        ? `${names[winner]} wins the decision. Scored rounds: ${names.A} ${a.roundsWon}, ${names.B} ${other.roundsWon}. ${a.roundsWon === other.roundsWon ? "Damage breaks the tied rounds in this simulation." : "Damage and control decide each round; takedowns alone do not decide the fight."}`
-        : `${names[winner]} wins by ${result.method} in round ${result.round} at ${result.time}.`;
+  const verdict = fightVerdict(b, names);
+  const explanation = verdict.text;
   const events = (result.rounds || []).flatMap((r) => r.events);
   const ranked = events
     .map((e, i) => ({ ...e, index: i }))
@@ -419,6 +560,7 @@ export function fightReport(b, names) {
     groups,
     momentGroups,
     explanation,
+    next: verdict.next,
     moments: selected.map(
       (e) =>
         translated.find(

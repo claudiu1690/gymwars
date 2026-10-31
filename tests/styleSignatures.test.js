@@ -178,7 +178,7 @@ test("version five golden results and all old signatures are unchanged; new effe
     createHash("sha256").update(JSON.stringify(old)).digest("hex"),
     fixture.sha256,
   );
-  assert.equal(CURRENT_FIGHT_VERSION, 8);
+  assert.equal(CURRENT_FIGHT_VERSION, 9);
   for (const source of cases)
     assert.deepEqual(
       resolveFight({ ...source, engineVersion: 6 }),

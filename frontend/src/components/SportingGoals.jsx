@@ -29,7 +29,7 @@ export default function SportingGoals({ s, competition }) {
             <div>
               <span className="career-eyebrow">
                 4V4 CLUB CUP ·{" "}
-                {cup.locked ? `GYM TIER ${cup.challenge.minTier}` : "AVAILABLE"}
+                {cup.locked ? `FACILITY ${cup.challenge.minTier}` : "AVAILABLE"}
               </span>
               <h3>{cup.challenge.rewardName}</h3>
               <p>
@@ -38,7 +38,7 @@ export default function SportingGoals({ s, competition }) {
               </p>
               <strong>
                 {cup.locked
-                  ? `Reach gym tier ${cup.challenge.minTier} to enter`
+                  ? `Reach facility ${cup.challenge.minTier} to enter`
                   : "Four fighters · one rival gym · one token"}
               </strong>
               {!cup.locked && tokens === 0 && (

@@ -99,7 +99,7 @@ export function AllowanceLine({
       </strong>
       {!compact && (
         <small>
-          {allowance.nextRefillAt ? "Real-time refill: " : ""}
+          {allowance.nextRefillAt ? "Next free refill: " : ""}
           {refill}
           {allowance.extraAvailable > 0 &&
             ` · ${allowance.extraAvailable} extra saved`}

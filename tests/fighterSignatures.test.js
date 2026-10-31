@@ -35,7 +35,7 @@ const input = (seed, a = {}, b = {}) => ({
 const events = (result) => result.rounds.flatMap((round) => round.events);
 
 test("version three fights replay their original golden results and all legacy versions remain supported", () => {
-  assert.deepEqual(SUPPORTED_FIGHT_VERSIONS, [1, 2, 3, 4, 5, 6, 7, 8]);
+  assert.deepEqual(SUPPORTED_FIGHT_VERSIONS, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
   const a = {
     name: "Alex",
     style: "boxing",

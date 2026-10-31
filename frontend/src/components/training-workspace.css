@@ -1307,3 +1307,5 @@
     order: 2;
   }
 }
+.career-app.game-mode.clubhouse .training-workspace .tw-midpoint p.tw-outcome { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 2px 0 8px; padding: 8px 10px; background: #fff7e6; border: 1px solid #e3d3b0; border-radius: 8px; font-size: 13px; }
+.career-app.game-mode.clubhouse .training-workspace .tw-outcome strong { font-variant-numeric: tabular-nums; }

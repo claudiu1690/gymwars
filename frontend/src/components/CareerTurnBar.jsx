@@ -331,10 +331,15 @@ export default function CareerTurnBar({
               </section>
             )}
             <footer className="career-week-continue">
-              <Action onClick={closeReport}>Continue planning</Action>
+              {/* A due fight or check-in blocks the next week, so it leads. */}
+              <Action
+                secondary={!!(dueFight || campDecision)}
+                onClick={closeReport}
+              >
+                Continue planning
+              </Action>
               {(dueFight || campDecision) && (
                 <Action
-                  secondary
                   onClick={() => {
                     closeReport(false);
                     onResolve?.();
@@ -388,7 +393,8 @@ export default function CareerTurnBar({
             onClick={openPlans}
             aria-label={`Week plans: ${training} training, ${mentoring} mentoring, ${resting} resting`}
           >
-            <span className="gw-turn-plans-full">Week </span>plans{" "}
+            <span className="gw-turn-plans-full">Week plans</span>
+            <span className="gw-turn-plans-short">Plans</span>
           </button>
           <GameDialog
             open={plansOpen}

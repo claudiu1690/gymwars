@@ -1,4 +1,4 @@
-import { importantWeekReport } from "../trainingPlans.mjs";
+import { importantWeekReport, weekSummary } from "../trainingPlans.mjs";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { api } from "../api";
@@ -140,9 +140,15 @@ export default function Career() {
     [dialog, setDialog] = useState(null),
     [showWeekResults, setShowWeekResults] = useState(false),
     [acceptedWeekReport, setAcceptedWeekReport] = useState(null),
-    [notice, setNotice] = useState("");
+    [notice, setNotice] = useState(""),
+    [weekToast, setWeekToast] = useState("");
   const lock = useRef(false),
     dialogRef = useRef(null);
+  useEffect(() => {
+    if (!weekToast) return;
+    const timer = setTimeout(() => setWeekToast(""), 7000);
+    return () => clearTimeout(timer);
+  }, [weekToast]);
   const [trainingDraft, setTrainingDraft] = useState(null);
   const [appearanceState, setAppearanceState] = useState(null);
   const [accountProfile, setAccountProfile] = useState(null),
@@ -297,12 +303,20 @@ export default function Career() {
           (!data.duplicate ? data.career.lastAdvance : null);
         setAcceptedWeekReport(report);
         setShowWeekResults(importantWeekReport(report));
+        // Quiet weeks get a short toast instead of the full report.
+        setWeekToast(
+          !data.duplicate && !importantWeekReport(report)
+            ? weekSummary(report)
+            : "",
+        );
         setNotice(
           data.duplicate
             ? report
               ? "Previously saved week recovered. No extra week was used."
               : "This action was already completed. Your latest save is loaded."
-            : "Week complete · plans played and roster updated. Week report is available in the turn bar.",
+            : importantWeekReport(report) || !weekSummary(report)
+              ? "Week complete · plans played and roster updated. Week report is available in the turn bar."
+              : `Week complete · ${weekSummary(report)}. Full report in the turn bar.`,
         );
       } else if (body.trainingFighterId) {
         setDialog(null);
@@ -802,6 +816,19 @@ export default function Career() {
                   onRefresh={load}
                 />
               )}
+              {weekToast && (
+                <div className="gw-week-toast" role="status">
+                  <strong>Week done</strong>
+                  <span>{weekToast}</span>
+                  <button
+                    type="button"
+                    aria-label="Dismiss week summary"
+                    onClick={() => setWeekToast("")}
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
               <footer className="career-footer">
                 <span role="status">
                   {busy
@@ -936,7 +963,8 @@ function Setup({ name: initial, onStarted }) {
         </h2>
         <p>
           You are the manager: choose opponents, train your fighter, and help
-          them recover. Your coach will walk you through the first fight.
+          them recover. Book a fight, train for it, then call the rounds on
+          fight night.
         </p>
         <label>
           Gym name

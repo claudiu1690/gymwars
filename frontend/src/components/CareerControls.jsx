@@ -39,8 +39,8 @@ export function Meter({ value, label: caption, tone = "" }) {
     </div>
   );
 }
-export function Face({ fighter, compact = false }) {
-  const portrait = fighterPortrait(fighter);
+export function Face({ fighter, compact = false, avoid = null }) {
+  const portrait = fighterPortrait(fighter, avoid);
   // Crop the existing approved art around the head for small team controls.
   // The SVG viewport clips the image itself, keeping its rarity backing intact.
   if (compact)
@@ -76,7 +76,7 @@ export function PlanFields({
   onChange,
   disabled,
   includeAutoRule = true,
-  autoRuleDescription = "When you let the coach run a fight, switch to cautious pace below this gas level.",
+  autoRuleDescription = "When the coach runs the fight, switch to Slow it down once gas falls below this level.",
 }) {
   return (
     <div className="coach-board">
@@ -116,7 +116,7 @@ export function PlanFields({
           disabled={disabled}
         >
           <legend>
-            <span aria-hidden="true">04</span>When should the coach ease off?
+            <span aria-hidden="true">04</span>When should we slow it down?
           </legend>
           <p>{autoRuleDescription}</p>
           <div
@@ -131,7 +131,7 @@ export function PlanFields({
                 aria-pressed={value.conserveBelow === gas}
                 onClick={() => onChange({ ...value, conserveBelow: gas })}
               >
-                {gas ? `${gas}% gas` : "Hold the plan"}
+                {gas ? `Below ${gas}%` : "Never"}
               </button>
             ))}
           </div>

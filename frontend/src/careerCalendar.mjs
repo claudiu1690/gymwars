@@ -6,14 +6,15 @@ export function careerDay(s, week = s.week) {
   date.setUTCDate(date.getUTCDate() + week * 7);
   return date;
 }
+// Career time is shown in its own units, never as a real-looking date: real
+// timestamps (allowance refills, league seasons) sit beside it on screen.
+const weeksPerYear = 52;
 export function calendarDate(s, week = s.week, full = false) {
-  return careerDay(s, week).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-    ...(full ? { weekday: "short" } : {}),
-  });
+  const index = Math.max(0, Math.floor(week));
+  const year = Math.floor(index / weeksPerYear) + 1;
+  const weekOfYear = (index % weeksPerYear) + 1;
+  if (full) return `Year ${year} · Week ${weekOfYear}`;
+  return year === 1 ? `Week ${weekOfYear}` : `Week ${weekOfYear}, Year ${year}`;
 }
 export function daysUntil(s, week) {
   const weeks = Math.max(0, week - s.week);

@@ -82,8 +82,8 @@ test("decision explanation and winner highlights cannot be replaced by opponent'
     ],
   };
   const report = fightReport({ result }, names);
-  assert.match(report.explanation, /Alex wins the decision/);
-  assert.match(report.explanation, /Alex 2, Jonas 1/);
+  assert.match(report.explanation, /^Why you won: Alex won 2 of 3 scored rounds/);
+  assert.doesNotMatch(report.explanation, /takedowns alone/);
   assert.ok(report.moments.every((e) => e.actor === "A"));
   assert.equal(report.moments.length, 1);
 });
@@ -108,7 +108,11 @@ test("submission finishes are included and historical summaries work without log
   );
   result.rounds = [];
   assert.equal(fightReport({ result }, names).moments.length, 0);
-  assert.match(fightReport({ result }, names).explanation, /Jonas wins by SUB/);
+  assert.match(
+    fightReport({ result }, names).explanation,
+    /^Why you lost: Jonas submitted Alex in round 1/,
+  );
+  assert.match(fightReport({ result }, names).next, /grappling/);
 });
 
 test("presentation preserves seeded fights across a varied set of outcomes", async () => {
@@ -165,4 +169,74 @@ test("recorded signature activation survives recap and highlighted exchange sele
   const feedback = roundFeedback({ roundSummaries: [{ round: 1, A: { signature: { id: "pace-keeper", activations: 1, rawGasSaved: 0.4 } }, B: {}, roundsScored: { A: 0, B: 0 } }] }, names);
   assert.equal(feedback.A.signature.rawGasSaved, 0.4);
   assert.deepEqual(events, original);
+});
+
+test("a round won on control is explained, scored and turned into a next step", async () => {
+  const { fightReport, roundFeedback, roundScorecards } = await presentation;
+  const side = (damage, control, takedowns = 0) => ({
+    takedowns,
+    gasAfter: 60,
+    scoring: { damage, control, total: damage + control },
+  });
+  const roundSummaries = [
+    { round: 1, winner: "A", A: side(14, 0), B: side(6, 1.5, 1) },
+    { round: 2, winner: "B", A: side(9, 0), B: side(8, 3, 2) },
+    { round: 3, winner: "B", A: side(12, 0), B: side(8, 4.5, 3) },
+  ];
+  const result = {
+    winner: "B",
+    method: "DEC",
+    round: 3,
+    totals: { A: { roundsWon: 1, damage: 38 }, B: { roundsWon: 2, damage: 20 } },
+    rounds: [],
+  };
+  const b = { status: "resolved", result, roundSummaries };
+  const cards = roundScorecards(b);
+  assert.deepEqual(
+    cards.map((c) => [c.winner, c.controlDecided]),
+    [["A", false], ["B", true], ["B", true]],
+  );
+  const report = fightReport(b, names);
+  assert.match(report.explanation, /^Why you lost: Jonas took 2 rounds on control with 5 takedowns/);
+  assert.match(report.next, /Keep it standing/);
+  const feedback = roundFeedback(b, names);
+  assert.equal(feedback.scorecard.controlDecided, true);
+  assert.match(feedback.observation, /won the round on control/);
+  // Bouts recorded before scoring keep no invented scorecard.
+  const old = { ...b, roundSummaries: roundSummaries.map(({ A, B, ...r }) => ({ ...r, A: { gasAfter: 1 }, B: { gasAfter: 1 } })) };
+  assert.equal(roundScorecards(old).length, 0);
+  assert.equal(roundFeedback(old, names).scorecard, null);
+});
+
+test("older bouts without round scoring still name control when the winner landed less", async () => {
+  const { fightReport } = await presentation;
+  const result = {
+    winner: "B",
+    method: "DEC",
+    round: 3,
+    totals: {
+      A: { roundsWon: 1, damage: 38.4, takedowns: 0 },
+      B: { roundsWon: 2, damage: 19.6, takedowns: 4 },
+    },
+    rounds: [],
+  };
+  const report = fightReport({ result }, names);
+  assert.match(
+    report.explanation,
+    /^Why you lost: Jonas landed less but won the rounds on control with 4 takedowns/,
+  );
+  assert.match(report.next, /grappling/);
+});
+
+test("gas advice stays out of early finishes", async () => {
+  const { fightLessons } = await presentation;
+  const lessons = fightLessons({
+    status: "resolved",
+    decisions: [{ a: { approach: "strike", pace: "measured", finish: "hunt-finish" } }],
+    roundSummaries: [{ A: { gasAfter: 60 }, B: { gasAfter: 50 } }],
+    result: { winner: "B", method: "SUB", round: 2, totals: {} },
+  });
+  const tactics = lessons.find((l) => l.id === "tactics");
+  assert.match(tactics.detail, /stopped in round 2 with 60% gas/);
+  assert.doesNotMatch(tactics.detail, /push harder/);
 });

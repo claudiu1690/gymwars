@@ -18,10 +18,17 @@ export function PurchasePreview({ preview }) {
       className="design-purchase-preview"
       aria-label="Budget after this purchase"
     >
-      <div>
-        <span>Cash remaining</span>
-        <strong>{money(preview.cashAfterPurchase)}</strong>
-      </div>
+      {preview.cashAfterPurchase < 0 ? (
+        <div className="is-short">
+          <span>Not enough cash</span>
+          <strong>Need {money(-preview.cashAfterPurchase)} more</strong>
+        </div>
+      ) : (
+        <div>
+          <span>Cash remaining</span>
+          <strong>{money(preview.cashAfterPurchase)}</strong>
+        </div>
+      )}
       <div>
         <span>Whole gym / week</span>
         <strong>
@@ -31,8 +38,10 @@ export function PurchasePreview({ preview }) {
       <div>
         <span>Weeks covered</span>
         <strong>
-          {preview.weeksCovered == null
-            ? "No upkeep"
+          {preview.cashAfterPurchase < 0
+            ? "—"
+            : preview.weeksCovered == null
+              ? "No upkeep"
             : `${preview.weeksCovered} weeks`}
         </strong>
       </div>
@@ -305,7 +314,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
                 <p>{challenge.description}</p>
                 <strong>
                   {challenge.reward.trophy} · +{challenge.reward.legacy}{" "}
-                  reputation
+                  legacy
                   {challenge.reward.cash > 0 &&
                     ` · ${money(challenge.reward.cash)} first-victory prize`}
                 </strong>
@@ -367,7 +376,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
       >
         <figure
           className="development-stage-visual"
-          aria-label="Gym tier preview"
+          aria-label="Facility preview"
         >
           <img
             src={gymEnvironment(viewTier)}
@@ -397,7 +406,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
                 : nextStage
                   ? "YOUR NEXT EXPANSION"
                   : "FUTURE HOME"}{" "}
-            · TIER {viewTier}
+            · FACILITY {viewTier}
           </span>
           <h3>{viewedFacility.name}</h3>
           {viewedFacility.description && <p>{viewedFacility.description}</p>}
@@ -509,7 +518,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
           ) : nextStage ? (
             <>
               <strong>{money(viewedFacility.cost)}</strong>
-              <span>{viewedFacility.weeks} career weeks to expand</span>
+              <span className="design-build-time">Build time: {viewedFacility.weeks} weeks</span>
               <p>
                 Facility upkeep {money(currentFacility.upkeep)} →{" "}
                 {money(viewedFacility.upkeep)} / week.
@@ -599,7 +608,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
           ) : (
             <>
               <strong>{money(viewedFacility.cost)}</strong>
-              <span>{viewedFacility.weeks} career weeks to expand</span>
+              <span className="design-build-time">Build time: {viewedFacility.weeks} weeks</span>
               <p>Reach {facilities[viewTier - 1]?.name} first.</p>
               <small>
                 Grow one tier at a time. Each step opens more room upgrades.
@@ -777,7 +786,7 @@ export default function CareerDevelopment({ s, revision, command, disabled }) {
                         <small>
                           {department.level >= level.level
                             ? "Built"
-                            : `${money(level.fee)} · gym tier ${level.facilityTier}`}
+                            : `${money(level.fee)} · facility ${level.facilityTier}`}
                         </small>
                       </div>
                     </li>

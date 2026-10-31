@@ -8,6 +8,8 @@ const {
   resolveFight,
   CURRENT_FIGHT_VERSION,
   LEGACY_FIGHT_VERSION,
+  MENTORING_BALANCE_VERSION,
+  ROUND_SCORING_VERSION,
 } = require("../engine/fightEngine");
 const { FIGHT } = require("../consts/fightConfig");
 const presentation = import("../frontend/src/fightPresentation.mjs");
@@ -308,4 +310,29 @@ test("compact feedback and highlights stay factual for current and historical sa
   assert.equal(historical.recorded, false);
   assert.equal(historical.A, null);
   assert.deepEqual(historical.score, { A: 1, B: 0 });
+});
+
+test("v9 records each round's judging inputs without changing any v8 outcome", () => {
+  const strip = (result) => {
+    const copy = structuredClone(result);
+    for (const r of copy.roundSummaries || [])
+      for (const side of ["A", "B"]) delete r[side].scoring;
+    return copy;
+  };
+  for (let i = 0; i < 40; i++) {
+    const base = input("round-scoring-" + i);
+    base.a.gameplan.approach = ["strike", "grapple", "balanced"][i % 3];
+    base.b.style = ["wrestling", "bjj", "boxing"][i % 3];
+    const v8 = resolveFight({ ...structuredClone(base), engineVersion: MENTORING_BALANCE_VERSION });
+    const v9 = resolveFight({ ...structuredClone(base), engineVersion: ROUND_SCORING_VERSION });
+    assert.deepEqual(strip(v9), v8);
+    assert.ok(v8.roundSummaries.every((r) => !r.A.scoring));
+    for (const r of v9.roundSummaries) {
+      if (!r.winner) continue;
+      const other = r.winner === "A" ? "B" : "A";
+      // The recorded totals reproduce the judges' call (ties go to A).
+      if (r.winner === "A") assert.ok(r.A.scoring.total >= r.B.scoring.total - 0.11);
+      else assert.ok(r.B.scoring.total > r[other].scoring.total - 0.11);
+    }
+  }
 });

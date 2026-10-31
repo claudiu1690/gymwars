@@ -267,3 +267,22 @@
 /* One chronological recap. Highlights are identified in place, never repeated. */
 .fn-events li[data-highlight="true"] { background: #eee7d4; border-radius: 6px; }
 .fn-key-moment { display: inline-block; color: #805333; font-size: 12px; margin-bottom: 5px; }
+
+/* Judges' scorecard: damage + control, so a decision never looks arbitrary. */
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scoreline { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 12px; padding: 10px 14px; color: var(--fn-ink); background: #fffaf0; border: 1px solid #d2ccb9; border-left: 4px solid #547368; border-radius: 8px; font-size: 14px; font-variant-numeric: tabular-nums; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scoreline[data-winner="B"] { border-left-color: #a8473b; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scoreline strong { font-size: 15px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scoreline span { color: var(--fn-muted); }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards { width: 100%; margin: 18px 0 6px; border-collapse: collapse; color: var(--fn-ink); font-size: 14px; font-variant-numeric: tabular-nums; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards caption { padding-bottom: 10px; color: var(--fn-muted); text-align: left; font-size: 13px; line-height: 1.5; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards :is(th,td) { padding: 9px 8px; border-bottom: 1px solid var(--fn-line); text-align: left; overflow-wrap: anywhere; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards thead th { color: var(--fn-muted); font-size: 12px; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards tr[data-winner="A"] td:last-child { color: #3f6b55; font-weight: 800; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards tr[data-winner="B"] td:last-child { color: #a8473b; font-weight: 800; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-verdict strong { display: block; margin-top: 6px; }
+@media (max-width: 540px) {
+  .career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards { font-size: 12px; }
+  .career-app.game-mode.clubhouse .fight-night-arena .fn-scorecards :is(th,td) { padding: 8px 4px; }
+}
+.career-app.game-mode.clubhouse .fight-night-arena .fn-call-dials { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0; }
+.career-app.game-mode.clubhouse .fight-night-arena .fn-call-dials i { padding: 2px 7px; color: #3f5c4f; background: #e4ecdf; border-radius: 999px; font-size: 11px; font-style: normal; font-weight: 700; line-height: 1.5; }

@@ -1,6 +1,9 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { signatureDefinition } from "../careerIdentity.mjs";
+import {
+  plainSignatureText,
+  signatureDefinition,
+} from "../careerIdentity.mjs";
 import "./signature-badge.css";
 
 // The tooltip uses a portal so card clipping never cuts off its short effect.
@@ -126,7 +129,7 @@ export default function SignatureBadge({
             onPointerLeave={hideSoon}
           >
             <strong>{ability.name}</strong>
-            <span>{ability.effect}</span>
+            <span>{plainSignatureText(ability.effect)}</span>
           </div>,
           document.body,
         )}

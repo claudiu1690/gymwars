@@ -59,7 +59,7 @@ export function careerPathFocus(s) {
         goal?.description ||
         journey.completion?.description,
       reward: challenge?.reward
-        ? `${challenge.reward.trophy} · +${challenge.reward.legacy} reputation`
+        ? `${challenge.reward.trophy} · +${challenge.reward.legacy} legacy`
         : goal?.reward,
       progress: goal
         ? {

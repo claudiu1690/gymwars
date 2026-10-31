@@ -12,7 +12,10 @@ import {
   fightRewardSummary,
   fightStatDisplay,
   roundFeedback,
+  roundScorecards,
   significantExchanges,
+  tacticLabels,
+  tacticSummary,
 } from "../fightPresentation.mjs";
 import { calendarDate } from "../careerCalendar.mjs";
 import "./fight-night-arena.css";
@@ -31,30 +34,31 @@ const methods = {
   SUB: "Submission",
 };
 const methodLabel = (value) => methods[value] || label(value);
+// Shortcuts over the same three dials the prep screen uses. Each card shows
+// the dial settings it picks, so both screens speak one language.
 const cornerCalls = [
   {
-    title: "Work the feet",
-    intent: "Favor striking. Push for a finish.",
+    title: "Strike and finish",
+    intent: "Stand and trade, push hard, go for the stoppage.",
     tradeoff: "More output · higher gas use",
     plan: { approach: "strike", pace: "high", finish: "hunt-finish" },
   },
   {
     title: "Take it down",
-    intent: "Seek takedowns and submission openings.",
-    tradeoff: "Measured pace · matchup matters",
+    intent: "Shoot for takedowns and look for submissions.",
+    tradeoff: "Scores control · matchup matters",
     plan: { approach: "grapple", pace: "measured", finish: "hunt-finish" },
   },
   {
     title: "Save your gas",
-    intent: "Mix your attacks. Stay composed.",
+    intent: "Mix it up at a slower pace and stay composed.",
     tradeoff: "Less output · slower gas loss",
     plan: { approach: "balanced", pace: "cautious", finish: "play-safe" },
   },
 ];
 const sameInstructions = (a, b) =>
   ["approach", "pace", "finish"].every((key) => a[key] === b[key]);
-const instructionSummary = (plan) =>
-  `${{ strike: "Striking", grapple: "Grappling", balanced: "Mixed attacks" }[plan.approach]} · ${label(plan.pace)} pace · ${plan.finish === "hunt-finish" ? "Hunt the finish" : "Stay composed"}`;
+const instructionSummary = tacticSummary;
 
 function Condition({ value, caption, fighterName }) {
   const recorded = Number.isFinite(value);
@@ -87,7 +91,7 @@ function Condition({ value, caption, fighterName }) {
   );
 }
 
-function Corner({ fighter, side, bout }) {
+function Corner({ fighter, side, bout, across = null }) {
   const state = fightCornerState(bout, side);
   const readiness = bout.readiness?.[side === "A" ? "you" : "them"];
   const prepared = bout.preparation?.[side === "A" ? "you" : "them"];
@@ -105,7 +109,7 @@ function Corner({ fighter, side, bout }) {
       />
       <div className="fn-fighter-heading">
         <div className="fn-portrait">
-          <Face fighter={fighter} compact />
+          <Face fighter={fighter} compact avoid={side === "B" ? across : null} />
         </div>
         <div>
           <small className="fn-eyebrow">
@@ -199,6 +203,63 @@ function Recap({ events, names, groups, highlights = [] }) {
   );
 }
 
+function ScoreLine({ card, names }) {
+  const winner = card.winner;
+  return (
+    <p className="fn-scoreline" data-winner={winner || undefined}>
+      <strong>
+        Round {card.round} → {winner ? names[winner] : "finish"}
+      </strong>
+      <span>
+        Damage {card.A.damage} – {card.B.damage}
+      </span>
+      <span>
+        Control {card.A.control} – {card.B.control}
+      </span>
+    </p>
+  );
+}
+
+/** The judges' card, round by round, so a decision never feels arbitrary. */
+function Scorecards({ bout, names }) {
+  const cards = roundScorecards(bout);
+  if (!cards.length) return null;
+  return (
+    <table className="fn-scorecards">
+      <caption>
+        How the rounds were scored · damage + control (takedowns, top
+        position)
+      </caption>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>{names.A}</th>
+          <th>{names.B}</th>
+          <th>Round to</th>
+        </tr>
+      </thead>
+      <tbody>
+        {cards.map((card) => (
+          <tr key={card.round} data-winner={card.winner || undefined}>
+            <th>R{card.round}</th>
+            <td>
+              {card.A.damage} + {card.A.control} = <b>{card.A.total}</b>
+            </td>
+            <td>
+              {card.B.damage} + {card.B.control} = <b>{card.B.total}</b>
+            </td>
+            <td>
+              {card.finish
+                ? "Finish"
+                : `${names[card.winner]}${card.controlDecided ? " (control)" : ""}`}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
 function RoundReport({ feedback, names }) {
   if (!feedback) return null;
   const change = (value) =>
@@ -206,6 +267,12 @@ function RoundReport({ feedback, names }) {
   return (
     <section className="fn-round-report" aria-label="Last round result">
       <h3>{feedback.title}</h3>
+      {feedback.scorecard && (
+        <ScoreLine
+          card={{ round: feedback.round, ...feedback.scorecard }}
+          names={names}
+        />
+      )}
       {feedback.recorded ? (
         <div className="fn-round-deltas">
           {["A", "B"].map((side) => (
@@ -223,8 +290,8 @@ function RoundReport({ feedback, names }) {
               {feedback[side].signature?.activations > 0 && (
                 <small>
                   {feedback[side].signature.rawGasSaved > 0
-                    ? `Signature saved ${feedback[side].signature.rawGasSaved} raw gas units this round`
-                    : `Signature active in ${feedback[side].signature.activations} contest${feedback[side].signature.activations === 1 ? "" : "s"} this round`}
+                    ? "Signature saved some gas this round"
+                    : `Signature fired ${feedback[side].signature.activations === 1 ? "once" : `${feedback[side].signature.activations} times`} this round`}
                   .
                 </small>
               )}
@@ -315,6 +382,7 @@ export default function CareerFightNight({
           </strong>
           <small>Scored rounds won</small>
         </div>
+
         <div
           className="fn-round-markers"
           aria-label={`${roundsDone} of ${b.rounds} rounds completed`}
@@ -332,7 +400,7 @@ export default function CareerFightNight({
           ))}
         </div>
       </div>
-      <Corner fighter={opponent} side="B" bout={b} />
+      <Corner fighter={opponent} side="B" bout={b} across={f} />
     </section>
   );
 
@@ -379,7 +447,9 @@ export default function CareerFightNight({
             </strong>
             <p className="fn-verdict" role="status">
               {report.explanation}
+              {report.next && <strong> {report.next}</strong>}
             </p>
+            <Scorecards bout={b} names={names} />
             <FightLessons bout={b} fighterId={f.id} />
             <ResultFeedback reference={b.id} />
             <dl className="fn-rewards">
@@ -519,6 +589,12 @@ export default function CareerFightNight({
                   ? `Round ${roundsDone} · key exchange`
                   : "Before the bell"}
               </p>
+              {feedback?.scorecard && (
+                <ScoreLine
+                  card={{ round: feedback.round, ...feedback.scorecard }}
+                  names={names}
+                />
+              )}
               {latestExchange ? (
                 <Recap groups={[latestExchange]} names={names} />
               ) : (
@@ -570,6 +646,11 @@ export default function CareerFightNight({
                     <span className="fn-call-content">
                       <strong>{call.title}</strong>
                       <span>{call.intent}</span>
+                      <span className="fn-call-dials">
+                        {["approach", "pace", "finish"].map((key) => (
+                          <i key={key}>{tacticLabels[key][call.plan[key]]}</i>
+                        ))}
+                      </span>
                       <small>{call.tradeoff}</small>
                       <b>
                         {selected
@@ -633,7 +714,7 @@ export default function CareerFightNight({
               <p>
                 Let the coach play every remaining round with this call.
                 {plan.conserveBelow > 0
-                  ? ` Switches to cautious pace below ${plan.conserveBelow}% gas.`
+                  ? ` Switches to Slow it down below ${plan.conserveBelow}% gas.`
                   : " No automatic pace switch."}
                 {b.combatVersion >= 2
                   ? " Finish attempts spend extra gas; staying composed keeps that gas."

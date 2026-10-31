@@ -263,7 +263,7 @@ function StaffCard({ s, role, command, disabled }) {
             <strong>{r.name}</strong>
             <small>{effect(r)}</small>
             <small>
-              {r.rank === rank ? "Current rank" : `Gym tier ${r.facilityTier}`}
+              {r.rank === rank ? "Current rank" : `Facility ${r.facilityTier}`}
             </small>
             {r.rank > 1 && (
               <small className="staff-rank-work">
@@ -1061,7 +1061,7 @@ export default function CareerGym({
       >
         <div className="gym-hero-copy">
           <span className="career-eyebrow">
-            GYM TIER {s.facilityTier} /{" "}
+            FACILITY {s.facilityTier} /{" "}
             {s.gymDevelopment?.maxTier || s.rules.facilities.length - 1} ·{" "}
             {calendarDate(s)}
           </span>
@@ -1115,7 +1115,7 @@ export default function CareerGym({
             <strong>{money(s.weeklyCost)}</strong>Gym costs / week
           </span>
           <span>
-            <strong>{s.legacy}</strong>Career reputation
+            <strong>{s.legacy}</strong>Legacy
           </span>
         </div>
       </header>

@@ -80,7 +80,7 @@ function FeaturedFight({ s, bout }) {
         <span className="fight-event-vs" aria-hidden="true">
           VS
         </span>
-        <PosterFighter fighter={opponent} rival bout={bout} />
+        <PosterFighter fighter={opponent} rival bout={bout} across={fighter} />
       </div>
       <footer className="fight-event-footer">
         <div className="fight-event-facts">

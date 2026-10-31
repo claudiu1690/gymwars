@@ -66,7 +66,7 @@ export default function CareerHome({
         >
           <div className="club-scene-name">
             <span className="career-eyebrow">
-              GYM TIER {s.facilityTier} / {s.rules.facilities.length - 1}
+              FACILITY {s.facilityTier} / {s.rules.facilities.length - 1}
             </span>
             <h2>{s.name}</h2>
             <p>{s.rules.facilities[s.facilityTier].name}</p>
@@ -118,7 +118,7 @@ export default function CareerHome({
               <b>{s.boutsCompleted}</b> bouts fought
             </span>
             <span>
-              <b>{s.legacy}</b> reputation
+              <b>{s.legacy}</b> legacy
             </span>
           </div>
         </section>
@@ -161,8 +161,11 @@ export default function CareerHome({
         <SportingGoals s={s} competition={competition} />
       )}
       <FirstFightTrail s={s} />
-      {s.boutsCompleted > 0 && <ClubGoalTracker s={s} />}
-      {s.boutsCompleted > 0 && <CircuitPayoff s={s} />}
+      {/* Systems arrive one step at a time: after the first bout the
+          career path and the Gym Wars team; club goals, circuit and gym
+          development after the second. */}
+      {s.boutsCompleted > 1 && <ClubGoalTracker s={s} />}
+      {s.boutsCompleted > 1 && <CircuitPayoff s={s} />}
       {s.boutsCompleted > 0 && <TeamCoverage fighters={team} />}
       {coverage.complete && !s.journey?.careerComplete && (
         <section
@@ -267,7 +270,7 @@ export default function CareerHome({
             New club cup available · win a 4v4 card to earn your crest
           </Link>
         )}
-      {s.boutsCompleted > 0 && nextGymGoal && (
+      {s.boutsCompleted > 1 && nextGymGoal && (
         <Link
           className="design-home-goal"
           to={nextGymGoal.href || "/career/gym/facilities"}
@@ -282,7 +285,7 @@ export default function CareerHome({
           </span>
         </Link>
       )}
-      {s.boutsCompleted > 0 && s.rules.departments && (
+      {s.boutsCompleted > 1 && s.rules.departments && (
         <Link className="club-development-link" to="/career/gym/facilities">
           <div>
             <strong>Build your gym’s identity</strong>

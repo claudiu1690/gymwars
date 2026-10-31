@@ -112,7 +112,7 @@ test("all four accepted combat generations retain exact golden results, includin
       hash,
     );
   }
-  assert.equal(CURRENT_FIGHT_VERSION, 8);
+  assert.equal(CURRENT_FIGHT_VERSION, 9);
 });
 test("large skill gaps matter more without eliminating upsets or making close matches deterministic", () => {
   const old = sample(4, 20),

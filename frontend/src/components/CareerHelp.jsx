@@ -29,7 +29,7 @@ const faq = [
   ],
   [
     "Know your competitions",
-    "Regional rankings qualify fighters for belts. Club reputation unlocks new opponents and purses. The Invitational is a three-fighter career event; Gym Wars is a separate ranked 4v4 league.",
+    "Regional rankings qualify fighters for belts. Club level unlocks new opponents and purses. The Invitational is a three-fighter career event; Gym Wars is a separate ranked 4v4 league.",
   ],
   [
     "Return on your schedule",

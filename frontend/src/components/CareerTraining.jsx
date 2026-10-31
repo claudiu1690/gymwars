@@ -14,6 +14,7 @@ import {
   campLengths,
   fightPreparationPlan,
   campEndReadiness,
+  campReviewOutcomes,
   campTitle,
   fighterBout,
   fighterPair,
@@ -160,6 +161,34 @@ function TeamImpact({ s, f, preview }) {
         </p>
       )}
     </div>
+  );
+}
+
+// One check-in choice in numbers: what fight night looks like if you pick it.
+function OutcomeLine({ outcome }) {
+  if (!outcome) return null;
+  return (
+    <p className="tw-outcome">
+      {outcome.readiness != null && (
+        <span>
+          Fight-night readiness <strong>~{outcome.readiness}%</strong>
+        </span>
+      )}
+      <span>
+        {outcome.bonus > 0 ? (
+          <>
+            Camp bonus{" "}
+            <strong>
+              +{outcome.bonus} {skillLabel(outcome.stat)}
+            </strong>
+          </>
+        ) : (
+          <>
+            Camp bonus <strong>none</strong>
+          </>
+        )}
+      </span>
+    </p>
   );
 }
 
@@ -518,6 +547,26 @@ export function CampPlanner({
         : 0) + (f.camp.commitmentBonus || 0)
     : null;
   const fightPlan = fightPreparationPlan(s, f);
+  // The same number fight night will show: base skill plus the bonuses still
+  // valid on the fight date. A camp being planned replaces the previous one.
+  const fightNightBonus = (person, skill, planning = true) => {
+    if (!b) return 0;
+    const valid = (bonus) => bonus && bonus.expiresWeek >= b.eventWeek;
+    const camp =
+      planning && chosen?.type === "camp" && chosen.stat
+        ? { stat: chosen.stat, value: newPreparation }
+        : valid(person.preparation)
+          ? person.preparation
+          : null;
+    const mentoring = valid(person.mentoringPreparation)
+      ? person.mentoringPreparation
+      : null;
+    return [camp, mentoring]
+      .filter((bonus) => bonus?.stat === skill)
+      .reduce((total, bonus) => total + bonus.value, 0);
+  };
+  const oneDecimal = (value) => Math.round(value * 10) / 10;
+  const reviewOutcomes = f.camp?.needsReview ? campReviewOutcomes(s, f) : null;
   const priorPreparation =
     f.preparation && f.preparation.expiresWeek >= s.week ? f.preparation : null;
   const newPreparation =
@@ -758,17 +807,23 @@ export function CampPlanner({
             </div>
           </div>
           <section className="tw-details">
-            <h4>Compare skills · you vs opponent</h4>
+            <h4>Fight-night skills · you vs opponent</h4>
             <p>{matchupMessage(f, opponent)}</p>
             <div className="tw-matchup">
-              {trainingSkills.map((skill) => (
-                <span key={skill}>
-                  {skillLabel(skill)}{" "}
-                  <strong>
-                    {f.stats[skill]} vs {opponent.stats[skill]}
-                  </strong>
-                </span>
-              ))}
+              {trainingSkills.map((skill) => {
+                const bonus = fightNightBonus(f, skill),
+                  theirs = fightNightBonus(opponent, skill, false);
+                return (
+                  <span key={skill}>
+                    {skillLabel(skill)}{" "}
+                    <strong>
+                      {oneDecimal(f.stats[skill] + bonus)} vs{" "}
+                      {oneDecimal(opponent.stats[skill] + theirs)}
+                    </strong>
+                    {bonus > 0 && <small> (+{bonus} camp)</small>}
+                  </span>
+                );
+              })}
             </div>
             {onBrief && (
               <button
@@ -888,6 +943,7 @@ export function CampPlanner({
             <div className="tw-midpoint">
               <article>
                 <h3>Keep building</h3>
+                <OutcomeLine outcome={reviewOutcomes?.keep} />
                 <p>
                   {f.camp.weeks - f.camp.completed} camp weeks remain. More
                   skill growth and more fatigue
@@ -907,6 +963,7 @@ export function CampPlanner({
               </article>
               <article>
                 <h3>Recover sooner</h3>
+                <OutcomeLine outcome={reviewOutcomes?.stop} />
                 <p>
                   Keep the gains above. End the remaining training
                   {planIdentity[f.camp.preset]?.stat
@@ -1268,15 +1325,13 @@ export function CampPlanner({
                 </p>
                 <p className="tw-hint tw-duration-hint">
                   {chosen.stat
-                    ? "Fight bonuses shown are the total earned when the camp finishes. They apply once, within 8 game weeks, and replace the previous camp bonus. "
+                    ? "Fight bonus: earned when the camp ends, used in your next fight within 8 weeks, replaces any earlier camp bonus. "
                     : atCeiling.length === trainingSkills.length
                       ? "Your known skill ceilings still apply to this camp. "
                       : "One-week all-round training focuses on permanent growth. "}
                   {queued && !(f.camp.scheduleVersion >= 2)
                     ? "This saved camp keeps its original training schedule. "
-                    : "Camps of 2 or more weeks finish with a recovery week. Two- and three-week camps fit short fight notices; four- and six-week camps earn a commitment bonus. "}
-                  Review four- and six-week camps halfway through. Time moves
-                  only with End week.
+                    : "The last week of a longer camp is recovery. Four- and six-week camps earn a commitment bonus and get a halfway check-in. "}
                 </p>
                 <section
                   className={`tw-growth-preview${freshForecast?.value && !usefulGrowth ? " tw-no-growth" : ""}`}

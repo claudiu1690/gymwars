@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { calendarDate } from "../careerCalendar.mjs";
+import { careerNav } from "../careerGuide.mjs";
 import { ClubMark, ClubFlag, ORIGINAL_CLUB_LOOK } from "./ClubIdentity";
 import MenuIcon from "./MenuIcon";
 import "./menu-icons.css";
@@ -22,6 +23,24 @@ export default function CareerChrome({
   const closeTrigger = useRef(null);
   const [compact, setCompact] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const visitedKey = `gw-nav-visited:${s?.name || "career"}`;
+  const [visited, setVisited] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(visitedKey) || "[]");
+    } catch {
+      return [];
+    }
+  });
+  const markVisited = (id) => {
+    if (visited.includes(id)) return;
+    const next = [...visited, id];
+    setVisited(next);
+    try {
+      localStorage.setItem(visitedKey, JSON.stringify(next));
+    } catch {
+      // Storage can be unavailable; the dot simply shows again next visit.
+    }
+  };
   useEffect(() => {
     const query = window.matchMedia(
       "(max-width: 1100px), (max-height: 620px) and (orientation: landscape)",
@@ -100,16 +119,7 @@ export default function CareerChrome({
   }, [compact, menuOpen]);
   const closeMenu = () => setMenuOpen(false);
   const clubLook = s?.shopIdentity || ORIGINAL_CLUB_LOOK;
-  const nav = [
-    ["home", "Home", "home"],
-    ["roster", "Roster", "roster"],
-    ["fights", "Fights", "fights"],
-    ["campaign", "Career Path", "career"],
-    ["gym", "Gym", "gym"],
-    ["gym-wars", "Gym Wars", "wars"],
-    ["achievements", "Achievements", "achievements"],
-    ["shop", "Supply Shop", "shop"],
-  ];
+  const nav = careerNav(s, activePage);
   return (
     <>
       <header className="game-hud">
@@ -136,7 +146,7 @@ export default function CareerChrome({
             <strong>{s?.name || gym?.name || "GYM WARS"}</strong>
             <small>
               {s
-                ? `TIER ${s.facilityTier} · ${s.rules.facilities[s.facilityTier].name}`
+                ? `FACILITY ${s.facilityTier} · ${s.rules.facilities[s.facilityTier].name}`
                 : "BUILD YOUR FIGHT TEAM"}
             </small>
           </div>
@@ -149,7 +159,7 @@ export default function CareerChrome({
               <small>${s.weeklyCost} / week</small>
             </div>
             <div className="game-date">
-              <span>GAME DATE · {calendarDate(s, s.week, true)}</span>
+              <span>CAREER · {calendarDate(s, s.week, true).toUpperCase()}</span>
               <strong>TIME PAUSED</strong>
             </div>
           </div>
@@ -214,11 +224,12 @@ export default function CareerChrome({
             <br />
             WARS<span>BUILD YOUR CORNER</span>
           </Link>
-          {nav.map(([id, label, icon]) => (
+          {nav.map(({ id, label, icon, fresh }) => (
             <button
               key={id}
               onClick={() => {
                 closeMenu();
+                markVisited(id);
                 go(id);
               }}
               className={
@@ -236,8 +247,12 @@ export default function CareerChrome({
             >
               <MenuIcon name={icon} />
               <span>{label}</span>
-              {id === "campaign" && s?.journey?.invitational?.canEnter && (
+              {id === "campaign" && s?.journey?.invitational?.canEnter ? (
                 <i aria-label="Invitational available" />
+              ) : (
+                fresh &&
+                !visited.includes(id) &&
+                activePage !== id && <i aria-label="Newly unlocked" />
               )}
             </button>
           ))}

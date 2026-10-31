@@ -4,6 +4,7 @@ import {
   ambitionCommand,
   ambitionKey,
   signatureSummary,
+  plainSignatureText,
 } from "../careerIdentity.mjs";
 import "./career-identity.css";
 import { GameDialog } from "./GameUI";
@@ -249,12 +250,16 @@ export function SignaturePicker({ s, f, command, disabled }) {
                 </span>
               )}
               <strong>{option.name}</strong>
-              <b className="signature-card-effect">{option.effect}</b>
+              <b className="signature-card-effect">
+                {plainSignatureText(option.effect)}
+              </b>
               <div className="signature-card-trigger">
                 <span>ACTIVATES WHEN</span>
                 <strong>{option.trigger}</strong>
               </div>
-              <small>{option.description || option.counterplay}</small>
+              <small>
+                {plainSignatureText(option.description || option.counterplay)}
+              </small>
             </div>
             <div className="signature-card-footer">
               <span>
@@ -303,7 +308,7 @@ export function SignaturePicker({ s, f, command, disabled }) {
               />
               <div>
                 <h3>{pendingAbility.name}</h3>
-                <strong>{pendingAbility.effect}</strong>
+                <strong>{plainSignatureText(pendingAbility.effect)}</strong>
                 <p>{pendingAbility.trigger}</p>
               </div>
             </div>
@@ -569,7 +574,7 @@ export function CircuitPayoff({ s }) {
   return (
     <div className="gw-circuit-payoff">
       <span className="career-eyebrow">
-        CLUB REPUTATION · LEVEL {circuit.level}
+        CLUB LEVEL {circuit.level}
       </span>
       <strong>{circuit.name.replace(" circuit", "")}</strong>
       <p>

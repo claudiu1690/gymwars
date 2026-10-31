@@ -82,3 +82,5 @@
 .war-season-goals details > div { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .war-season-goals span { padding: 9px 12px; background: #faf5e9; border-radius: 8px; line-height: 1.5; }
 .war-season-goals [data-earned="true"] { background: #e2ecd9; color: #365438; }
+.career-app.game-mode.clubhouse .design-purchase-preview > .is-short strong { color: #a8473b; }
+.career-app.game-mode.clubhouse .design-build-time { display: inline-block; justify-self: start; padding: 4px 10px; color: #2a414f; background: #f1e3c4; border: 1px solid #d9c9ac; border-radius: 999px; font-size: 13px; font-weight: 800; }

@@ -21,7 +21,7 @@ const { publicWarResult } = require("../services/careerWarPresentation");
 const changed = ["pressure-strikes", "escape-artist", "chain-wrestling"];
 
 test("v7 tunes only the approved three bonuses; every accepted v6 fight remains identical", () => {
-  assert.equal(CURRENT_FIGHT_VERSION, 8);
+  assert.equal(CURRENT_FIGHT_VERSION, 9);
   assert.equal(signatureFor("pressure-strikes").value, 1.02);
   assert.equal(signatureFor("escape-artist").contestMultiplier, 1.12);
   assert.equal(signatureFor("chain-wrestling").contestMultiplier, 1.06);

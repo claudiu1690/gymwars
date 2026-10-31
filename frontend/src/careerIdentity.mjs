@@ -50,3 +50,23 @@ export function ambitionCommand(option) {
     ...(option.challengeId ? { challengeId: option.challengeId } : {}),
   };
 }
+
+// Signature text is also the balance record, so it is translated for players
+// only at display time; the saved definitions keep their exact wording.
+const plainWords = [
+  [/ attack contest/g, " attack chance"],
+  [/ defense contest/g, " defense chance"],
+  [/Save up to 1 raw gas per round/g, "Saves up to 1 gas each round"],
+  [
+    /Reduce the first eligible ordinary measured-pace charge by one gas\./g,
+    "Your first measured-pace gas cost each round is 1 lower.",
+  ],
+  [/raw gas/g, "gas"],
+  [/judging control/g, "scorecard control"],
+];
+export function plainSignatureText(text = "") {
+  return plainWords.reduce(
+    (out, [pattern, words]) => out.replace(pattern, words),
+    String(text || ""),
+  );
+}

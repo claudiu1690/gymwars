@@ -60,6 +60,15 @@ export function FightBrief({
     ? b.savedPlan || b.inputs?.a?.gameplan || f.gameplan
     : f.gameplan;
   const dirty = JSON.stringify(plan) !== JSON.stringify(savedPlan);
+  const failedPlan = useRef(null);
+  // Tactics save themselves like the rest of the career. A failed save
+  // waits for the player instead of retrying the same plan in a loop.
+  useEffect(() => {
+    if (!dirty || locked || disabled || working) return;
+    if (failedPlan.current === JSON.stringify(plan)) return;
+    const timer = setTimeout(() => savePlan(), 350);
+    return () => clearTimeout(timer);
+  }, [plan, dirty, locked, disabled, working]);
   useEffect(() => {
     if (tab === "tactics") tactics.current?.scrollIntoView({ block: "start" });
   }, [tab]);
@@ -105,12 +114,14 @@ export function FightBrief({
     setMessage("");
     try {
       const result = await command({ type: "plan", fighterId: f.id, plan });
+      failedPlan.current = result ? null : JSON.stringify(plan);
       setMessage(
         result
-          ? "Opening tactics saved."
+          ? "Tactics saved."
           : "Tactics weren’t saved. Check the save message and try again.",
       );
     } catch (failure) {
+      failedPlan.current = JSON.stringify(plan);
       setMessage(failure.message || "Could not save tactics. Try again.");
     } finally {
       saving.current = false;
@@ -225,9 +236,7 @@ export function FightBrief({
             caption={
               locked
                 ? "FIGHT-START INSTRUCTIONS"
-                : dirty
-                  ? "UNSAVED INSTRUCTIONS"
-                  : "SAVED INSTRUCTIONS"
+                : "OPENING INSTRUCTIONS"
             }
           />
           {!locked && (
@@ -241,17 +250,15 @@ export function FightBrief({
                 disabled={disabled || working}
               />
               <div className="fight-tactics-save">
-                <Action
-                  disabled={disabled || working || !dirty}
-                  onClick={savePlan}
-                >
-                  {working ? "Saving tactics…" : "Save tactics"}
-                </Action>
+                {failedPlan.current === JSON.stringify(plan) && dirty && (
+                  <Action disabled={disabled || working} onClick={savePlan}>
+                    Try saving again
+                  </Action>
+                )}
                 <p role="status">
-                  {message ||
-                    (dirty
-                      ? "Changes are not saved yet."
-                      : "Your opening tactics are saved.")}
+                  {working || (dirty && failedPlan.current !== JSON.stringify(plan))
+                    ? "Saving tactics…"
+                    : message || "Tactics save automatically."}
                 </p>
               </div>
             </>
