@@ -137,3 +137,44 @@ test("an opponent never shows the same face as the fighter across the cage", asy
   }
   assert.equal(fighterPortrait(distinct, mine), fighterPortrait(distinct));
 });
+
+test("an empty week bank ends the session with what is waiting, not a dead end", async () => {
+  const { sessionPause } = await load("careerGuide.mjs");
+  const s = engine.publicState(
+    engine.createCareer({ seed: "pause", name: "Pause Gym" }),
+  );
+  const f = s.fighters[0];
+  const now = Date.parse("2026-10-31T12:00:00Z");
+  const empty = {
+    available: 0,
+    refill: 4,
+    maximum: 12,
+    nextRefillAt: new Date(now + 18 * 3600000).toISOString(),
+  };
+  const advance = { kind: "advance", cta: "End week" };
+  assert.equal(sessionPause(s, { ...empty, available: 2 }, advance, now), null);
+  // Fights and check-ins never need weeks, so they keep the normal guide.
+  assert.equal(sessionPause(s, empty, { kind: "fight" }, now), null);
+  assert.equal(sessionPause(s, empty, { kind: "camp-review" }, now), null);
+
+  let pause = sessionPause(s, empty, advance, now);
+  assert.equal(pause.refill, "+4 weeks in 18 h");
+  assert.equal(pause.fight, null);
+  assert.equal(pause.gymWars.covered, 1);
+  assert.equal(pause.gymWars.total, 4);
+  assert.equal(pause.gymWars.missing.length, 3);
+  assert.match(pause.next.label, /^Scout a /);
+  assert.equal(pause.next.href, "/career/scouting");
+
+  const rival = s.rivals[0];
+  s.fights.push({ id: "b1", fighterId: f.id, opponentId: rival.id, status: "scheduled", eventWeek: 12 });
+  s.scoutsUsed = s.rules.scoutsPerWeek;
+  pause = sessionPause(s, empty, advance, now);
+  assert.equal(pause.fight.text, `${f.name.split(" ")[0]} vs ${rival.name}`);
+  assert.equal(pause.fight.when, "Week 13");
+  assert.equal(pause.next.href, "/career/bout/b1/tactics");
+
+  // Actions that need no weeks, like booking, stay the one thing to do.
+  const book = { kind: "book", cta: "Book the next fight" };
+  assert.equal(sessionPause(s, empty, book, now).next.guide, book);
+});

@@ -1,0 +1,16 @@
+/* End of a session: a calm pause card, on Home and in a one-time dialog. */
+.session-pause { display: grid; gap: 12px; }
+.session-pause h2 { margin: 0; font-size: 26px; line-height: 1.2; }
+.session-pause dl { display: grid; gap: 0; margin: 4px 0 0; border-top: 1px solid #e3d3b0; }
+.session-pause dl > div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid #e3d3b0; }
+.session-pause dt { color: #8a6a3f; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.6; }
+.session-pause dd { margin: 0; color: #203746; font-size: 15px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+.session-pause dd small { color: #5a6a74; font-size: 13px; font-weight: 600; }
+.session-pause-now { margin: 0; color: #5a6a74; font-size: 13px; line-height: 1.5; }
+.session-pause-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.session-pause-actions > * { flex: 1 1 160px; justify-content: center; text-align: center; }
+.gw-game-dialog .session-pause { max-width: 460px; }
+@media (max-width: 540px) {
+  .session-pause h2 { font-size: 21px; }
+  .session-pause dl > div { grid-template-columns: 1fr; gap: 2px; }
+}

@@ -4,7 +4,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { api } from "../api";
 import { isDefiniteRejection, requestId } from "../careerRequest.mjs";
 import { useAuth } from "../auth";
-import { careerGuide } from "../careerGuide.mjs";
+import { careerGuide, sessionPause } from "../careerGuide.mjs";
+import SessionPause from "../components/SessionPause";
+import { GameDialog } from "../components/GameUI";
 import { assignmentFor } from "../careerAssignment.mjs";
 import CareerFightNight from "../components/CareerFightNight";
 import CareerFighter from "../components/CareerFighter";
@@ -141,7 +143,8 @@ export default function Career() {
     [showWeekResults, setShowWeekResults] = useState(false),
     [acceptedWeekReport, setAcceptedWeekReport] = useState(null),
     [notice, setNotice] = useState(""),
-    [weekToast, setWeekToast] = useState("");
+    [weekToast, setWeekToast] = useState(""),
+    [sessionEnded, setSessionEnded] = useState(false);
   const lock = useRef(false),
     dialogRef = useRef(null);
   useEffect(() => {
@@ -303,9 +306,13 @@ export default function Career() {
           (!data.duplicate ? data.career.lastAdvance : null);
         setAcceptedWeekReport(report);
         setShowWeekResults(importantWeekReport(report));
-        // Quiet weeks get a short toast instead of the full report.
+        // The week that empties the bank ends the session with a pause card
+        // (after any week report); other quiet weeks get a short toast.
+        const spent =
+          !data.duplicate && data.allowances?.careerWeeks?.available === 0;
+        setSessionEnded(spent);
         setWeekToast(
-          !data.duplicate && !importantWeekReport(report)
+          !data.duplicate && !spent && !importantWeekReport(report)
             ? weekSummary(report)
             : "",
         );
@@ -387,6 +394,10 @@ export default function Career() {
       }
     : null;
   const guide = s ? careerGuide(s) : null;
+  const endPause =
+    sessionEnded && s
+      ? sessionPause(s, saved.allowances?.careerWeeks, guide)
+      : null;
   const openBout = (id, tab = "overview") => {
     setDialog(null);
     if (tab === "training")
@@ -816,6 +827,18 @@ export default function Career() {
                   onRefresh={load}
                 />
               )}
+              <GameDialog
+                open={!!endPause && !showWeekResults}
+                onClose={() => setSessionEnded(false)}
+                title="Session paused"
+              >
+                <SessionPause
+                  pause={endPause}
+                  onAction={followCoach}
+                  onDone={() => setSessionEnded(false)}
+                  disabled={disabled}
+                />
+              </GameDialog>
               {weekToast && (
                 <div className="gw-week-toast" role="status">
                   <strong>Week done</strong>

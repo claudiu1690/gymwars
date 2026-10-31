@@ -84,6 +84,8 @@ export function AllowanceLine({
   compact = false,
 }) {
   if (!allowance) return null;
+  // "1 career week", "3 career weeks", "1 card".
+  const one = (word) => (allowance.available === 1 ? word.replace(/s$/, "") : word);
   const refill = refillText(allowance, shortNoun);
   const explanation = `Free ${shortNoun} bank up to ${allowance.maximum}. ${refill}.${allowance.extraAvailable ? ` ${allowance.extraAvailable} extra saved separately.` : ""}`;
   return (
@@ -93,9 +95,9 @@ export function AllowanceLine({
       title={explanation}
     >
       <strong
-        aria-label={`${allowance.available} ${noun} ready. ${explanation}`}
+        aria-label={`${allowance.available} ${one(noun)} ready. ${explanation}`}
       >
-        {allowance.available} {compact ? shortNoun : noun} ready
+        {allowance.available} {one(compact ? shortNoun : noun)} ready
       </strong>
       {!compact && (
         <small>

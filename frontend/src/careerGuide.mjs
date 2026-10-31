@@ -1,5 +1,9 @@
 import { calendarDate } from "./careerCalendar.mjs";
-import { divisionCoverage, divisionLabel } from "./careerCompetition.mjs";
+import {
+  divisionCoverage,
+  divisionLabel,
+  refillText,
+} from "./careerCompetition.mjs";
 // Advice is derived from the actual save, so returning players and reloads
 // resume at the right action without a separate tutorial progress flag.
 export function advanceEstimate(s, untilEvent = true) {
@@ -284,4 +288,56 @@ export function careerNav(s, activePage = null) {
     },
   ];
   return items.filter((item) => item.unlocked || item.id === activePage);
+}
+
+// When the week bank runs dry the session pauses, on purpose. Instead of a
+// dead end, show what is waiting: when weeks return, the next fight, how far
+// the club is from Gym Wars, and one thing still worth doing right now.
+// Fights and camp check-ins never need weeks, so they keep the normal guide.
+export function sessionPause(s, allowance, guide, now = Date.now()) {
+  if (!allowance || allowance.available > 0) return null;
+  if (["fight", "camp-review"].includes(guide?.kind)) return null;
+  const team = s.fighters.filter((f) => !f.retired && !f.released);
+  const coverage = divisionCoverage(team);
+  const bout = s.fights
+    .filter((b) => b.status === "scheduled")
+    .sort((a, b) => a.eventWeek - b.eventWeek)[0];
+  const fighter = bout && team.find((f) => f.id === bout.fighterId);
+  const opponent =
+    bout &&
+    (s.rivals.find((r) => r.id === bout.opponentId) || bout.opponentSnapshot);
+  const scoutsLeft = Math.max(0, s.rules.scoutsPerWeek - s.scoutsUsed);
+  const signature = team.find((f) => f.signatureAccess?.eligible && !f.signatureId);
+  let next;
+  if (guide && ["book", "recruit-team", "journey", "train"].includes(guide.kind))
+    next = { guide, label: guide.cta };
+  else if (signature)
+    next = {
+      href: `/career/fighter/${signature.id}`,
+      label: `Choose ${signature.name.split(" ")[0]}’s signature`,
+    };
+  else if (!coverage.complete && scoutsLeft > 0)
+    next = {
+      href: "/career/scouting",
+      label: `Scout a ${divisionLabel(coverage.missing[0]).toLowerCase()}`,
+    };
+  else if (bout)
+    next = { href: `/career/bout/${bout.id}/tactics`, label: "Set fight tactics" };
+  else next = { href: "/career/roster", label: "Review your team" };
+  return {
+    refill: refillText(allowance, "weeks", now),
+    fight:
+      bout && fighter && opponent
+        ? {
+            text: `${fighter.name.split(" ")[0]} vs ${opponent.name}`,
+            when: calendarDate(s, bout.eventWeek),
+          }
+        : null,
+    gymWars: {
+      covered: coverage.covered,
+      total: coverage.covered + coverage.missing.length,
+      missing: coverage.missing.map(divisionLabel),
+    },
+    next,
+  };
 }

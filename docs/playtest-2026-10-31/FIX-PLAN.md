@@ -118,6 +118,7 @@ The fun of the game is in the fight, and the fight currently contradicts what th
 **E1. Reach Gym Wars in the first session: dropped (owner decision, 31 Oct 2026)**
 - Gym Wars stays a goal for a later session, so players have something to come back to. The 8-week starting bank is unchanged.
 - What remains is to make the stop point feel deliberate rather than like hitting a wall. When the weeks run out, show what's waiting (the refill countdown, the next fight, how many divisions Gym Wars still needs) as a reason to return.
+- **Built:** when the week bank runs out, Home shows an "Until next time" card, and the week that empties the bank opens it once as a dialog after any week report. It shows when the weeks return, the next booked fight, Gym Wars progress (divisions still needed), and one thing still worth doing that needs no weeks: book, recruit, choose a signature, scout or set tactics. Fight nights and camp check-ins keep the normal guide, since they never need weeks.
 
 **E2. Play rounds out with drama (L)**
 - The round events already arrive as a list (`advanceRound().events`). In `CareerFightNight.jsx`, reveal them over 5–10 s:

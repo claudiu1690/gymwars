@@ -20,6 +20,8 @@ import { assignmentFor, fighterNextAction } from "../careerAssignment.mjs";
 import "./career-design.css";
 import "./career-home-scene.css";
 import { readiness, skillLabel } from "../trainingPlans.mjs";
+import { sessionPause } from "../careerGuide.mjs";
+import SessionPause from "./SessionPause";
 
 export default function CareerHome({
   s,
@@ -46,8 +48,7 @@ export default function CareerHome({
       active = false;
     };
   }, [coverage.complete, s.week, s.boutsCompleted, allowances?.serverNow]);
-  const paused =
-    allowances?.careerWeeks?.available === 0 && guide?.kind === "advance";
+  const pause = sessionPause(s, allowances?.careerWeeks, guide);
   const defense = competition?.latestDefense;
   const chapter = s.journey?.postInvitationalChallenge;
   const stage = s.journey?.stages.find((item) => item.status === "current");
@@ -123,38 +124,38 @@ export default function CareerHome({
           </div>
         </section>
         <section className="clubhouse-play" aria-label="Play your next turn">
-          <span className="career-eyebrow">YOUR NEXT MOVE</span>
-          <h2>
-            {paused
-              ? "Your team plans are saved."
-              : guide?.title || "Build your next contender."}
-          </h2>
-          <p className="design-next-explanation">
-            {paused
-              ? "Your career weeks will refill. Review tactics, plan training, or recruit from this week’s board while you wait."
-              : guide?.body ||
-                "Choose a fighter, sign a fight and prepare together."}
-          </p>
-          {paused ? (
-            <Link className="career-action" to="/career/roster">
-              Review your team
-            </Link>
+          {pause ? (
+            <SessionPause
+              pause={pause}
+              onAction={onAction}
+              disabled={disabled}
+            />
           ) : (
-            guide && (
-              <Action disabled={disabled} onClick={() => onAction(guide)}>
-                {guide.cta}
-              </Action>
-            )
+            <>
+              <span className="career-eyebrow">YOUR NEXT MOVE</span>
+              <h2>{guide?.title || "Build your next contender."}</h2>
+              <p className="design-next-explanation">
+                {guide?.body ||
+                  "Choose a fighter, sign a fight and prepare together."}
+              </p>
+              {guide && (
+                <Action disabled={disabled} onClick={() => onAction(guide)}>
+                  {guide.cta}
+                </Action>
+              )}
+            </>
           )}
-          <AllowanceLine allowance={allowances?.careerWeeks} />
+          {!pause && <AllowanceLine allowance={allowances?.careerWeeks} />}
           {s.week === 0 && allowances?.careerWeeks && (
             <small className="design-home-calendar-note">
               You start with 8 career weeks. Unused weeks can build up to 12.
             </small>
           )}
-          <small className="design-home-calendar-note">
-            Plan at your own pace. End week advances everyone together.
-          </small>
+          {!pause && (
+            <small className="design-home-calendar-note">
+              Plan at your own pace. End week advances everyone together.
+            </small>
+          )}
         </section>
       </div>
       {s.journey?.careerComplete && (

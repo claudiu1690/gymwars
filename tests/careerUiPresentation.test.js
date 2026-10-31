@@ -604,8 +604,10 @@ test("empty real-time week bank keeps team planning visible without permitting a
     guide: { kind: "advance", title: "End week", cta: "End week" },
     onAction: noop,
   });
-  assert.match(home, /Your team plans are saved/);
-  assert.match(home, /Review your team/);
+  assert.match(home, /UNTIL NEXT TIME/);
+  assert.match(home, /Weeks return/);
+  assert.match(home, /Gym Wars/);
+  assert.match(home, /need /);
   assert.doesNotMatch(home, />End week →<\/button>/);
 });
 
